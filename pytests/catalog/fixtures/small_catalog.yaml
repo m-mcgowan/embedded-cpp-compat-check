@@ -1,0 +1,42 @@
+language:
+  - name: __cpp_structured_bindings
+    rows:
+      - value: 201606
+        papers: P0217R3
+        cppreference-description: Structured bindings
+    support:
+      clang:
+        - since: C++17
+          value: 201606
+      gcc:
+        - since: C++17
+          value: 201606
+
+library:
+  - name: __cpp_lib_optional
+    header_list: optional
+    rows:
+      - value: 201606
+        papers: N4480 N4606
+        cppreference-description: std::optional
+      - value: 202110
+        papers: P2407R5
+        cppreference-description: Monadic operations for std::optional
+    support:
+      clang:
+        - since: C++17
+          value: 202110
+      gcc:
+        - since: C++17
+          value: 202110
+
+attributes:
+  - name: nodiscard
+    rows:
+      - value: 201603
+        papers: P0189R1
+    support:
+      clang:
+        - value: 201603
+      gcc:
+        - value: 201603
