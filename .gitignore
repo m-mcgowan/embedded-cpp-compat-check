@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.pio-cores/
+site/
+.venv/
+*.swp
+catalog/data.yaml
