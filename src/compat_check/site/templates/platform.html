@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ platform_name }} - C++ Compatibility</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f5f5f5; }
+        .supported { color: #28a745; }
+        .unsupported { color: #dc3545; }
+        .unreported { color: #17a2b8; }
+        .macro_lies { color: #ffc107; }
+        a { color: #0366d6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <p><a href="../">&larr; Back to matrix</a></p>
+    <h1>{{ platform_name }}</h1>
+    <p>Version: {{ platform_version }}</p>
+    {% for std, features in by_standard.items() %}
+    <h2 id="{{ std }}">{{ std }}</h2>
+    <table>
+        <tr><th>Feature</th><th>Category</th><th>Macro</th><th>Macro Value</th><th>Compiles</th><th>Status</th><th>Time (ms)</th></tr>
+        {% for f in features %}
+        <tr>
+            <td>{{ f.feature }}</td>
+            <td>{{ f.category }}</td>
+            <td><code>{{ f.macro }}</code></td>
+            <td>{{ f.macro_value }}</td>
+            <td>{{ f.compiles }}</td>
+            <td class="{{ f.status }}">{{ f.status }}</td>
+            <td>{{ f.compile_time_ms }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded C++ Compatibility Matrix</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #f5f5f5; }
+        .full { background: #d4edda; }
+        .partial { background: #fff3cd; }
+        .none { background: #f8d7da; }
+        a { color: #0366d6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Embedded C++ Compatibility Matrix</h1>
+    <table>
+        <tr>
+            <th>Platform</th>
+            {% for std in standards %}<th>{{ std }}</th>{% endfor %}
+        </tr>
+        {% for platform in platforms %}
+        <tr>
+            <td><a href="{{ platform.slug }}/">{{ platform.name }}</a></td>
+            {% for std in standards %}
+            {% set level = matrix[platform.slug][std] %}
+            <td class="{{ level }}">
+                {% if level == 'partial' %}<a href="{{ platform.slug }}/#{{ std }}">{{ level }}</a>
+                {% else %}{{ level }}{% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
