@@ -1,0 +1,18 @@
+name: AVR Arduino Uno
+slug: avr-uno
+version: "5.0.0"
+architecture: avr
+mcu: atmega328p
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: atmelavr
+  board: uno
+  framework: arduino
+
+standards: [c++11, c++14, c++17]
+
+release_monitor:
+  type: platformio_registry
+  platform: atmelavr

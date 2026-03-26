@@ -1,0 +1,18 @@
+name: Raspberry Pi Pico (RP2040)
+slug: rp2040-pico
+version: "1.13.0"
+architecture: arm
+mcu: rp2040
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: raspberrypi
+  board: pico
+  framework: arduino
+
+standards: [c++11, c++14, c++17, c++20, c++23]
+
+release_monitor:
+  type: platformio_registry
+  platform: raspberrypi

@@ -1,0 +1,18 @@
+name: ESP32-S3 Test
+slug: esp32s3-test
+version: "1.0.0"
+architecture: xtensa
+mcu: esp32s3
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: espressif32
+  board: esp32-s3-devkitm-1
+  framework: arduino
+
+standards: [c++11, c++17, c++23]
+
+release_monitor:
+  type: github_release
+  repo: pioarduino/platform-espressif32
