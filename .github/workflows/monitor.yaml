@@ -1,0 +1,24 @@
+name: Monitor Platform Releases
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Monday at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Check for platform updates
+        run: echo "Release monitor not yet implemented — run manually for now"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
