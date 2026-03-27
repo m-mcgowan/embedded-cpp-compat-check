@@ -109,14 +109,9 @@ class Orchestrator:
             raw = extract_probe_strings(project_dir)
             macro_values = parse_probe_output(raw)
 
-        # Stage 2: Compile tests
+        # Stage 2: Compile tests — only at their native standard
         std_prefix = standard.replace("c++", "cpp")
         test_files = sorted(self.test_dir.glob(f"{std_prefix}/*.cpp"))
-        # Also include tests from earlier standards
-        for s in self._standards_up_to(standard):
-            prefix = s.replace("c++", "cpp")
-            test_files.extend(sorted(self.test_dir.glob(f"{prefix}/*.cpp")))
-        test_files = sorted(set(test_files))
 
         for test_file in test_files:
             meta = _parse_test_metadata(test_file)
@@ -161,11 +156,6 @@ class Orchestrator:
             )
 
         return results
-
-    def _standards_up_to(self, standard: str) -> list[str]:
-        all_stds = ["c++11", "c++14", "c++17", "c++20", "c++23", "c++26"]
-        idx = all_stds.index(standard) if standard in all_stds else -1
-        return all_stds[:idx] if idx > 0 else []
 
     def _write_result_files(self, results: list[dict]) -> None:
         by_platform_std = defaultdict(list)
