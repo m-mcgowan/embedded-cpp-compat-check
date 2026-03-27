@@ -18,7 +18,7 @@ class BuildResult:
 def run_build(
     project_dir: Path,
     core_dir: Path | None = None,
-    timeout: int = 300,
+    timeout: int = 600,
 ) -> BuildResult:
     """Run 'pio run' in the given project directory."""
     env = os.environ.copy()

@@ -4,7 +4,8 @@ from compat_check.catalog.models import Feature
 
 _HEADER = """\
 // Auto-generated macro probe — do not edit.
-// Embeds "name=value" strings extractable via `strings` on the compiled binary.
+// Embeds "name=value" strings in a single array referenced from main/setup
+// so the linker cannot strip them. Extract with `strings` on the binary.
 
 #if __has_include(<version>)
 #include <version>
@@ -12,36 +13,46 @@ _HEADER = """\
 
 #define STRINGIFY2(x) #x
 #define STRINGIFY(x) STRINGIFY2(x)
-#define PROBE_DEFINED(name) \\
-    static const char probe_##name[] __attribute__((used)) = \\
-        #name "=" STRINGIFY(name);
-#define PROBE_UNDEFINED(name) \\
-    static const char probe_##name[] __attribute__((used)) = \\
-        #name "=0";
 
 """
 
-_FOOTER = """\
-static const char probe_sentinel[] __attribute__((used)) = "__SENTINEL__=-1";
+_ARRAY_START = """\
+// Collect all probe strings into one referenced array.
+static const char* const probe_results[] = {
+"""
 
-int main() { return 0; }
+_ARRAY_END = """\
+    "__SENTINEL__=-1",
+};
+
+static const int probe_count = sizeof(probe_results) / sizeof(probe_results[0]);
+
+// Force the linker to keep every element by iterating.
+volatile char probe_sink;
+
+auto main() -> int {
+    for (int i = 0; i < probe_count; i++) {
+        probe_sink = probe_results[i][0];
+    }
+    return 0;
+}
 """
 
 
 def _macro_check(name: str) -> str:
     return (
         f"#ifdef {name}\n"
-        f"PROBE_DEFINED({name})\n"
+        f'    "{name}=" STRINGIFY({name}),\n'
         f"#else\n"
-        f"PROBE_UNDEFINED({name})\n"
+        f'    "{name}=0",\n'
         f"#endif\n"
     )
 
 
 def generate_probe_source(features: list[Feature]) -> str:
     """Generate a .cpp file that records the value of every feature-test macro."""
-    parts = [_HEADER]
+    parts = [_HEADER, _ARRAY_START]
     for feature in features:
         parts.append(_macro_check(feature.name))
-    parts.append(_FOOTER)
+    parts.append(_ARRAY_END)
     return "".join(parts)

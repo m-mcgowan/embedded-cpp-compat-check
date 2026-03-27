@@ -18,13 +18,13 @@ def test_generate_probe_includes_version_header():
 def test_generate_probe_checks_language_macro():
     source = generate_probe_source(_make_features())
     assert "#ifdef __cpp_structured_bindings" in source
-    assert "PROBE_DEFINED(__cpp_structured_bindings)" in source
+    assert '"__cpp_structured_bindings="' in source
 
 
 def test_generate_probe_checks_library_macro():
     source = generate_probe_source(_make_features())
     assert "#ifdef __cpp_lib_optional" in source
-    assert "PROBE_DEFINED(__cpp_lib_optional)" in source
+    assert '"__cpp_lib_optional="' in source
 
 
 def test_generate_probe_has_sentinel():
@@ -32,6 +32,8 @@ def test_generate_probe_has_sentinel():
     assert "__SENTINEL__=-1" in source
 
 
-def test_generate_probe_is_valid_cpp():
+def test_generate_probe_references_array():
+    """Probe must reference the array to prevent linker stripping."""
     source = generate_probe_source(_make_features())
-    assert "int main()" in source
+    assert "probe_results" in source
+    assert "probe_sink" in source

@@ -19,7 +19,8 @@ def parse_probe_output(raw: str) -> dict[str, int]:
         if name == "__SENTINEL__":
             continue
         try:
-            result[name] = int(value_str.strip())
+            # Strip C literal suffixes (L, LL, UL, etc.)
+            result[name] = int(value_str.strip().rstrip("LlUu"))
         except ValueError:
             continue
     return result
