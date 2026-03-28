@@ -48,6 +48,112 @@
           "test_hash": "b597ca144688",
           "status": "unsupported",
           "timestamp": "2026-03-27T14:56:25.141059"
+        },
+        "cpp14/generic_lambda": {
+          "test_hash": "9b186470c233",
+          "status": "supported",
+          "timestamp": "2026-03-27T18:50:31.851643"
+        },
+        "cpp14/make_unique": {
+          "test_hash": "ee3e6031d053",
+          "status": "supported",
+          "timestamp": "2026-03-27T18:53:26.780433"
+        },
+        "cpp14/variable_templates": {
+          "test_hash": "c908af736bc5",
+          "status": "supported",
+          "timestamp": "2026-03-27T18:56:44.864825"
+        },
+        "cpp17/any": {
+          "test_hash": "a9e10aa44cb7",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:02:40.134955"
+        },
+        "cpp17/fold_expressions": {
+          "test_hash": "854506d9e7d0",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:06:58.205157"
+        },
+        "cpp17/if_constexpr": {
+          "test_hash": "233e79bf2c5c",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:14:48.295124"
+        },
+        "cpp17/optional": {
+          "test_hash": "6b2eece7c7d6",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:18:24.176141"
+        },
+        "cpp17/string_view": {
+          "test_hash": "e59fd5dbef38",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:21:47.338140"
+        },
+        "cpp17/structured_bindings": {
+          "test_hash": "4743e35e0bba",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:24:51.313668"
+        },
+        "cpp17/variant": {
+          "test_hash": "b5a1eadb42b0",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:28:22.970575"
+        }
+      }
+    },
+    "avr-uno": {
+      "platform_version": "5.0.0",
+      "probe_hash": "8d5454ec56f3",
+      "features": {
+        "cpp14/generic_lambda": {
+          "test_hash": "9b186470c233",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:39:45.979093"
+        },
+        "cpp14/make_unique": {
+          "test_hash": "ee3e6031d053",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T19:40:12.078227"
+        },
+        "cpp14/variable_templates": {
+          "test_hash": "c908af736bc5",
+          "status": "supported",
+          "timestamp": "2026-03-27T19:40:39.195043"
+        },
+        "cpp17/any": {
+          "test_hash": "a9e10aa44cb7",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T19:41:24.085481"
+        },
+        "cpp17/fold_expressions": {
+          "test_hash": "854506d9e7d0",
+          "status": "unreported",
+          "timestamp": "2026-03-27T19:41:49.025573"
+        },
+        "cpp17/if_constexpr": {
+          "test_hash": "233e79bf2c5c",
+          "status": "unreported",
+          "timestamp": "2026-03-27T19:42:12.983503"
+        },
+        "cpp17/optional": {
+          "test_hash": "6b2eece7c7d6",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T19:42:33.497765"
+        },
+        "cpp17/string_view": {
+          "test_hash": "e59fd5dbef38",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T19:42:54.174567"
+        },
+        "cpp17/structured_bindings": {
+          "test_hash": "4743e35e0bba",
+          "status": "unreported",
+          "timestamp": "2026-03-27T19:43:18.079375"
+        },
+        "cpp17/variant": {
+          "test_hash": "b5a1eadb42b0",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T19:43:38.641627"
         }
       }
     }

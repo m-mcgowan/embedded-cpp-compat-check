@@ -1,0 +1,47 @@
+[
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++14",
+    "feature": "cpp14/generic_lambda",
+    "macro": "__cpp_generic_lambdas",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 31694,
+    "compiler": "",
+    "timestamp": "2026-03-27T19:39:45.978989",
+    "error_output": null
+  },
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++14",
+    "feature": "cpp14/make_unique",
+    "macro": "__cpp_lib_make_unique",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 26097,
+    "compiler": "",
+    "timestamp": "2026-03-27T19:40:12.078172",
+    "error_output": "src/main.cpp:8:10: fatal error: memory: No such file or directory\n #include <memory>\n          ^~~~~~~~\ncompilation terminated.\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================= [FAILED] Took 25.38 seconds =========================\n"
+  },
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++14",
+    "feature": "cpp14/variable_templates",
+    "macro": "__cpp_variable_templates",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 27113,
+    "compiler": "",
+    "timestamp": "2026-03-27T19:40:39.194975",
+    "error_output": null
+  }
+]
