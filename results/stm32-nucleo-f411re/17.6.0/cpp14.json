@@ -1,0 +1,47 @@
+[
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++14",
+    "feature": "cpp14/generic_lambda",
+    "macro": "__cpp_generic_lambdas",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 84089,
+    "compiler": "",
+    "timestamp": "2026-03-27T22:04:36.301902",
+    "error_output": null
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++14",
+    "feature": "cpp14/make_unique",
+    "macro": "__cpp_lib_make_unique",
+    "category": "library",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 79103,
+    "compiler": "",
+    "timestamp": "2026-03-27T22:05:55.414136",
+    "error_output": null
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++14",
+    "feature": "cpp14/variable_templates",
+    "macro": "__cpp_variable_templates",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 77427,
+    "compiler": "",
+    "timestamp": "2026-03-27T22:07:12.848051",
+    "error_output": null
+  }
+]

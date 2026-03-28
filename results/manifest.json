@@ -156,6 +156,193 @@
           "timestamp": "2026-03-27T19:43:38.641627"
         }
       }
+    },
+    "rp2040-pico": {
+      "platform_version": "1.13.0",
+      "probe_hash": "8d5454ec56f3",
+      "features": {
+        "cpp14/generic_lambda": {
+          "test_hash": "9b186470c233",
+          "status": "supported",
+          "timestamp": "2026-03-27T21:11:16.862786"
+        },
+        "cpp14/make_unique": {
+          "test_hash": "ee3e6031d053",
+          "status": "supported",
+          "timestamp": "2026-03-27T21:12:01.431471"
+        },
+        "cpp14/variable_templates": {
+          "test_hash": "c908af736bc5",
+          "status": "supported",
+          "timestamp": "2026-03-27T21:12:46.786850"
+        },
+        "cpp17/any": {
+          "test_hash": "a9e10aa44cb7",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:14:11.165647"
+        },
+        "cpp17/fold_expressions": {
+          "test_hash": "854506d9e7d0",
+          "status": "unreported",
+          "timestamp": "2026-03-27T21:14:54.283866"
+        },
+        "cpp17/if_constexpr": {
+          "test_hash": "233e79bf2c5c",
+          "status": "unreported",
+          "timestamp": "2026-03-27T21:15:35.617309"
+        },
+        "cpp17/optional": {
+          "test_hash": "6b2eece7c7d6",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:16:15.012612"
+        },
+        "cpp17/string_view": {
+          "test_hash": "e59fd5dbef38",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:16:54.230556"
+        },
+        "cpp17/structured_bindings": {
+          "test_hash": "4743e35e0bba",
+          "status": "unreported",
+          "timestamp": "2026-03-27T21:17:39.344617"
+        },
+        "cpp17/variant": {
+          "test_hash": "b5a1eadb42b0",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:18:17.074931"
+        },
+        "cpp20/concepts": {
+          "test_hash": "bc5fe95c23f4",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:19:38.231322"
+        },
+        "cpp20/coroutines": {
+          "test_hash": "e08cdbc3f4dc",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:20:16.858224"
+        },
+        "cpp20/format": {
+          "test_hash": "82578dbffe75",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:20:55.907475"
+        },
+        "cpp20/ranges": {
+          "test_hash": "8308ec59ca0a",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:21:33.478499"
+        },
+        "cpp20/span": {
+          "test_hash": "7744753d9895",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:22:12.139901"
+        },
+        "cpp20/three_way_comparison": {
+          "test_hash": "dfbc320f5788",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:22:51.778894"
+        },
+        "cpp23/deducing_this": {
+          "test_hash": "c9fbde50146f",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:24:15.509177"
+        },
+        "cpp23/expected": {
+          "test_hash": "ccf9ad204a0c",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:24:55.666389"
+        },
+        "cpp23/print": {
+          "test_hash": "b597ca144688",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T21:25:34.630522"
+        }
+      }
+    },
+    "stm32-nucleo-f411re": {
+      "platform_version": "17.6.0",
+      "probe_hash": "8d5454ec56f3",
+      "features": {
+        "cpp14/generic_lambda": {
+          "test_hash": "9b186470c233",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:04:36.302673"
+        },
+        "cpp14/make_unique": {
+          "test_hash": "ee3e6031d053",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:05:55.414215"
+        },
+        "cpp14/variable_templates": {
+          "test_hash": "c908af736bc5",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:07:12.848229"
+        },
+        "cpp17/any": {
+          "test_hash": "a9e10aa44cb7",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:09:48.118126"
+        },
+        "cpp17/fold_expressions": {
+          "test_hash": "854506d9e7d0",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:11:08.693138"
+        },
+        "cpp17/if_constexpr": {
+          "test_hash": "233e79bf2c5c",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:12:23.185402"
+        },
+        "cpp17/optional": {
+          "test_hash": "6b2eece7c7d6",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:13:48.419088"
+        },
+        "cpp17/string_view": {
+          "test_hash": "e59fd5dbef38",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:15:09.609867"
+        },
+        "cpp17/structured_bindings": {
+          "test_hash": "4743e35e0bba",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:16:29.729409"
+        },
+        "cpp17/variant": {
+          "test_hash": "b5a1eadb42b0",
+          "status": "supported",
+          "timestamp": "2026-03-27T22:17:52.752435"
+        },
+        "cpp20/concepts": {
+          "test_hash": "bc5fe95c23f4",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:20:29.959226"
+        },
+        "cpp20/coroutines": {
+          "test_hash": "e08cdbc3f4dc",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:21:45.199910"
+        },
+        "cpp20/format": {
+          "test_hash": "82578dbffe75",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:22:58.605971"
+        },
+        "cpp20/ranges": {
+          "test_hash": "8308ec59ca0a",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:24:37.994841"
+        },
+        "cpp20/span": {
+          "test_hash": "7744753d9895",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:26:17.348349"
+        },
+        "cpp20/three_way_comparison": {
+          "test_hash": "dfbc320f5788",
+          "status": "unsupported",
+          "timestamp": "2026-03-27T22:27:58.173025"
+        }
+      }
     }
   }
 }

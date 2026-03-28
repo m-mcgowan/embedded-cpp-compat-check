@@ -1,0 +1,47 @@
+[
+  {
+    "platform": "rp2040-pico",
+    "platform_version": "1.13.0",
+    "standard": "c++14",
+    "feature": "cpp14/generic_lambda",
+    "macro": "__cpp_generic_lambdas",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 45246,
+    "compiler": "",
+    "timestamp": "2026-03-27T21:11:16.861624",
+    "error_output": null
+  },
+  {
+    "platform": "rp2040-pico",
+    "platform_version": "1.13.0",
+    "standard": "c++14",
+    "feature": "cpp14/make_unique",
+    "macro": "__cpp_lib_make_unique",
+    "category": "library",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 44561,
+    "compiler": "",
+    "timestamp": "2026-03-27T21:12:01.431422",
+    "error_output": null
+  },
+  {
+    "platform": "rp2040-pico",
+    "platform_version": "1.13.0",
+    "standard": "c++14",
+    "feature": "cpp14/variable_templates",
+    "macro": "__cpp_variable_templates",
+    "category": "language",
+    "macro_value": 201304,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 45351,
+    "compiler": "",
+    "timestamp": "2026-03-27T21:12:46.786802",
+    "error_output": null
+  }
+]
