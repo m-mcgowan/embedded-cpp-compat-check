@@ -41,3 +41,32 @@ def run_build(
         output=result.stdout,
         error=result.stderr,
     )
+
+
+def run_build_verbose(
+    project_dir: Path,
+    core_dir: Path | None = None,
+    timeout: int = 600,
+) -> tuple[BuildResult, str]:
+    """Run 'pio run -v' and return both the build result and verbose output."""
+    env = os.environ.copy()
+    if core_dir:
+        env["PLATFORMIO_CORE_DIR"] = str(core_dir)
+
+    start = time.monotonic()
+    result = subprocess.run(
+        ["pio", "run", "-v", "-d", str(project_dir)],
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    elapsed_ms = int((time.monotonic() - start) * 1000)
+
+    build_result = BuildResult(
+        success=result.returncode == 0,
+        compile_time_ms=elapsed_ms,
+        output=result.stdout,
+        error=result.stderr,
+    )
+    return build_result, result.stdout
