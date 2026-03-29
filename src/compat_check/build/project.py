@@ -22,7 +22,7 @@ def _std_flag(standard: str) -> str:
     return f"-std=gnu++{num}"
 
 
-def _wrap_for_arduino(source: str) -> str:
+def wrap_for_arduino(source: str) -> str:
     """Convert main()-based test to Arduino setup()/loop() format."""
     source = _ARDUINO_HEADER + source
     # Replace 'auto main() -> int {' or 'int main() {' with 'void setup() {'
@@ -51,7 +51,7 @@ def generate_pio_project(
 
     source_content = source_file.read_text()
     if platform.framework == "arduino":
-        source_content = _wrap_for_arduino(source_content)
+        source_content = wrap_for_arduino(source_content)
     (src_dir / "main.cpp").write_text(source_content)
 
     # Clear compiled src objects so PlatformIO rebuilds with the new source,
