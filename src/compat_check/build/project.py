@@ -1,7 +1,6 @@
 """Generate temporary PlatformIO projects for compilation tests."""
 
 import re
-import shutil
 from pathlib import Path
 
 from compat_check.platform.models import Platform
@@ -54,6 +53,12 @@ def generate_pio_project(
     if platform.framework == "arduino":
         source_content = _wrap_for_arduino(source_content)
     (src_dir / "main.cpp").write_text(source_content)
+
+    # Clear compiled src objects so PlatformIO rebuilds with the new source,
+    # but keep framework/library caches intact for fast incremental builds.
+    for build_env in (output_dir / ".pio" / "build").glob("*/src"):
+        for obj in build_env.glob("*"):
+            obj.unlink(missing_ok=True)
 
     pio = platform.platformio
     std_flag = _std_flag(standard)

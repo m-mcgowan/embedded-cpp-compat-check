@@ -1,6 +1,7 @@
 """Main orchestration engine — ties together probe, build, and results."""
 
 import hashlib
+import shutil
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime
@@ -74,10 +75,11 @@ class Orchestrator:
                     platform, standard, manifest, dry_run
                 )
                 all_results.extend(results)
-
-        if not dry_run:
-            manifest.save(self.results_dir / "manifest.json")
-            self._write_result_files(all_results)
+                # Save incrementally after each standard so we don't lose
+                # progress if the run is interrupted.
+                if results and not dry_run:
+                    manifest.save(self.results_dir / "manifest.json")
+                    self._write_result_files(results)
 
         return all_results
 
@@ -109,9 +111,17 @@ class Orchestrator:
             raw = extract_probe_strings(project_dir)
             macro_values = parse_probe_output(raw)
 
+        # Clean up probe build artifacts (keep source for debugging)
+        probe_pio = project_dir / ".pio"
+        if probe_pio.exists():
+            shutil.rmtree(probe_pio)
+
         # Stage 2: Compile tests — only at their native standard
+        # Reuse a single project dir per platform+standard to avoid duplicating
+        # the framework build (~2-5GB each). Just swap the source file.
         std_prefix = standard.replace("c++", "cpp")
         test_files = sorted(self.test_dir.glob(f"{std_prefix}/*.cpp"))
+        test_project_dir = self.work_dir / platform.slug / standard / "test_project"
 
         for test_file in test_files:
             meta = _parse_test_metadata(test_file)
@@ -124,9 +134,6 @@ class Orchestrator:
             ):
                 continue
 
-            test_project_dir = (
-                self.work_dir / platform.slug / standard / "tests" / feature_key
-            )
             generate_pio_project(test_project_dir, platform, standard, test_file)
             build_result = run_build(test_project_dir, core_dir=core_dir)
 
@@ -168,4 +175,13 @@ class Orchestrator:
             out_dir = self.results_dir / platform_slug / version
             out_dir.mkdir(parents=True, exist_ok=True)
             out_file = out_dir / f"{std_prefix}.json"
-            out_file.write_text(json.dumps(items, indent=2) + "\n")
+
+            # Merge with existing results rather than overwriting
+            existing = []
+            if out_file.exists():
+                existing = json.loads(out_file.read_text())
+            existing_by_feature = {r["feature"]: r for r in existing}
+            for item in items:
+                existing_by_feature[item["feature"]] = item
+            merged = sorted(existing_by_feature.values(), key=lambda r: r["feature"])
+            out_file.write_text(json.dumps(merged, indent=2) + "\n")
