@@ -34,7 +34,6 @@ def test_e2e_pipeline(tmp_path):
     )
     platform = load_platform(platform_yaml)
 
-    # Create a test file
     test_dir = tmp_path / "tests" / "cpp17"
     test_dir.mkdir(parents=True)
     (test_dir / "structured_bindings.cpp").write_text(
@@ -58,24 +57,28 @@ def test_e2e_pipeline(tmp_path):
     mock_build = BuildResult(success=True, compile_time_ms=50, output="", error="")
     probe_strings = "__cpp_structured_bindings=201606\n__SENTINEL__=-1\n"
 
-    with patch("compat_check.orchestrator.engine.run_build", return_value=mock_build), \
-         patch("compat_check.orchestrator.engine.extract_probe_strings", return_value=probe_strings):
+    # Verbose output that won't parse (no main.cpp line) -> triggers fallback to PIO
+    mock_verbose = ""
+
+    with patch("compat_check.orchestrator.engine.run_build_verbose",
+               return_value=(mock_build, mock_verbose)), \
+         patch("compat_check.orchestrator.engine.run_build",
+               return_value=mock_build), \
+         patch("compat_check.orchestrator.engine.extract_probe_strings",
+               return_value=probe_strings):
         results = orch.run()
 
-    # Verify results
     assert len(results) >= 1
     structured = [r for r in results if "structured_bindings" in r["feature"]]
     assert len(structured) == 1
     assert structured[0]["status"] == "supported"
     assert structured[0]["macro_value"] == 201606
 
-    # Verify manifest was written
     manifest_path = tmp_path / "results" / "manifest.json"
     assert manifest_path.exists()
     manifest = json.loads(manifest_path.read_text())
     assert "test-board" in manifest["builds"]
 
-    # Verify summary table can be generated
     from compat_check.site.readme import generate_summary_table
     table = generate_summary_table(results)
     assert "test-board" in table
