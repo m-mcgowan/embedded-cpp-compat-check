@@ -58,7 +58,16 @@ def discover_examples(library_path: Path) -> list[Example]:
     _scan_examples_dir(examples_dir, examples_dir, examples)
     return sorted(examples, key=lambda e: e.name)
 
+_SKIP_DIRS = {'.pio', '.git', 'build', 'node_modules', '__pycache__'}
+
+
 def _scan_examples_dir(base: Path, current: Path, results: list[Example]) -> None:
+    # Skip directories that are complete PIO projects or build artifacts
+    if current != base and (current / "platformio.ini").exists():
+        return
+    if current.name in _SKIP_DIRS or current.name.startswith('.'):
+        return
+
     cpp_files = list(current.glob("*.cpp"))
     ino_files = list(current.glob("*.ino"))
     if ino_files:
