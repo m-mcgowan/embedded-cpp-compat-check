@@ -52,8 +52,15 @@ def test_orchestrator_runs_probe_and_tests(tmp_path):
     mock_build = BuildResult(success=True, compile_time_ms=100, output="", error="")
     probe_output = "__cpp_structured_bindings=201606\n__SENTINEL__=-1\n"
 
-    with patch("compat_check.orchestrator.engine.run_build", return_value=mock_build), \
-         patch("compat_check.orchestrator.engine.extract_probe_strings", return_value=probe_output):
+    # Verbose output that won't parse -> triggers PIO fallback
+    mock_verbose = ""
+
+    with patch("compat_check.orchestrator.engine.run_build_verbose",
+               return_value=(mock_build, mock_verbose)), \
+         patch("compat_check.orchestrator.engine.run_build",
+               return_value=mock_build), \
+         patch("compat_check.orchestrator.engine.extract_probe_strings",
+               return_value=probe_output):
         results = orch.run()
 
     assert len(results) > 0

@@ -9,8 +9,12 @@ from pathlib import Path
 from collections import defaultdict
 import json
 
-from compat_check.build.project import generate_pio_project
-from compat_check.build.runner import run_build, BuildResult
+from compat_check.build.compiler import (
+    extract_compiler_config, extract_linker_config,
+    compile_test, link_test,
+)
+from compat_check.build.project import generate_pio_project, wrap_for_arduino
+from compat_check.build.runner import run_build, run_build_verbose
 from compat_check.catalog.models import Feature
 from compat_check.orchestrator.manifest import Manifest
 from compat_check.orchestrator.results import classify_feature
@@ -88,7 +92,7 @@ class Orchestrator:
     ) -> list[dict]:
         results = []
 
-        # Stage 1: Macro probe
+        # Stage 1: Macro probe (PIO verbose build)
         probe_source = generate_probe_source(self.features)
         probe_hash = hashlib.sha256(probe_source.encode()).hexdigest()[:12]
 
@@ -105,40 +109,81 @@ class Orchestrator:
         if dry_run:
             return []
 
-        probe_result = run_build(project_dir, core_dir=core_dir)
+        probe_result, verbose_output = run_build_verbose(project_dir, core_dir=core_dir)
         macro_values = {}
+        compiler_config = None
+        linker_config = None
         if probe_result.success:
             raw = extract_probe_strings(project_dir)
             macro_values = parse_probe_output(raw)
+            try:
+                compiler_config = extract_compiler_config(verbose_output)
+                linker_config = extract_linker_config(verbose_output)
+            except ValueError:
+                compiler_config = None
+                linker_config = None
 
-        # Clean up probe build artifacts (keep source for debugging)
-        probe_pio = project_dir / ".pio"
-        if probe_pio.exists():
-            shutil.rmtree(probe_pio)
-
-        # Stage 2: Compile tests — only at their native standard
-        # Reuse a single project dir per platform+standard to avoid duplicating
-        # the framework build (~2-5GB each). Just swap the source file.
+        # Determine which tests need building
         std_prefix = standard.replace("c++", "cpp")
         test_files = sorted(self.test_dir.glob(f"{std_prefix}/*.cpp"))
-        test_project_dir = self.work_dir / platform.slug / standard / "test_project"
-
+        tests_to_build = []
         for test_file in test_files:
             meta = _parse_test_metadata(test_file)
             feature_key = f"{test_file.parent.name}/{test_file.stem}"
             test_hash = _file_hash(test_file)
-            macro_name = meta.get("macro", "")
-
-            if not manifest.needs_rebuild(
+            if manifest.needs_rebuild(
                 platform.slug, platform.version, probe_hash, feature_key, test_hash
             ):
-                continue
+                tests_to_build.append((test_file, meta, feature_key, test_hash))
 
-            generate_pio_project(test_project_dir, platform, standard, test_file)
-            build_result = run_build(test_project_dir, core_dir=core_dir)
+        if not tests_to_build:
+            probe_pio = project_dir / ".pio"
+            if probe_pio.exists():
+                shutil.rmtree(probe_pio)
+            return []
 
+        # Stage 2: Fast compile (direct compiler or fallback to PIO)
+        obj_dir = self.work_dir / platform.slug / standard / "objs"
+        obj_dir.mkdir(parents=True, exist_ok=True)
+
+        compile_results = {}  # feature_key -> (success, error, obj_path)
+        for test_file, meta, feature_key, test_hash in tests_to_build:
+            source_content = test_file.read_text()
+            if platform.framework == "arduino":
+                source_content = wrap_for_arduino(source_content)
+
+            wrapped_path = obj_dir / f"{test_file.stem}.cpp"
+            wrapped_path.write_text(source_content)
+            obj_path = obj_dir / f"{test_file.stem}.o"
+
+            if compiler_config:
+                success, error = compile_test(compiler_config, wrapped_path, obj_path)
+            else:
+                # Fallback: use PIO per-test (slow path)
+                test_project_dir = self.work_dir / platform.slug / standard / "test_project"
+                generate_pio_project(test_project_dir, platform, standard, test_file)
+                fallback_result = run_build(test_project_dir, core_dir=core_dir)
+                success = fallback_result.success
+                error = fallback_result.error
+
+            compile_results[feature_key] = (success, error, obj_path)
+
+        # Stage 3: Verification link (only for tests that compiled)
+        for test_file, meta, feature_key, test_hash in tests_to_build:
+            compiled, compile_error, obj_path = compile_results[feature_key]
+            macro_name = meta.get("macro", "")
             macro_val = macro_values.get(macro_name, 0)
-            status = classify_feature(macro_val, build_result.success)
+
+            link_ok = False
+            link_failure = False
+            if compiled and linker_config:
+                link_ok, link_error = link_test(linker_config, obj_path)
+                if not link_ok:
+                    link_failure = True
+                    compiled = False
+
+            compiles = compiled and (link_ok or not linker_config)
+            status = classify_feature(macro_val, compiles)
 
             result = {
                 "platform": platform.slug,
@@ -148,12 +193,13 @@ class Orchestrator:
                 "macro": macro_name,
                 "category": meta.get("category", "unknown"),
                 "macro_value": macro_val,
-                "compiles": build_result.success,
+                "compiles": compiles,
                 "status": status.value,
-                "compile_time_ms": build_result.compile_time_ms,
-                "compiler": "",
+                "compile_time_ms": 0,
+                "compiler": compiler_config.compiler if compiler_config else "",
                 "timestamp": datetime.now().isoformat(),
-                "error_output": build_result.error if not build_result.success else None,
+                "error_output": compile_error if not compiles else None,
+                "link_failure": link_failure,
             }
             results.append(result)
 
@@ -161,6 +207,13 @@ class Orchestrator:
                 platform.slug, platform.version, probe_hash,
                 feature_key, test_hash, status.value
             )
+
+        # Cleanup
+        probe_pio = project_dir / ".pio"
+        if probe_pio.exists():
+            shutil.rmtree(probe_pio)
+        if obj_dir.exists():
+            shutil.rmtree(obj_dir)
 
         return results
 
