@@ -102,12 +102,23 @@ class Orchestrator:
         probe_file.write_text(probe_source)
 
         project_dir = self.work_dir / platform.slug / standard / "probe_project"
-        core_dir = self.work_dir / ".pio-cores" / platform.slug
+        # Don't use custom core_dir — we need PIO to resolve real package
+        # paths in verbose output for direct compiler invocation.
+        core_dir = None
 
         generate_pio_project(project_dir, platform, standard, probe_file)
 
         if dry_run:
             return []
+
+        # Delete cached main.cpp.o so PIO recompiles it and shows the compiler
+        # command in verbose output (needed to extract compiler/linker config).
+        # Framework objects are preserved for fast incremental builds.
+        for obj in (project_dir / ".pio" / "build").glob("*/src/main.cpp.o"):
+            obj.unlink(missing_ok=True)
+        # Also delete firmware.elf to force re-link (needed for linker config)
+        for elf in (project_dir / ".pio" / "build").glob("*/firmware.*"):
+            elf.unlink(missing_ok=True)
 
         probe_result, verbose_output = run_build_verbose(project_dir, core_dir=core_dir)
         macro_values = {}
@@ -118,7 +129,29 @@ class Orchestrator:
             macro_values = parse_probe_output(raw)
             try:
                 compiler_config = extract_compiler_config(verbose_output)
+                # Ensure the -std flag is present (PIO's unflag/flag
+                # mechanism can strip it from the actual compiler command)
+                std_flag = f'-std=gnu++{standard.replace("c++", "")}'
+                if not any('std=' in f for f in compiler_config.flags):
+                    compiler_config.flags.append(std_flag)
                 linker_config = extract_linker_config(verbose_output)
+                # Resolve relative paths in linker config to absolute
+                # (PIO outputs paths relative to its project dir)
+                linker_config.objects = [
+                    str(project_dir / obj) if not Path(obj).is_absolute() else obj
+                    for obj in linker_config.objects
+                ]
+                if linker_config.probe_main_obj and not Path(linker_config.probe_main_obj).is_absolute():
+                    linker_config.probe_main_obj = str(project_dir / linker_config.probe_main_obj)
+                linker_config.scripts = [
+                    str(project_dir / s) if not Path(s).is_absolute() else s
+                    for s in linker_config.scripts
+                ]
+                # Resolve relative -L paths in flags
+                linker_config.flags = [
+                    f'-L{project_dir / flag[2:]}' if flag.startswith('-L') and not Path(flag[2:]).is_absolute() else flag
+                    for flag in linker_config.flags
+                ]
             except ValueError:
                 compiler_config = None
                 linker_config = None

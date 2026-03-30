@@ -1,6 +1,7 @@
 """Direct compiler invocation for fast test compilation and linking."""
 
 import shlex
+import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,6 +21,25 @@ class LinkerConfig:
     objects: list[str]
     scripts: list[str]
     probe_main_obj: str
+
+
+def _resolve_tool(name: str) -> str:
+    """Resolve a compiler/linker name to its absolute path.
+
+    PIO verbose output uses bare names like 'avr-g++' that are on PIO's
+    internal PATH but not necessarily on the system PATH. Search
+    ~/.platformio/packages/*/bin/ as a fallback.
+    """
+    if Path(name).is_absolute():
+        return name
+    found = shutil.which(name)
+    if found:
+        return found
+    for bin_dir in Path.home().glob('.platformio/packages/*/bin'):
+        candidate = bin_dir / name
+        if candidate.exists():
+            return str(candidate)
+    return name  # give up, let subprocess raise the error
 
 
 def extract_compiler_config(verbose_output: str) -> CompilerConfig:
@@ -55,7 +75,7 @@ def extract_compiler_config(verbose_output: str) -> CompilerConfig:
                 continue
             flags.append(tok)
 
-        return CompilerConfig(compiler=compiler, flags=flags, includes=includes)
+        return CompilerConfig(compiler=_resolve_tool(compiler), flags=flags, includes=includes)
 
     raise ValueError("Could not find src/main.cpp compilation line in verbose output")
 
@@ -97,7 +117,7 @@ def extract_linker_config(verbose_output: str) -> LinkerConfig:
             flags.append(tok)
 
         return LinkerConfig(
-            linker=linker, flags=flags, objects=objects,
+            linker=_resolve_tool(linker), flags=flags, objects=objects,
             scripts=scripts, probe_main_obj=probe_main_obj,
         )
 

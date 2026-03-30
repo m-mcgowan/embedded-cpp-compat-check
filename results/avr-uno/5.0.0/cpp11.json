@@ -9,10 +9,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 21328,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:02.083540",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.639767",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -24,10 +25,11 @@
     "macro_value": 200806,
     "compiles": false,
     "status": "macro_lies",
-    "compile_time_ms": 862,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:02.948989",
-    "error_output": "src/main.cpp:8:10: fatal error: initializer_list: No such file or directory\n #include <initializer_list>\n          ^~~~~~~~~~~~~~~~~~\ncompilation terminated.\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================== [FAILED] Took 0.53 seconds ==========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.639830",
+    "error_output": ".work/avr-uno/c++11/objs/initializer_lists.cpp:8:10: fatal error: initializer_list: No such file or directory\n #include <initializer_list>\n          ^~~~~~~~~~~~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -39,10 +41,11 @@
     "macro_value": 200907,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 898,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:03.849695",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.705078",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -54,10 +57,11 @@
     "macro_value": 200610,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 943,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:04.796937",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.771740",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -69,10 +73,11 @@
     "macro_value": 200410,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 900,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:05.700860",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.841804",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -84,9 +89,10 @@
     "macro_value": 200704,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 917,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:06.620924",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:14.912784",
+    "error_output": null,
+    "link_failure": false
   }
 ]

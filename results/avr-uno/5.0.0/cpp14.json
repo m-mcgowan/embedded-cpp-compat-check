@@ -9,10 +9,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 20956,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:48.464413",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.719952",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -24,10 +25,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 950,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:49.417309",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.784836",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -39,10 +41,11 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 853,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:50.272968",
-    "error_output": "src/main.cpp:8:10: fatal error: utility: No such file or directory\n #include <utility>\n          ^~~~~~~~~\ncompilation terminated.\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================== [FAILED] Took 0.53 seconds ==========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.784948",
+    "error_output": ".work/avr-uno/c++14/objs/exchange.cpp:8:10: fatal error: utility: No such file or directory\n #include <utility>\n          ^~~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -54,10 +57,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 31694,
-    "compiler": "",
-    "timestamp": "2026-03-27T19:39:45.978989",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.854478",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -69,10 +73,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 916,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:51.235536",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.923280",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -84,10 +89,11 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 821,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:43:52.059191",
-    "error_output": "src/main.cpp:8:10: fatal error: utility: No such file or directory\n #include <utility>\n          ^~~~~~~~~\ncompilation terminated.\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================== [FAILED] Took 0.49 seconds ==========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.923374",
+    "error_output": ".work/avr-uno/c++14/objs/integer_sequence.cpp:8:10: fatal error: utility: No such file or directory\n #include <utility>\n          ^~~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -99,10 +105,11 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 26097,
-    "compiler": "",
-    "timestamp": "2026-03-27T19:40:12.078172",
-    "error_output": "src/main.cpp:8:10: fatal error: memory: No such file or directory\n #include <memory>\n          ^~~~~~~~\ncompilation terminated.\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================= [FAILED] Took 25.38 seconds =========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.923385",
+    "error_output": ".work/avr-uno/c++14/objs/make_unique.cpp:8:10: fatal error: memory: No such file or directory\n #include <memory>\n          ^~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
   },
   {
     "platform": "avr-uno",
@@ -114,9 +121,10 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 27113,
-    "compiler": "",
-    "timestamp": "2026-03-27T19:40:39.194975",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-03-29T21:07:16.987829",
+    "error_output": null,
+    "link_failure": false
   }
 ]
