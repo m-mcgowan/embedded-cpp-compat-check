@@ -90,5 +90,90 @@ def generate(results_dir, output_dir):
     click.echo("README.md updated")
 
 
+@main.command()
+@click.argument("library_path", type=click.Path(exists=True))
+@click.option("--platforms-dir", default="platforms", type=click.Path(exists=True))
+@click.option("--platform", "platform_filter", multiple=True, help="Test only these platforms")
+@click.option("--example", "example_filter", multiple=True, help="Test only these examples")
+@click.option("--report", "report_path", default=None, type=click.Path(), help="Write report to file")
+@click.option("--report-format", "report_fmt", default="md", type=click.Choice(["md", "json"]))
+@click.option("--work-dir", default=".work", type=click.Path())
+def library(library_path, platforms_dir, platform_filter, example_filter,
+            report_path, report_fmt, work_dir):
+    """Check library compatibility across platforms."""
+    import json as json_mod
+    from compat_check.library.metadata import parse_metadata, discover_examples
+    from compat_check.library.resolver import resolve_platforms
+    from compat_check.library.builder import run_library_build
+    from compat_check.library.report import generate_markdown_report, generate_json_report
+    from compat_check.platform.loader import load_platforms
+
+    library_dir = Path(library_path)
+    meta = parse_metadata(library_dir)
+    click.echo(f"Library: {meta.name} v{meta.version}")
+
+    # Resolve platforms
+    all_platforms = load_platforms(Path(platforms_dir))
+    platforms = resolve_platforms(meta.platforms, all_platforms)
+    if platform_filter:
+        platforms = [p for p in platforms if p.slug in platform_filter]
+    if not platforms:
+        click.echo("No matching platforms found.", err=True)
+        raise SystemExit(1)
+    click.echo(f"Platforms: {[p.slug for p in platforms]}")
+
+    # Discover examples
+    examples = discover_examples(library_dir)
+    if example_filter:
+        examples = [e for e in examples if e.name in example_filter]
+    if not examples:
+        click.echo("No examples found.", err=True)
+        raise SystemExit(1)
+    click.echo(f"Examples: {[e.name for e in examples]}")
+
+    # Build matrix
+    results = []
+    total = sum(len(p.standards) for p in platforms) * len(examples)
+    done = 0
+    for platform in platforms:
+        for standard in platform.standards:
+            for example in examples:
+                done += 1
+                click.echo(
+                    f"  [{done}/{total}] {platform.slug} {standard} {example.name}...",
+                    nl=False,
+                )
+                result = run_library_build(
+                    library_path=library_dir,
+                    example_path=example.path,
+                    board=platform.platformio["board"],
+                    standard=standard,
+                )
+                status = "PASS" if result.success else "FAIL"
+                click.echo(f" {status} ({result.compile_time_ms}ms)")
+                results.append({
+                    "platform": platform.slug,
+                    "standard": standard,
+                    "example": example.name,
+                    "pass": result.success,
+                    "error": result.error if not result.success else None,
+                })
+
+    # Generate report
+    lib_info = {"name": meta.name, "version": meta.version}
+    if report_fmt == "json":
+        report_data = generate_json_report(lib_info, results)
+        output = json_mod.dumps(report_data, indent=2)
+    else:
+        output = generate_markdown_report(lib_info, results)
+
+    if report_path:
+        Path(report_path).write_text(output + "\n")
+        click.echo(f"Report written to {report_path}")
+    else:
+        click.echo("")
+        click.echo(output)
+
+
 if __name__ == "__main__":
     main()
