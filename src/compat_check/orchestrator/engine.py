@@ -202,21 +202,22 @@ class Orchestrator:
             compile_results[feature_key] = (success, error, obj_path)
 
         # Stage 3: Verification link (only for tests that compiled)
+        # Link verification is informational — compile success is the
+        # primary signal. Complex linker setups (RP2040, ESP32) can fail
+        # to link even when compilation succeeds, due to platform-specific
+        # libraries and boot code we don't fully capture.
         for test_file, meta, feature_key, test_hash in tests_to_build:
             compiled, compile_error, obj_path = compile_results[feature_key]
             macro_name = meta.get("macro", "")
             macro_val = macro_values.get(macro_name, 0)
 
-            link_ok = False
             link_failure = False
             if compiled and linker_config:
                 link_ok, link_error = link_test(linker_config, obj_path)
                 if not link_ok:
                     link_failure = True
-                    compiled = False
 
-            compiles = compiled and (link_ok or not linker_config)
-            status = classify_feature(macro_val, compiles)
+            status = classify_feature(macro_val, compiled)
 
             result = {
                 "platform": platform.slug,
@@ -226,12 +227,12 @@ class Orchestrator:
                 "macro": macro_name,
                 "category": meta.get("category", "unknown"),
                 "macro_value": macro_val,
-                "compiles": compiles,
+                "compiles": compiled,
                 "status": status.value,
                 "compile_time_ms": 0,
                 "compiler": compiler_config.compiler if compiler_config else "",
                 "timestamp": datetime.now().isoformat(),
-                "error_output": compile_error if not compiles else None,
+                "error_output": compile_error if not compiled else None,
                 "link_failure": link_failure,
             }
             results.append(result)

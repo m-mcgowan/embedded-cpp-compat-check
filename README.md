@@ -4,6 +4,6 @@
 |---|---|---|---|---|---|
 | avr-uno | partial | partial | partial | — | — |
 | esp32s3-arduino-v3 | full | full | full | full | partial |
-| rp2040-pico | full | full | partial | partial | partial |
-| stm32-nucleo-f411re | full | full | full | partial | — |
+| rp2040-pico | — | full | partial | partial | partial |
+| stm32-nucleo-f411re | full | full | partial | partial | — |
 

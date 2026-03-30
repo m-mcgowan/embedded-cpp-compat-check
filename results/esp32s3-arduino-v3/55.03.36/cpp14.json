@@ -9,10 +9,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 219953,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:15:10.790715",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.582820",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -24,10 +25,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 220877,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:18:51.682198",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.619582",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -39,10 +41,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 216462,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:22:28.155302",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.656806",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -54,10 +57,11 @@
     "macro_value": 201707,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 215851,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:26:04.017976",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.692776",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -69,10 +73,11 @@
     "macro_value": 201803,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 224511,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:29:48.543286",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.729137",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -84,10 +89,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 231740,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:33:40.295034",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.764725",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -99,10 +105,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 225221,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:37:25.531863",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.800330",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -114,9 +121,10 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 218847,
-    "compiler": "",
-    "timestamp": "2026-03-28T14:41:04.390568",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:47:45.837134",
+    "error_output": null,
+    "link_failure": true
   }
 ]

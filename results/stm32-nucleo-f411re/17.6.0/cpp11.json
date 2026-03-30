@@ -9,10 +9,11 @@
     "macro_value": 201603,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 98591,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:20:40.718483",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:43.689073",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -24,10 +25,11 @@
     "macro_value": 200806,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 5202,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:20:45.924822",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:43.882324",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -39,10 +41,11 @@
     "macro_value": 200907,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4821,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:20:50.749557",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:44.062504",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -54,10 +57,11 @@
     "macro_value": 200610,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4240,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:20:54.992325",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:44.254891",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -69,10 +73,11 @@
     "macro_value": 201411,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4168,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:20:59.164427",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:44.440542",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -84,9 +89,10 @@
     "macro_value": 200704,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4132,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:21:03.299519",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:43:44.642152",
+    "error_output": null,
+    "link_failure": false
   }
 ]

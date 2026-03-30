@@ -3,16 +3,33 @@
     "platform": "esp32s3-arduino-v3",
     "platform_version": "55.03.36",
     "standard": "c++23",
+    "feature": "cpp23/byteswap",
+    "macro": "__cpp_lib_byteswap",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.414928",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/byteswap.cpp: In function 'void setup()':\n.work/esp32s3-arduino-v3/c++23/objs/byteswap.cpp:11:29: error: 'byteswap' is not a member of 'std'\n   11 |     uint16_t swapped = std::byteswap(val);\n      |                             ^~~~~~~~\n",
+    "link_failure": false
+  },
+  {
+    "platform": "esp32s3-arduino-v3",
+    "platform_version": "55.03.36",
+    "standard": "c++23",
     "feature": "cpp23/deducing_this",
     "macro": "__cpp_explicit_this_parameter",
     "category": "language",
     "macro_value": 0,
     "compiles": true,
     "status": "unreported",
-    "compile_time_ms": 257278,
-    "compiler": "",
-    "timestamp": "2026-03-28T16:37:34.423977",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452544",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -24,10 +41,27 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 226340,
-    "compiler": "",
-    "timestamp": "2026-03-28T16:41:20.776427",
-    "error_output": "src/main.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                                   ^~~~~~~~\nsrc/main.cpp:10:30: note: 'std::expected' is only available from C++23 onwards\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                              ^~~\nsrc/main.cpp:10:43: error: expected initializer before '<' token\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                                           ^\nsrc/main.cpp: In function 'void setup()':\nsrc/main.cpp:16:14: error: 'divide' was not declared in this scope\n   16 |     auto r = divide(6, 3);\n      |              ^~~~~~\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================= [FAILED] Took 225.40 seconds =========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452608",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                                   ^~~~~~~~\n.work/esp32s3-arduino-v3/c++23/objs/expected.cpp:10:30: note: 'std::expected' is only available from C++23 onwards\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                              ^~~\n.work/esp32s3-arduino-v3/c++23/objs/expected.cpp:10:43: error: expected initializer before '<' token\n   10 | auto divide(int a, int b) -> std::expected<int, const char*> {\n      |                                           ^\n.work/esp32s3-arduino-v3/c++23/objs/expected.cpp: In function 'void setup()':\n.work/esp32s3-arduino-v3/c++23/objs/expected.cpp:16:14: error: 'divide' was not declared in this scope\n   16 |     auto r = divide(6, 3);\n      |              ^~~~~~\n",
+    "link_failure": false
+  },
+  {
+    "platform": "esp32s3-arduino-v3",
+    "platform_version": "55.03.36",
+    "standard": "c++23",
+    "feature": "cpp23/forward_like",
+    "macro": "__cpp_lib_forward_like",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452620",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/forward_like.cpp: In function 'void setup()':\n.work/esp32s3-arduino-v3/c++23/objs/forward_like.cpp:12:23: error: 'forward_like' is not a member of 'std'\n   12 |     auto&& ref = std::forward_like<const S&>(s.x);\n      |                       ^~~~~~~~~~~~\n.work/esp32s3-arduino-v3/c++23/objs/forward_like.cpp:12:36: error: expected primary-expression before 'const'\n   12 |     auto&& ref = std::forward_like<const S&>(s.x);\n      |                                    ^~~~~\n",
+    "link_failure": false
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -39,10 +73,11 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 255914,
-    "compiler": "",
-    "timestamp": "2026-03-28T16:45:36.702046",
-    "error_output": "src/main.cpp:10:9: error: 'int Matrix::operator[](int, int)' must have exactly one argument\n   10 |     int operator[](int r, int c) { return data[r * 2 + c]; }\n      |         ^~~~~~~~\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================= [FAILED] Took 255.17 seconds =========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452630",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/multidimensional_subscript.cpp:10:9: error: 'int Matrix::operator[](int, int)' must have exactly one argument\n   10 |     int operator[](int r, int c) { return data[r * 2 + c]; }\n      |         ^~~~~~~~\n",
+    "link_failure": false
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -54,10 +89,27 @@
     "macro_value": 0,
     "compiles": false,
     "status": "unsupported",
-    "compile_time_ms": 251085,
-    "compiler": "",
-    "timestamp": "2026-03-28T16:49:47.803388",
-    "error_output": "src/main.cpp: In function 'void setup()':\nsrc/main.cpp:12:19: error: 'format' is not a member of 'std'\n   12 |     auto s = std::format(\"{}\", 42);\n      |                   ^~~~~~\n*** [.pio/build/test/src/main.cpp.o] Error 1\n========================= [FAILED] Took 250.29 seconds =========================\n"
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452637",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/print.cpp: In function 'void setup()':\n.work/esp32s3-arduino-v3/c++23/objs/print.cpp:12:19: error: 'format' is not a member of 'std'\n   12 |     auto s = std::format(\"{}\", 42);\n      |                   ^~~~~~\n",
+    "link_failure": false
+  },
+  {
+    "platform": "esp32s3-arduino-v3",
+    "platform_version": "55.03.36",
+    "standard": "c++23",
+    "feature": "cpp23/stacktrace",
+    "macro": "__cpp_lib_stacktrace",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.452650",
+    "error_output": ".work/esp32s3-arduino-v3/c++23/objs/stacktrace.cpp: In function 'void setup()':\n.work/esp32s3-arduino-v3/c++23/objs/stacktrace.cpp:9:20: error: 'std::stacktrace' has not been declared\n    9 |     auto st = std::stacktrace::current();\n      |                    ^~~~~~~~~~\n",
+    "link_failure": false
   },
   {
     "platform": "esp32s3-arduino-v3",
@@ -69,9 +121,10 @@
     "macro_value": 0,
     "compiles": true,
     "status": "unreported",
-    "compile_time_ms": 259089,
-    "compiler": "",
-    "timestamp": "2026-03-28T16:54:06.908915",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/tools/toolchain-xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++",
+    "timestamp": "2026-03-30T00:49:37.489671",
+    "error_output": null,
+    "link_failure": true
   }
 ]

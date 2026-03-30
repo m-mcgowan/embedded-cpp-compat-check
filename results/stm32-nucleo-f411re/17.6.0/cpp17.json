@@ -9,10 +9,11 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 78016,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:09:48.117474",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:50.526605",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -24,10 +25,11 @@
     "macro_value": 201603,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 104714,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:03.493575",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:50.708560",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -39,10 +41,27 @@
     "macro_value": 201510,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 5463,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:08.963297",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:50.882567",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/bool_constant",
+    "macro": "__cpp_lib_bool_constant",
+    "category": "library",
+    "macro_value": 201505,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:51.073799",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -54,10 +73,11 @@
     "macro_value": 201603,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4792,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:13.759684",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:51.263297",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -69,10 +89,27 @@
     "macro_value": 201603,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4863,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:18.627803",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:51.435233",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/filesystem",
+    "macro": "__cpp_lib_filesystem",
+    "category": "library",
+    "macro_value": 201703,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:51.755870",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -84,10 +121,11 @@
     "macro_value": 201603,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 80579,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:11:08.692849",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:51.884294",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -99,10 +137,11 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4875,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:23.508136",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.014488",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -114,10 +153,11 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 74479,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:12:23.185353",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.140055",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -129,10 +169,11 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 4658,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:28.170703",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.264682",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -144,10 +185,43 @@
     "macro_value": 201411,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 5069,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:28:33.243672",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.389655",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/map_try_emplace",
+    "macro": "__cpp_lib_map_try_emplace",
+    "category": "library",
+    "macro_value": 201411,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.513538",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/not_fn",
+    "macro": "__cpp_lib_not_fn",
+    "category": "library",
+    "macro_value": 201603,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.636219",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -159,10 +233,43 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 85228,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:13:48.418994",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.768984",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/scoped_lock",
+    "macro": "__cpp_lib_scoped_lock",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.769063",
+    "error_output": ".work/stm32-nucleo-f411re/c++17/objs/scoped_lock.cpp: In function 'void setup()':\n.work/stm32-nucleo-f411re/c++17/objs/scoped_lock.cpp:9:10: error: 'mutex' is not a member of 'std'\n    9 |     std::mutex m;\n      |          ^~~~~\n.work/stm32-nucleo-f411re/c++17/objs/scoped_lock.cpp:8:1: note: 'std::mutex' is defined in header '<mutex>'; did you forget to '#include <mutex>'?\n    7 | #include <mutex>\n  +++ |+#include <mutex>\n    8 | void setup() {\n.work/stm32-nucleo-f411re/c++17/objs/scoped_lock.cpp:10:27: error: 'm' was not declared in this scope; did you mean 'tm'?\n   10 |     std::scoped_lock lock(m);\n      |                           ^\n      |                           tm\n",
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/shared_ptr_arrays",
+    "macro": "__cpp_lib_shared_ptr_arrays",
+    "category": "library",
+    "macro_value": 201611,
+    "compiles": false,
+    "status": "macro_lies",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.769076",
+    "error_output": ".work/stm32-nucleo-f411re/c++17/objs/shared_ptr_arrays.cpp: In function 'void setup()':\n.work/stm32-nucleo-f411re/c++17/objs/shared_ptr_arrays.cpp:9:37: error: no matching function for call to 'make_shared<int []>(int)'\n    9 |     auto p = std::make_shared<int[]>(3);\n      |              ~~~~~~~~~~~~~~~~~~~~~~~^~~\nIn file included from /Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/memory:76,\n                 from .work/stm32-nucleo-f411re/c++17/objs/shared_ptr_arrays.cpp:7:\n/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/bits/shared_ptr.h:1005:5: note: candidate: 'template<class _Tp, class ... _Args> std::shared_ptr<typename std::enable_if<(! std::is_array< <template-parameter-1-1> >::value), _Tp>::type> std::make_shared(_Args&& ...)'\n 1005 |     make_shared(_Args&&... __args)\n      |     ^~~~~~~~~~~\n/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/bits/shared_ptr.h:1005:5: note:   template argument deduction/substitution failed:\n/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/bits/shared_ptr.h: In substitution of 'template<class _Tp, class ... _Args> std::shared_ptr<typename std::enable_if<(! std::is_array< <template-parameter-1-1> >::value), _Tp>::type> std::make_shared(_Args&& ...) [with _Tp = int []; _Args = <missing>]':\n.work/stm32-nucleo-f411re/c++17/objs/shared_ptr_arrays.cpp:9:37:   required from here\n/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/bits/shared_ptr.h:1005:5: error: no type named 'type' in 'struct std::enable_if<false, int []>'\n",
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -174,10 +281,11 @@
     "macro_value": 201803,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 81183,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:15:09.609802",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:52.894000",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -189,10 +297,27 @@
     "macro_value": 201606,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 80111,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:16:29.729357",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:53.019315",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/type_trait_variable_templates",
+    "macro": "__cpp_lib_type_trait_variable_templates",
+    "category": "library",
+    "macro_value": 201510,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:53.153064",
+    "error_output": null,
+    "link_failure": false
   },
   {
     "platform": "stm32-nucleo-f411re",
@@ -204,9 +329,26 @@
     "macro_value": 202102,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 83017,
-    "compiler": "",
-    "timestamp": "2026-03-27T22:17:52.752355",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:53.277086",
+    "error_output": null,
+    "link_failure": false
+  },
+  {
+    "platform": "stm32-nucleo-f411re",
+    "platform_version": "17.6.0",
+    "standard": "c++17",
+    "feature": "cpp17/void_t",
+    "macro": "__cpp_lib_void_t",
+    "category": "library",
+    "macro_value": 201411,
+    "compiles": true,
+    "status": "supported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:44:53.400998",
+    "error_output": null,
+    "link_failure": false
   }
 ]

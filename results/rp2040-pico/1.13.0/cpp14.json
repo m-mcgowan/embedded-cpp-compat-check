@@ -9,10 +9,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 56271,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:36:33.818548",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:40.287234",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -24,10 +25,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 3646,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:36:37.468246",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:40.449691",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -39,10 +41,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 3350,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:36:40.824755",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:40.625969",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -54,10 +57,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 45246,
-    "compiler": "",
-    "timestamp": "2026-03-27T21:11:16.861624",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:40.824229",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -69,10 +73,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 2994,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:36:43.825742",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:41.018095",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -84,10 +89,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 2892,
-    "compiler": "",
-    "timestamp": "2026-03-28T21:36:46.721383",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:41.209229",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -99,10 +105,11 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 44561,
-    "compiler": "",
-    "timestamp": "2026-03-27T21:12:01.431422",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:41.409384",
+    "error_output": null,
+    "link_failure": true
   },
   {
     "platform": "rp2040-pico",
@@ -114,9 +121,10 @@
     "macro_value": 201304,
     "compiles": true,
     "status": "supported",
-    "compile_time_ms": 45351,
-    "compiler": "",
-    "timestamp": "2026-03-27T21:12:46.786802",
-    "error_output": null
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+    "timestamp": "2026-03-30T00:45:41.570568",
+    "error_output": null,
+    "link_failure": true
   }
 ]
