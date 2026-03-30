@@ -1,5 +1,8 @@
+import shutil
 from pathlib import Path
 from unittest.mock import patch, MagicMock
+
+import pytest
 
 from compat_check.build.compiler import (
     CompilerConfig, LinkerConfig,
@@ -163,3 +166,52 @@ def test_link_test_returns_false_on_failure():
         success, error = link_test(config, Path('/tmp/test.o'))
     assert not success
     assert 'undefined reference' in error
+
+
+# --- Task 8: Integration tests with real AVR compiler ---
+
+@pytest.fixture
+def avr_compiler():
+    """Skip if AVR toolchain not installed."""
+    compiler = shutil.which('avr-g++')
+    if not compiler:
+        pio_path = Path.home() / '.platformio/packages/toolchain-atmelavr/bin/avr-g++'
+        if not pio_path.exists():
+            pytest.skip('AVR toolchain not available')
+        compiler = str(pio_path)
+    return compiler
+
+
+def test_compile_test_real_avr_success(avr_compiler, tmp_path):
+    """Real compilation of a constexpr test on AVR."""
+    source = tmp_path / "test.cpp"
+    source.write_text(
+        "constexpr int square(int x) { return x * x; }\n"
+        "int val = square(5);\n"
+    )
+    obj = tmp_path / "test.o"
+
+    config = CompilerConfig(
+        compiler=avr_compiler,
+        flags=['-mmcu=atmega328p', '-Os', '-std=gnu++17'],
+        includes=[],
+    )
+    success, error = compile_test(config, source, obj)
+    assert success, f"Compile failed: {error}"
+    assert obj.exists()
+
+
+def test_compile_test_real_avr_failure(avr_compiler, tmp_path):
+    """Real compilation failure (missing header)."""
+    source = tmp_path / "test.cpp"
+    source.write_text('#include <optional>\nint x = 1;\n')
+    obj = tmp_path / "test.o"
+
+    config = CompilerConfig(
+        compiler=avr_compiler,
+        flags=['-mmcu=atmega328p', '-Os', '-std=gnu++17'],
+        includes=[],
+    )
+    success, error = compile_test(config, source, obj)
+    assert not success
+    assert 'optional' in error.lower() or 'no such file' in error.lower()
