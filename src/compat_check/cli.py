@@ -132,13 +132,62 @@ def library(library_path, platforms_dir, platform_filter, example_filter,
     click.echo(f"Examples: {[e.name for e in examples]}")
 
     # Build matrix
+    # Test highest standard first per (platform, example). If the highest
+    # fails, lower standards will too — skip them. If it passes, test
+    # descending to find the minimum working standard.
     results = []
     total = sum(len(p.standards) for p in platforms) * len(examples)
     done = 0
+    skipped = 0
+    work = Path(work_dir)
+
     for platform in platforms:
-        for standard in platform.standards:
-            for example in examples:
+        board = platform.platformio["board"]
+        build_dir = work / "library" / platform.slug
+        standards_desc = list(reversed(platform.standards))
+
+        for example in examples:
+            found_pass = False
+            found_fail_descending = False
+
+            for standard in standards_desc:
                 done += 1
+
+                # If highest standard failed, skip all lower standards
+                if found_fail_descending:
+                    skipped += 1
+                    click.echo(
+                        f"  [{done}/{total}] {platform.slug} {standard} {example.name}..."
+                        f" SKIP"
+                    )
+                    results.append({
+                        "platform": platform.slug,
+                        "standard": standard,
+                        "example": example.name,
+                        "pass": False,
+                        "error": None,
+                        "skipped": True,
+                    })
+                    continue
+
+                # If we already found a failing standard below a passing one,
+                # all lower standards also fail — skip them
+                if found_pass and found_fail_descending:
+                    skipped += 1
+                    click.echo(
+                        f"  [{done}/{total}] {platform.slug} {standard} {example.name}..."
+                        f" SKIP"
+                    )
+                    results.append({
+                        "platform": platform.slug,
+                        "standard": standard,
+                        "example": example.name,
+                        "pass": False,
+                        "error": None,
+                        "skipped": True,
+                    })
+                    continue
+
                 click.echo(
                     f"  [{done}/{total}] {platform.slug} {standard} {example.name}...",
                     nl=False,
@@ -146,11 +195,20 @@ def library(library_path, platforms_dir, platform_filter, example_filter,
                 result = run_library_build(
                     library_path=library_dir,
                     example_path=example.path,
-                    board=platform.platformio["board"],
+                    board=board,
                     standard=standard,
+                    build_dir=build_dir,
                 )
                 status = "PASS" if result.success else "FAIL"
                 click.echo(f" {status} ({result.compile_time_ms}ms)")
+
+                if result.success:
+                    found_pass = True
+                else:
+                    if not found_pass:
+                        # Highest standard failed — everything below fails too
+                        found_fail_descending = True
+
                 results.append({
                     "platform": platform.slug,
                     "standard": standard,
@@ -158,6 +216,9 @@ def library(library_path, platforms_dir, platform_filter, example_filter,
                     "pass": result.success,
                     "error": result.error if not result.success else None,
                 })
+
+    if skipped:
+        click.echo(f"  ({skipped} builds skipped)")
 
     # Generate report
     lib_info = {"name": meta.name, "version": meta.version}
