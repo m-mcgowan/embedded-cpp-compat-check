@@ -61,8 +61,6 @@ def generate_pio_project(
             obj.unlink(missing_ok=True)
 
     pio = platform.platformio
-    std_flag = _std_flag(standard)
-    unflag_line = " ".join(_COMMON_DEFAULTS)
 
     ini_content = (
         f"[env:test]\n"
@@ -71,9 +69,13 @@ def generate_pio_project(
     )
     if pio.get("framework"):
         ini_content += f"framework = {pio['framework']}\n"
-    ini_content += (
-        f"build_unflags = {unflag_line}\n"
-        f"build_flags = {std_flag}\n"
-    )
+
+    if not platform.fixed_standard:
+        std_flag = _std_flag(standard)
+        unflag_line = " ".join(_COMMON_DEFAULTS)
+        ini_content += (
+            f"build_unflags = {unflag_line}\n"
+            f"build_flags = {std_flag}\n"
+        )
 
     (output_dir / "platformio.ini").write_text(ini_content)

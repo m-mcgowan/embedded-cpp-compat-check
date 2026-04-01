@@ -17,6 +17,7 @@ def load_platform(path: Path) -> Platform:
         build_system=data["build_system"],
         standards=data["standards"],
         framework=data.get("framework", ""),
+        fixed_standard=data.get("fixed_standard", False),
         platformio=data.get("platformio", {}),
         release_monitor=data.get("release_monitor", {}),
     )

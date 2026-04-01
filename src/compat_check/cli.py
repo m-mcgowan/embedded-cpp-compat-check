@@ -219,6 +219,7 @@ def library(library_path, platforms_dir, platform_filter, example_filter,
                     board=board,
                     standard=standard,
                     build_dir=build_dir,
+                    fixed_standard=platform.fixed_standard,
                 )
                 status = "PASS" if result.success else "FAIL"
                 click.echo(f" {status} ({result.compile_time_ms}ms)")

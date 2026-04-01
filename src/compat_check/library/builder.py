@@ -24,22 +24,29 @@ def run_library_build(
     library_path: Path, example_path: Path,
     board: str, standard: str,
     build_dir: Path | None = None,
+    fixed_standard: bool = False,
     timeout: int = 600,
 ) -> BuildResult:
     """Run pio ci for a single library + example + board + standard combination.
 
     If build_dir is provided, PIO reuses framework objects between builds
     for the same board (significant speedup after the first build).
+
+    If fixed_standard is True, don't override the C++ standard flags
+    (some frameworks break when their default flags are modified).
     """
-    std_num = standard.replace("c++", "")
-    std_flag = f"-std=gnu++{std_num}"
     cmd = [
         "pio", "ci",
         f"--lib={library_path}",
         f"--board={board}",
-        "-O", f"build_unflags={_STD_UNFLAGS}",
-        "-O", f"build_flags={std_flag}",
     ]
+    if not fixed_standard:
+        std_num = standard.replace("c++", "")
+        std_flag = f"-std=gnu++{std_num}"
+        cmd.extend([
+            "-O", f"build_unflags={_STD_UNFLAGS}",
+            "-O", f"build_flags={std_flag}",
+        ])
     if build_dir:
         build_dir.mkdir(parents=True, exist_ok=True)
         cmd.extend(["--build-dir", str(build_dir)])

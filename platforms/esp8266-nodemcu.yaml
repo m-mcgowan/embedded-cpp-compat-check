@@ -12,6 +12,7 @@ platformio:
   framework: arduino
 
 standards: [c++17]
+fixed_standard: true
 
 release_monitor:
   type: platformio_registry

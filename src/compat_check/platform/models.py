@@ -12,5 +12,6 @@ class Platform:
     build_system: str
     standards: list[str]
     framework: str = ""
+    fixed_standard: bool = False
     platformio: dict = field(default_factory=dict)
     release_monitor: dict = field(default_factory=dict)
