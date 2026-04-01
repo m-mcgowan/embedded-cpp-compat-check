@@ -1,0 +1,18 @@
+name: SAMD51 Adafruit Feather M4
+slug: samd51-feather-m4
+version: "8.1.0"
+architecture: arm-cortex-m4f
+mcu: samd51j19a
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: atmelsam
+  board: adafruit_feather_m4
+  framework: arduino
+
+standards: [c++11, c++14, c++17]
+
+release_monitor:
+  type: platformio_registry
+  platform: atmelsam

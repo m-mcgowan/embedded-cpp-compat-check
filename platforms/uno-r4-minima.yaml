@@ -1,0 +1,18 @@
+name: Arduino Uno R4 Minima
+slug: uno-r4-minima
+version: "1.1.0"
+architecture: arm-cortex-m4
+mcu: ra4m1
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: renesas-ra
+  board: uno_r4_minima
+  framework: arduino
+
+standards: [c++11, c++14, c++17, c++20]
+
+release_monitor:
+  type: platformio_registry
+  platform: renesas-ra

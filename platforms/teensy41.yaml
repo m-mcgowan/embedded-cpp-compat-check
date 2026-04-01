@@ -1,0 +1,18 @@
+name: Teensy 4.1
+slug: teensy41
+version: "5.0.0"
+architecture: arm-cortex-m7
+mcu: imxrt1062
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: teensy
+  board: teensy41
+  framework: arduino
+
+standards: [c++11, c++14, c++17, c++20]
+
+release_monitor:
+  type: platformio_registry
+  platform: teensy

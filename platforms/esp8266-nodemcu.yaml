@@ -1,0 +1,18 @@
+name: ESP8266 NodeMCU
+slug: esp8266-nodemcu
+version: "4.2.1"
+architecture: xtensa-lx106
+mcu: esp8266
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: espressif8266
+  board: nodemcuv2
+  framework: arduino
+
+standards: [c++11, c++14, c++17]
+
+release_monitor:
+  type: platformio_registry
+  platform: espressif8266

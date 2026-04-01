@@ -1,0 +1,18 @@
+name: SAMD21 Arduino Zero
+slug: samd21-zero
+version: "8.1.0"
+architecture: arm-cortex-m0plus
+mcu: samd21g18a
+build_system: platformio
+framework: arduino
+
+platformio:
+  platform: atmelsam
+  board: zeroUSB
+  framework: arduino
+
+standards: [c++11, c++14, c++17]
+
+release_monitor:
+  type: platformio_registry
+  platform: atmelsam
