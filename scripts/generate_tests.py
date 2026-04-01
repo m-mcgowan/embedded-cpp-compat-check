@@ -635,6 +635,197 @@ TESTS = [
     ("cpp23", "is_pointer_interconvertible", "__cpp_lib_is_pointer_interconvertible", "library",
      "std::is_pointer_interconvertible_with_class",
      "#include <type_traits>\nstruct S { int x; int y; };\nauto main() -> int { return std::is_pointer_interconvertible_with_class<S, int>(&S::x) ? 0 : 1; }"),
+
+    # ── cpp11 library (missing) ──
+    ("cpp11", "allocator_traits_is_always_equal", "__cpp_lib_allocator_traits_is_always_equal", "library",
+     "std::allocator_traits<std::allocator<int>>::is_always_equal",
+     "#include <memory>\nauto main() -> int { return std::allocator_traits<std::allocator<int>>::is_always_equal::value ? 0 : 1; }"),
+
+    # ── cpp14 language (missing) ──
+    ("cpp14", "null_iterators", "__cpp_lib_null_iterators", "library",
+     "Compare default-constructed iterators",
+     "#include <iterator>\n#include <list>\nauto main() -> int { std::list<int>::iterator a, b; return a == b ? 0 : 1; }"),
+
+    ("cpp14", "sized_deallocation", "__cpp_sized_deallocation", "language",
+     "Sized deallocation operator delete(void*, size_t)",
+     "#include <cstddef>\nstruct S { int v; static void operator delete(void* p, std::size_t) noexcept { ::operator delete(p); } };\nauto main() -> int { S* p = new S{42}; delete p; return 0; }"),
+
+    # ── cpp17 library (missing) ──
+    ("cpp17", "incomplete_container_elements", "__cpp_lib_incomplete_container_elements", "library",
+     "std::vector<struct Incomplete*> works with forward-declared types",
+     "#include <vector>\n#include <forward_list>\nstruct Incomplete;\nauto main() -> int { std::vector<Incomplete*> v; std::forward_list<Incomplete*> fl; (void)v; (void)fl; return 0; }"),
+
+    ("cpp17", "is_aggregate", "__cpp_lib_is_aggregate", "library",
+     "std::is_aggregate_v<SomeStruct>",
+     "#include <type_traits>\nstruct Agg { int x; int y; };\nstruct NonAgg { NonAgg() {} int x; };\nauto main() -> int { return std::is_aggregate_v<Agg> && !std::is_aggregate_v<NonAgg> ? 0 : 1; }"),
+
+    ("cpp17", "parallel_algorithm", "__cpp_lib_parallel_algorithm", "library",
+     "#include <execution>, std::execution::seq exists",
+     "#include <execution>\nauto main() -> int { auto policy = std::execution::seq; (void)policy; return 0; }"),
+
+    # ── cpp20 language (missing) ──
+    ("cpp20", "constexpr_dynamic_alloc", "__cpp_constexpr_dynamic_alloc", "language",
+     "constexpr new/delete in constant expressions",
+     "constexpr int f() { int* p = new int(42); int v = *p; delete p; return v; }\nstatic_assert(f() == 42);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_in_decltype", "__cpp_constexpr_in_decltype", "language",
+     "constexpr evaluation in decltype",
+     "constexpr int val = 42;\nauto main() -> int { decltype(val + 1) x = val; return x - 42; }"),
+
+    # ── cpp20 library (missing) ──
+    ("cpp20", "algorithm_iterator_requirements", "__cpp_lib_algorithm_iterator_requirements", "library",
+     "Relaxed iterator requirements for algorithms",
+     "#include <algorithm>\n#include <vector>\nauto main() -> int { std::vector<int> v = {3,1,2}; std::sort(v.begin(), v.end()); return v[0] == 1 ? 0 : 1; }"),
+
+    ("cpp20", "atomic_float", "__cpp_lib_atomic_float", "library",
+     "std::atomic<float>",
+     "#include <atomic>\nauto main() -> int { std::atomic<float> a{1.0f}; a.store(42.0f); return static_cast<int>(a.load()) - 42; }"),
+
+    ("cpp20", "atomic_shared_ptr", "__cpp_lib_atomic_shared_ptr", "library",
+     "std::atomic<std::shared_ptr<int>>",
+     "#include <atomic>\n#include <memory>\nauto main() -> int { std::atomic<std::shared_ptr<int>> a; a.store(std::make_shared<int>(42)); return *a.load() - 42; }"),
+
+    ("cpp20", "atomic_wait", "__cpp_lib_atomic_wait", "library",
+     "std::atomic<int>::wait()",
+     "#include <atomic>\nauto main() -> int { std::atomic<int> a{42}; a.wait(0); return 0; }"),
+
+    ("cpp20", "common_reference", "__cpp_lib_common_reference", "library",
+     "std::common_reference_t",
+     "#include <type_traits>\nauto main() -> int { using T = std::common_reference_t<int&, const int&>; return std::is_same_v<T, const int&> ? 0 : 1; }"),
+
+    ("cpp20", "common_reference_wrapper", "__cpp_lib_common_reference_wrapper", "library",
+     "std::common_reference with reference_wrapper",
+     "#include <type_traits>\n#include <functional>\nauto main() -> int { using T = std::common_reference_t<int&, std::reference_wrapper<int>>; return std::is_reference_v<T> ? 0 : 1; }"),
+
+    ("cpp20", "constexpr_complex", "__cpp_lib_constexpr_complex", "library",
+     "constexpr std::complex operations",
+     "#include <complex>\nconstexpr std::complex<double> c{1.0, 2.0};\nstatic_assert(c.real() == 1.0);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_dynamic_alloc_lib", "__cpp_lib_constexpr_dynamic_alloc", "library",
+     "constexpr std::allocator",
+     "#include <memory>\nconstexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }\nstatic_assert(f() == 42);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_functional", "__cpp_lib_constexpr_functional", "library",
+     "constexpr std::invoke",
+     "#include <functional>\nconstexpr int add(int a, int b) { return a + b; }\nstatic_assert(std::invoke(add, 2, 3) == 5);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_iterator", "__cpp_lib_constexpr_iterator", "library",
+     "constexpr iterator operations",
+     "#include <iterator>\n#include <array>\nconstexpr int f() { std::array<int, 3> a = {1, 2, 3}; return *std::begin(a); }\nstatic_assert(f() == 1);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_memory", "__cpp_lib_constexpr_memory", "library",
+     "constexpr std::construct_at",
+     "#include <memory>\nconstexpr int f() { int x = 0; std::construct_at(&x, 42); return x; }\nstatic_assert(f() == 42);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_numeric", "__cpp_lib_constexpr_numeric", "library",
+     "constexpr std::accumulate",
+     "#include <numeric>\n#include <array>\nconstexpr int f() { std::array<int, 3> a = {1, 2, 3}; return std::accumulate(a.begin(), a.end(), 0); }\nstatic_assert(f() == 6);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_tuple", "__cpp_lib_constexpr_tuple", "library",
+     "constexpr std::tuple",
+     "#include <tuple>\nconstexpr auto t = std::make_tuple(1, 2, 3);\nstatic_assert(std::get<0>(t) == 1);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constexpr_utility", "__cpp_lib_constexpr_utility", "library",
+     "constexpr std::pair, std::exchange",
+     "#include <utility>\nconstexpr int f() { int x = 1; int old = std::exchange(x, 42); return x + old; }\nstatic_assert(f() == 43);\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "constrained_equality", "__cpp_lib_constrained_equality", "library",
+     "Constrained equality for utility types",
+     "#include <utility>\n#include <optional>\nauto main() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }"),
+
+    ("cpp20", "format_uchar", "__cpp_lib_format_uchar", "library",
+     "Unsigned char formatting with std::format",
+     "#include <format>\nauto main() -> int { unsigned char c = 65; auto s = std::format(\"{}\", static_cast<int>(c)); return s == \"65\" ? 0 : 1; }"),
+
+    ("cpp20", "modules_lib", "__cpp_lib_modules", "library",
+     "Module support (check __cpp_lib_modules defined via <version>)",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_lib_modules\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp20", "move_iterator_concept", "__cpp_lib_move_iterator_concept", "library",
+     "std::move_iterator satisfies iterator concepts",
+     "#include <iterator>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3}; auto it = std::make_move_iterator(v.begin()); (void)it; return 0; }"),
+
+    ("cpp20", "cpp_modules", "__cpp_modules", "language",
+     "Module support (check via <version> header)",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_modules\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    # ── cpp23 language (missing) ──
+    ("cpp23", "auto_cast", "__cpp_auto_cast", "language",
+     "auto(x) decay copy syntax",
+     "auto main() -> int { int x = 42; auto y = auto(x); return y - 42; }"),
+
+    # ── cpp23 library (missing) ──
+    ("cpp23", "associative_heterogeneous_erasure", "__cpp_lib_associative_heterogeneous_erasure", "library",
+     "std::map::erase with transparent comparator",
+     "#include <map>\n#include <string>\n#include <string_view>\nauto main() -> int { std::map<std::string, int, std::less<>> m; m[\"key\"] = 42; m.erase(std::string_view(\"key\")); return m.empty() ? 0 : 1; }"),
+
+    ("cpp23", "constexpr_charconv", "__cpp_lib_constexpr_charconv", "library",
+     "constexpr std::to_chars",
+     "#include <charconv>\n#include <array>\nconstexpr int f() { std::array<char, 16> buf{}; auto [ptr, ec] = std::to_chars(buf.data(), buf.data() + buf.size(), 42); return ec == std::errc{} ? 0 : 1; }\nstatic_assert(f() == 0);\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_typeinfo", "__cpp_lib_constexpr_typeinfo", "library",
+     "constexpr typeid",
+     "#include <typeinfo>\nauto main() -> int { constexpr auto& ti = typeid(int); return ti == typeid(int) ? 0 : 1; }"),
+
+    ("cpp23", "containers_ranges", "__cpp_lib_containers_ranges", "library",
+     "Construct containers from ranges",
+     "#include <vector>\n#include <ranges>\nauto main() -> int { auto r = std::views::iota(1, 4); std::vector<int> v(r.begin(), r.end()); return v.size() == 3 && v[0] == 1 ? 0 : 1; }"),
+
+    ("cpp23", "format_ranges", "__cpp_lib_format_ranges", "library",
+     "Format ranges with std::format",
+     "#include <format>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1, 2, 3}; auto s = std::format(\"{}\", v); return s.empty() ? 1 : 0; }"),
+
+    ("cpp23", "formatters", "__cpp_lib_formatters", "library",
+     "Formatters for library types (stacktrace etc)",
+     "#include <format>\n#include <thread>\nauto main() -> int { auto s = std::format(\"{}\", std::this_thread::get_id()); return s.empty() ? 1 : 0; }"),
+
+    ("cpp23", "freestanding_algorithm", "__cpp_lib_freestanding_algorithm", "library",
+     "Freestanding algorithm subset",
+     "#include <algorithm>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_algorithm\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_array", "__cpp_lib_freestanding_array", "library",
+     "Freestanding <array>",
+     "#include <array>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_array\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_cstring", "__cpp_lib_freestanding_cstring", "library",
+     "Freestanding <cstring>",
+     "#include <cstring>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_cstring\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_expected", "__cpp_lib_freestanding_expected", "library",
+     "Freestanding <expected>",
+     "#include <expected>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_expected\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_optional", "__cpp_lib_freestanding_optional", "library",
+     "Freestanding <optional>",
+     "#include <optional>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_optional\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_string_view", "__cpp_lib_freestanding_string_view", "library",
+     "Freestanding <string_view>",
+     "#include <string_view>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_string_view\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_variant", "__cpp_lib_freestanding_variant", "library",
+     "Freestanding <variant>",
+     "#include <variant>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_variant\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "ranges_as_const", "__cpp_lib_ranges_as_const", "library",
+     "std::ranges::as_const_view",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3}; auto cv = v | std::views::as_const; return *cv.begin() == 1 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_cartesian_product", "__cpp_lib_ranges_cartesian_product", "library",
+     "std::ranges::cartesian_product_view",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector a = {1,2}; std::vector b = {3,4}; int n = 0; for (auto [x,y] : std::views::cartesian_product(a, b)) n++; return n == 4 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_enumerate", "__cpp_lib_ranges_enumerate", "library",
+     "std::ranges::enumerate_view",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {10,20,30}; int s = 0; for (auto [i, x] : std::views::enumerate(v)) s += i; return s == 3 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_slide", "__cpp_lib_ranges_slide", "library",
+     "std::ranges::slide_view",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,4}; int n = 0; for (auto w : v | std::views::slide(2)) n++; return n == 3 ? 0 : 1; }"),
+
+    ("cpp23", "start_lifetime_as", "__cpp_lib_start_lifetime_as", "library",
+     "std::start_lifetime_as",
+     "#include <memory>\nauto main() -> int {\n#ifdef __cpp_lib_start_lifetime_as\n  alignas(int) unsigned char buf[sizeof(int)] = {42, 0, 0, 0};\n  int* p = std::start_lifetime_as<int>(buf);\n  (void)p;\n  return 0;\n#else\n  return 0;\n#endif\n}"),
 ]
 
 
