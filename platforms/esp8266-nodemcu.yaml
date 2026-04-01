@@ -11,7 +11,7 @@ platformio:
   board: nodemcuv2
   framework: arduino
 
-standards: [c++11, c++14, c++17]
+standards: [c++17]
 
 release_monitor:
   type: platformio_registry
