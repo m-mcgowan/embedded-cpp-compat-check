@@ -43,6 +43,22 @@ TESTS = [
      "Inheriting constructors",
      "struct Base { int v; Base(int x) : v(x) {} };\nstruct Derived : Base { using Base::Base; };\nauto main() -> int { Derived d(42); return d.v - 42; }"),
 
+    ("cpp11", "ref_qualifiers", "__cpp_ref_qualifiers", "language",
+     "Ref-qualified member functions",
+     "struct S { int f() & { return 1; } int f() && { return 2; } };\nauto main() -> int { S s; return s.f() == 1 ? 0 : 1; }"),
+
+    ("cpp11", "exceptions", "__cpp_exceptions", "language",
+     "Exception handling",
+     "auto main() -> int { try { throw 42; } catch (int e) { return e - 42; } return 1; }"),
+
+    ("cpp11", "threadsafe_static_init", "__cpp_threadsafe_static_init", "language",
+     "Thread-safe initialization of static local variables",
+     "int f() { static int x = 42; return x; }\nauto main() -> int { return f() - 42; }"),
+
+    ("cpp11", "unicode_literals", "__cpp_unicode_literals", "language",
+     "Unicode string literals (u\"\", U\"\", u8\"\")",
+     "auto main() -> int { const char16_t* s16 = u\"hello\"; const char32_t* s32 = U\"world\"; return (s16[0] == u'h' && s32[0] == U'w') ? 0 : 1; }"),
+
     # ── cpp14 language ──
     ("cpp14", "return_type_deduction", "__cpp_return_type_deduction", "language",
      "Return type deduction for normal functions",
@@ -98,7 +114,55 @@ TESTS = [
      "std::integral_constant::operator()",
      "#include <type_traits>\nauto main() -> int { std::true_type t; return t() ? 0 : 1; }"),
 
+    ("cpp14", "chrono_udls", "__cpp_lib_chrono_udls", "library",
+     "User-defined literals for chrono duration types (1s, 1ms, etc)",
+     "#include <chrono>\nusing namespace std::chrono_literals;\nauto main() -> int { auto d = 1s; return d.count() == 1 ? 0 : 1; }"),
+
+    ("cpp14", "complex_udls", "__cpp_lib_complex_udls", "library",
+     "User-defined literals for std::complex (1i, 1if, etc)",
+     "#include <complex>\nusing namespace std::complex_literals;\nauto main() -> int { auto c = 1.0i; return c.imag() == 1.0 ? 0 : 1; }"),
+
+    ("cpp14", "string_udls", "__cpp_lib_string_udls", "library",
+     "User-defined literals for std::string (\"hello\"s)",
+     "#include <string>\nusing namespace std::string_literals;\nauto main() -> int { auto s = \"hello\"s; return s.size() == 5 ? 0 : 1; }"),
+
+    ("cpp14", "generic_associative_lookup", "__cpp_lib_generic_associative_lookup", "library",
+     "Heterogeneous comparison lookup in associative containers",
+     "#include <map>\n#include <string>\n#include <string_view>\nauto main() -> int { std::map<std::string, int, std::less<>> m; m[\"key\"] = 42; return m.count(std::string_view(\"key\")) == 1 ? 0 : 1; }"),
+
+    ("cpp14", "make_reverse_iterator", "__cpp_lib_make_reverse_iterator", "library",
+     "std::make_reverse_iterator",
+     "#include <iterator>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3}; auto rit = std::make_reverse_iterator(v.end()); return *rit - 3; }"),
+
+    ("cpp14", "tuples_by_type", "__cpp_lib_tuples_by_type", "library",
+     "Addressing tuple elements by type",
+     "#include <tuple>\nauto main() -> int { auto t = std::make_tuple(42, 3.14); return std::get<int>(t) - 42; }"),
+
+    ("cpp14", "result_of_sfinae", "__cpp_lib_result_of_sfinae", "library",
+     "std::result_of and SFINAE",
+     "#include <type_traits>\nint f(int x) { return x; }\nauto main() -> int { return std::is_same<std::result_of<decltype(f)(int)>::type, int>::value ? 0 : 1; }"),
+
+    ("cpp14", "quoted_string_io", "__cpp_lib_quoted_string_io", "library",
+     "std::quoted for I/O of quoted strings",
+     "#include <iomanip>\n#include <sstream>\nauto main() -> int { std::ostringstream oss; oss << std::quoted(\"hello\"); return oss.str() == \"\\\"hello\\\"\" ? 0 : 1; }"),
+
     # ── cpp17 language ──
+    ("cpp17", "aggregate_bases", "__cpp_aggregate_bases", "language",
+     "Aggregate classes with public base classes",
+     "struct Base { int x; };\nstruct Derived : Base { int y; };\nauto main() -> int { Derived d{{1}, 2}; return d.x + d.y - 3; }"),
+
+    ("cpp17", "enumerator_attributes", "__cpp_enumerator_attributes", "language",
+     "Attributes on enumerators (e.g. [[deprecated]])",
+     "enum class E { A, B [[deprecated]] };\nauto main() -> int { return static_cast<int>(E::A); }"),
+
+    ("cpp17", "nontype_template_args", "__cpp_nontype_template_args", "language",
+     "Allow constant evaluation for all non-type template arguments",
+     "struct S { int v; constexpr S(int x) : v(x) {} };\ntemplate<S s> constexpr int get() { return s.v; }\nauto main() -> int { return get<S{42}>() - 42; }"),
+
+    ("cpp17", "template_template_args", "__cpp_template_template_args", "language",
+     "Matching of template template-arguments",
+     "template<template<typename> class C, typename T> struct Wrap { C<T> c; };\n#include <vector>\nauto main() -> int { Wrap<std::vector, int> w; w.c.push_back(42); return w.c[0] - 42; }"),
+
     ("cpp17", "nontype_template_parameter_auto", "__cpp_nontype_template_parameter_auto", "language",
      "auto non-type template parameters",
      "template<auto N> constexpr auto value = N;\nauto main() -> int { return value<42> - 42; }"),
@@ -114,6 +178,10 @@ TESTS = [
     ("cpp17", "guaranteed_copy_elision", "__cpp_guaranteed_copy_elision", "language",
      "Guaranteed copy elision (prvalue materialization)",
      "struct NoCopy { NoCopy() = default; NoCopy(const NoCopy&) = delete; NoCopy(NoCopy&&) = delete; };\nNoCopy make() { return NoCopy{}; }\nauto main() -> int { NoCopy x = make(); (void)x; return 0; }"),
+
+    ("cpp17", "deleted_function", "__cpp_deleted_function", "language",
+     "Explicitly deleted functions",
+     "void f() = delete;\ntemplate<typename T> void g(T) = delete;\nvoid g(int) {}\nauto main() -> int { g(42); return 0; }"),
 
     ("cpp17", "aligned_new", "__cpp_aligned_new", "language",
      "Dynamic memory allocation with over-aligned types",
@@ -224,6 +292,26 @@ TESTS = [
      "std::hardware_destructive_interference_size",
      "#include <new>\nauto main() -> int { return std::hardware_destructive_interference_size > 0 ? 0 : 1; }"),
 
+    ("cpp17", "boyer_moore_searcher", "__cpp_lib_boyer_moore_searcher", "library",
+     "Boyer-Moore string searcher",
+     "#include <functional>\n#include <algorithm>\n#include <string>\nauto main() -> int { std::string haystack = \"hello world\"; std::string needle = \"world\"; auto it = std::search(haystack.begin(), haystack.end(), std::boyer_moore_searcher(needle.begin(), needle.end())); return it != haystack.end() ? 0 : 1; }"),
+
+    ("cpp17", "enable_shared_from_this", "__cpp_lib_enable_shared_from_this", "library",
+     "std::enable_shared_from_this::weak_from_this",
+     "#include <memory>\nstruct S : std::enable_shared_from_this<S> {};\nauto main() -> int { auto sp = std::make_shared<S>(); auto wp = sp->weak_from_this(); return wp.expired() ? 1 : 0; }"),
+
+    ("cpp17", "shared_ptr_weak_type", "__cpp_lib_shared_ptr_weak_type", "library",
+     "std::shared_ptr<T>::weak_type",
+     "#include <memory>\nauto main() -> int { using W = std::shared_ptr<int>::weak_type; auto sp = std::make_shared<int>(42); W wp = sp; return wp.expired() ? 1 : 0; }"),
+
+    ("cpp17", "unordered_map_try_emplace", "__cpp_lib_unordered_map_try_emplace", "library",
+     "std::unordered_map::try_emplace and insert_or_assign",
+     "#include <unordered_map>\n#include <string>\nauto main() -> int { std::unordered_map<std::string, int> m; m.try_emplace(\"key\", 42); return m[\"key\"] - 42; }"),
+
+    ("cpp17", "math_special_functions", "__cpp_lib_math_special_functions", "library",
+     "Mathematical special functions (std::cyl_bessel_j etc)",
+     "#include <cmath>\nauto main() -> int { double v = std::riemann_zeta(2.0); return v > 1.6 && v < 1.7 ? 0 : 1; }"),
+
     # ── cpp20 language ──
     ("cpp20", "using_enum", "__cpp_using_enum", "language",
      "using enum declaration",
@@ -232,6 +320,14 @@ TESTS = [
     ("cpp20", "conditional_explicit", "__cpp_conditional_explicit", "language",
      "explicit(bool)",
      "struct S { template<typename T> explicit(!std::is_same_v<T, int>) S(T) {} };\n#include <type_traits>\nauto main() -> int { S s(42); return 0; }"),
+
+    ("cpp20", "aggregate_paren_init", "__cpp_aggregate_paren_init", "language",
+     "Aggregate initialization using parentheses",
+     "struct S { int x; int y; };\nauto main() -> int { S s(1, 2); return s.x + s.y - 3; }"),
+
+    ("cpp20", "impl_destroying_delete", "__cpp_impl_destroying_delete", "language",
+     "Destroying operator delete (compiler support)",
+     "#include <new>\nstruct S { int v; static void operator delete(S* p, std::destroying_delete_t) { p->~S(); ::operator delete(p); } };\nauto main() -> int { auto* p = new S{42}; delete p; return 0; }"),
 
     # ── cpp20 library ──
     ("cpp20", "remove_cvref", "__cpp_lib_remove_cvref", "library",
@@ -318,6 +414,62 @@ TESTS = [
      "std::syncbuf and std::osyncstream",
      "#include <syncstream>\n#include <sstream>\nauto main() -> int { std::ostringstream oss; std::osyncstream sync(oss); sync << \"hi\"; sync.emit(); return oss.str() == \"hi\" ? 0 : 1; }"),
 
+    ("cpp20", "assume_aligned", "__cpp_lib_assume_aligned", "library",
+     "std::assume_aligned",
+     "#include <memory>\nauto main() -> int { alignas(64) int buf[4] = {42}; auto* p = std::assume_aligned<64>(buf); return p[0] - 42; }"),
+
+    ("cpp20", "atomic_flag_test", "__cpp_lib_atomic_flag_test", "library",
+     "std::atomic_flag::test()",
+     "#include <atomic>\nauto main() -> int { std::atomic_flag f = ATOMIC_FLAG_INIT; return f.test() ? 1 : 0; }"),
+
+    ("cpp20", "atomic_lock_free_type_aliases", "__cpp_lib_atomic_lock_free_type_aliases", "library",
+     "std::atomic_signed_lock_free and std::atomic_unsigned_lock_free",
+     "#include <atomic>\nauto main() -> int { std::atomic_signed_lock_free a{0}; a.store(42); return a.load() - 42; }"),
+
+    ("cpp20", "atomic_value_initialization", "__cpp_lib_atomic_value_initialization", "library",
+     "Value-initialized std::atomic<T> (zero-initialized by default)",
+     "#include <atomic>\nauto main() -> int { std::atomic<int> a{}; return a.load(); }"),
+
+    ("cpp20", "bounded_array_traits", "__cpp_lib_bounded_array_traits", "library",
+     "std::is_bounded_array and std::is_unbounded_array",
+     "#include <type_traits>\nauto main() -> int { return std::is_bounded_array_v<int[3]> && !std::is_bounded_array_v<int[]> ? 0 : 1; }"),
+
+    ("cpp20", "char8_t_lib", "__cpp_lib_char8_t", "library",
+     "Library support for char8_t",
+     "#include <string>\nauto main() -> int { std::u8string s = u8\"hello\"; return s.size() == 5 ? 0 : 1; }"),
+
+    ("cpp20", "concepts_lib", "__cpp_lib_concepts", "library",
+     "Standard library concepts (<concepts> header)",
+     "#include <concepts>\ntemplate<std::integral T> T add(T a, T b) { return a + b; }\nauto main() -> int { return add(2, 3) - 5; }"),
+
+    ("cpp20", "destroying_delete", "__cpp_lib_destroying_delete", "library",
+     "Destroying operator delete (library support: std::destroying_delete_t)",
+     "#include <new>\nstruct Node { int v; static void operator delete(Node* p, std::destroying_delete_t) { p->~Node(); ::operator delete(p); } };\nauto main() -> int { auto* n = new Node{42}; delete n; return 0; }"),
+
+    ("cpp20", "generic_unordered_lookup", "__cpp_lib_generic_unordered_lookup", "library",
+     "Heterogeneous lookup in unordered containers",
+     "#include <unordered_map>\n#include <string>\nstruct Hash { using is_transparent = void; size_t operator()(std::string_view sv) const { return std::hash<std::string_view>{}(sv); } };\nstruct Eq { using is_transparent = void; bool operator()(std::string_view a, std::string_view b) const { return a == b; } };\nauto main() -> int { std::unordered_map<std::string, int, Hash, Eq> m; m[\"key\"] = 42; return m.find(std::string_view(\"key\"))->second - 42; }"),
+
+    ("cpp20", "interpolate", "__cpp_lib_interpolate", "library",
+     "std::lerp and std::midpoint",
+     "#include <numeric>\nauto main() -> int { auto m = std::midpoint(1, 3); auto l = std::lerp(0.0, 1.0, 0.5); return (m == 2 && l == 0.5) ? 0 : 1; }"),
+
+    ("cpp20", "is_nothrow_convertible", "__cpp_lib_is_nothrow_convertible", "library",
+     "std::is_nothrow_convertible",
+     "#include <type_traits>\nauto main() -> int { return std::is_nothrow_convertible_v<int, double> ? 0 : 1; }"),
+
+    ("cpp20", "list_remove_return_type", "__cpp_lib_list_remove_return_type", "library",
+     "std::list::remove returns removed count",
+     "#include <list>\nauto main() -> int { std::list<int> l = {1, 2, 2, 3}; auto n = l.remove(2); return n == 2 ? 0 : 1; }"),
+
+    ("cpp20", "three_way_comparison_lib", "__cpp_lib_three_way_comparison", "library",
+     "Three-way comparison library support (<compare>)",
+     "#include <compare>\nauto main() -> int { auto r = (1 <=> 2); return (r < 0) ? 0 : 1; }"),
+
+    ("cpp20", "unwrap_ref", "__cpp_lib_unwrap_ref", "library",
+     "std::unwrap_reference and std::unwrap_ref_decay",
+     "#include <type_traits>\nauto main() -> int { int x = 42; auto ref = std::ref(x); using T = std::unwrap_ref_decay_t<decltype(ref)>; return std::is_same_v<T, int&> ? 0 : 1; }"),
+
     # ── cpp23 language ──
     ("cpp23", "if_consteval", "__cpp_if_consteval", "language",
      "if consteval",
@@ -326,6 +478,18 @@ TESTS = [
     ("cpp23", "size_t_suffix", "__cpp_size_t_suffix", "language",
      "Literal suffixes for size_t",
      "auto main() -> int { auto n = 42uz; return n == 42 ? 0 : 1; }"),
+
+    ("cpp23", "static_call_operator", "__cpp_static_call_operator", "language",
+     "static operator() in function objects",
+     "struct Adder { static int operator()(int a, int b) { return a + b; } };\nauto main() -> int { return Adder{}(2, 3) - 5; }"),
+
+    ("cpp23", "implicit_move", "__cpp_implicit_move", "language",
+     "Simpler implicit move from local variables",
+     "struct S { S() = default; S(S&&) = default; S(const S&) = delete; };\nS make() { S s; return s; }\nauto main() -> int { S s = make(); (void)s; return 0; }"),
+
+    ("cpp23", "named_character_escapes", "__cpp_named_character_escapes", "language",
+     "Named character escapes (e.g. \\N{LATIN SMALL LETTER A})",
+     "auto main() -> int { char c = '\\N{LATIN SMALL LETTER A}'; return c == 'a' ? 0 : 1; }"),
 
     # ── cpp23 library ──
     ("cpp23", "unreachable", "__cpp_lib_unreachable", "library",
@@ -395,6 +559,82 @@ TESTS = [
     ("cpp23", "ranges_zip", "__cpp_lib_ranges_zip", "library",
      "std::views::zip",
      "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector a = {1,2,3}; std::vector b = {4,5,6}; int s = 0; for (auto [x,y] : std::views::zip(a, b)) s += x + y; return s - 21; }"),
+
+    ("cpp23", "flat_set", "__cpp_lib_flat_set", "library",
+     "std::flat_set",
+     "#include <flat_set>\nauto main() -> int { std::flat_set<int> s = {3, 1, 2}; return *s.begin() == 1 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_as_rvalue", "__cpp_lib_ranges_as_rvalue", "library",
+     "std::views::as_rvalue (move-only view)",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3}; auto r = v | std::views::as_rvalue; int s = 0; for (auto x : r) s += x; return s - 6; }"),
+
+    ("cpp23", "ranges_chunk", "__cpp_lib_ranges_chunk", "library",
+     "std::views::chunk — partition range into fixed-size chunks",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,4}; int n = 0; for (auto c : v | std::views::chunk(2)) n++; return n == 2 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_chunk_by", "__cpp_lib_ranges_chunk_by", "library",
+     "std::views::chunk_by — partition range by adjacent predicate",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {1,1,2,2,3}; int n = 0; for (auto c : v | std::views::chunk_by(std::equal_to<>{})) n++; return n == 3 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_find_last", "__cpp_lib_ranges_find_last", "library",
+     "std::ranges::find_last",
+     "#include <algorithm>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,2,1}; auto r = std::ranges::find_last(v, 2); return *r.begin() == 2 && r.begin() == v.begin()+3 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_iota", "__cpp_lib_ranges_iota", "library",
+     "std::ranges::iota",
+     "#include <numeric>\n#include <vector>\nauto main() -> int { std::vector<int> v(5); std::ranges::iota(v, 1); return v[0] == 1 && v[4] == 5 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_join_with", "__cpp_lib_ranges_join_with", "library",
+     "std::views::join_with — join ranges with a delimiter",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector<std::vector<int>> v = {{1,2},{3,4}}; int s = 0; for (auto x : v | std::views::join_with(0)) s += x; return s == 10 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_repeat", "__cpp_lib_ranges_repeat", "library",
+     "std::views::repeat",
+     "#include <ranges>\nauto main() -> int { int n = 0; for (auto x : std::views::repeat(42) | std::views::take(3)) n += x; return n == 126 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_starts_ends_with", "__cpp_lib_ranges_starts_ends_with", "library",
+     "std::ranges::starts_with and std::ranges::ends_with",
+     "#include <algorithm>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,4,5}; std::vector p = {1,2}; return std::ranges::starts_with(v, p) ? 0 : 1; }"),
+
+    ("cpp23", "ranges_stride", "__cpp_lib_ranges_stride", "library",
+     "std::views::stride",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,4,5,6}; int s = 0; for (auto x : v | std::views::stride(2)) s += x; return s == 9 ? 0 : 1; }"),
+
+    ("cpp23", "ranges_to_container", "__cpp_lib_ranges_to_container", "library",
+     "std::ranges::to — convert range to container",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { auto v = std::views::iota(1, 4) | std::ranges::to<std::vector>(); return v.size() == 3 && v[0] == 1 ? 0 : 1; }"),
+
+    ("cpp23", "stdatomic_h", "__cpp_lib_stdatomic_h", "library",
+     "C-compatible <stdatomic.h> header",
+     "#include <stdatomic.h>\nauto main() -> int { atomic_int a = 0; atomic_store(&a, 42); return atomic_load(&a) - 42; }"),
+
+    ("cpp23", "tuple_like", "__cpp_lib_tuple_like", "library",
+     "Tuple protocol for std::pair, std::array, std::subrange",
+     "#include <tuple>\n#include <utility>\nauto main() -> int { auto p = std::pair(1, 2); auto [a, b] = p; return a + b - 3; }"),
+
+    ("cpp23", "is_implicit_lifetime", "__cpp_lib_is_implicit_lifetime", "library",
+     "std::is_implicit_lifetime type trait",
+     "#include <type_traits>\nstruct S { int x; };\nauto main() -> int { return std::is_implicit_lifetime_v<S> ? 0 : 1; }"),
+
+    ("cpp23", "ios_noreplace", "__cpp_lib_ios_noreplace", "library",
+     "std::ios::noreplace open mode flag",
+     "#include <ios>\nauto main() -> int { auto mode = std::ios::noreplace; (void)mode; return 0; }"),
+
+    ("cpp23", "adaptor_iterator_pair_constructor", "__cpp_lib_adaptor_iterator_pair_constructor", "library",
+     "Iterator-pair constructors for std::stack and std::queue",
+     "#include <queue>\n#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3}; std::queue<int> q(v.begin(), v.end()); return q.size() == 3 ? 0 : 1; }"),
+
+    ("cpp23", "allocate_at_least", "__cpp_lib_allocate_at_least", "library",
+     "std::allocator::allocate_at_least",
+     "#include <memory>\nauto main() -> int { std::allocator<int> a; auto [ptr, n] = a.allocate_at_least(4); a.deallocate(ptr, n); return n >= 4 ? 0 : 1; }"),
+
+    ("cpp23", "is_layout_compatible", "__cpp_lib_is_layout_compatible", "library",
+     "std::is_layout_compatible type trait",
+     "#include <type_traits>\nstruct A { int x; }; struct B { int y; };\nauto main() -> int { return std::is_layout_compatible_v<A, B> ? 0 : 1; }"),
+
+    ("cpp23", "is_pointer_interconvertible", "__cpp_lib_is_pointer_interconvertible", "library",
+     "std::is_pointer_interconvertible_with_class",
+     "#include <type_traits>\nstruct S { int x; int y; };\nauto main() -> int { return std::is_pointer_interconvertible_with_class<S, int>(&S::x) ? 0 : 1; }"),
 ]
 
 
