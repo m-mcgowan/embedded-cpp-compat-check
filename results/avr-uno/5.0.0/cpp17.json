@@ -467,6 +467,22 @@
     "platform": "avr-uno",
     "platform_version": "5.0.0",
     "standard": "c++17",
+    "feature": "cpp17/incomplete_container_elements",
+    "macro": "__cpp_lib_incomplete_container_elements",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-04-01T10:21:27.530025",
+    "error_output": ".work/avr-uno/c++17/objs/incomplete_container_elements.cpp:8:10: fatal error: vector: No such file or directory\n #include <vector>\n          ^~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
+  },
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++17",
     "feature": "cpp17/inline_variables",
     "macro": "__cpp_inline_variables",
     "category": "language",
@@ -493,6 +509,22 @@
     "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
     "timestamp": "2026-03-30T01:18:33.258657",
     "error_output": ".work/avr-uno/c++17/objs/invoke.cpp:8:10: fatal error: functional: No such file or directory\n #include <functional>\n          ^~~~~~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
+  },
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++17",
+    "feature": "cpp17/is_aggregate",
+    "macro": "__cpp_lib_is_aggregate",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-04-01T10:21:27.530094",
+    "error_output": ".work/avr-uno/c++17/objs/is_aggregate.cpp:8:10: fatal error: type_traits: No such file or directory\n #include <type_traits>\n          ^~~~~~~~~~~~~\ncompilation terminated.\n",
     "link_failure": false
   },
   {
@@ -765,6 +797,22 @@
     "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
     "timestamp": "2026-03-30T01:18:33.320443",
     "error_output": ".work/avr-uno/c++17/objs/optional.cpp:8:10: fatal error: optional: No such file or directory\n #include <optional>\n          ^~~~~~~~~~\ncompilation terminated.\n",
+    "link_failure": false
+  },
+  {
+    "platform": "avr-uno",
+    "platform_version": "5.0.0",
+    "standard": "c++17",
+    "feature": "cpp17/parallel_algorithm",
+    "macro": "__cpp_lib_parallel_algorithm",
+    "category": "library",
+    "macro_value": 0,
+    "compiles": false,
+    "status": "unsupported",
+    "compile_time_ms": 0,
+    "compiler": "/Users/mat/.platformio/packages/toolchain-atmelavr/bin/avr-g++",
+    "timestamp": "2026-04-01T10:21:27.530104",
+    "error_output": ".work/avr-uno/c++17/objs/parallel_algorithm.cpp:8:10: fatal error: execution: No such file or directory\n #include <execution>\n          ^~~~~~~~~~~\ncompilation terminated.\n",
     "link_failure": false
   },
   {
