@@ -8,3 +8,4 @@ dist/
 .venv/
 *.swp
 catalog/data.yaml
+CLAUDE.md
