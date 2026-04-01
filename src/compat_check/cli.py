@@ -85,9 +85,30 @@ def generate(results_dir, output_dir):
     click.echo(f"Site generated at {output_dir}/")
 
     table = generate_summary_table(all_results)
-    readme = f"# Embedded C++ Compatibility Matrix\n\n{table}\n"
-    Path("README.md").write_text(readme)
-    click.echo("README.md updated")
+
+    # Update the matrix table in README.md between markers, or append
+    readme_path = Path("README.md")
+    start_marker = "<!-- compat-matrix-start -->"
+    end_marker = "<!-- compat-matrix-end -->"
+    matrix_block = f"{start_marker}\n{table}{end_marker}"
+
+    if readme_path.exists():
+        content = readme_path.read_text()
+        if start_marker in content and end_marker in content:
+            import re
+            content = re.sub(
+                f"{re.escape(start_marker)}.*?{re.escape(end_marker)}",
+                matrix_block,
+                content,
+                flags=re.DOTALL,
+            )
+            readme_path.write_text(content)
+            click.echo("README.md matrix updated")
+        else:
+            click.echo("README.md: no compat-matrix markers found, skipping update")
+    else:
+        readme_path.write_text(f"# Embedded C++ Compatibility Matrix\n\n{matrix_block}\n")
+        click.echo("README.md created")
 
 
 @main.command()

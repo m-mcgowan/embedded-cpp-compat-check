@@ -8,6 +8,7 @@ Embedded toolchains often claim C++17/20 support but ship incomplete standard li
 
 ## Results
 
+<!-- compat-matrix-start -->
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
 | STM32 Nucleo F411RE | Cortex-M4 | c++11–c++20 | **93%** |
@@ -21,6 +22,7 @@ Embedded toolchains often claim C++17/20 support but ship incomplete standard li
 | Arduino Uno | AVR ATmega328P | c++11–c++17 | **40%** |
 | Arduino Nano Every | megaAVR ATmega4809 | c++11–c++17 | **38%** |
 | ESP8266 NodeMCU | Xtensa LX106 | c++17 only | **0%** |
+<!-- compat-matrix-end -->
 
 "Effective support" = features that compile successfully (supported + unreported), regardless of whether the SD-6 feature-test macro is defined.
 
