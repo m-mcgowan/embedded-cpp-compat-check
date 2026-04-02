@@ -1,6 +1,6 @@
-name: ESP32-S3 (Arduino v3)
-slug: esp32s3-arduino-v3
-version: "55.03.36"
+name: ESP32-S3 (espressif32 official)
+slug: esp32s3-espressif32
+version: "55.3.37"
 architecture: xtensa
 mcu: esp32s3
 board_family: esp32s3
@@ -8,7 +8,7 @@ build_system: platformio
 framework: arduino
 
 platformio:
-  platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.36/platform-espressif32.zip
+  platform: espressif32
   board: esp32-s3-devkitm-1
   framework: arduino
 
@@ -20,5 +20,5 @@ recipe:
     - https://github.com/m-mcgowan/nonstd-lite-bundle.git
 
 release_monitor:
-  type: github_release
-  repo: pioarduino/platform-espressif32
+  type: platformio_registry
+  platform: espressif32

@@ -21,6 +21,7 @@ class Platform:
     build_system: str
     standards: list[str]
     framework: str = ""
+    board_family: str = ""
     fixed_standard: bool = False
     min_framework_standard: str = ""
     recipe: Recipe | None = None

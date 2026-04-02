@@ -28,6 +28,7 @@ def load_platform(path: Path) -> Platform:
         build_system=data["build_system"],
         standards=data["standards"],
         framework=data.get("framework", ""),
+        board_family=data.get("board_family", ""),
         fixed_standard=data.get("fixed_standard", False),
         min_framework_standard=data.get("min_framework_standard", ""),
         recipe=_load_recipe(data.get("recipe")),
