@@ -29,6 +29,7 @@ def load_platform(path: Path) -> Platform:
         standards=data["standards"],
         framework=data.get("framework", ""),
         fixed_standard=data.get("fixed_standard", False),
+        min_framework_standard=data.get("min_framework_standard", ""),
         recipe=_load_recipe(data.get("recipe")),
         platformio=data.get("platformio", {}),
         release_monitor=data.get("release_monitor", {}),

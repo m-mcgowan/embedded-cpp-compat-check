@@ -84,6 +84,13 @@ class Orchestrator:
             slug = platform.slug + ("+recipe" if recipe else "")
 
             for standard in platform.standards:
+                # Skip standards below the framework's minimum
+                if platform.min_framework_standard:
+                    min_num = int(platform.min_framework_standard.replace("c++", ""))
+                    std_num = int(standard.replace("c++", ""))
+                    if std_num < min_num:
+                        continue
+
                 results = self._run_platform_standard(
                     platform, standard, manifest, dry_run,
                     recipe=recipe, slug_override=slug,
@@ -283,7 +290,7 @@ class Orchestrator:
                 "compile_time_ms": 0,
                 "compiler": compiler_config.compiler if compiler_config else "",
                 "timestamp": datetime.now().isoformat(),
-                "error_output": compile_error if not compiled else None,
+                "error_output": (compile_error or "")[:500] if not compiled else None,
                 "link_failure": link_failure,
             }
             results.append(result)

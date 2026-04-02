@@ -12,6 +12,7 @@ platformio:
   framework: arduino
 
 standards: [c++11, c++14, c++17, c++20]
+min_framework_standard: c++14
 
 recipe:
   description: "Add nonstd-lite-bundle for C++17 vocabulary types at C++11/14"
