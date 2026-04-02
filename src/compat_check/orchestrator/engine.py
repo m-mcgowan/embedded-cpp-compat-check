@@ -197,13 +197,23 @@ class Orchestrator:
                 compiler_config = None
                 linker_config = None
 
-        # Determine which tests need building
-        std_prefix = standard.replace("c++", "cpp")
-        test_files = sorted(self.test_dir.glob(f"{std_prefix}/*.cpp"))
+        # Determine which tests need building.
+        # Normally only tests from this standard's directory are run.
+        # With a recipe, also include tests from higher standards to see
+        # which features the recipe makes available at lower standards.
+        std_num = int(standard.replace("c++", ""))
+        std_prefix = f"cpp{std_num}"
+        if recipe:
+            test_files = sorted(self.test_dir.glob("cpp*/*.cpp"))
+        else:
+            test_files = sorted(self.test_dir.glob(f"{std_prefix}/*.cpp"))
         tests_to_build = []
         for test_file in test_files:
             meta = _parse_test_metadata(test_file)
-            feature_key = f"{test_file.parent.name}/{test_file.stem}"
+            # For recipe cross-standard runs, prefix the feature key with
+            # the current standard so each standard gets its own result.
+            base_key = f"{test_file.parent.name}/{test_file.stem}"
+            feature_key = f"{standard}:{base_key}" if recipe else base_key
             test_hash = _file_hash(test_file)
             if manifest.needs_rebuild(
                 slug, platform.version, probe_hash, feature_key, test_hash
@@ -283,11 +293,14 @@ class Orchestrator:
                 feature_key, test_hash, status.value
             )
 
-        # Cleanup — keep .pio/libdeps/ when recipe is active since
-        # the compiler config references library include paths there.
-        probe_build = project_dir / ".pio" / "build"
-        if probe_build.exists():
-            shutil.rmtree(probe_build)
+        # Cleanup — when recipe is active, keep .pio/ intact since
+        # the compiler config references library include paths in libdeps/
+        # and framework objects in build/ are reused across standards.
+        # Without recipe, delete .pio/ to save disk space.
+        if not recipe:
+            probe_pio = project_dir / ".pio"
+            if probe_pio.exists():
+                shutil.rmtree(probe_pio)
         if obj_dir.exists():
             shutil.rmtree(obj_dir)
 
