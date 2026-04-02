@@ -20,8 +20,9 @@ def main():
 @click.option("--test", "test_filter", default=None, help="Run only this test")
 @click.option("--parallel", default=4, type=int, help="Max parallel builds (1=serial)")
 @click.option("--dry-run", is_flag=True, help="Show what would be built")
+@click.option("--recipe", is_flag=True, help="Apply platform recipes (test with polyfill libraries)")
 def run(catalog, platforms_dir, tests_dir, results_dir, work_dir,
-        platform_filter, test_filter, parallel, dry_run):
+        platform_filter, test_filter, parallel, dry_run, recipe):
     """Run compatibility checks."""
     from compat_check.catalog.parser import parse_catalog
     from compat_check.platform.loader import load_platforms
@@ -36,9 +37,19 @@ def run(catalog, platforms_dir, tests_dir, results_dir, work_dir,
             click.echo(f"Error: platform '{platform_filter}' not found", err=True)
             raise SystemExit(1)
 
+    if recipe:
+        with_recipe = [p for p in platforms if p.recipe]
+        click.echo(f"Platforms with recipes: {[p.slug for p in with_recipe]}")
+        if not with_recipe:
+            click.echo("No platforms have recipes defined.", err=True)
+            raise SystemExit(1)
+        platforms = with_recipe
+
     click.echo(f"Platforms: {[p.slug for p in platforms]}")
     click.echo(f"Features: {len(features)} from catalog")
     click.echo(f"Parallel: {parallel}")
+    if recipe:
+        click.echo("Mode: with-recipe")
 
     orch = Orchestrator(
         platforms=platforms,
@@ -47,6 +58,7 @@ def run(catalog, platforms_dir, tests_dir, results_dir, work_dir,
         results_dir=Path(results_dir),
         work_dir=Path(work_dir),
         max_parallel=parallel,
+        apply_recipe=recipe,
     )
 
     results = orch.run(dry_run=dry_run)

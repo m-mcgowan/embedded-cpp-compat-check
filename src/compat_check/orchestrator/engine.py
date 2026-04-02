@@ -67,20 +67,28 @@ class Orchestrator:
     results_dir: Path
     work_dir: Path
     max_parallel: int = 4
+    apply_recipe: bool = False
 
     def run(self, dry_run: bool = False) -> list[dict]:
-        """Run the full orchestration loop. Returns list of result dicts."""
+        """Run the full orchestration loop. Returns list of result dicts.
+
+        If apply_recipe is True and a platform has a recipe defined,
+        the recipe's lib_deps and build flags are applied to the probe
+        project. Results are stored under a separate slug suffix.
+        """
         all_results = []
         manifest = Manifest.load(self.results_dir / "manifest.json")
 
         for platform in self.platforms:
+            recipe = platform.recipe if self.apply_recipe else None
+            slug = platform.slug + ("+recipe" if recipe else "")
+
             for standard in platform.standards:
                 results = self._run_platform_standard(
-                    platform, standard, manifest, dry_run
+                    platform, standard, manifest, dry_run,
+                    recipe=recipe, slug_override=slug,
                 )
                 all_results.extend(results)
-                # Save incrementally after each standard so we don't lose
-                # progress if the run is interrupted.
                 if results and not dry_run:
                     manifest.save(self.results_dir / "manifest.json")
                     self._write_result_files(results)
@@ -88,25 +96,33 @@ class Orchestrator:
         return all_results
 
     def _run_platform_standard(
-        self, platform: Platform, standard: str, manifest: Manifest, dry_run: bool
+        self, platform: Platform, standard: str, manifest: Manifest, dry_run: bool,
+        recipe=None, slug_override: str | None = None,
     ) -> list[dict]:
         results = []
+        slug = slug_override or platform.slug
 
         # Stage 1: Macro probe (PIO verbose build)
         probe_source = generate_probe_source(self.features)
         probe_hash = hashlib.sha256(probe_source.encode()).hexdigest()[:12]
+        if recipe:
+            # Include recipe in hash so bare vs recipe runs are cached separately
+            recipe_str = f"{recipe.lib_deps}{recipe.build_flags}{recipe.build_unflags}"
+            probe_hash = hashlib.sha256(
+                (probe_source + recipe_str).encode()
+            ).hexdigest()[:12]
 
-        probe_dir = self.work_dir / platform.slug / standard / "probe"
+        probe_dir = self.work_dir / slug / standard / "probe"
         probe_file = probe_dir / "probe.cpp"
         probe_dir.mkdir(parents=True, exist_ok=True)
         probe_file.write_text(probe_source)
 
-        project_dir = self.work_dir / platform.slug / standard / "probe_project"
+        project_dir = self.work_dir / slug / standard / "probe_project"
         # Don't use custom core_dir — we need PIO to resolve real package
         # paths in verbose output for direct compiler invocation.
         core_dir = None
 
-        generate_pio_project(project_dir, platform, standard, probe_file)
+        generate_pio_project(project_dir, platform, standard, probe_file, recipe=recipe)
 
         if dry_run:
             return []
@@ -165,7 +181,7 @@ class Orchestrator:
             feature_key = f"{test_file.parent.name}/{test_file.stem}"
             test_hash = _file_hash(test_file)
             if manifest.needs_rebuild(
-                platform.slug, platform.version, probe_hash, feature_key, test_hash
+                slug, platform.version, probe_hash, feature_key, test_hash
             ):
                 tests_to_build.append((test_file, meta, feature_key, test_hash))
 
@@ -176,7 +192,7 @@ class Orchestrator:
             return []
 
         # Stage 2: Fast compile (direct compiler or fallback to PIO)
-        obj_dir = self.work_dir / platform.slug / standard / "objs"
+        obj_dir = self.work_dir / slug / standard / "objs"
         obj_dir.mkdir(parents=True, exist_ok=True)
 
         compile_results = {}  # feature_key -> (success, error, obj_path)
@@ -193,7 +209,7 @@ class Orchestrator:
                 success, error = compile_test(compiler_config, wrapped_path, obj_path)
             else:
                 # Fallback: use PIO per-test (slow path)
-                test_project_dir = self.work_dir / platform.slug / standard / "test_project"
+                test_project_dir = self.work_dir / slug / standard / "test_project"
                 generate_pio_project(test_project_dir, platform, standard, test_file)
                 fallback_result = run_build(test_project_dir, core_dir=core_dir)
                 success = fallback_result.success
@@ -220,7 +236,7 @@ class Orchestrator:
             status = classify_feature(macro_val, compiled)
 
             result = {
-                "platform": platform.slug,
+                "platform": slug,
                 "platform_version": platform.version,
                 "standard": standard,
                 "feature": feature_key,
@@ -238,7 +254,7 @@ class Orchestrator:
             results.append(result)
 
             manifest.record(
-                platform.slug, platform.version, probe_hash,
+                slug, platform.version, probe_hash,
                 feature_key, test_hash, status.value
             )
 

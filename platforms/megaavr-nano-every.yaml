@@ -13,6 +13,11 @@ platformio:
 
 standards: [c++11, c++14, c++17]
 
+recipe:
+  description: "Add avr-libstdcpp for full C++ standard library support"
+  lib_deps:
+    - https://github.com/modm-io/avr-libstdcpp.git
+
 release_monitor:
   type: platformio_registry
   platform: atmelmegaavr

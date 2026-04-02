@@ -1,7 +1,18 @@
 """Load platform definitions from YAML files."""
 from pathlib import Path
 import yaml
-from .models import Platform
+from .models import Platform, Recipe
+
+
+def _load_recipe(data: dict | None) -> Recipe | None:
+    if not data:
+        return None
+    return Recipe(
+        lib_deps=data.get("lib_deps", []),
+        build_flags=data.get("build_flags", ""),
+        build_unflags=data.get("build_unflags", ""),
+        description=data.get("description", ""),
+    )
 
 
 def load_platform(path: Path) -> Platform:
@@ -18,6 +29,7 @@ def load_platform(path: Path) -> Platform:
         standards=data["standards"],
         framework=data.get("framework", ""),
         fixed_standard=data.get("fixed_standard", False),
+        recipe=_load_recipe(data.get("recipe")),
         platformio=data.get("platformio", {}),
         release_monitor=data.get("release_monitor", {}),
     )

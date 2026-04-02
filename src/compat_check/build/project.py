@@ -3,7 +3,7 @@
 import re
 from pathlib import Path
 
-from compat_check.platform.models import Platform
+from compat_check.platform.models import Platform, Recipe
 
 _COMMON_DEFAULTS = [
     "-std=gnu++11", "-std=gnu++14", "-std=gnu++17",
@@ -43,8 +43,13 @@ def generate_pio_project(
     platform: Platform,
     standard: str,
     source_file: Path,
+    recipe: Recipe | None = None,
 ) -> None:
-    """Generate a minimal PlatformIO project for a single compilation test."""
+    """Generate a minimal PlatformIO project for a single compilation test.
+
+    If recipe is provided, its lib_deps and build flags are added to the
+    project configuration (used for "with-recipe" test runs).
+    """
     output_dir.mkdir(parents=True, exist_ok=True)
     src_dir = output_dir / "src"
     src_dir.mkdir(exist_ok=True)
@@ -70,12 +75,27 @@ def generate_pio_project(
     if pio.get("framework"):
         ini_content += f"framework = {pio['framework']}\n"
 
+    # Collect build flags and unflags from standard override + recipe
+    unflags = []
+    flags = []
+
     if not platform.fixed_standard:
-        std_flag = _std_flag(standard)
-        unflag_line = " ".join(_COMMON_DEFAULTS)
-        ini_content += (
-            f"build_unflags = {unflag_line}\n"
-            f"build_flags = {std_flag}\n"
-        )
+        unflags.extend(_COMMON_DEFAULTS)
+        flags.append(_std_flag(standard))
+
+    if recipe:
+        if recipe.build_unflags:
+            unflags.extend(recipe.build_unflags.split())
+        if recipe.build_flags:
+            flags.extend(recipe.build_flags.split())
+        if recipe.lib_deps:
+            ini_content += "lib_deps =\n"
+            for dep in recipe.lib_deps:
+                ini_content += f"    {dep}\n"
+
+    if unflags:
+        ini_content += f"build_unflags = {' '.join(unflags)}\n"
+    if flags:
+        ini_content += f"build_flags = {' '.join(flags)}\n"
 
     (output_dir / "platformio.ini").write_text(ini_content)
