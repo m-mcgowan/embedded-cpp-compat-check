@@ -6,6 +6,7 @@ dist/
 .pio-cores/
 /.work/
 /.githooks/
+/results/
 /site/
 .venv/
 *.swp
