@@ -165,6 +165,8 @@ class Orchestrator:
                 # Add library include paths from recipe dependencies.
                 # PIO's LDF only adds library -I flags for files that
                 # directly use them, but our test files need them too.
+                # Use absolute paths since g++ -c may run from a
+                # different working directory.
                 if recipe and recipe.lib_deps:
                     libdeps_dir = project_dir / ".pio" / "libdeps"
                     if libdeps_dir.exists():
@@ -172,7 +174,7 @@ class Orchestrator:
                             for lib_dir in env_dir.iterdir():
                                 inc = lib_dir / "include"
                                 if inc.is_dir():
-                                    compiler_config.flags.append(f"-I{inc}")
+                                    compiler_config.flags.insert(0, f"-I{inc.resolve()}")
                 linker_config = extract_linker_config(verbose_output)
                 # Resolve relative paths in linker config to absolute
                 # (PIO outputs paths relative to its project dir)
@@ -281,10 +283,11 @@ class Orchestrator:
                 feature_key, test_hash, status.value
             )
 
-        # Cleanup
-        probe_pio = project_dir / ".pio"
-        if probe_pio.exists():
-            shutil.rmtree(probe_pio)
+        # Cleanup — keep .pio/libdeps/ when recipe is active since
+        # the compiler config references library include paths there.
+        probe_build = project_dir / ".pio" / "build"
+        if probe_build.exists():
+            shutil.rmtree(probe_build)
         if obj_dir.exists():
             shutil.rmtree(obj_dir)
 
