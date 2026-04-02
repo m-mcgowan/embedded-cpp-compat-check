@@ -9245,6 +9245,592 @@
           "timestamp": "2026-04-01T10:24:31.111927"
         }
       }
+    },
+    "avr-uno+recipe": {
+      "platform_version": "5.0.0",
+      "probe_hash": "d94c11644c88",
+      "features": {
+        "cpp11/alias_templates": {
+          "test_hash": "7eaaa59061bc",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:33.242339"
+        },
+        "cpp11/allocator_traits_is_always_equal": {
+          "test_hash": "d6e789478a41",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:33.398027"
+        },
+        "cpp11/attributes": {
+          "test_hash": "8935e3d2d9a2",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:57:33.398075"
+        },
+        "cpp11/constexpr": {
+          "test_hash": "da27f1b047db",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:33.555148"
+        },
+        "cpp11/decltype": {
+          "test_hash": "d4f281f14f29",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:33.718178"
+        },
+        "cpp11/delegating_constructors": {
+          "test_hash": "453d83ec3bcf",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:33.879749"
+        },
+        "cpp11/exceptions": {
+          "test_hash": "f0a1c7e5a24e",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:57:33.879791"
+        },
+        "cpp11/inheriting_constructors": {
+          "test_hash": "2f98f6d16cb0",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.046294"
+        },
+        "cpp11/initializer_lists": {
+          "test_hash": "7ad6a4be37bd",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.210929"
+        },
+        "cpp11/lambdas": {
+          "test_hash": "4fd25f87d438",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.372599"
+        },
+        "cpp11/nsdmi": {
+          "test_hash": "ddfd417578bc",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.526207"
+        },
+        "cpp11/range_based_for": {
+          "test_hash": "6a4659c3aa1a",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.680987"
+        },
+        "cpp11/raw_strings": {
+          "test_hash": "14f13cca3d7e",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.834217"
+        },
+        "cpp11/ref_qualifiers": {
+          "test_hash": "80c12b0df8fa",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:34.998510"
+        },
+        "cpp11/rvalue_references": {
+          "test_hash": "799c58ce4ec1",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:35.162041"
+        },
+        "cpp11/static_assert": {
+          "test_hash": "6cebf998d630",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:35.328844"
+        },
+        "cpp11/threadsafe_static_init": {
+          "test_hash": "0e3a55212f3b",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:57:35.492123"
+        },
+        "cpp11/unicode_characters": {
+          "test_hash": "1b65b78446d5",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:35.660329"
+        },
+        "cpp11/unicode_literals": {
+          "test_hash": "63945c7abb9d",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:35.820191"
+        },
+        "cpp11/user_defined_literals": {
+          "test_hash": "14c23221fb76",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:35.987709"
+        },
+        "cpp11/variadic_templates": {
+          "test_hash": "70b57f868a40",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:36.152582"
+        },
+        "cpp14/aggregate_nsdmi": {
+          "test_hash": "4f89fa0d78e2",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:49.914546"
+        },
+        "cpp14/binary_literals": {
+          "test_hash": "55a31d10e383",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.073579"
+        },
+        "cpp14/chrono_udls": {
+          "test_hash": "51a445eebed4",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.247659"
+        },
+        "cpp14/complex_udls": {
+          "test_hash": "caf159bd9df4",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:57:50.247703"
+        },
+        "cpp14/decltype_auto": {
+          "test_hash": "316420cb3dcc",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.412028"
+        },
+        "cpp14/exchange": {
+          "test_hash": "65d47ea838bf",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.591843"
+        },
+        "cpp14/generic_associative_lookup": {
+          "test_hash": "fcbb7ff826f7",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:57:50.591877"
+        },
+        "cpp14/generic_lambda": {
+          "test_hash": "9b186470c233",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.754404"
+        },
+        "cpp14/init_captures": {
+          "test_hash": "3d1e893dd835",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:50.908442"
+        },
+        "cpp14/integer_sequence": {
+          "test_hash": "e2022af4ad48",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.065579"
+        },
+        "cpp14/integral_constant_callable": {
+          "test_hash": "32562cdf7ad6",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.220122"
+        },
+        "cpp14/is_final": {
+          "test_hash": "5877f8cd0c74",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.373929"
+        },
+        "cpp14/is_null_pointer": {
+          "test_hash": "8d41faaf3b24",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.527926"
+        },
+        "cpp14/make_reverse_iterator": {
+          "test_hash": "284f7ee73f77",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.711640"
+        },
+        "cpp14/make_unique": {
+          "test_hash": "ee3e6031d053",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:51.873388"
+        },
+        "cpp14/null_iterators": {
+          "test_hash": "fd68f1d2c669",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.029553"
+        },
+        "cpp14/quoted_string_io": {
+          "test_hash": "23ba36b83dc2",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:57:52.029594"
+        },
+        "cpp14/result_of_sfinae": {
+          "test_hash": "95298b0ccaf9",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.185755"
+        },
+        "cpp14/return_type_deduction": {
+          "test_hash": "8fd9c0a0aa4e",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.340559"
+        },
+        "cpp14/robust_nonmodifying_seq_ops": {
+          "test_hash": "1a8a642fd323",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.526902"
+        },
+        "cpp14/shared_timed_mutex": {
+          "test_hash": "3a596b5eda71",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:57:52.526939"
+        },
+        "cpp14/sized_deallocation": {
+          "test_hash": "3330d6316c11",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.686658"
+        },
+        "cpp14/string_udls": {
+          "test_hash": "7fb5dde768a9",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:57:52.686720"
+        },
+        "cpp14/to_chars": {
+          "test_hash": "fc86bb85b2c4",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:57:52.686752"
+        },
+        "cpp14/transformation_trait_aliases": {
+          "test_hash": "b67ac60fbe00",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.843199"
+        },
+        "cpp14/transparent_operators": {
+          "test_hash": "8f347380ea67",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:52.997898"
+        },
+        "cpp14/tuple_element_t": {
+          "test_hash": "6dd89f83b55b",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:53.154441"
+        },
+        "cpp14/tuples_by_type": {
+          "test_hash": "92446d9076c5",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:53.309215"
+        },
+        "cpp14/variable_templates": {
+          "test_hash": "c908af736bc5",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:57:53.471172"
+        },
+        "cpp17/addressof_constexpr": {
+          "test_hash": "a865b290fdde",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.098180"
+        },
+        "cpp17/aggregate_bases": {
+          "test_hash": "925f27d11d2e",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.178185"
+        },
+        "cpp17/aligned_new": {
+          "test_hash": "0981afdd2d9f",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.261567"
+        },
+        "cpp17/any": {
+          "test_hash": "a9e10aa44cb7",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.347818"
+        },
+        "cpp17/apply": {
+          "test_hash": "0a08da672e73",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.425583"
+        },
+        "cpp17/array_constexpr": {
+          "test_hash": "6964574af245",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.511686"
+        },
+        "cpp17/as_const": {
+          "test_hash": "f88b2a2d52cb",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.601692"
+        },
+        "cpp17/atomic_is_always_lock_free": {
+          "test_hash": "ea3ece351567",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.696906"
+        },
+        "cpp17/bool_constant": {
+          "test_hash": "458312999a60",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.796511"
+        },
+        "cpp17/boyer_moore_searcher": {
+          "test_hash": "2c9a29726f41",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:06.796544"
+        },
+        "cpp17/byte": {
+          "test_hash": "3aff6378ef77",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.901382"
+        },
+        "cpp17/capture_star_this": {
+          "test_hash": "2d8a483970ec",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:06.981075"
+        },
+        "cpp17/chrono": {
+          "test_hash": "ac2fe8370e17",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.057663"
+        },
+        "cpp17/clamp": {
+          "test_hash": "bdf589ce354e",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.134795"
+        },
+        "cpp17/deduction_guides": {
+          "test_hash": "0b18a3ef2d82",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.211243"
+        },
+        "cpp17/deleted_function": {
+          "test_hash": "a65d6d7046ac",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.289146"
+        },
+        "cpp17/enable_shared_from_this": {
+          "test_hash": "95f628725e63",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:58:07.289175"
+        },
+        "cpp17/enumerator_attributes": {
+          "test_hash": "486607c709d3",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.369397"
+        },
+        "cpp17/execution": {
+          "test_hash": "9b51ad18d845",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:07.369419"
+        },
+        "cpp17/fallthrough": {
+          "test_hash": "81b4ebec184a",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.444672"
+        },
+        "cpp17/filesystem": {
+          "test_hash": "b10fbc69356b",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:07.444693"
+        },
+        "cpp17/fold_expressions": {
+          "test_hash": "854506d9e7d0",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.527736"
+        },
+        "cpp17/gcd_lcm": {
+          "test_hash": "4a74c8255d5a",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.612708"
+        },
+        "cpp17/guaranteed_copy_elision": {
+          "test_hash": "d519bd2f8540",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.698009"
+        },
+        "cpp17/hardware_interference_size": {
+          "test_hash": "76e093d0443b",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.776054"
+        },
+        "cpp17/has_unique_object_representations": {
+          "test_hash": "87af34f7baa8",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.852671"
+        },
+        "cpp17/hex_float": {
+          "test_hash": "4c796ba6b52d",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:58:07.924467"
+        },
+        "cpp17/hypot": {
+          "test_hash": "24e388c27c6f",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:07.997233"
+        },
+        "cpp17/if_constexpr": {
+          "test_hash": "233e79bf2c5c",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.071530"
+        },
+        "cpp17/incomplete_container_elements": {
+          "test_hash": "8cca80335205",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:58:08.150455"
+        },
+        "cpp17/inline_variables": {
+          "test_hash": "b58fa9ea5fcb",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.226326"
+        },
+        "cpp17/invoke": {
+          "test_hash": "bee516a2300b",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.303495"
+        },
+        "cpp17/is_aggregate": {
+          "test_hash": "baf05a80032f",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.379329"
+        },
+        "cpp17/is_invocable": {
+          "test_hash": "8db2f4031280",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.458983"
+        },
+        "cpp17/is_swappable": {
+          "test_hash": "1934fb6d2bda",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:58:08.537366"
+        },
+        "cpp17/launder": {
+          "test_hash": "a358ab9713b0",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.619533"
+        },
+        "cpp17/logical_traits": {
+          "test_hash": "cfdebbba0914",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.697863"
+        },
+        "cpp17/make_from_tuple": {
+          "test_hash": "e21086054082",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.772939"
+        },
+        "cpp17/map_try_emplace": {
+          "test_hash": "7d3528c68da4",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:08.772963"
+        },
+        "cpp17/math_special_functions": {
+          "test_hash": "ce4ce02fb6b6",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:08.772976"
+        },
+        "cpp17/maybe_unused": {
+          "test_hash": "789774ecd4c8",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.845916"
+        },
+        "cpp17/memory_resource": {
+          "test_hash": "aa51c897554f",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:08.845950"
+        },
+        "cpp17/namespace_attributes": {
+          "test_hash": "a785f75c783f",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:08.920100"
+        },
+        "cpp17/node_extract": {
+          "test_hash": "a02f4f923adf",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.071069"
+        },
+        "cpp17/noexcept_function_type": {
+          "test_hash": "21141c959a50",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.143371"
+        },
+        "cpp17/nonmember_container_access": {
+          "test_hash": "a84198da1bad",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.218434"
+        },
+        "cpp17/nontype_template_args": {
+          "test_hash": "bec8f67c9a25",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.218460"
+        },
+        "cpp17/nontype_template_parameter_auto": {
+          "test_hash": "356a96da0117",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.295576"
+        },
+        "cpp17/not_fn": {
+          "test_hash": "2bf997c8aa3f",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.380976"
+        },
+        "cpp17/optional": {
+          "test_hash": "6b2eece7c7d6",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.465545"
+        },
+        "cpp17/parallel_algorithm": {
+          "test_hash": "c36ef6dab843",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.465571"
+        },
+        "cpp17/raw_memory_algorithms": {
+          "test_hash": "8c63a6910ddf",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.549905"
+        },
+        "cpp17/sample": {
+          "test_hash": "680dd6203a4e",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.549939"
+        },
+        "cpp17/scoped_lock": {
+          "test_hash": "72a0f7de4bc9",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.549951"
+        },
+        "cpp17/shared_mutex": {
+          "test_hash": "b815187bd9b5",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.549962"
+        },
+        "cpp17/shared_ptr_arrays": {
+          "test_hash": "a0bf4f6e63b2",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:58:09.549982"
+        },
+        "cpp17/shared_ptr_weak_type": {
+          "test_hash": "911550ef047b",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.549991"
+        },
+        "cpp17/string_view": {
+          "test_hash": "e59fd5dbef38",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.635543"
+        },
+        "cpp17/structured_bindings": {
+          "test_hash": "4743e35e0bba",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.719832"
+        },
+        "cpp17/template_template_args": {
+          "test_hash": "ab30e49203af",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.813198"
+        },
+        "cpp17/type_trait_variable_templates": {
+          "test_hash": "14d3defe9854",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.897431"
+        },
+        "cpp17/uncaught_exceptions": {
+          "test_hash": "5ccc460b8ba5",
+          "status": "macro_lies",
+          "timestamp": "2026-04-01T18:58:09.897455"
+        },
+        "cpp17/unordered_map_try_emplace": {
+          "test_hash": "22c19b7932bc",
+          "status": "unsupported",
+          "timestamp": "2026-04-01T18:58:09.897466"
+        },
+        "cpp17/variadic_using": {
+          "test_hash": "4d2c7e50c346",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:09.981979"
+        },
+        "cpp17/variant": {
+          "test_hash": "b5a1eadb42b0",
+          "status": "unreported",
+          "timestamp": "2026-04-01T18:58:10.059013"
+        },
+        "cpp17/void_t": {
+          "test_hash": "d0b78f2fea69",
+          "status": "supported",
+          "timestamp": "2026-04-01T18:58:10.135383"
+        }
+      }
     }
   }
 }

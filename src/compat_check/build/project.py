@@ -1,9 +1,22 @@
 """Generate temporary PlatformIO projects for compilation tests."""
 
+import json
 import re
 from pathlib import Path
 
 from compat_check.platform.models import Platform, Recipe
+
+# Libraries that need a library.json injected because they don't ship one.
+_LIBRARY_JSON_FIXUPS = {
+    "avr-libstdcpp": {
+        "name": "avr-libstdcpp",
+        "version": "1.0.0",
+        "description": "Subset of GCC libstdc++ for AVR",
+        "platforms": ["atmelavr", "atmelmegaavr"],
+        "frameworks": "*",
+        "build": {"includeDir": "include", "srcDir": "src"},
+    },
+}
 
 _COMMON_DEFAULTS = [
     "-std=gnu++11", "-std=gnu++14", "-std=gnu++17",
@@ -99,3 +112,19 @@ def generate_pio_project(
         ini_content += f"build_flags = {' '.join(flags)}\n"
 
     (output_dir / "platformio.ini").write_text(ini_content)
+
+
+def inject_library_json_fixups(project_dir: Path) -> None:
+    """Write library.json into downloaded libs that don't ship one.
+
+    Call this AFTER the first pio build, which downloads lib_deps.
+    """
+    libdeps_dir = project_dir / ".pio" / "libdeps"
+    if not libdeps_dir.exists():
+        return
+    for env_dir in libdeps_dir.iterdir():
+        for lib_name, lib_json in _LIBRARY_JSON_FIXUPS.items():
+            lib_dir = env_dir / lib_name
+            json_path = lib_dir / "library.json"
+            if lib_dir.is_dir() and not json_path.exists():
+                json_path.write_text(json.dumps(lib_json, indent=2) + "\n")

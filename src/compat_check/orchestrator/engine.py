@@ -13,7 +13,7 @@ from compat_check.build.compiler import (
     extract_compiler_config, extract_linker_config,
     compile_test, link_test,
 )
-from compat_check.build.project import generate_pio_project, wrap_for_arduino
+from compat_check.build.project import generate_pio_project, wrap_for_arduino, inject_library_json_fixups
 from compat_check.build.runner import run_build, run_build_verbose
 from compat_check.catalog.models import Feature
 from compat_check.orchestrator.manifest import Manifest
@@ -137,6 +137,18 @@ class Orchestrator:
             elf.unlink(missing_ok=True)
 
         probe_result, verbose_output = run_build_verbose(project_dir, core_dir=core_dir)
+
+        # If recipe added lib_deps, the first build downloads them.
+        # Inject library.json fixups for libs that don't ship one, then rebuild.
+        if recipe and recipe.lib_deps and probe_result.success:
+            inject_library_json_fixups(project_dir)
+            # Force full rebuild so PIO picks up the new library.json
+            for obj in (project_dir / ".pio" / "build").glob("*/src/main.cpp.o"):
+                obj.unlink(missing_ok=True)
+            for elf in (project_dir / ".pio" / "build").glob("*/firmware.*"):
+                elf.unlink(missing_ok=True)
+            probe_result, verbose_output = run_build_verbose(project_dir, core_dir=core_dir)
+
         macro_values = {}
         compiler_config = None
         linker_config = None
@@ -150,6 +162,17 @@ class Orchestrator:
                 std_flag = f'-std=gnu++{standard.replace("c++", "")}'
                 if not any('std=' in f for f in compiler_config.flags):
                     compiler_config.flags.append(std_flag)
+                # Add library include paths from recipe dependencies.
+                # PIO's LDF only adds library -I flags for files that
+                # directly use them, but our test files need them too.
+                if recipe and recipe.lib_deps:
+                    libdeps_dir = project_dir / ".pio" / "libdeps"
+                    if libdeps_dir.exists():
+                        for env_dir in libdeps_dir.iterdir():
+                            for lib_dir in env_dir.iterdir():
+                                inc = lib_dir / "include"
+                                if inc.is_dir():
+                                    compiler_config.flags.append(f"-I{inc}")
                 linker_config = extract_linker_config(verbose_output)
                 # Resolve relative paths in linker config to absolute
                 # (PIO outputs paths relative to its project dir)
