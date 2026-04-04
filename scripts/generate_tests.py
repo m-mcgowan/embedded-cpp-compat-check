@@ -203,11 +203,11 @@ TESTS = [
      "Class template argument deduction (CTAD)",
      "#include <utility>\nauto main() -> int { auto p = std::pair(1, 2.0); return p.first - 1; }"),
 
-    ("cpp17", "maybe_unused", "maybe_unused", "attribute",
+    ("cpp17", "maybe_unused", "__has_cpp_attribute(maybe_unused)", "attribute",
      "[[maybe_unused]] attribute",
      "auto main() -> int { [[maybe_unused]] int x = 42; return 0; }"),
 
-    ("cpp17", "fallthrough", "fallthrough", "attribute",
+    ("cpp17", "fallthrough", "__has_cpp_attribute(fallthrough)", "attribute",
      "[[fallthrough]] attribute",
      "auto main() -> int { int x = 1; switch(x) { case 1: x = 2; [[fallthrough]]; case 2: break; } return x - 2; }"),
 
@@ -826,6 +826,846 @@ TESTS = [
     ("cpp23", "start_lifetime_as", "__cpp_lib_start_lifetime_as", "library",
      "std::start_lifetime_as",
      "#include <memory>\nauto main() -> int {\n#ifdef __cpp_lib_start_lifetime_as\n  alignas(int) unsigned char buf[sizeof(int)] = {42, 0, 0, 0};\n  int* p = std::start_lifetime_as<int>(buf);\n  (void)p;\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    # ══════════════════════════════════════════════════════════════════
+    # Auto-generated from SD-6 catalog gap analysis (2026-04-03)
+    # ══════════════════════════════════════════════════════════════════
+
+    # ── cpp11 language (new) ──
+    ("cpp11", "constexpr", "__cpp_constexpr", "language",
+     "constexpr specifier",
+     "constexpr int square(int x) { return x * x; }\nauto main() -> int { constexpr int v = square(6); return v - 36; }"),
+
+    ("cpp11", "initializer_lists", "__cpp_initializer_lists", "language",
+     "Initializer lists",
+     "#include <initializer_list>\nint sum(std::initializer_list<int> il) { int s=0; for (auto x : il) s+=x; return s; }\nauto main() -> int { return sum({1,2,3}) - 6; }"),
+
+    ("cpp11", "lambdas", "__cpp_lambdas", "language",
+     "Lambda expressions",
+     "auto main() -> int { auto add = [](int a, int b) { return a + b; }; return add(2,3) - 5; }"),
+
+    ("cpp11", "rvalue_references", "__cpp_rvalue_references", "language",
+     "Rvalue references",
+     "#include <utility>\nauto main() -> int { int a = 42; int&& r = std::move(a); return r - 42; }"),
+
+    ("cpp11", "static_assert_", "__cpp_static_assert", "language",
+     "static_assert",
+     "static_assert(sizeof(int) >= 2, \"int too small\");\nauto main() -> int { return 0; }"),
+
+    ("cpp11", "variadic_templates", "__cpp_variadic_templates", "language",
+     "Variadic templates",
+     "template<typename... Args> int count(Args...) { return sizeof...(Args); }\nauto main() -> int { return count(1, 2, 3) - 3; }"),
+
+    # ── cpp11 library (new) ──
+
+    # ── cpp14 language (new) ──
+    ("cpp14", "binary_literals", "__cpp_binary_literals", "language",
+     "Binary literals (0b prefix)",
+     "auto main() -> int { return 0b101010 == 42 ? 0 : 1; }"),
+
+    ("cpp14", "decltype_auto", "__cpp_decltype_auto", "language",
+     "decltype(auto) return type",
+     "int x = 42;\ndecltype(auto) f() { return (x); }\nauto main() -> int { int& r = f(); return r - 42; }"),
+
+    ("cpp14", "generic_lambdas", "__cpp_generic_lambdas", "language",
+     "Generic lambda expressions",
+     "auto main() -> int { auto add = [](auto a, auto b) { return a + b; }; return add(2, 3) - 5; }"),
+
+    ("cpp14", "init_captures", "__cpp_init_captures", "language",
+     "Lambda init-capture (generalized lambda capture)",
+     "#include <memory>\nauto main() -> int { auto p = std::make_unique<int>(42); auto f = [v = std::move(p)]() { return *v; }; return f() - 42; }"),
+
+
+    ("cpp14", "variable_templates", "__cpp_variable_templates", "language",
+     "Variable templates",
+     "template<typename T> constexpr T pi = T(3.14159265358979323846);\nauto main() -> int { return pi<int> == 3 ? 0 : 1; }"),
+
+    # ── cpp14 library (new) ──
+    ("cpp14", "exchange_function", "__cpp_lib_exchange_function", "library",
+     "std::exchange",
+     "#include <utility>\nauto main() -> int { int x = 42; int old = std::exchange(x, 0); return old - 42; }"),
+
+    ("cpp14", "integer_sequence", "__cpp_lib_integer_sequence", "library",
+     "std::integer_sequence / std::index_sequence",
+     "#include <utility>\ntemplate<typename T, T... Is> constexpr int sum(std::integer_sequence<T, Is...>) { return (Is + ...); }\nauto main() -> int { return sum(std::make_index_sequence<4>{}) - 6; }"),
+
+    ("cpp14", "make_unique", "__cpp_lib_make_unique", "library",
+     "std::make_unique",
+     "#include <memory>\nauto main() -> int { auto p = std::make_unique<int>(42); return *p - 42; }"),
+
+
+    # ── cpp17 language (new) ──
+    ("cpp17", "fold_expressions", "__cpp_fold_expressions", "language",
+     "Fold expressions",
+     "template<typename... Args> auto sum(Args... args) { return (args + ...); }\nauto main() -> int { return sum(1, 2, 3) - 6; }"),
+
+    ("cpp17", "if_constexpr", "__cpp_if_constexpr", "language",
+     "constexpr if",
+     "template<typename T> int check() { if constexpr (sizeof(T) > 4) return 1; else return 0; }\nauto main() -> int { return check<char>(); }"),
+
+    ("cpp17", "inline_variables", "__cpp_inline_variables", "language",
+     "Inline variables",
+     "struct S { static inline int x = 42; };\nauto main() -> int { return S::x - 42; }"),
+
+    ("cpp17", "structured_bindings", "__cpp_structured_bindings", "language",
+     "Structured bindings",
+     "struct S { int a; int b; };\nauto main() -> int { S s{1, 2}; auto [x, y] = s; return x + y - 3; }"),
+
+    # ── cpp17 library (new) ──
+    ("cpp17", "any", "__cpp_lib_any", "library",
+     "std::any",
+     "#include <any>\nauto main() -> int { std::any a = 42; return std::any_cast<int>(a) - 42; }"),
+
+    ("cpp17", "apply", "__cpp_lib_apply", "library",
+     "std::apply",
+     "#include <tuple>\nauto main() -> int { auto t = std::make_tuple(1, 2, 3); return std::apply([](auto... args) { return (args + ...); }, t) - 6; }"),
+
+    ("cpp17", "as_const", "__cpp_lib_as_const", "library",
+     "std::as_const",
+     "#include <utility>\n#include <type_traits>\nauto main() -> int { int x = 42; auto& cr = std::as_const(x); return std::is_const_v<std::remove_reference_t<decltype(cr)>> ? 0 : 1; }"),
+
+    ("cpp17", "bool_constant", "__cpp_lib_bool_constant", "library",
+     "std::bool_constant",
+     "#include <type_traits>\nauto main() -> int { using T = std::bool_constant<true>; return T::value ? 0 : 1; }"),
+
+    ("cpp17", "byte", "__cpp_lib_byte", "library",
+     "std::byte",
+     "#include <cstddef>\nauto main() -> int { std::byte b{42}; return std::to_integer<int>(b) - 42; }"),
+
+    ("cpp17", "clamp", "__cpp_lib_clamp", "library",
+     "std::clamp",
+     "#include <algorithm>\nauto main() -> int { return std::clamp(50, 0, 42) - 42; }"),
+
+    ("cpp17", "filesystem", "__cpp_lib_filesystem", "library",
+     "Filesystem library",
+     "#include <filesystem>\nauto main() -> int { std::filesystem::path p = \"/tmp\"; return p.empty() ? 1 : 0; }"),
+
+    ("cpp17", "freestanding_charconv", "__cpp_lib_freestanding_charconv", "library",
+     "Freestanding facilities in charconv",
+     "#include <charconv>\nauto main() -> int { return 0; }"),
+
+    ("cpp17", "gcd_lcm", "__cpp_lib_gcd_lcm", "library",
+     "std::gcd and std::lcm",
+     "#include <numeric>\nauto main() -> int { return std::gcd(12, 8) == 4 && std::lcm(4, 6) == 12 ? 0 : 1; }"),
+
+
+    ("cpp17", "invoke", "__cpp_lib_invoke", "library",
+     "std::invoke",
+     "#include <functional>\nint add(int a, int b) { return a + b; }\nauto main() -> int { return std::invoke(add, 2, 3) - 5; }"),
+
+
+    ("cpp17", "map_try_emplace", "__cpp_lib_map_try_emplace", "library",
+     "std::map::try_emplace and insert_or_assign",
+     "#include <map>\nauto main() -> int { std::map<int,int> m; m.try_emplace(1, 42); return m[1] - 42; }"),
+
+    ("cpp17", "not_fn", "__cpp_lib_not_fn", "library",
+     "std::not_fn",
+     "#include <functional>\nauto main() -> int { auto not_true = std::not_fn([]() { return true; }); return not_true() ? 1 : 0; }"),
+
+    ("cpp17", "optional", "__cpp_lib_optional", "library",
+     "std::optional",
+     "#include <optional>\nauto main() -> int { std::optional<int> x = 42; return x.value() - 42; }"),
+
+
+    ("cpp17", "scoped_lock", "__cpp_lib_scoped_lock", "library",
+     "std::scoped_lock",
+     "#include <mutex>\nauto main() -> int { std::mutex m; std::scoped_lock lock(m); return 0; }"),
+
+    ("cpp17", "shared_ptr_arrays", "__cpp_lib_shared_ptr_arrays", "library",
+     "std::shared_ptr<T[]>",
+     "#include <memory>\nauto main() -> int { auto sp = std::make_shared<int[]>(3); sp[0] = 42; return sp[0] - 42; }"),
+
+    ("cpp17", "string_view", "__cpp_lib_string_view", "library",
+     "std::string_view",
+     "#include <string_view>\nauto main() -> int { std::string_view sv = \"hello\"; return sv.size() == 5 ? 0 : 1; }"),
+
+    ("cpp17", "type_trait_variable_templates", "__cpp_lib_type_trait_variable_templates", "library",
+     "Type traits variable templates (is_void_v etc)",
+     "#include <type_traits>\nauto main() -> int { return std::is_void_v<void> && !std::is_void_v<int> ? 0 : 1; }"),
+
+    ("cpp17", "variant", "__cpp_lib_variant", "library",
+     "std::variant",
+     "#include <variant>\nauto main() -> int { std::variant<int, double> v = 42; return std::get<int>(v) - 42; }"),
+
+    ("cpp17", "void_t", "__cpp_lib_void_t", "library",
+     "std::void_t",
+     "#include <type_traits>\ntemplate<typename, typename = void> struct has_type : std::false_type {};\ntemplate<typename T> struct has_type<T, std::void_t<typename T::type>> : std::true_type {};\nstruct A { using type = int; };\nauto main() -> int { return has_type<A>::value ? 0 : 1; }"),
+
+    # ── cpp20 attribute (new) ──
+    ("cpp20", "attr_likely", "__has_cpp_attribute(likely)", "attribute",
+     "[[likely]] attribute",
+     "auto main() -> int { int x = 42; if (x == 42) [[likely]] { return 0; } return 1; }"),
+
+    ("cpp20", "attr_unlikely", "__has_cpp_attribute(unlikely)", "attribute",
+     "[[unlikely]] attribute",
+     "auto main() -> int { int x = 42; if (x != 42) [[unlikely]] { return 1; } return 0; }"),
+
+    # ── cpp20 language (new) ──
+    ("cpp20", "char8_t_lang", "__cpp_char8_t", "language",
+     "char8_t type",
+     "auto main() -> int { char8_t c = u8'A'; return c == u8'A' ? 0 : 1; }"),
+
+    ("cpp20", "concepts", "__cpp_concepts", "language",
+     "Concepts",
+     "template<typename T> concept Integral = requires { requires sizeof(T) > 0; };\ntemplate<Integral T> T identity(T v) { return v; }\nauto main() -> int { return identity(42) - 42; }"),
+
+    ("cpp20", "consteval", "__cpp_consteval", "language",
+     "Immediate functions (consteval)",
+     "consteval int sqr(int n) { return n * n; }\nauto main() -> int { constexpr int v = sqr(6); return v - 36; }"),
+
+
+
+    ("cpp20", "constinit", "__cpp_constinit", "language",
+     "constinit specifier",
+     "constinit int global = 42;\nauto main() -> int { return global - 42; }"),
+
+    ("cpp20", "designated_initializers", "__cpp_designated_initializers", "language",
+     "Designated initializers",
+     "struct Point { int x; int y; };\nauto main() -> int { Point p = {.x = 1, .y = 2}; return p.x + p.y - 3; }"),
+
+    ("cpp20", "impl_coroutine", "__cpp_impl_coroutine", "language",
+     "Coroutines (compiler support)",
+     "#if __has_include(<coroutine>)\n#include <coroutine>\n#else\n#include <experimental/coroutine>\n#endif\nauto main() -> int { return 0; }"),
+
+    ("cpp20", "impl_three_way_comparison", "__cpp_impl_three_way_comparison", "language",
+     "Three-way comparison (spaceship operator)",
+     "#include <compare>\nstruct S { int v; auto operator<=>(const S&) const = default; };\nauto main() -> int { S a{1}, b{2}; return (a <=> b) < 0 ? 0 : 1; }"),
+
+    # ── cpp20 library (new) ──
+
+
+
+
+    ("cpp20", "bind_front", "__cpp_lib_bind_front", "library",
+     "std::bind_front",
+     "#include <functional>\nint add(int a, int b) { return a + b; }\nauto main() -> int { auto add5 = std::bind_front(add, 5); return add5(37) - 42; }"),
+
+    ("cpp20", "bit_cast", "__cpp_lib_bit_cast", "library",
+     "std::bit_cast",
+     "#include <bit>\n#include <cstdint>\nauto main() -> int { float f = 1.0f; auto u = std::bit_cast<uint32_t>(f); return u != 0 ? 0 : 1; }"),
+
+    ("cpp20", "bitops", "__cpp_lib_bitops", "library",
+     "Bit operations (std::popcount etc)",
+     "#include <bit>\nauto main() -> int { return std::popcount(42u) == 3 ? 0 : 1; }"),
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ("cpp20", "endian", "__cpp_lib_endian", "library",
+     "std::endian",
+     "#include <bit>\nauto main() -> int { return std::endian::native == std::endian::big || std::endian::native == std::endian::little ? 0 : 1; }"),
+
+    ("cpp20", "erase_if", "__cpp_lib_erase_if", "library",
+     "std::erase_if for containers",
+     "#include <vector>\nauto main() -> int { std::vector<int> v = {1,2,3,4}; std::erase_if(v, [](int x) { return x % 2 == 0; }); return v.size() == 2 ? 0 : 1; }"),
+
+    ("cpp20", "format", "__cpp_lib_format", "library",
+     "std::format",
+     "#include <format>\n#include <string>\nauto main() -> int { auto s = std::format(\"{} {}\", \"hello\", 42); return s.empty() ? 1 : 0; }"),
+
+
+    ("cpp20", "freestanding_ranges", "__cpp_lib_freestanding_ranges", "library",
+     "Freestanding facilities in ranges",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+
+    ("cpp20", "math_constants", "__cpp_lib_math_constants", "library",
+     "Mathematical constants (std::numbers::pi etc)",
+     "#include <numbers>\nauto main() -> int { return std::numbers::pi > 3.0 ? 0 : 1; }"),
+
+
+
+    ("cpp20", "ranges", "__cpp_lib_ranges", "library",
+     "Ranges library",
+     "#include <ranges>\n#include <vector>\nauto main() -> int { std::vector v = {1,2,3,4,5}; auto even = v | std::views::filter([](int x) { return x % 2 == 0; }); int n = 0; for (auto x : even) { (void)x; n++; } return n == 2 ? 0 : 1; }"),
+
+    ("cpp20", "source_location", "__cpp_lib_source_location", "library",
+     "std::source_location",
+     "#include <source_location>\nauto main() -> int { auto loc = std::source_location::current(); return loc.line() > 0 ? 0 : 1; }"),
+
+    ("cpp20", "span", "__cpp_lib_span", "library",
+     "std::span",
+     "#include <span>\nauto main() -> int { int arr[] = {1,2,3}; std::span<int> s(arr); return s.size() == 3 ? 0 : 1; }"),
+
+    ("cpp20", "starts_ends_with", "__cpp_lib_starts_ends_with", "library",
+     "String prefix and suffix checking",
+     "#include <string>\nauto main() -> int { std::string s = \"hello\"; return s.starts_with(\"he\") && s.ends_with(\"lo\") ? 0 : 1; }"),
+
+    ("cpp20", "to_array", "__cpp_lib_to_array", "library",
+     "std::to_array",
+     "#include <array>\nauto main() -> int { auto a = std::to_array({1,2,3}); return a.size() == 3 ? 0 : 1; }"),
+
+    # ── cpp23 attribute (new) ──
+    ("cpp23", "attr_assume", "__has_cpp_attribute(assume)", "attribute",
+     "[[assume]] attribute",
+     "auto main() -> int {\n#if __has_cpp_attribute(assume)\n  int x = 42; [[assume(x == 42)]];\n#endif\n  return 0;\n}"),
+
+    ("cpp23", "attr_carries_dependency", "__has_cpp_attribute(carries_dependency)", "attribute",
+     "[[carries_dependency]] attribute",
+     "[[carries_dependency]] int load(int* p) { return *p; }\nauto main() -> int { int v = 42; return load(&v) - 42; }"),
+
+    ("cpp23", "attr_deprecated", "__has_cpp_attribute(deprecated)", "attribute",
+     "[[deprecated]] attribute",
+     "[[deprecated]] void old_func() {}\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "attr_indeterminate", "__has_cpp_attribute(indeterminate)", "attribute",
+     "[[indeterminate]] attribute",
+     "auto main() -> int {\n#if __has_cpp_attribute(indeterminate)\n  [[indeterminate]] int x;\n  (void)x;\n#endif\n  return 0;\n}"),
+
+    ("cpp23", "attr_no_unique_address", "__has_cpp_attribute(no_unique_address)", "attribute",
+     "[[no_unique_address]] attribute",
+     "struct Empty {};\nstruct S { [[no_unique_address]] Empty e; int v; };\nauto main() -> int { S s; s.v = 42; return s.v - 42; }"),
+
+    ("cpp23", "attr_nodiscard", "__has_cpp_attribute(nodiscard)", "attribute",
+     "[[nodiscard]] attribute",
+     "[[nodiscard]] int compute() { return 42; }\nauto main() -> int { int v = compute(); return v - 42; }"),
+
+    ("cpp23", "attr_noreturn", "__has_cpp_attribute(noreturn)", "attribute",
+     "[[noreturn]] attribute",
+     "[[noreturn]] void die() { throw 42; }\nauto main() -> int { return 0; }"),
+
+    # ── cpp23 language (new) ──
+    ("cpp23", "explicit_this_parameter", "__cpp_explicit_this_parameter", "language",
+     "Explicit object parameter (deducing this)",
+     "struct S { int v; int get(this S const& self) { return self.v; } };\nauto main() -> int { S s{42}; return s.get() - 42; }"),
+
+    ("cpp23", "multidimensional_subscript", "__cpp_multidimensional_subscript", "language",
+     "Multidimensional subscript operator",
+     "struct Matrix { int data[4] = {1,2,3,4}; int operator[](int r, int c) { return data[r*2+c]; } };\nauto main() -> int { Matrix m; return m[0,1] - 2; }"),
+
+    # ── cpp23 library (new) ──
+
+    ("cpp23", "byteswap", "__cpp_lib_byteswap", "library",
+     "std::byteswap",
+     "#include <bit>\n#include <cstdint>\nauto main() -> int { uint16_t v = 0x0102; uint16_t s = std::byteswap(v); return s == 0x0201 ? 0 : 1; }"),
+
+
+
+
+    ("cpp23", "expected", "__cpp_lib_expected", "library",
+     "std::expected",
+     "#include <expected>\nauto main() -> int { std::expected<int, int> e = 42; return e.value() - 42; }"),
+
+
+
+    ("cpp23", "forward_like", "__cpp_lib_forward_like", "library",
+     "std::forward_like",
+     "#include <utility>\nauto main() -> int { int x = 42; auto&& r = std::forward_like<const int&>(x); return r - 42; }"),
+
+
+
+
+
+    ("cpp23", "freestanding_mdspan", "__cpp_lib_freestanding_mdspan", "library",
+     "Freestanding std::mdspan",
+     "#include <mdspan>\nauto main() -> int { return 0; }"),
+
+
+
+
+    ("cpp23", "print", "__cpp_lib_print", "library",
+     "std::print",
+     "#include <print>\nauto main() -> int { std::print(\"\"); return 0; }"),
+
+    ("cpp23", "stacktrace", "__cpp_lib_stacktrace", "library",
+     "Stacktrace library",
+     "#include <stacktrace>\nauto main() -> int { auto st = std::stacktrace::current(); (void)st; return 0; }"),
+
+    ("cpp23", "to_underlying", "__cpp_lib_to_underlying", "library",
+     "std::to_underlying",
+     "#include <utility>\nenum class E : int { A = 42 };\nauto main() -> int { return std::to_underlying(E::A) - 42; }"),
+
+    # ── cpp26 attribute (new) ──
+
+    # ── cpp26 language (new) ──
+    ("cpp26", "constexpr_exceptions", "__cpp_constexpr_exceptions", "language",
+     "constexpr exception handling",
+     "auto main() -> int {\n#ifdef __cpp_constexpr_exceptions\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "constexpr_virtual_inheritance", "__cpp_constexpr_virtual_inheritance", "language",
+     "constexpr virtual inheritance",
+     "auto main() -> int {\n#ifdef __cpp_constexpr_virtual_inheritance\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "contracts", "__cpp_contracts", "language",
+     "Contracts",
+     "auto main() -> int {\n#ifdef __cpp_contracts\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "expansion_statements", "__cpp_expansion_statements", "language",
+     "Expansion statements",
+     "auto main() -> int {\n#ifdef __cpp_expansion_statements\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "impl_reflection", "__cpp_impl_reflection", "language",
+     "Static reflection",
+     "auto main() -> int {\n#ifdef __cpp_impl_reflection\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "pack_indexing", "__cpp_pack_indexing", "language",
+     "Pack indexing",
+     "template<typename... Ts> using first_t = Ts...[0];\nauto main() -> int { first_t<int, double> v = 42; return v - 42; }"),
+
+    ("cpp26", "placeholder_variables", "__cpp_placeholder_variables", "language",
+     "Placeholder variables (unnamed _)",
+     "auto main() -> int { auto [_, y] = (struct { int a; int b; }){1, 42}; return y - 42; }"),
+
+    ("cpp26", "pp_embed", "__cpp_pp_embed", "language",
+     "#embed preprocessor directive",
+     "auto main() -> int {\n#ifdef __cpp_pp_embed\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp26", "variadic_friend", "__cpp_variadic_friend", "language",
+     "Variadic friend declarations",
+     "struct A {}; struct B {};\ntemplate<typename... Ts> struct S { friend Ts...; int x = 42; };\nauto main() -> int { return 0; }"),
+
+    # ── cpp26 library (new) ──
+    ("cpp26", "algorithm_default_value_type", "__cpp_lib_algorithm_default_value_type", "library",
+     "Enabling list-initialization for algorithms",
+     "#include <algorithm>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "aligned_accessor", "__cpp_lib_aligned_accessor", "library",
+     "Aligned accessor for mdspan",
+     "#include <mdspan>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "associative_heterogeneous_insertion", "__cpp_lib_associative_heterogeneous_insertion", "library",
+     "Heterogeneous overloads for associative containers",
+     "#include <map>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "atomic_min_max", "__cpp_lib_atomic_min_max", "library",
+     "Atomic minimum/maximum",
+     "#include <atomic>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "bitset", "__cpp_lib_bitset", "library",
+     "Interfacing std::bitset with std::string_view",
+     "#include <bitset>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constant_wrapper", "__cpp_lib_constant_wrapper", "library",
+     "constant_wrapper",
+     "#include <type_traits>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_exceptions_lib", "__cpp_lib_constexpr_exceptions", "library",
+     "constexpr exceptions library support",
+     "#include <exception>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_flat_map", "__cpp_lib_constexpr_flat_map", "library",
+     "constexpr flat_map",
+     "#include <flat_map>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_flat_set", "__cpp_lib_constexpr_flat_set", "library",
+     "constexpr flat_set",
+     "#include <flat_set>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_forward_list", "__cpp_lib_constexpr_forward_list", "library",
+     "constexpr forward_list",
+     "#include <forward_list>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_list", "__cpp_lib_constexpr_list", "library",
+     "constexpr list",
+     "#include <list>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_new", "__cpp_lib_constexpr_new", "library",
+     "constexpr placement new",
+     "#include <new>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "constexpr_queue", "__cpp_lib_constexpr_queue", "library",
+     "constexpr queue",
+     "#include <queue>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "contracts_lib", "__cpp_lib_contracts", "library",
+     "Contracts library support",
+     "#include <contracts>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "copyable_function", "__cpp_lib_copyable_function", "library",
+     "std::copyable_function",
+     "#include <functional>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "debugging", "__cpp_lib_debugging", "library",
+     "Debugging support",
+     "#include <debugging>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "define_static", "__cpp_lib_define_static", "library",
+     "define_static",
+     "#include <meta>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "exception_ptr_cast", "__cpp_lib_exception_ptr_cast", "library",
+     "exception_ptr_cast",
+     "#include <exception>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "format_path", "__cpp_lib_format_path", "library",
+     "Formatting of std::filesystem::path",
+     "#include <filesystem>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "fstream_native_handle", "__cpp_lib_fstream_native_handle", "library",
+     "Obtaining native handles from file streams",
+     "#include <fstream>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "function_ref", "__cpp_lib_function_ref", "library",
+     "std::function_ref",
+     "#include <functional>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "indirect", "__cpp_lib_indirect", "library",
+     "std::indirect",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "inplace_vector", "__cpp_lib_inplace_vector", "library",
+     "std::inplace_vector",
+     "#include <inplace_vector>\nauto main() -> int { std::inplace_vector<int, 8> v; v.push_back(42); return v[0] - 42; }"),
+
+    ("cpp26", "is_sufficiently_aligned", "__cpp_lib_is_sufficiently_aligned", "library",
+     "is_sufficiently_aligned",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "is_virtual_base_of", "__cpp_lib_is_virtual_base_of", "library",
+     "std::is_virtual_base_of",
+     "#include <type_traits>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "is_within_lifetime", "__cpp_lib_is_within_lifetime", "library",
+     "Checking if a union alternative is active",
+     "#include <type_traits>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "observable_checkpoint", "__cpp_lib_observable_checkpoint", "library",
+     "observable_checkpoint",
+     "#include <utility>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "optional_range_support", "__cpp_lib_optional_range_support", "library",
+     "std::optional range support",
+     "#include <optional>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "philox_engine", "__cpp_lib_philox_engine", "library",
+     "std::philox_engine",
+     "#include <random>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "polymorphic", "__cpp_lib_polymorphic", "library",
+     "std::polymorphic",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "ranges_cache_latest", "__cpp_lib_ranges_cache_latest", "library",
+     "ranges cache_latest",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "ranges_concat", "__cpp_lib_ranges_concat", "library",
+     "std::views::concat",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "ranges_indices", "__cpp_lib_ranges_indices", "library",
+     "ranges indices",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "ranges_to_input", "__cpp_lib_ranges_to_input", "library",
+     "ranges to_input",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "ratio", "__cpp_lib_ratio", "library",
+     "Adding the new 2022 SI prefixes",
+     "#include <ratio>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "reference_wrapper", "__cpp_lib_reference_wrapper", "library",
+     "Comparisons for std::reference_wrapper",
+     "#include <functional>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "reflection", "__cpp_lib_reflection", "library",
+     "Static reflection library",
+     "#include <meta>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "saturation_arithmetic", "__cpp_lib_saturation_arithmetic", "library",
+     "Saturation arithmetic",
+     "#include <numeric>\nauto main() -> int { return std::saturate_cast<unsigned char>(300) == 255 ? 0 : 1; }"),
+
+    ("cpp26", "simd", "__cpp_lib_simd", "library",
+     "SIMD library",
+     "#include <simd>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "smart_ptr_owner_equality", "__cpp_lib_smart_ptr_owner_equality", "library",
+     "Enabling std::weak_ptr as keys",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "span_initializer_list", "__cpp_lib_span_initializer_list", "library",
+     "Constructing std::span from initializer_list",
+     "#include <span>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "sstream_from_string_view", "__cpp_lib_sstream_from_string_view", "library",
+     "Interfacing stringstreams with string_view",
+     "#include <sstream>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "string_subview", "__cpp_lib_string_subview", "library",
+     "string subview",
+     "#include <string>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "submdspan", "__cpp_lib_submdspan", "library",
+     "std::submdspan",
+     "#include <mdspan>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "text_encoding", "__cpp_lib_text_encoding", "library",
+     "std::text_encoding",
+     "#include <text_encoding>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "to_string", "__cpp_lib_to_string", "library",
+     "Redefining std::to_string in terms of std::format",
+     "#include <string>\nauto main() -> int { return 0; }"),
+
+    ("cpp26", "type_order", "__cpp_lib_type_order", "library",
+     "type_order",
+     "#include <compare>\nauto main() -> int { return 0; }"),
+
+    # ── unknown-standard features (bucketed into cpp23+) ──
+    ("cpp23", "rtti", "__cpp_rtti", "language",
+     "Run-time type information (typeid)",
+     "#include <typeinfo>\nstruct Base { virtual ~Base() {} };\nstruct Derived : Base {};\nauto main() -> int { Derived d; Base& b = d; return typeid(b) == typeid(Derived) ? 0 : 1; }"),
+
+    ("cpp23", "template_parameters", "__cpp_template_parameters", "language",
+     "Template parameters",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_template_parameters\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "trivial_union", "__cpp_trivial_union", "language",
+     "Trivial union",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_trivial_union\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "atomic_reductions", "__cpp_lib_atomic_reductions", "library",
+     "Atomic reductions",
+     "#include <atomic>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_atomic", "__cpp_lib_constexpr_atomic", "library",
+     "constexpr atomic",
+     "#include <atomic>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_cmath", "__cpp_lib_constexpr_cmath", "library",
+     "Constexpr for mathematical functions",
+     "#include <cmath>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_deque", "__cpp_lib_constexpr_deque", "library",
+     "constexpr deque",
+     "#include <deque>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_format", "__cpp_lib_constexpr_format", "library",
+     "constexpr format",
+     "#include <format>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_inplace_vector", "__cpp_lib_constexpr_inplace_vector", "library",
+     "constexpr inplace_vector",
+     "#include <inplace_vector>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_map", "__cpp_lib_constexpr_map", "library",
+     "constexpr map",
+     "#include <map>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_set", "__cpp_lib_constexpr_set", "library",
+     "constexpr set",
+     "#include <set>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_stack", "__cpp_lib_constexpr_stack", "library",
+     "constexpr stack",
+     "#include <stack>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_unordered_map", "__cpp_lib_constexpr_unordered_map", "library",
+     "constexpr unordered_map",
+     "#include <unordered_map>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "constexpr_unordered_set", "__cpp_lib_constexpr_unordered_set", "library",
+     "constexpr unordered_set",
+     "#include <unordered_set>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "counting_scope", "__cpp_lib_counting_scope", "library",
+     "counting_scope",
+     "#include <execution>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "deduction_guides", "__cpp_lib_deduction_guides", "library",
+     "Deduction guides",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_lib_deduction_guides\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_char_traits", "__cpp_lib_freestanding_char_traits", "library",
+     "Freestanding std::char_traits",
+     "#include <string>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_cstdlib", "__cpp_lib_freestanding_cstdlib", "library",
+     "Freestanding facilities in cstdlib",
+     "#include <cstdlib>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_cwchar", "__cpp_lib_freestanding_cwchar", "library",
+     "Freestanding facilities in cwchar",
+     "#include <cwchar>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_errc", "__cpp_lib_freestanding_errc", "library",
+     "Freestanding std::errc",
+     "#include <system_error>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_execution", "__cpp_lib_freestanding_execution", "library",
+     "Freestanding execution",
+     "#include <execution>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_feature_test_macros", "__cpp_lib_freestanding_feature_test_macros", "library",
+     "Support for freestanding feature-test macros",
+     "#include <version>\nauto main() -> int {\n#ifdef __cpp_lib_freestanding_feature_test_macros\n  return 0;\n#else\n  return 0;\n#endif\n}"),
+
+    ("cpp23", "freestanding_functional", "__cpp_lib_freestanding_functional", "library",
+     "Freestanding facilities in functional",
+     "#include <functional>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_iterator", "__cpp_lib_freestanding_iterator", "library",
+     "Freestanding facilities in iterator",
+     "#include <iterator>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_memory", "__cpp_lib_freestanding_memory", "library",
+     "Freestanding facilities in memory",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_numeric", "__cpp_lib_freestanding_numeric", "library",
+     "Freestanding facilities in numeric",
+     "#include <numeric>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_operator_new", "__cpp_lib_freestanding_operator_new", "library",
+     "Definition of operator new (optional in freestanding)",
+     "#include <new>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_random", "__cpp_lib_freestanding_random", "library",
+     "Freestanding random",
+     "#include <random>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_ratio", "__cpp_lib_freestanding_ratio", "library",
+     "Freestanding facilities in ratio",
+     "#include <ratio>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_tuple", "__cpp_lib_freestanding_tuple", "library",
+     "Freestanding facilities in tuple",
+     "#include <tuple>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "freestanding_utility", "__cpp_lib_freestanding_utility", "library",
+     "Freestanding facilities in utility",
+     "#include <utility>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_array", "__cpp_lib_hardened_array", "library",
+     "Hardened array",
+     "#include <array>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_basic_stacktrace", "__cpp_lib_hardened_basic_stacktrace", "library",
+     "Hardened basic_stacktrace",
+     "#include <stacktrace>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_basic_string", "__cpp_lib_hardened_basic_string", "library",
+     "Hardened basic_string",
+     "#include <string>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_basic_string_view", "__cpp_lib_hardened_basic_string_view", "library",
+     "Hardened basic_string_view",
+     "#include <string_view>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_bitset", "__cpp_lib_hardened_bitset", "library",
+     "Hardened bitset",
+     "#include <bitset>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_common_iterator", "__cpp_lib_hardened_common_iterator", "library",
+     "Hardened common_iterator",
+     "#include <iterator>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_counted_iterator", "__cpp_lib_hardened_counted_iterator", "library",
+     "Hardened counted_iterator",
+     "#include <iterator>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_deque", "__cpp_lib_hardened_deque", "library",
+     "Hardened deque",
+     "#include <deque>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_expected", "__cpp_lib_hardened_expected", "library",
+     "Hardened expected",
+     "#include <expected>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_forward_list", "__cpp_lib_hardened_forward_list", "library",
+     "Hardened forward_list",
+     "#include <forward_list>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_inplace_vector", "__cpp_lib_hardened_inplace_vector", "library",
+     "Hardened inplace_vector",
+     "#include <inplace_vector>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_list", "__cpp_lib_hardened_list", "library",
+     "Hardened list",
+     "#include <list>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_mdspan", "__cpp_lib_hardened_mdspan", "library",
+     "Hardened mdspan",
+     "#include <mdspan>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_optional", "__cpp_lib_hardened_optional", "library",
+     "Hardened optional",
+     "#include <optional>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_shared_ptr_array", "__cpp_lib_hardened_shared_ptr_array", "library",
+     "Hardened shared_ptr_array",
+     "#include <memory>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_span", "__cpp_lib_hardened_span", "library",
+     "Hardened span",
+     "#include <span>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_valarray", "__cpp_lib_hardened_valarray", "library",
+     "Hardened valarray",
+     "#include <valarray>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_vector", "__cpp_lib_hardened_vector", "library",
+     "Hardened vector",
+     "#include <vector>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hardened_view_interface", "__cpp_lib_hardened_view_interface", "library",
+     "Hardened view_interface",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hazard_pointer", "__cpp_lib_hazard_pointer", "library",
+     "Hazard pointers",
+     "#include <hazard_pointer>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "hive", "__cpp_lib_hive", "library",
+     "std::hive",
+     "#include <hive>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "initializer_list_lib", "__cpp_lib_initializer_list", "library",
+     "initializer_list library support",
+     "#include <initializer_list>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "linalg", "__cpp_lib_linalg", "library",
+     "A free function linear algebra interface",
+     "#include <linalg>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "parallel_scheduler", "__cpp_lib_parallel_scheduler", "library",
+     "parallel_scheduler",
+     "#include <execution>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "ranges_generate_random", "__cpp_lib_ranges_generate_random", "library",
+     "Vector API for random number generation",
+     "#include <random>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "ranges_reserve_hint", "__cpp_lib_ranges_reserve_hint", "library",
+     "ranges reserve_hint",
+     "#include <ranges>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "rcu", "__cpp_lib_rcu", "library",
+     "Read-Copy Update (RCU)",
+     "#include <rcu>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "senders", "__cpp_lib_senders", "library",
+     "std::execution: sender-receiver model",
+     "#include <execution>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "simd_complex", "__cpp_lib_simd_complex", "library",
+     "SIMD complex",
+     "#include <simd>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "simd_permutations", "__cpp_lib_simd_permutations", "library",
+     "SIMD permutations",
+     "#include <simd>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "task", "__cpp_lib_task", "library",
+     "std::execution task",
+     "#include <execution>\nauto main() -> int { return 0; }"),
+
+    ("cpp23", "valarray_lib", "__cpp_lib_valarray", "library",
+     "valarray",
+     "#include <valarray>\nauto main() -> int { return 0; }"),
+
+    # ── cpp20 modules (language) ──
 ]
 
 

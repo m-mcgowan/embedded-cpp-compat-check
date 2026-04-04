@@ -4,7 +4,7 @@ Test which C++ standard library features actually work on embedded platforms —
 
 ## Why?
 
-Embedded toolchains often claim C++17/20 support but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool tests 157 features across 11 platforms to find the truth.
+Embedded toolchains often claim C++17/20 support but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool tests 394 features across 11 platforms to find the truth.
 
 ## Results
 

@@ -1,5 +1,5 @@
 // feature: fallthrough
-// macro: fallthrough
+// macro: __has_cpp_attribute(fallthrough)
 // standard: cpp17
 // category: attribute
 // description: [[fallthrough]] attribute

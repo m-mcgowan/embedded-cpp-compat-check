@@ -5,9 +5,4 @@
 // description: std::exchange
 
 #include <utility>
-
-auto main() -> int {
-    int x = 42;
-    int old = std::exchange(x, 0);
-    return old - 42;
-}
+auto main() -> int { int x = 42; int old = std::exchange(x, 0); return old - 42; }

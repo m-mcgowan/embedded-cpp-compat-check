@@ -14,6 +14,11 @@ _HEADER = """\
 #define STRINGIFY2(x) #x
 #define STRINGIFY(x) STRINGIFY2(x)
 
+// Guard for compilers that don't provide __has_cpp_attribute
+#ifndef __has_cpp_attribute
+#define __has_cpp_attribute(x) 0
+#endif
+
 """
 
 _ARRAY_START = """\
@@ -40,6 +45,15 @@ auto main() -> int {
 
 
 def _macro_check(name: str) -> str:
+    # __has_cpp_attribute() is a function-like expression, needs #if not #ifdef
+    if name.startswith("__has_cpp_attribute("):
+        return (
+            f"#if {name}\n"
+            f'    "{name}=" STRINGIFY({name}),\n'
+            f"#else\n"
+            f'    "{name}=0",\n'
+            f"#endif\n"
+        )
     return (
         f"#ifdef {name}\n"
         f'    "{name}=" STRINGIFY({name}),\n'

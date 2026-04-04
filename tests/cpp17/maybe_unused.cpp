@@ -1,5 +1,5 @@
 // feature: maybe_unused
-// macro: maybe_unused
+// macro: __has_cpp_attribute(maybe_unused)
 // standard: cpp17
 // category: attribute
 // description: [[maybe_unused]] attribute

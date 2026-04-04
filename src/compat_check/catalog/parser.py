@@ -19,7 +19,7 @@ def _parse_section(entries: list[dict], kind: FeatureKind) -> list[Feature]:
     features = []
     for entry in entries:
         name = entry["name"]
-        if kind != FeatureKind.ATTRIBUTE and not name.startswith("__cpp"):
+        if kind == FeatureKind.ATTRIBUTE and not name.startswith("__has_cpp_attribute"):
             name = f"__has_cpp_attribute({name})"
         rows = entry.get("rows", [])
         values = [r["value"] for r in rows]
