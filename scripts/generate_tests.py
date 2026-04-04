@@ -71,7 +71,7 @@ TESTS = [
     # ── cpp11 language (additional) ──
     ("cpp11", "attributes", "__cpp_attributes", "language",
      "Basic attribute syntax [[noreturn]] etc",
-     "[[noreturn]] void fatal() { throw 42; }\nauto main() -> int { return 0; }"),
+     "[[noreturn]] void fatal() { while(true) {} }\nauto main() -> int { return 0; }"),
 
     ("cpp11", "unicode_characters", "__cpp_unicode_characters", "language",
      "char16_t and char32_t Unicode character types",
@@ -120,7 +120,7 @@ TESTS = [
 
     ("cpp14", "complex_udls", "__cpp_lib_complex_udls", "library",
      "User-defined literals for std::complex (1i, 1if, etc)",
-     "#include <complex>\nusing namespace std::complex_literals;\nauto main() -> int { auto c = 1.0i; return c.imag() == 1.0 ? 0 : 1; }"),
+     "#undef abs\n#include <complex>\nusing namespace std::complex_literals;\nauto main() -> int { auto c = 1.0i; return c.imag() == 1.0 ? 0 : 1; }"),
 
     ("cpp14", "string_udls", "__cpp_lib_string_udls", "library",
      "User-defined literals for std::string (\"hello\"s)",
@@ -128,7 +128,7 @@ TESTS = [
 
     ("cpp14", "generic_associative_lookup", "__cpp_lib_generic_associative_lookup", "library",
      "Heterogeneous comparison lookup in associative containers",
-     "#include <map>\n#include <string>\n#include <string_view>\nauto main() -> int { std::map<std::string, int, std::less<>> m; m[\"key\"] = 42; return m.count(std::string_view(\"key\")) == 1 ? 0 : 1; }"),
+     "#include <map>\n#include <string>\nauto main() -> int { std::map<std::string, int, std::less<>> m; m[\"key\"] = 42; return m.count(\"key\") == 1 ? 0 : 1; }"),
 
     ("cpp14", "make_reverse_iterator", "__cpp_lib_make_reverse_iterator", "library",
      "std::make_reverse_iterator",
@@ -140,7 +140,7 @@ TESTS = [
 
     ("cpp14", "result_of_sfinae", "__cpp_lib_result_of_sfinae", "library",
      "std::result_of and SFINAE",
-     "#include <type_traits>\nint f(int x) { return x; }\nauto main() -> int { return std::is_same<std::result_of<decltype(f)(int)>::type, int>::value ? 0 : 1; }"),
+     "#include <type_traits>\nint f(int x) { return x; }\nauto main() -> int { return std::is_same<typename std::result_of<decltype(&f)(int)>::type, int>::value ? 0 : 1; }"),
 
     ("cpp14", "quoted_string_io", "__cpp_lib_quoted_string_io", "library",
      "std::quoted for I/O of quoted strings",
@@ -699,7 +699,7 @@ TESTS = [
 
     ("cpp20", "constexpr_complex", "__cpp_lib_constexpr_complex", "library",
      "constexpr std::complex operations",
-     "#include <complex>\nconstexpr std::complex<double> c{1.0, 2.0};\nstatic_assert(c.real() == 1.0);\nauto main() -> int { return 0; }"),
+     "#undef abs\n#include <complex>\nconstexpr std::complex<double> c{1.0, 2.0};\nstatic_assert(c.real() == 1.0);\nauto main() -> int { return 0; }"),
 
     ("cpp20", "constexpr_dynamic_alloc_lib", "__cpp_lib_constexpr_dynamic_alloc", "library",
      "constexpr std::allocator",
@@ -1131,7 +1131,7 @@ TESTS = [
 
     ("cpp23", "attr_noreturn", "__has_cpp_attribute(noreturn)", "attribute",
      "[[noreturn]] attribute",
-     "[[noreturn]] void die() { throw 42; }\nauto main() -> int { return 0; }"),
+     "[[noreturn]] void die() { while(true) {} }\nauto main() -> int { return 0; }"),
 
     # ── cpp23 language (new) ──
     ("cpp23", "explicit_this_parameter", "__cpp_explicit_this_parameter", "language",

@@ -4,5 +4,5 @@
 // category: attribute
 // description: [[noreturn]] attribute
 
-[[noreturn]] void die() { throw 42; }
+[[noreturn]] void die() { while(true) {} }
 auto main() -> int { return 0; }

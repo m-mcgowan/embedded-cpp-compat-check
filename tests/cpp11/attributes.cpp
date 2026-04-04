@@ -4,5 +4,5 @@
 // category: language
 // description: Basic attribute syntax [[noreturn]] etc
 
-[[noreturn]] void fatal() { throw 42; }
+[[noreturn]] void fatal() { while(true) {} }
 auto main() -> int { return 0; }

@@ -6,4 +6,4 @@
 
 #include <type_traits>
 int f(int x) { return x; }
-auto main() -> int { return std::is_same<std::result_of<decltype(f)(int)>::type, int>::value ? 0 : 1; }
+auto main() -> int { return std::is_same<typename std::result_of<decltype(&f)(int)>::type, int>::value ? 0 : 1; }

@@ -6,5 +6,4 @@
 
 #include <map>
 #include <string>
-#include <string_view>
-auto main() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; return m.count(std::string_view("key")) == 1 ? 0 : 1; }
+auto main() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; return m.count("key") == 1 ? 0 : 1; }

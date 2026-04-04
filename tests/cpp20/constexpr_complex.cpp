@@ -4,6 +4,7 @@
 // category: library
 // description: constexpr std::complex operations
 
+#undef abs
 #include <complex>
 constexpr std::complex<double> c{1.0, 2.0};
 static_assert(c.real() == 1.0);
