@@ -5,9 +5,7 @@
 // description: std::print
 
 #include <print>
-#include <string>
-
 auto main() -> int {
-    auto s = std::format("{}", 42);
-    return static_cast<int>(s.size()) > 0 ? 0 : 1;
+    std::println("hello");
+    return 0;
 }

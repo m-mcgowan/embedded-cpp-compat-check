@@ -1,8 +1,10 @@
 """Generate static HTML site from results."""
 
+import re
 from collections import defaultdict
 from pathlib import Path
 
+import yaml
 from jinja2 import Environment, PackageLoader
 
 
@@ -28,9 +30,67 @@ def _support_level(statuses: list[str]) -> str:
     return "partial"
 
 
-def generate_site(results: list[dict], output_dir: Path, platform_meta=None) -> None:
+def _build_macro_links(catalog_path: Path) -> dict[str, str]:
+    """Build macro name → cppreference URL from catalog descriptions."""
+    if not catalog_path.exists():
+        return {}
+    data = yaml.safe_load(catalog_path.read_text())
+    # Well-known macros without wiki links in the catalog
+    _KNOWN = {
+        "__cpp_concepts": "language/constraints",
+        "__cpp_fold_expressions": "language/fold",
+        "__cpp_deduction_guides": "language/class_template_argument_deduction",
+        "__cpp_exceptions": "language/exceptions",
+        "__cpp_rtti": "language/typeid",
+        "__cpp_impl_three_way_comparison": "language/operator_comparison#Three-way_comparison",
+        "__cpp_impl_reflection": "language/reflection",
+        "__cpp_pp_embed": "preprocessor/embed",
+        "__cpp_contracts": "language/attributes/contract",
+        "__cpp_constexpr_dynamic_alloc": "language/constexpr",
+        "__has_cpp_attribute(nodiscard)": "language/attributes/nodiscard",
+        "__has_cpp_attribute(deprecated)": "language/attributes/deprecated",
+        "__has_cpp_attribute(fallthrough)": "language/attributes/fallthrough",
+        "__has_cpp_attribute(maybe_unused)": "language/attributes/maybe_unused",
+        "__has_cpp_attribute(likely)": "language/attributes/likely",
+        "__has_cpp_attribute(unlikely)": "language/attributes/likely",
+        "__has_cpp_attribute(no_unique_address)": "language/attributes/no_unique_address",
+        "__has_cpp_attribute(noreturn)": "language/attributes/noreturn",
+        "__has_cpp_attribute(carries_dependency)": "language/attributes/carries_dependency",
+        "__has_cpp_attribute(assume)": "language/attributes/assume",
+        "__has_cpp_attribute(indeterminate)": "language/attributes/indeterminate",
+    }
+    links: dict[str, str] = {}
+    base = "https://en.cppreference.com/w/cpp/"
+    links.update({k: base + v for k, v in _KNOWN.items()})
+    for section in ["language", "library", "attributes"]:
+        for entry in data.get(section, []):
+            name = entry["name"]
+            if section == "attributes":
+                name = f"__has_cpp_attribute({name})"
+            rows = entry.get("rows", [])
+            desc = rows[0].get("cppreference-description", "") if rows else ""
+            # [[cpp/path|text]] wiki links — best quality
+            m = re.search(r"\[\[cpp/([^\]|]+)", desc)
+            if m:
+                links[name] = base + m.group(1).replace(" ", "_")
+                continue
+            # {{ltt|cpp/path/name|text}} template links with explicit path
+            m = re.search(r"\{\{ltt?\|cpp/([^|}]+)", desc)
+            if m:
+                links[name] = base + m.group(1).replace(" ", "_")
+                continue
+            # Fallback for library features: link to the header reference page
+            headers = entry.get("header_list", "").split()
+            if headers and section == "library":
+                links[name] = base + "header/" + headers[0]
+    return links
+
+
+def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
+                  catalog_path: Path | None = None) -> None:
     """Generate a static HTML site from result dicts."""
     platform_meta = platform_meta or {}
+    macro_links = _build_macro_links(catalog_path) if catalog_path else {}
     env = Environment(loader=PackageLoader("compat_check.site", "templates"))
 
     # Group results
@@ -119,5 +179,6 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None) -> 
                 standards=stds_sorted,
                 by_standard={std: dict(sorted(by_std[std].items())) for std in stds_sorted},
                 std_stats=std_stats,
+                macro_links=macro_links,
             )
         )

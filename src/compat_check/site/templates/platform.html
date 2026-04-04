@@ -13,6 +13,7 @@
         th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
         th { background: #f5f5f5; font-weight: 600; font-size: 0.85em; }
         td code { font-size: 0.85em; background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+        td code a { color: inherit; }
         .supported { color: #28a745; font-weight: 500; }
         .unsupported { color: #dc3545; }
         .unreported { color: #17a2b8; }
@@ -21,15 +22,38 @@
         a:hover { text-decoration: underline; }
         .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 4px; }
         .progress-bar { height: 100%; border-radius: 3px; background: #28a745; }
+        .back-link { margin-bottom: 1rem; }
+        .legend { margin-top: 1rem; margin-bottom: 2rem; font-size: 0.85em; color: #666; }
+        .legend span { font-weight: 600; }
+        tr.has-error { cursor: pointer; }
+        tr.has-error:hover td { background: #fafafa; }
+        tr.error-row { display: none; }
+        tr.error-row.open { display: table-row; }
+        tr.error-row td { padding: 0; }
+        pre.error-output {
+            margin: 0; padding: 8px 12px;
+            font-size: 0.8em; line-height: 1.4;
+            background: #2d2d2d; color: #f0f0f0;
+            white-space: pre-wrap; word-break: break-all;
+            max-height: 200px; overflow-y: auto;
+        }
     </style>
 </head>
 <body>
-    <p><a href="../">&larr; Back to matrix</a></p>
+    <p class="back-link"><a href="../index.html">&larr; Back to matrix</a></p>
     <h1>{{ platform_name }}</h1>
     <div class="meta">
         {% if board_family %}{{ board_family }} &middot; {% endif %}
         {% if architecture %}{{ architecture }} &middot; {% endif %}
         Version {{ platform_version }}
+    </div>
+
+    <div class="legend">
+        <span class="supported">supported</span> = macro defined + compiles &nbsp;&middot;&nbsp;
+        <span class="unreported">unreported</span> = compiles but no macro &nbsp;&middot;&nbsp;
+        <span class="macro_lies">macro_lies</span> = macro defined but fails &nbsp;&middot;&nbsp;
+        <span class="unsupported">unsupported</span> = does not compile
+        &nbsp;&middot;&nbsp; Click failed rows to see compiler output.
     </div>
 
     {% for std in standards %}
@@ -45,13 +69,18 @@
         {% for category, features in by_standard[std].items() %}
         <tr><td colspan="5" class="category-label">{{ category }}</td></tr>
         {% for f in features|sort(attribute='feature') %}
-        <tr>
+        <tr{% if f.error_output %} class="has-error" onclick="this.nextElementSibling.classList.toggle('open')"{% endif %}>
             <td>{{ f.feature.split('/')[-1] }}</td>
-            <td><code>{{ f.macro }}</code></td>
+            <td><code>{% if f.macro in macro_links %}<a href="{{ macro_links[f.macro] }}" title="cppreference docs">{{ f.macro }}</a>{% else %}{{ f.macro }}{% endif %}</code></td>
             <td>{{ f.macro_value if f.macro_value else '&mdash;'|safe }}</td>
             <td>{% if f.compiles %}&#x2705;{% else %}&#x274C;{% endif %}</td>
             <td class="{{ f.status }}">{{ f.status }}</td>
         </tr>
+        {% if f.error_output %}
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">{{ f.error_output }}</pre></td>
+        </tr>
+        {% endif %}
         {% endfor %}
         {% endfor %}
     </table>

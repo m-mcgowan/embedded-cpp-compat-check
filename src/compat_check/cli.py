@@ -98,7 +98,8 @@ def generate(results_dir, output_dir, platforms_dir):
         with open(f) as fh:
             all_results.extend(json.load(fh))
 
-    generate_site(all_results, Path(output_dir), platform_meta)
+    generate_site(all_results, Path(output_dir), platform_meta,
+                  catalog_path=Path("catalog/data.yaml"))
     click.echo(f"Site generated at {output_dir}/")
 
     table = generate_summary_table(all_results, platform_meta)

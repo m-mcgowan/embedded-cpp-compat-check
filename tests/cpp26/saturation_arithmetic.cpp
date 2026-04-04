@@ -5,4 +5,5 @@
 // description: Saturation arithmetic
 
 #include <numeric>
-auto main() -> int { return std::saturate_cast<unsigned char>(300) == 255 ? 0 : 1; }
+#include <cstdint>
+auto main() -> int { return std::add_sat<uint8_t>(200, 200) == 255 ? 0 : 1; }

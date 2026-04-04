@@ -1174,7 +1174,7 @@ TESTS = [
 
     ("cpp23", "print", "__cpp_lib_print", "library",
      "std::print",
-     "#include <print>\nauto main() -> int { std::print(\"\"); return 0; }"),
+     "#include <print>\nauto main() -> int { std::println(\"hello\"); return 0; }"),
 
     ("cpp23", "stacktrace", "__cpp_lib_stacktrace", "library",
      "Stacktrace library",
@@ -1374,7 +1374,7 @@ TESTS = [
 
     ("cpp26", "saturation_arithmetic", "__cpp_lib_saturation_arithmetic", "library",
      "Saturation arithmetic",
-     "#include <numeric>\nauto main() -> int { return std::saturate_cast<unsigned char>(300) == 255 ? 0 : 1; }"),
+     "#include <numeric>\n#include <cstdint>\nauto main() -> int { return std::add_sat<uint8_t>(200, 200) == 255 ? 0 : 1; }"),
 
     ("cpp26", "simd", "__cpp_lib_simd", "library",
      "SIMD library",
