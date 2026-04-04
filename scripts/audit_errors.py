@@ -167,6 +167,7 @@ _KNOWN_DEPS = {
     "chrono_udls": {"chrono"},
     "complex_udls": {"complex"},
     "string_udls": {"string"},
+    "saturation_arithmetic": {"add_sat", "sub_sat", "mul_sat", "div_sat", "saturate_cast"},
 }
 
 

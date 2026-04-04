@@ -13,16 +13,16 @@ Embedded toolchains often claim C++17/20 support but ship incomplete standard li
 |----------|-------|-----------|-------------------|
 | ESP32-S3 (Arduino v3) | esp32s3 | c++11–c++26 | **100%** |
 | ESP32-S3 (espressif32 official) | esp32s3 | c++11–c++26 | **100%** |
-| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **94%** |
+| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **97%** |
+| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **97%** |
+| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **97%** |
+| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **97%** |
+| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **97%** |
+| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **97%** |
 | ESP8266 NodeMCU | ESP8266 Xtensa LX106 | c++17 | **94%** |
 | Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **93%** |
-| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **91%** |
-| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **91%** |
-| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **91%** |
-| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **88%** |
-| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **88%** |
-| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **82%** |
-| AVR Arduino Uno | ATmega328P | c++11–c++17 | **82%** |
+| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
+| AVR Arduino Uno | ATmega328P | c++11–c++17 | **86%** |
 <!-- compat-matrix-end -->
 
 "Effective support" = features that compile successfully (supported + unreported), regardless of whether the SD-6 feature-test macro is defined.
