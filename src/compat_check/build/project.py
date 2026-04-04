@@ -36,17 +36,24 @@ def _std_flag(standard: str) -> str:
 
 
 def wrap_for_arduino(source: str) -> str:
-    """Convert main()-based test to Arduino setup()/loop() format."""
+    """Convert main()-based test to Arduino setup()/loop() format.
+
+    Renames main() to _test_main() and calls it from setup().
+    This preserves all return statements in helper functions and lambdas.
+    """
     source = _ARDUINO_HEADER + source
-    # Replace 'auto main() -> int {' or 'int main() {' with 'void setup() {'
+    # Rename main to _test_main, keeping the return type
     source = re.sub(
-        r'(auto\s+main\s*\(\s*\)\s*->\s*int|int\s+main\s*\(\s*\))\s*\{',
-        'void setup() {',
+        r'(auto\s+)main(\s*\(\s*\)\s*->\s*int)',
+        r'\1_test_main\2',
         source,
     )
-    # Replace 'return <expr>;' at the end of setup with just the expression
-    # (setup returns void, so we drop the return value)
-    source = re.sub(r'\breturn\s+[^;]+;(\s*})\s*$', r'\1', source)
+    source = re.sub(
+        r'(int\s+)main(\s*\(\s*\))',
+        r'\1_test_main\2',
+        source,
+    )
+    source += '\nvoid setup() { _test_main(); }\n'
     source += _ARDUINO_LOOP
     return source
 
