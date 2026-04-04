@@ -3,35 +3,56 @@
 <head>
     <title>{{ platform_name }} - C++ Compatibility</title>
     <style>
-        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; color: #1a1a1a; }
+        .meta { color: #666; margin-bottom: 1rem; }
+        .std-header { display: flex; align-items: baseline; gap: 1rem; }
+        .std-header h2 { margin-bottom: 0.25rem; }
+        .std-stats { color: #666; font-size: 0.9em; }
+        .category-label { font-weight: 600; color: #444; padding: 12px 8px 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
         table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background: #f5f5f5; }
-        .supported { color: #28a745; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #f5f5f5; font-weight: 600; font-size: 0.85em; }
+        td code { font-size: 0.85em; background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+        .supported { color: #28a745; font-weight: 500; }
         .unsupported { color: #dc3545; }
         .unreported { color: #17a2b8; }
-        .macro_lies { color: #ffc107; }
+        .macro_lies { color: #e67e00; font-weight: 500; }
         a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 4px; }
+        .progress-bar { height: 100%; border-radius: 3px; background: #28a745; }
     </style>
 </head>
 <body>
     <p><a href="../">&larr; Back to matrix</a></p>
     <h1>{{ platform_name }}</h1>
-    <p>Version: {{ platform_version }}</p>
-    {% for std, features in by_standard.items() %}
-    <h2 id="{{ std }}">{{ std }}</h2>
+    <div class="meta">
+        {% if board_family %}{{ board_family }} &middot; {% endif %}
+        {% if architecture %}{{ architecture }} &middot; {% endif %}
+        Version {{ platform_version }}
+    </div>
+
+    {% for std in standards %}
+    {% set stats = std_stats[std] %}
+    <div class="std-header" id="{{ std }}">
+        <h2>{{ std }}</h2>
+        <span class="std-stats">{{ stats.pass }}/{{ stats.total }} features ({{ stats.pct }}%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: {{ stats.pct }}%"></div></div>
+
     <table>
-        <tr><th>Feature</th><th>Category</th><th>Macro</th><th>Macro Value</th><th>Compiles</th><th>Status</th><th>Time (ms)</th></tr>
-        {% for f in features %}
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        {% for category, features in by_standard[std].items() %}
+        <tr><td colspan="5" class="category-label">{{ category }}</td></tr>
+        {% for f in features|sort(attribute='feature') %}
         <tr>
-            <td>{{ f.feature }}</td>
-            <td>{{ f.category }}</td>
+            <td>{{ f.feature.split('/')[-1] }}</td>
             <td><code>{{ f.macro }}</code></td>
-            <td>{{ f.macro_value }}</td>
-            <td>{{ f.compiles }}</td>
+            <td>{{ f.macro_value if f.macro_value else '&mdash;'|safe }}</td>
+            <td>{% if f.compiles %}&#x2705;{% else %}&#x274C;{% endif %}</td>
             <td class="{{ f.status }}">{{ f.status }}</td>
-            <td>{{ f.compile_time_ms }}</td>
         </tr>
+        {% endfor %}
         {% endfor %}
     </table>
     {% endfor %}

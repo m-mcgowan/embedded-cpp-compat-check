@@ -11,17 +11,18 @@ Embedded toolchains often claim C++17/20 support but ship incomplete standard li
 <!-- compat-matrix-start -->
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
-| STM32 Nucleo F411RE | Cortex-M4 | c++11–c++20 | **93%** |
-| Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **90%** |
-| Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **90%** |
-| ESP32-S3 DevKit | Xtensa gcc 14 | c++11–c++26 | **89%** |
-| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **88%** |
-| Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **77%** |
-| Raspberry Pi Pico | RP2040 Cortex-M0+ | c++11–c++23 | **73%** |
-| Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **66%** |
-| Arduino Uno | AVR ATmega328P | c++11–c++17 | **40%** |
-| Arduino Nano Every | megaAVR ATmega4809 | c++11–c++17 | **38%** |
-| ESP8266 NodeMCU | Xtensa LX106 | c++17 only | **0%** |
+| ESP32-S3 (Arduino v3) | esp32s3 | c++11–c++26 | **100%** |
+| ESP32-S3 (espressif32 official) | esp32s3 | c++11–c++26 | **100%** |
+| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **94%** |
+| ESP8266 NodeMCU | ESP8266 Xtensa LX106 | c++17 | **94%** |
+| Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **93%** |
+| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **91%** |
+| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **91%** |
+| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **91%** |
+| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **88%** |
+| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **88%** |
+| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **82%** |
+| AVR Arduino Uno | ATmega328P | c++11–c++17 | **82%** |
 <!-- compat-matrix-end -->
 
 "Effective support" = features that compile successfully (supported + unreported), regardless of whether the SD-6 feature-test macro is defined.

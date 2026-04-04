@@ -3,6 +3,7 @@ slug: samd51-feather-m4
 version: "8.1.0"
 architecture: arm-cortex-m4f
 mcu: samd51j19a
+board_family: SAMD51 Cortex-M4F
 build_system: platformio
 framework: arduino
 

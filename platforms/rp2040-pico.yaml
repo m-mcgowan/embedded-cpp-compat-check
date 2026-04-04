@@ -3,6 +3,7 @@ slug: rp2040-pico
 version: "1.13.0"
 architecture: arm
 mcu: rp2040
+board_family: RP2040 Cortex-M0+
 build_system: platformio
 framework: arduino
 

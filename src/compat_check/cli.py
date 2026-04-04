@@ -79,24 +79,29 @@ def sync(target):
 @main.command()
 @click.option("--results-dir", default="results", type=click.Path(exists=True))
 @click.option("--output-dir", default="site", type=click.Path())
-def generate(results_dir, output_dir):
+@click.option("--platforms-dir", default="platforms", type=click.Path(exists=True))
+def generate(results_dir, output_dir, platforms_dir):
     """Generate static site and README from results."""
     import json
     import glob as glob_mod
+    from compat_check.platform.loader import load_platforms
     from compat_check.site.html import generate_site
     from compat_check.site.readme import generate_summary_table
 
+    platforms = load_platforms(Path(platforms_dir))
+    platform_meta = {p.slug: p for p in platforms}
+
     all_results = []
     for f in glob_mod.glob(f"{results_dir}/**/*.json", recursive=True):
-        if "manifest" in f:
+        if "manifest" in f or "+recipe" in f:
             continue
         with open(f) as fh:
             all_results.extend(json.load(fh))
 
-    generate_site(all_results, Path(output_dir))
+    generate_site(all_results, Path(output_dir), platform_meta)
     click.echo(f"Site generated at {output_dir}/")
 
-    table = generate_summary_table(all_results)
+    table = generate_summary_table(all_results, platform_meta)
 
     # Update the matrix table in README.md between markers, or append
     readme_path = Path("README.md")

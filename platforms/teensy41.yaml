@@ -3,6 +3,7 @@ slug: teensy41
 version: "5.0.0"
 architecture: arm-cortex-m7
 mcu: imxrt1062
+board_family: i.MX RT1062 Cortex-M7
 build_system: platformio
 framework: arduino
 

@@ -3,6 +3,7 @@ slug: avr-uno
 version: "5.0.0"
 architecture: avr
 mcu: atmega328p
+board_family: ATmega328P
 build_system: platformio
 framework: arduino
 

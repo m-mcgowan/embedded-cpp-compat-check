@@ -3,6 +3,7 @@ slug: megaavr-nano-every
 version: "1.6.1"
 architecture: megaavr
 mcu: atmega4809
+board_family: ATmega4809
 build_system: platformio
 framework: arduino
 

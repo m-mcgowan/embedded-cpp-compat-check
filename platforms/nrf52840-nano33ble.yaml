@@ -3,6 +3,7 @@ slug: nrf52840-nano33ble
 version: "9.5.0"
 architecture: arm-cortex-m4f
 mcu: nrf52840
+board_family: nRF52840 Cortex-M4F
 build_system: platformio
 framework: arduino
 

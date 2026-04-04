@@ -3,6 +3,7 @@ slug: stm32-nucleo-f411re
 version: "17.6.0"
 architecture: arm
 mcu: stm32f411re
+board_family: STM32F411 Cortex-M4
 build_system: platformio
 framework: arduino
 

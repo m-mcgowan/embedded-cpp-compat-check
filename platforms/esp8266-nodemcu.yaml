@@ -3,6 +3,7 @@ slug: esp8266-nodemcu
 version: "4.2.1"
 architecture: xtensa-lx106
 mcu: esp8266
+board_family: ESP8266 Xtensa LX106
 build_system: platformio
 framework: arduino
 

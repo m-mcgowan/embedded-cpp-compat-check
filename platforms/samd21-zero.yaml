@@ -3,6 +3,7 @@ slug: samd21-zero
 version: "8.1.0"
 architecture: arm-cortex-m0plus
 mcu: samd21g18a
+board_family: SAMD21 Cortex-M0+
 build_system: platformio
 framework: arduino
 

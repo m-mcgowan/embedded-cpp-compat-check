@@ -3,6 +3,7 @@ slug: uno-r4-minima
 version: "1.1.0"
 architecture: arm-cortex-m4
 mcu: ra4m1
+board_family: Renesas RA4M1
 build_system: platformio
 framework: arduino
 
