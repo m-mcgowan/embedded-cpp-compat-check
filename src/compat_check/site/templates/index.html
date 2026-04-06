@@ -21,10 +21,10 @@
         a:hover { text-decoration: underline; }
         .legend { margin-top: 2rem; }
         .legend h2 { font-size: 1.1em; margin-bottom: 0.5rem; }
-        .legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem 2rem; }
-        .legend-item { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.9em; padding: 0.25rem 0; }
-        .legend-item .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
-        .legend-item .label { font-weight: 600; }
+        .status-table { width: auto; margin-bottom: 1rem; font-size: 0.9em; }
+        .status-table th, .status-table td { text-align: left; vertical-align: top; line-height: 1.8; }
+        .status-table .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: middle; margin-right: 0.25rem; }
+        .status-table .label { font-weight: 600; }
         .color-grid { display: flex; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.85em; }
         .color-grid span { padding: 4px 10px; border-radius: 3px; }
         footer { margin-top: 2rem; color: #999; font-size: 0.85em; }
@@ -71,28 +71,19 @@
         Click any cell to see the per-feature breakdown. "Best" is the highest percentage across all standards for that platform.</p>
 
         <h2>Status classifications</h2>
-        <div class="legend-grid">
-            <div class="legend-item">
-                <span class="swatch" style="background: #28a745"></span>
-                <span class="label">supported</span> &mdash; SD-6 macro defined and feature compiles
-            </div>
-            <div class="legend-item">
-                <span class="swatch" style="background: #17a2b8"></span>
-                <span class="label">unreported</span> &mdash; feature compiles but macro not defined
-            </div>
-            <div class="legend-item">
-                <span class="swatch" style="background: #e67e00"></span>
-                <span class="label">macro_lies</span> &mdash; macro claims support but compile fails
-            </div>
-            <div class="legend-item">
-                <span class="swatch" style="background: #dc3545"></span>
-                <span class="label">unsupported</span> &mdash; feature does not compile
-            </div>
-        </div>
-        <p style="margin-top: 0.75rem; font-size: 0.9em; color: #666;">
-            Both <b>supported</b> and <b>unreported</b> count as working features.
-            <b>macro_lies</b> means the toolchain advertises a feature it can't deliver &mdash; a common issue with embedded standard libraries.
-        </p>
+        <table class="status-table">
+            <tr><th>Counts as working</th><th>Counts as failing</th></tr>
+            <tr>
+                <td>
+                    <span class="swatch" style="background: #28a745"></span> <span class="label">supported</span> — macro defined and compiles<br>
+                    <span class="swatch" style="background: #17a2b8"></span> <span class="label">unreported</span> — compiles but no macro
+                </td>
+                <td>
+                    <span class="swatch" style="background: #e67e00"></span> <span class="label">macro_lies</span> — macro defined but compile fails<br>
+                    <span class="swatch" style="background: #dc3545"></span> <span class="label">unsupported</span> — does not compile
+                </td>
+            </tr>
+        </table>
     </div>
 
     <footer>

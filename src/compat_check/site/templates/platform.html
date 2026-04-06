@@ -49,11 +49,13 @@
     </div>
 
     <div class="legend">
-        <span class="supported">supported</span> = macro defined + compiles &nbsp;&middot;&nbsp;
-        <span class="unreported">unreported</span> = compiles but no macro &nbsp;&middot;&nbsp;
-        <span class="macro_lies">macro_lies</span> = macro defined but fails &nbsp;&middot;&nbsp;
-        <span class="unsupported">unsupported</span> = does not compile
-        &nbsp;&middot;&nbsp; Click failed rows to see compiler output.
+        <ul>
+            <li><span class="supported">supported</span> — SD-6 macro defined and feature compiles</li>
+            <li><span class="unreported">unreported</span> — feature compiles but macro not defined</li>
+            <li><span class="macro_lies">macro_lies</span> — macro claims support but compile fails</li>
+            <li><span class="unsupported">unsupported</span> — feature does not compile</li>
+        </ul>
+        Click failed rows to see compiler output.
     </div>
 
     {% for std in standards %}
