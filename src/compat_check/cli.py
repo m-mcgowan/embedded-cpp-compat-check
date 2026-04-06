@@ -91,12 +91,24 @@ def generate(results_dir, output_dir, platforms_dir):
     platforms = load_platforms(Path(platforms_dir))
     platform_meta = {p.slug: p for p in platforms}
 
+    # Build min-standard filter from platform metadata
+    min_std = {}
+    for p in platforms:
+        if p.min_framework_standard:
+            min_std[p.slug] = int(p.min_framework_standard.replace("c++", ""))
+
     all_results = []
     for f in glob_mod.glob(f"{results_dir}/**/*.json", recursive=True):
         if "manifest" in f or "+recipe" in f:
             continue
         with open(f) as fh:
-            all_results.extend(json.load(fh))
+            for r in json.load(fh):
+                # Filter out results below the framework's minimum standard
+                plat = r.get("platform", "")
+                std_num = int(r.get("standard", "c++11").replace("c++", ""))
+                if plat in min_std and std_num < min_std[plat]:
+                    continue
+                all_results.append(r)
 
     generate_site(all_results, Path(output_dir), platform_meta,
                   catalog_path=Path("catalog/data.yaml"))
