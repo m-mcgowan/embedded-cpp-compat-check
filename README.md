@@ -74,7 +74,22 @@ The first run per platform downloads toolchains (~200MB each) and takes several 
 
 ### `compat-check library` — Library compatibility
 
-Tests a PlatformIO library's examples against all platforms.
+Tests a PlatformIO library's examples against embedded platforms to find which C++ standards work. Your library needs:
+- A `library.json` or `library.properties` file
+- An `examples/` directory with `.ino` or `.cpp` example sketches
+
+```bash
+# Test across all platforms
+compat-check library ~/my-library --report report.md
+
+# Test specific platforms
+compat-check library ~/my-library \
+  --platform stm32-nucleo-f411re \
+  --platform avr-uno
+
+# JSON output for CI
+compat-check library ~/my-library --report-format json --report results.json
+```
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -82,10 +97,87 @@ Tests a PlatformIO library's examples against all platforms.
 | `--example NAME` | all | Test only these examples (repeatable) |
 | `--report PATH` | stdout | Write report to file |
 | `--report-format FMT` | md | `md` or `json` |
+| `--work-dir PATH` | `.work` | Build cache directory |
 
-Optimizations:
-- **Build cache**: reuses PIO framework objects between builds for the same board
-- **Standard skip**: tests highest standard first; if it fails, skips lower standards (they can't do better)
+**How it works:** For each platform, the tool tests the highest supported C++ standard first. If it fails, lower standards are skipped (they can't do better). If it passes, it tests downward to find the minimum working standard. Build artifacts are cached between runs.
+
+#### Example output
+
+Testing [nonstd-lite-bundle](https://github.com/m-mcgowan/nonstd-lite-bundle) on STM32 and AVR:
+
+```
+$ compat-check library ~/nonstd-lite-bundle --platform stm32-nucleo-f411re --platform avr-uno
+Library: nonstd-lite-bundle v1.1.0
+Platforms: ['stm32-nucleo-f411re', 'avr-uno']
+Examples: ['optional_demo', 'span_demo', 'string_view_demo', 'variant_demo']
+  [1/28] stm32-nucleo-f411re c++20 optional_demo... PASS (5323ms)
+  [2/28] stm32-nucleo-f411re c++17 optional_demo... PASS (3836ms)
+  [3/28] stm32-nucleo-f411re c++14 optional_demo... PASS (3484ms)
+  [4/28] stm32-nucleo-f411re c++11 optional_demo... PASS (3752ms)
+  ...
+  [17/28] avr-uno c++17 optional_demo... FAIL (2580ms)
+  [18/28] avr-uno c++14 optional_demo... SKIP
+  [19/28] avr-uno c++11 optional_demo... SKIP
+  ...
+```
+
+The generated report:
+
+```markdown
+| Platform             | Min Standard | Examples |
+|----------------------|-------------|----------|
+| stm32-nucleo-f411re  | c++11       | 4/4      |
+| avr-uno              | —           | 0/4      |
+```
+
+This shows nonstd-lite-bundle works at all standards on STM32 but fails on AVR (avr-libc lacks the standard library headers the polyfill depends on).
+
+#### Using in CI
+
+Add to your GitHub Actions workflow to test library compatibility on every push:
+
+```yaml
+name: Embedded Compatibility
+on: [push, pull_request]
+
+jobs:
+  compat-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install compat-check
+        run: |
+          pip install git+https://github.com/m-mcgowan/embedded-cpp-compat-check.git
+          # First run downloads PlatformIO toolchains (~200MB each)
+
+      - name: Run compatibility check
+        run: |
+          compat-check library . \
+            --platform stm32-nucleo-f411re \
+            --platform esp32s3-arduino-v3 \
+            --platform avr-uno \
+            --report compatibility.md \
+            --report-format md
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: compatibility-report
+          path: compatibility.md
+
+      - name: Post to PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: compatibility.md
+```
+
+This builds your library's examples against each platform at every supported C++ standard and produces a compatibility matrix. The sticky comment posts the report directly to your PR.
 
 ### `compat-check generate` — Static site
 
