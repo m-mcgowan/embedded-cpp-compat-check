@@ -396,7 +396,11 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
     for plat in sorted(summary):
         s = summary[plat]
         min_std = s["min_standard"] or "\u2014"
-        click.echo(f"  {plat}: {s['passing']}/{s['total']} examples, min standard: {min_std}")
+        reason = s.get("failure_reason", "")
+        line = f"  {plat}: {s['passing']}/{s['total']} examples, min standard: {min_std}"
+        if reason and s["passing"] < s["total"]:
+            line += f"  ({reason})"
+        click.echo(line)
 
     if report_path:
         Path(report_path).write_text(output + "\n")

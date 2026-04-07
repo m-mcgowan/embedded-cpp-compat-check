@@ -29,7 +29,7 @@ def test_markdown_report_has_detail_table():
 
 def test_markdown_report_has_failures():
     md = generate_markdown_report(LIBRARY, RESULTS)
-    assert "## Failures" in md
+    assert "## Failure Details" in md
     assert "optional not found" in md
 
 def test_json_report_structure():
