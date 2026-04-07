@@ -25,6 +25,7 @@ def run_library_build(
     board: str, standard: str,
     build_dir: Path | None = None,
     fixed_standard: bool = False,
+    lib_deps: list[str] | None = None,
     timeout: int = 600,
 ) -> BuildResult:
     """Run pio ci for a single library + example + board + standard combination.
@@ -34,12 +35,19 @@ def run_library_build(
 
     If fixed_standard is True, don't override the C++ standard flags
     (some frameworks break when their default flags are modified).
+
+    lib_deps adds extra library dependencies to the build (e.g. polyfills
+    or support libraries that an app would typically include).
     """
     cmd = [
         "pio", "ci",
         f"--lib={library_path}",
         f"--board={board}",
     ]
+    if lib_deps:
+        deps_str = ", ".join(lib_deps)
+        cmd.extend(["-O", f"lib_deps={deps_str}"])
+
     if not fixed_standard:
         std_num = standard.replace("c++", "")
         std_flag = f"-std=gnu++{std_num}"

@@ -199,10 +199,13 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
               help="Write report to file (default: stdout)")
 @click.option("--report-format", "report_fmt", default=None, type=click.Choice(["md", "json"]),
               help="Report format. Auto-detected from --report extension if omitted.")
+@click.option("--lib-deps", multiple=True,
+              help="Additional library dependencies for the build (repeatable). "
+                   "Accepts PIO library names, URLs, or local paths.")
 @click.option("--work-dir", default=".work", type=click.Path(),
               help="Build cache directory", show_default=True)
 def library(library_ref, platforms_dir, platform_filter, example_filter,
-            report_path, report_fmt, work_dir):
+            report_path, report_fmt, lib_deps, work_dir):
     """Test a PlatformIO library across embedded platforms and C++ standards.
 
     LIBRARY_REF is either a local directory path or a PlatformIO registry
@@ -359,6 +362,7 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
                     standard=standard,
                     build_dir=build_dir,
                     fixed_standard=platform.fixed_standard,
+                    lib_deps=list(lib_deps) if lib_deps else None,
                 )
                 status = "PASS" if result.success else "FAIL"
                 click.echo(f" {status} ({result.compile_time_ms}ms)")
