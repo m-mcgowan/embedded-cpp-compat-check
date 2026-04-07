@@ -58,6 +58,95 @@ def wrap_for_arduino(source: str) -> str:
     return source
 
 
+def generate_batch_project(
+    output_dir: Path,
+    platform: Platform,
+    standard: str,
+    test_files: list[tuple[Path, str]],  # (test_path, feature_key)
+    recipe: Recipe | None = None,
+) -> dict[str, str]:
+    """Generate a PIO project with all test files as separate sources.
+
+    Each test's main() is renamed to a unique function to avoid
+    symbol conflicts. Returns a dict mapping feature_key → source stem
+    (used to check which .o files were produced).
+
+    Args:
+        test_files: list of (test_file_path, feature_key) tuples
+    Returns:
+        dict mapping feature_key → stem name (e.g. "cpp17__optional")
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    src_dir = output_dir / "src"
+    src_dir.mkdir(exist_ok=True)
+
+    # Clean old source files (but preserve .pio/ for framework cache)
+    for old in src_dir.glob("*.cpp"):
+        old.unlink()
+
+    feature_to_stem: dict[str, str] = {}
+
+    for test_path, feature_key in test_files:
+        # Create unique stem from feature_key: "cpp17/optional" → "cpp17__optional"
+        stem = feature_key.replace("/", "__").replace(":", "__")
+        source = test_path.read_text()
+        if platform.framework == "arduino":
+            source = wrap_for_arduino(source)
+            # Rename _test_main/setup/loop to avoid conflicts between files
+            source = source.replace("_test_main", f"_test_{stem}")
+            source = source.replace("void setup()", f"void setup_{stem}()")
+            source = source.replace("void loop()", f"void loop_{stem}()")
+        feature_to_stem[feature_key] = stem
+        (src_dir / f"{stem}.cpp").write_text(source)
+
+    # Main entry point with real setup/loop (does nothing)
+    if platform.framework == "arduino":
+        (src_dir / "main.cpp").write_text(
+            "#include <Arduino.h>\nvoid setup() {}\nvoid loop() {}\n"
+        )
+    else:
+        (src_dir / "main.cpp").write_text(
+            "auto main() -> int { return 0; }\n"
+        )
+
+    # Generate platformio.ini (same logic as generate_pio_project)
+    pio = platform.platformio
+    ini_content = (
+        f"[env:test]\n"
+        f"platform = {pio['platform']}\n"
+        f"board = {pio['board']}\n"
+    )
+    if pio.get("framework"):
+        ini_content += f"framework = {pio['framework']}\n"
+
+    unflags = []
+    flags = []
+    if not platform.fixed_standard:
+        unflags.extend(_COMMON_DEFAULTS)
+        std_num = standard.replace("c++", "")
+        flags.append(f"-std=gnu++{std_num}")
+
+    if recipe:
+        if recipe.build_unflags:
+            unflags.extend(recipe.build_unflags.split())
+        if recipe.build_flags:
+            flags.extend(recipe.build_flags.split())
+
+    if unflags:
+        ini_content += f"build_unflags = {' '.join(unflags)}\n"
+    if flags:
+        ini_content += f"build_flags = {' '.join(flags)}\n"
+
+    if recipe and recipe.lib_deps:
+        ini_content += "lib_deps =\n"
+        for dep in recipe.lib_deps:
+            ini_content += f"    {dep}\n"
+
+    (output_dir / "platformio.ini").write_text(ini_content)
+
+    return feature_to_stem
+
+
 def generate_pio_project(
     output_dir: Path,
     platform: Platform,
