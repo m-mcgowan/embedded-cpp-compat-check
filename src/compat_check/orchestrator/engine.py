@@ -11,10 +11,9 @@ import json
 
 from compat_check.build.compiler import (
     extract_compiler_config, extract_linker_config,
-    compile_test, link_test,
 )
-from compat_check.build.project import generate_pio_project, wrap_for_arduino, inject_library_json_fixups
-from compat_check.build.runner import run_build, run_build_verbose
+from compat_check.build.project import generate_pio_project, generate_batch_project, wrap_for_arduino, inject_library_json_fixups
+from compat_check.build.runner import run_build, run_build_verbose, run_batch_build
 from compat_check.catalog.models import Feature
 from compat_check.orchestrator.manifest import Manifest
 from compat_check.orchestrator.results import classify_feature
@@ -84,13 +83,6 @@ class Orchestrator:
             slug = platform.slug + ("+recipe" if recipe else "")
 
             for standard in platform.standards:
-                # Skip standards below the framework's minimum (if known)
-                if platform.min_framework_standard:
-                    min_num = int(platform.min_framework_standard.replace("c++", ""))
-                    std_num = int(standard.replace("c++", ""))
-                    if std_num < min_num:
-                        continue
-
                 results = self._run_platform_standard(
                     platform, standard, manifest, dry_run,
                     recipe=recipe, slug_override=slug,
@@ -237,47 +229,33 @@ class Orchestrator:
                 shutil.rmtree(probe_pio)
             return []
 
-        # Stage 2: Fast compile (direct compiler or fallback to PIO)
-        obj_dir = self.work_dir / slug / standard / "objs"
-        obj_dir.mkdir(parents=True, exist_ok=True)
+        # Stage 2: Batch PIO build
+        # All tests compiled in one project — framework is built once,
+        # results match real PIO developer experience.
+        test_files_for_batch = [
+            (test_file, feature_key)
+            for test_file, meta, feature_key, test_hash in tests_to_build
+        ]
 
-        compile_results = {}  # feature_key -> (success, error, obj_path)
+        batch_dir = self.work_dir / slug / standard / "batch_project"
+        feature_to_stem = generate_batch_project(
+            batch_dir, platform, standard, test_files_for_batch, recipe=recipe,
+        )
+
+        # Inject library.json fixups for recipe dependencies
+        if recipe and recipe.lib_deps:
+            inject_library_json_fixups(batch_dir)
+
+        batch_results = run_batch_build(batch_dir, feature_to_stem)
+
+        # Classify results
         for test_file, meta, feature_key, test_hash in tests_to_build:
-            source_content = test_file.read_text()
-            if platform.framework == "arduino":
-                source_content = wrap_for_arduino(source_content)
-
-            wrapped_path = obj_dir / f"{test_file.stem}.cpp"
-            wrapped_path.write_text(source_content)
-            obj_path = obj_dir / f"{test_file.stem}.o"
-
-            if compiler_config:
-                success, error = compile_test(compiler_config, wrapped_path, obj_path)
-            else:
-                # Fallback: use PIO per-test (slow path)
-                test_project_dir = self.work_dir / slug / standard / "test_project"
-                generate_pio_project(test_project_dir, platform, standard, test_file)
-                fallback_result = run_build(test_project_dir, core_dir=core_dir)
-                success = fallback_result.success
-                error = fallback_result.error
-
-            compile_results[feature_key] = (success, error, obj_path)
-
-        # Stage 3: Verification link (only for tests that compiled)
-        # Link verification is informational — compile success is the
-        # primary signal. Complex linker setups (RP2040, ESP32) can fail
-        # to link even when compilation succeeds, due to platform-specific
-        # libraries and boot code we don't fully capture.
-        for test_file, meta, feature_key, test_hash in tests_to_build:
-            compiled, compile_error, obj_path = compile_results[feature_key]
             macro_name = meta.get("macro", "")
             macro_val = macro_values.get(macro_name, 0)
 
-            link_failure = False
-            if compiled and linker_config:
-                link_ok, link_error = link_test(linker_config, obj_path)
-                if not link_ok:
-                    link_failure = True
+            batch_r = batch_results.get(feature_key)
+            compiled = batch_r.success if batch_r else False
+            compile_error = batch_r.error if batch_r and not batch_r.success else None
 
             status = classify_feature(macro_val, compiled)
 
@@ -291,11 +269,11 @@ class Orchestrator:
                 "macro_value": macro_val,
                 "compiles": compiled,
                 "status": status.value,
-                "compile_time_ms": 0,
+                "compile_time_ms": batch_r.compile_time_ms if batch_r else 0,
                 "compiler": compiler_config.compiler if compiler_config else "",
                 "timestamp": datetime.now().isoformat(),
                 "error_output": (compile_error or "")[:500] if not compiled else None,
-                "link_failure": link_failure,
+                "link_failure": False,
             }
             results.append(result)
 
@@ -303,17 +281,6 @@ class Orchestrator:
                 slug, platform.version, probe_hash,
                 feature_key, test_hash, status.value
             )
-
-        # Cleanup — when recipe is active, keep .pio/ intact since
-        # the compiler config references library include paths in libdeps/
-        # and framework objects in build/ are reused across standards.
-        # Without recipe, delete .pio/ to save disk space.
-        if not recipe:
-            probe_pio = project_dir / ".pio"
-            if probe_pio.exists():
-                shutil.rmtree(probe_pio)
-        if obj_dir.exists():
-            shutil.rmtree(obj_dir)
 
         return results
 
