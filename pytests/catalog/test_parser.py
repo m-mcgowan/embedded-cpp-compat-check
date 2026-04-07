@@ -25,7 +25,7 @@ def test_parse_catalog_attributes():
     features = parse_catalog(FIXTURES / "small_catalog.yaml")
     attrs = [f for f in features if f.kind == FeatureKind.ATTRIBUTE]
     assert len(attrs) == 1
-    assert attrs[0].name == "nodiscard"
+    assert attrs[0].name == "__has_cpp_attribute(nodiscard)"
 
 def test_parse_catalog_infers_standard_from_support():
     features = parse_catalog(FIXTURES / "small_catalog.yaml")

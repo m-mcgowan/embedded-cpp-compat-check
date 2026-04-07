@@ -8,7 +8,7 @@ def test_generate_summary_table_full_support():
     ]
     table = generate_summary_table(results)
     assert "esp32" in table
-    assert "full" in table
+    assert "**100%**" in table
 
 
 def test_generate_summary_table_partial_support():
@@ -17,7 +17,7 @@ def test_generate_summary_table_partial_support():
         {"platform": "avr", "standard": "c++17", "feature": "cpp17/variant", "status": "unsupported"},
     ]
     table = generate_summary_table(results)
-    assert "partial" in table
+    assert "**50%**" in table
 
 
 def test_generate_summary_table_no_support():
@@ -25,4 +25,4 @@ def test_generate_summary_table_no_support():
         {"platform": "avr", "standard": "c++20", "feature": "cpp20/concepts", "status": "unsupported"},
     ]
     table = generate_summary_table(results)
-    assert "\u2014" in table
+    assert "**0%**" in table

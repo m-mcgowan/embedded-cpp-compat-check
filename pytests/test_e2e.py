@@ -14,7 +14,7 @@ FIXTURES = Path(__file__).parent / "catalog" / "fixtures"
 
 
 def test_e2e_pipeline(tmp_path):
-    """Full pipeline: catalog -> probe -> compile -> results -> summary."""
+    """Full pipeline: catalog -> probe -> batch build -> results -> summary."""
     features = parse_catalog(FIXTURES / "small_catalog.yaml")
 
     platform_yaml = tmp_path / "platform.yaml"
@@ -54,18 +54,25 @@ def test_e2e_pipeline(tmp_path):
         max_parallel=1,
     )
 
-    mock_build = BuildResult(success=True, compile_time_ms=50, output="", error="")
+    mock_probe_build = BuildResult(success=True, compile_time_ms=50, output="", error="")
     probe_strings = "__cpp_structured_bindings=201606\n__SENTINEL__=-1\n"
-
-    # Verbose output that won't parse (no main.cpp line) -> triggers fallback to PIO
     mock_verbose = ""
 
+    # Mock batch build: test compiled successfully
+    mock_batch_results = {
+        "cpp17/structured_bindings": BuildResult(
+            success=True, compile_time_ms=50, output="", error="",
+        ),
+    }
+
     with patch("compat_check.orchestrator.engine.run_build_verbose",
-               return_value=(mock_build, mock_verbose)), \
-         patch("compat_check.orchestrator.engine.run_build",
-               return_value=mock_build), \
+               return_value=(mock_probe_build, mock_verbose)), \
+         patch("compat_check.orchestrator.engine.run_batch_build",
+               return_value=mock_batch_results), \
          patch("compat_check.orchestrator.engine.extract_probe_strings",
-               return_value=probe_strings):
+               return_value=probe_strings), \
+         patch("compat_check.orchestrator.engine.generate_batch_project",
+               return_value={"cpp17/structured_bindings": "cpp17__structured_bindings"}):
         results = orch.run()
 
     assert len(results) >= 1
