@@ -23,7 +23,6 @@ class Platform:
     framework: str = ""
     board_family: str = ""
     fixed_standard: bool = False
-    min_framework_standard: str = ""
     recipe: Recipe | None = None
     platformio: dict = field(default_factory=dict)
     release_monitor: dict = field(default_factory=dict)
