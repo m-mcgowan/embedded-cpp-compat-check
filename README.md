@@ -1,12 +1,17 @@
 # Embedded C++ Compatibility Check
 
-Test which C++ standard library features actually work on embedded platforms — not just what the compiler claims to support.
+Find out which C++ features actually work on embedded platforms — not just what the compiler claims to support.
 
-## Why?
+## Features
 
-Embedded toolchains often claim C++17/20 support but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool tests 394 features across 11 platforms to find the truth.
+- **394 SD-6 feature tests** — every language feature, library type, and attribute in the C++ standard's feature-test macro catalog
+- **12 platforms** — AVR, ARM Cortex-M, ESP32, RP2040, Teensy, and more
+- **Real PIO builds** — tests are compiled through PlatformIO exactly like your code, including framework precompilation
+- **Library compatibility checker** — test your PlatformIO library's examples across platforms and C++ standards
+- **Static site** — browsable HTML report with per-feature cppreference links and expandable compiler errors
+- **Error audit** — automated classification of failures to catch test bugs vs real incompatibilities
 
-## Results
+## Compatibility Matrix
 
 <!-- compat-matrix-start -->
 | Platform | Board | Standards | Effective Support |
@@ -25,90 +30,63 @@ Embedded toolchains often claim C++17/20 support but ship incomplete standard li
 | AVR Arduino Uno | ATmega328P | c++11–c++17 | **86%** |
 <!-- compat-matrix-end -->
 
-"Effective support" = features that compile successfully (supported + unreported), regardless of whether the SD-6 feature-test macro is defined.
+"Effective support" = percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined.
 
-### Status classifications
-
-- **supported** — macro defined and feature compiles
-- **unsupported** — feature does not compile
-- **macro_lies** — macro claims support but compile fails
-- **unreported** — feature compiles but macro not defined
+| Counts as working | Counts as failing |
+|---|---|
+| **supported** — macro defined and compiles | **macro_lies** — macro defined but compile fails |
+| **unreported** — compiles but no macro | **unsupported** — does not compile |
 
 ## Quick Start
 
 ```bash
-# Setup
+# Install
 python3 -m venv .venv
 .venv/bin/pip install -e .
 
-# Run feature tests across all platforms
+# Run feature tests across all platforms (~20 min)
 .venv/bin/compat-check run
 
-# Run a single platform
+# Run a single platform (~2 min)
 .venv/bin/compat-check run --platform stm32-nucleo-f411re
 
-# Check a library's compatibility across platforms
-.venv/bin/compat-check library ~/path/to/my-library --report report.md
-
-# Check a library on specific platforms
-.venv/bin/compat-check library ~/path/to/my-library --platform esp32s3-arduino-v3 --platform avr-uno
-
-# Generate the static site
+# Generate the browsable HTML site
 .venv/bin/compat-check generate
+open site/index.html
 ```
 
-## Commands
+## Check Your Library
 
-### `compat-check run` — Feature compatibility tests
+Test whether your PlatformIO library builds across embedded platforms at each C++ standard. Your library needs:
 
-Tests individual C++ features against target platforms.
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--platform SLUG` | all | Run only this platform |
-| `--test NAME` | all | Run only this test |
-| `--parallel N` | 4 | Max parallel builds (1 = serial) |
-| `--dry-run` | | Show what would be built |
-
-The first run per platform downloads toolchains (~200MB each) and takes several minutes for PIO probe builds. Subsequent runs are incremental — only changed tests are recompiled.
-
-### `compat-check library` — Library compatibility
-
-Tests a PlatformIO library's examples against embedded platforms to find which C++ standards work. Your library needs:
 - A `library.json` or `library.properties` file
 - An `examples/` directory with `.ino` or `.cpp` example sketches
 
+### Run locally
+
 ```bash
-# Test across all platforms
+# Test across all 12 platforms
 compat-check library ~/my-library --report report.md
 
 # Test specific platforms
 compat-check library ~/my-library \
   --platform stm32-nucleo-f411re \
+  --platform esp32s3-arduino-v3 \
   --platform avr-uno
 
-# JSON output for CI
+# JSON output for automation
 compat-check library ~/my-library --report-format json --report results.json
 ```
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--platform SLUG` | all | Test only these platforms (repeatable) |
-| `--example NAME` | all | Test only these examples (repeatable) |
-| `--report PATH` | stdout | Write report to file |
-| `--report-format FMT` | md | `md` or `json` |
-| `--work-dir PATH` | `.work` | Build cache directory |
+### What you get
 
-**How it works:** For each platform, the tool tests the highest supported C++ standard first. If it fails, lower standards are skipped (they can't do better). If it passes, it tests downward to find the minimum working standard. Build artifacts are cached between runs.
-
-#### Example output
-
-Testing [nonstd-lite-bundle](https://github.com/m-mcgowan/nonstd-lite-bundle) on STM32 and AVR:
+For each platform, the tool tests the highest supported C++ standard first. If it fails, lower standards are skipped (they can't do better). If it passes, it tests downward to find the minimum working standard.
 
 ```
-$ compat-check library ~/nonstd-lite-bundle --platform stm32-nucleo-f411re --platform avr-uno
+$ compat-check library ~/nonstd-lite-bundle \
+    --platform stm32-nucleo-f411re --platform avr-uno
+
 Library: nonstd-lite-bundle v1.1.0
-Platforms: ['stm32-nucleo-f411re', 'avr-uno']
 Examples: ['optional_demo', 'span_demo', 'string_view_demo', 'variant_demo']
   [1/28] stm32-nucleo-f411re c++20 optional_demo... PASS (5323ms)
   [2/28] stm32-nucleo-f411re c++17 optional_demo... PASS (3836ms)
@@ -118,10 +96,9 @@ Examples: ['optional_demo', 'span_demo', 'string_view_demo', 'variant_demo']
   [17/28] avr-uno c++17 optional_demo... FAIL (2580ms)
   [18/28] avr-uno c++14 optional_demo... SKIP
   [19/28] avr-uno c++11 optional_demo... SKIP
-  ...
 ```
 
-The generated report:
+The generated report shows the minimum C++ standard that works on each platform:
 
 ```markdown
 | Platform             | Min Standard | Examples |
@@ -130,9 +107,7 @@ The generated report:
 | avr-uno              | —           | 0/4      |
 ```
 
-This shows nonstd-lite-bundle works at all standards on STM32 but fails on AVR (avr-libc lacks the standard library headers the polyfill depends on).
-
-#### Using in CI
+### Add to your CI
 
 Add to your GitHub Actions workflow to test library compatibility on every push:
 
@@ -150,19 +125,18 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install compat-check
+      - name: Install tools
         run: |
+          pip install platformio
           pip install git+https://github.com/m-mcgowan/embedded-cpp-compat-check.git
-          # First run downloads PlatformIO toolchains (~200MB each)
 
-      - name: Run compatibility check
+      - name: Check compatibility
         run: |
           compat-check library . \
             --platform stm32-nucleo-f411re \
             --platform esp32s3-arduino-v3 \
             --platform avr-uno \
-            --report compatibility.md \
-            --report-format md
+            --report compatibility.md
 
       - name: Upload report
         uses: actions/upload-artifact@v4
@@ -177,24 +151,56 @@ jobs:
           path: compatibility.md
 ```
 
-This builds your library's examples against each platform at every supported C++ standard and produces a compatibility matrix. The sticky comment posts the report directly to your PR.
+### CLI reference
 
-### `compat-check generate` — Static site
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--platform SLUG` | all | Test only these platforms (repeatable) |
+| `--example NAME` | all | Test only these examples (repeatable) |
+| `--report PATH` | stdout | Write report to file |
+| `--report-format FMT` | md | `md` or `json` |
+| `--work-dir PATH` | `.work` | Build cache directory |
 
-Generates an HTML site and updates the README from results.
+## Feature Compatibility Tests
 
-### `compat-check sync` — Update catalog
+### `compat-check run`
 
-Syncs the feature catalog from upstream SD-6 data.
+Tests individual C++ features against target platforms using real PlatformIO builds.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--platform SLUG` | all | Run only this platform |
+| `--test NAME` | all | Run only this test |
+| `--parallel N` | 4 | Max parallel builds (1 = serial) |
+| `--dry-run` | | Show what would be built |
+
+The first run per platform downloads toolchains (~200MB each). Subsequent runs are incremental — only changed tests are recompiled. A full 12-platform sweep takes ~20 minutes.
+
+### `compat-check generate`
+
+Generates a browsable HTML site and updates the compatibility matrix in this README.
+
+### `compat-check sync`
+
+Syncs the feature catalog from the upstream [SD-6 feature-test macro database](https://github.com/cpplearner/feature-test-macro).
 
 ## How It Works
 
 Two-stage pipeline per platform per C++ standard:
 
-1. **Macro probe** — PIO builds a source that embeds SD-6 feature-test macro values as strings, then `strings` extracts them from the ELF. Also captures the exact compiler command for stage 2.
-2. **Compile tests** — runs the extracted compiler command directly (`g++ -c`) on each test file. Fast (~0.1s per test, no PIO overhead).
+1. **Macro probe** — PIO builds a source that embeds SD-6 feature-test macro values as strings, then `strings` extracts them from the ELF.
+2. **Batch compile** — all test files are placed in a single PIO project and built with `SCONSFLAGS="-k"` (keep going on errors). Pass/fail is determined by which `.o` files were produced. This matches real developer experience — the framework is precompiled once, and test code is compiled against it.
 
 Results are classified by comparing the macro probe (what the compiler claims) against the compile test (what actually works).
+
+### Error audit
+
+After a sweep, run the audit script to check that every failure is about the feature being tested (not a framework bug or test bug):
+
+```bash
+python scripts/audit_errors.py              # full report
+python scripts/audit_errors.py --suspects-only  # just potential problems
+```
 
 ## Adding Tests
 
@@ -216,7 +222,7 @@ auto main() -> int {
 
 Add entries to `scripts/generate_tests.py` and run:
 ```bash
-.venv/bin/python scripts/generate_tests.py
+python scripts/generate_tests.py
 ```
 
 ## Adding Platforms
@@ -229,6 +235,7 @@ slug: short-identifier
 version: "1.0.0"
 architecture: arm-cortex-m4
 mcu: chip_name
+board_family: Short board description
 build_system: platformio
 framework: arduino
 
@@ -238,20 +245,10 @@ platformio:
   framework: arduino
 
 standards: [c++11, c++14, c++17, c++20]
-
-release_monitor:
-  type: platformio_registry
-  platform: platformio-platform-name
 ```
 
 Find board IDs with `pio boards | grep -i <board>`.
 
-## Incremental Builds
-
-The manifest (`results/manifest.json`) tracks hashes of probe source and test files per platform. Unchanged tests are skipped. To force a full rebuild, delete `results/<slug>/` or the manifest entry.
-
-The `.work/` directory contains PlatformIO build artifacts and cached toolchains. Don't delete it unless you want to re-download (~2GB total for all 11 platforms).
-
 ## Related Projects
 
-- **[nonstd-lite-bundle](https://github.com/m-mcgowan/nonstd-lite-bundle)** — Polyfill library providing `std::optional`, `std::string_view`, `std::variant`, `std::span` on platforms missing them. Transparent — write `std::optional` and it works everywhere. Tested on STM32, SAMD, ESP32, RP2040, nRF52840.
+- **[nonstd-lite-bundle](https://github.com/m-mcgowan/nonstd-lite-bundle)** — Polyfill library providing `std::optional`, `std::string_view`, `std::variant`, `std::span` on platforms missing them. Write `std::optional` and it works everywhere.
