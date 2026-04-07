@@ -202,10 +202,13 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
 @click.option("--lib-deps", multiple=True,
               help="Additional library dependencies for the build (repeatable). "
                    "Accepts PIO library names, URLs, or local paths.")
+@click.option("--recipe", is_flag=True,
+              help="Include platform recipes (e.g. avr-libstdcpp for AVR). "
+                   "Adds each platform's recipe lib_deps to the build.")
 @click.option("--work-dir", default=".work", type=click.Path(),
               help="Build cache directory", show_default=True)
 def library(library_ref, platforms_dir, platform_filter, example_filter,
-            report_path, report_fmt, lib_deps, work_dir):
+            report_path, report_fmt, lib_deps, recipe, work_dir):
     """Test a PlatformIO library across embedded platforms and C++ standards.
 
     LIBRARY_REF is either a local directory path or a PlatformIO registry
@@ -355,6 +358,11 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
                     f"  [{done}/{total}] {platform.slug} {standard} {example.name}...",
                     nl=False,
                 )
+                # Combine explicit --lib-deps with platform recipe deps
+                all_deps = list(lib_deps) if lib_deps else []
+                if recipe and platform.recipe and platform.recipe.lib_deps:
+                    all_deps.extend(platform.recipe.lib_deps)
+
                 result = run_library_build(
                     library_path=library_dir,
                     example_path=example.path,
@@ -362,7 +370,7 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
                     standard=standard,
                     build_dir=build_dir,
                     fixed_standard=platform.fixed_standard,
-                    lib_deps=list(lib_deps) if lib_deps else None,
+                    lib_deps=all_deps or None,
                 )
                 status = "PASS" if result.success else "FAIL"
                 click.echo(f" {status} ({result.compile_time_ms}ms)")
