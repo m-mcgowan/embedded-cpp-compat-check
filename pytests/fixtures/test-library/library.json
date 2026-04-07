@@ -1,0 +1,7 @@
+{
+  "name": "test-library",
+  "version": "1.0.0",
+  "description": "Minimal library for CI acceptance testing",
+  "platforms": "*",
+  "frameworks": "arduino"
+}
