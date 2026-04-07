@@ -148,6 +148,25 @@ def _abs_framework(feat, macro, err, err_file):
     return 'macro "abs"' in err
 
 
+@rule("cpp_standard_too_low",
+      "Feature requires a higher C++ standard than requested",
+      "legitimate")
+def _cpp_standard_too_low(feat, macro, err, err_file):
+    return "only available with '-std=" in err
+
+
+@rule("random_header_includes_only",
+      "Error with only include-chain lines — likely Arduino.h macro conflict with <random>",
+      "framework")
+def _random_includes_only(feat, macro, err, err_file):
+    # When <random> conflicts with Arduino's random() macro, the error
+    # output may only contain "In file included from" lines (truncated)
+    if "random" not in _feat_name(feat):
+        return False
+    lines = [l.strip() for l in err.strip().split("\n") if l.strip()]
+    return all("In file included from" in l or "from " in l for l in lines)
+
+
 @rule("framework_header_error",
       "Error originates in framework/system header, not test code",
       "framework")
@@ -168,17 +187,72 @@ _KNOWN_DEPS = {
     "complex_udls": {"complex"},
     "string_udls": {"string"},
     "saturation_arithmetic": {"add_sat", "sub_sat", "mul_sat", "div_sat", "saturate_cast"},
+    "logical_traits": {"conjunction_v", "disjunction_v", "negation_v", "conjunction", "disjunction"},
+    "noexcept_function_type": {"is_same_v"},
+    "nonmember_container_access": {"size", "empty", "data"},
+    "raw_memory_algorithms": {"destroy", "destroy_at", "uninitialized_move"},
+    "type_trait_variable_templates": {"is_integral_v", "is_void_v", "is_same_v"},
+    "math_special_functions": {"riemann_zeta", "beta", "laguerre"},
+    "bitops": {"popcount", "countl_zero", "countr_zero", "rotl", "rotr"},
+    "char8_t_lib": {"u8string"},
+    "int_pow2": {"has_single_bit", "bit_ceil", "bit_floor"},
+    "integer_comparison_functions": {"cmp_less", "cmp_greater", "cmp_equal"},
+    "interpolate": {"midpoint", "lerp"},
+    "constexpr_memory": {"construct_at", "destroy_at"},
+    "constexpr_functional": {"invoke"},
+    "remove_cvref": {"is_same_v", "remove_cvref_t"},
+    "syncbuf": {"osyncstream"},
+    "jthread": {"stop_source", "stop_token", "jthread"},
+    "common_reference": {"common_reference_t", "common_reference"},
+    "common_reference_wrapper": {"common_reference_t"},
+    "unwrap_ref": {"unwrap_ref_decay_t", "unwrap_reference_t", "unwrap_ref_decay"},
+    "generic_unordered_lookup": {"string_view"},
+    "constrained_equality": {"optional"},
+    "conditional_explicit": {"explicit"},
+    "freestanding_random": {"random"},
+    "ranges_generate_random": {"random"},
+    "associative_heterogeneous_erasure": {"erase", "string_view"},
+    "memory_resource": {"pmr"},
+    "parallel_algorithm": {"execution"},
+    "concepts_lib": {"integral", "concepts"},
+    "math_constants": {"numbers"},
+    "polymorphic_allocator": {"pmr"},
+    "ranges": {"views", "ranges"},
+    "conditional_explicit": {"explicit"},
 }
+
+
+def _extract_missing_symbol(err: str) -> str | None:
+    """Extract the first missing std:: symbol from an error message."""
+    # Only look at the first error line to avoid matching secondary errors
+    first_error = ""
+    for line in err.split("\n"):
+        if "error:" in line:
+            first_error = line
+            break
+    if not first_error:
+        return None
+    # Try both patterns on the first error line only
+    patterns = [
+        r"'(\w+)' is not a member of 'std'",
+        r"'(\w+)' in namespace 'std' does not name",
+        r"'std::(\w+)' has not been declared",
+        r"has no member named '(\w+)'",
+    ]
+    for pat in patterns:
+        m = re.search(pat, first_error)
+        if m:
+            return m.group(1)
+    return None
 
 
 @rule("missing_symbol_legit",
       "Missing std:: symbol matches the feature being tested",
       "legitimate")
 def _missing_symbol_legit(feat, macro, err, err_file):
-    m = re.search(r"'(\w+)' is not a member of 'std'", err)
-    if not m:
+    missing = _extract_missing_symbol(err)
+    if not missing:
         return False
-    missing = m.group(1)
     feat_name = _feat_name(feat)
     if _symbol_matches_feature(missing, feat_name):
         return True
@@ -191,10 +265,10 @@ def _missing_symbol_legit(feat, macro, err, err_file):
       "Missing std:: symbol does NOT match the feature being tested",
       "suspect")
 def _missing_symbol_suspect(feat, macro, err, err_file):
-    m = re.search(r"'(\w+)' is not a member of 'std'", err)
-    if not m:
+    missing = _extract_missing_symbol(err)
+    if not missing:
         return False
-    return not _symbol_matches_feature(m.group(1), _feat_name(feat))
+    return not _symbol_matches_feature(missing, _feat_name(feat))
 
 
 @rule("deprecated_removed",
@@ -228,7 +302,7 @@ def _framework_cascade(feat, macro, err, err_file):
     # failure is framework-caused even if the first error is in test code
     for line in err.split("\n"):
         if ".platformio/" in line and ("error:" in line or "In file included from" in line):
-            if "objs/" not in line:
+            if "/src/" not in line and "objs/" not in line:
                 return True
     return False
 
@@ -238,8 +312,9 @@ def _framework_cascade(feat, macro, err, err_file):
       "legitimate")
 def _unclassified(feat, macro, err, err_file):
     # Catch-all: if the error is in the test file, assume it's about the feature
+    # Batch builds use src/, old direct-compile used objs/
     first = _first_error_file(err)
-    return "objs/" in first
+    return "objs/" in first or "/src/" in first or "src/" in first
 
 
 # ── Classification engine ──
