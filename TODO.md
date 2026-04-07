@@ -12,18 +12,39 @@ The architecture separates build mechanics (`generate_batch_project` + `run_batc
 
 The `build_system` field in platform YAMLs exists but is not currently used — all platforms assume PlatformIO.
 
-## GitHub Action for library authors
+## PlatformIO registry support for library checker
 
-Reusable GitHub Action so library authors can add embedded compatibility testing with minimal setup:
+Test libraries directly from the PIO registry without downloading them first:
 
-```yaml
-- uses: m-mcgowan/embedded-cpp-compat-check@v0.1
-  with:
-    platforms: stm32-nucleo-f411re esp32s3-arduino-v3 avr-uno
-    report: compatibility.md
+```bash
+compat-check library ArduinoJson              # registry, latest version
+compat-check library ArduinoJson@6.21.0       # registry, pinned version
+compat-check library ~/my-library             # local path
 ```
 
-The action handles Python/PIO setup, toolchain caching, and report generation. As the tool grows, library authors get new capabilities without changing their workflow.
+Default behavior: if the argument exists as a directory, treat as local path; otherwise treat as a registry package name. Explicit flags (`--registry`, `--local`) to disambiguate.
+
+Uses `pio pkg install` to download the package to a temp directory, then runs the same example-discovery and build pipeline.
+
+## GitHub Action improvements
+
+The composite action (`action/action.yml`) is shipped in 0.1. Future improvements:
+
+- **Toolchain caching** — cache PIO toolchains between runs (`~/.platformio/packages/`) for faster CI
+- **Fail on regression** — `--fail-on regression` to fail the check when a previously-passing platform breaks
+- **Minimum platform threshold** — `--fail-on "min-platforms=3"` to enforce a coverage floor
+
+## GitHub Marketplace App
+
+Long-term: a GitHub App that library authors install once from the marketplace. It automatically runs compatibility checks on every PR without a workflow file — like Codecov or SonarCloud.
+
+Requires:
+- GitHub App registered on the marketplace
+- Hosted service to receive PR webhooks and run checks
+- Posts results back as a Check Run with annotations
+- Infrastructure for running PIO builds (hosted runners or cloud build service)
+
+The composite action is the stepping stone — same user-facing contract, self-hosted execution.
 
 ## Features-used analysis
 

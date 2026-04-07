@@ -1,0 +1,75 @@
+name: Embedded C++ Compatibility Check
+description: Test a PlatformIO library across embedded platforms and C++ standards
+branding:
+  icon: cpu
+  color: blue
+
+inputs:
+  library:
+    description: Path to the library directory (default: current directory)
+    required: false
+    default: '.'
+  platforms:
+    description: Space-separated platform slugs to test (default: auto-detected from library.json platforms field)
+    required: false
+    default: ''
+  report:
+    description: Path to write the compatibility report
+    required: false
+    default: 'compatibility.md'
+  report-format:
+    description: Report format (md or json, auto-detected from report extension if omitted)
+    required: false
+    default: ''
+  setup-python:
+    description: Set up Python if not already available (set to 'false' if your workflow already configures Python)
+    required: false
+    default: 'true'
+  setup-platformio:
+    description: Install PlatformIO if not already available (set to 'false' if your workflow already installs it)
+    required: false
+    default: 'true'
+  python-version:
+    description: Python version to use (only applies when setup-python is true)
+    required: false
+    default: '3.12'
+
+outputs:
+  report-path:
+    description: Path to the generated report file
+    value: ${{ inputs.report }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      if: inputs.setup-python == 'true'
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install PlatformIO
+      if: inputs.setup-platformio == 'true'
+      shell: bash
+      run: pip install platformio
+
+    - name: Install compat-check
+      shell: bash
+      run: pip install "git+https://github.com/m-mcgowan/embedded-cpp-compat-check.git@${{ github.action_ref || 'main' }}"
+
+    - name: Run compatibility check
+      shell: bash
+      run: |
+        ARGS="--report ${{ inputs.report }}"
+
+        if [ -n "${{ inputs.report-format }}" ]; then
+          ARGS="$ARGS --report-format ${{ inputs.report-format }}"
+        fi
+
+        if [ -n "${{ inputs.platforms }}" ]; then
+          for plat in ${{ inputs.platforms }}; do
+            ARGS="$ARGS --platform $plat"
+          done
+        fi
+
+        compat-check library ${{ inputs.library }} $ARGS

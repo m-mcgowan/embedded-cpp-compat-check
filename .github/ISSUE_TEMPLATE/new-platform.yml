@@ -1,0 +1,59 @@
+name: Request a new platform
+description: Suggest an embedded platform to add to the compatibility matrix
+labels: ["platform-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a platform! The more platforms we test, the more useful the compatibility matrix becomes.
+
+  - type: input
+    id: board
+    attributes:
+      label: Board name
+      description: The specific board or dev kit (e.g. "Arduino Nano ESP32", "STM32 Blue Pill")
+      placeholder: e.g. Adafruit Feather nRF52840 Express
+    validations:
+      required: true
+
+  - type: input
+    id: mcu
+    attributes:
+      label: MCU / chip
+      description: The microcontroller on the board
+      placeholder: e.g. nRF52840, STM32F103C8, ESP32-C3
+
+  - type: input
+    id: pio_board
+    attributes:
+      label: PlatformIO board ID
+      description: "Run `pio boards | grep -i <name>` to find it, or check [PlatformIO boards](https://registry.platformio.org/search?t=board)"
+      placeholder: e.g. adafruit_feather_nrf52840
+
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      options:
+        - Arduino
+        - ESP-IDF
+        - Zephyr
+        - Mbed
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this platform useful to test?
+      description: Is it popular? Does it have known C++ compatibility issues? Is there a specific library you'd like to test on it?
+      placeholder: e.g. "Popular for BLE projects, would like to know if std::variant works"
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Would you like to contribute it?
+      description: Adding a platform is straightforward — just a YAML file. See "Adding Platforms" in the README.
+      options:
+        - label: I'd like to submit a PR to add this platform

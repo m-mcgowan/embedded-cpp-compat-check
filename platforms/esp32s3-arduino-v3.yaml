@@ -1,4 +1,4 @@
-name: ESP32-S3 (Arduino v3)
+name: ESP32-S3 (pioarduino)
 slug: esp32s3-arduino-v3
 version: "55.03.36"
 architecture: xtensa
