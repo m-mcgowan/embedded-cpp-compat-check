@@ -84,7 +84,7 @@ class Orchestrator:
             slug = platform.slug + ("+recipe" if recipe else "")
 
             for standard in platform.standards:
-                # Skip standards below the framework's minimum
+                # Skip standards below the framework's minimum (if known)
                 if platform.min_framework_standard:
                     min_num = int(platform.min_framework_standard.replace("c++", ""))
                     std_num = int(standard.replace("c++", ""))
@@ -159,50 +159,54 @@ class Orchestrator:
         macro_values = {}
         compiler_config = None
         linker_config = None
-        if probe_result.success:
-            raw = extract_probe_strings(project_dir)
-            macro_values = parse_probe_output(raw)
-            try:
-                compiler_config = extract_compiler_config(verbose_output)
-                # Ensure the -std flag is present (PIO's unflag/flag
-                # mechanism can strip it from the actual compiler command)
-                std_flag = f'-std=gnu++{standard.replace("c++", "")}'
-                if not any('std=' in f for f in compiler_config.flags):
-                    compiler_config.flags.append(std_flag)
-                # Add library include paths from recipe dependencies.
-                # PIO's LDF only adds library -I flags for files that
-                # directly use them, but our test files need them too.
-                # Use absolute paths since g++ -c may run from a
-                # different working directory.
-                if recipe and recipe.lib_deps:
-                    libdeps_dir = project_dir / ".pio" / "libdeps"
-                    if libdeps_dir.exists():
-                        for env_dir in libdeps_dir.iterdir():
-                            for lib_dir in env_dir.iterdir():
-                                inc = lib_dir / "include"
-                                if inc.is_dir():
-                                    compiler_config.flags.insert(0, f"-I{inc.resolve()}")
-                linker_config = extract_linker_config(verbose_output)
-                # Resolve relative paths in linker config to absolute
-                # (PIO outputs paths relative to its project dir)
-                linker_config.objects = [
-                    str(project_dir / obj) if not Path(obj).is_absolute() else obj
-                    for obj in linker_config.objects
-                ]
-                if linker_config.probe_main_obj and not Path(linker_config.probe_main_obj).is_absolute():
-                    linker_config.probe_main_obj = str(project_dir / linker_config.probe_main_obj)
-                linker_config.scripts = [
-                    str(project_dir / s) if not Path(s).is_absolute() else s
-                    for s in linker_config.scripts
-                ]
-                # Resolve relative -L paths in flags
-                linker_config.flags = [
-                    f'-L{project_dir / flag[2:]}' if flag.startswith('-L') and not Path(flag[2:]).is_absolute() else flag
-                    for flag in linker_config.flags
-                ]
-            except ValueError:
-                compiler_config = None
-                linker_config = None
+        if not probe_result.success:
+            # Probe failed — the framework can't compile at this standard.
+            # No point running individual tests.
+            return results
+
+        raw = extract_probe_strings(project_dir)
+        macro_values = parse_probe_output(raw)
+        try:
+            compiler_config = extract_compiler_config(verbose_output)
+            # Ensure the -std flag is present (PIO's unflag/flag
+            # mechanism can strip it from the actual compiler command)
+            std_flag = f'-std=gnu++{standard.replace("c++", "")}'
+            if not any('std=' in f for f in compiler_config.flags):
+                compiler_config.flags.append(std_flag)
+            # Add library include paths from recipe dependencies.
+            # PIO's LDF only adds library -I flags for files that
+            # directly use them, but our test files need them too.
+            # Use absolute paths since g++ -c may run from a
+            # different working directory.
+            if recipe and recipe.lib_deps:
+                libdeps_dir = project_dir / ".pio" / "libdeps"
+                if libdeps_dir.exists():
+                    for env_dir in libdeps_dir.iterdir():
+                        for lib_dir in env_dir.iterdir():
+                            inc = lib_dir / "include"
+                            if inc.is_dir():
+                                compiler_config.flags.insert(0, f"-I{inc.resolve()}")
+            linker_config = extract_linker_config(verbose_output)
+            # Resolve relative paths in linker config to absolute
+            # (PIO outputs paths relative to its project dir)
+            linker_config.objects = [
+                str(project_dir / obj) if not Path(obj).is_absolute() else obj
+                for obj in linker_config.objects
+            ]
+            if linker_config.probe_main_obj and not Path(linker_config.probe_main_obj).is_absolute():
+                linker_config.probe_main_obj = str(project_dir / linker_config.probe_main_obj)
+            linker_config.scripts = [
+                str(project_dir / s) if not Path(s).is_absolute() else s
+                for s in linker_config.scripts
+            ]
+            # Resolve relative -L paths in flags
+            linker_config.flags = [
+                f'-L{project_dir / flag[2:]}' if flag.startswith('-L') and not Path(flag[2:]).is_absolute() else flag
+                for flag in linker_config.flags
+            ]
+        except ValueError:
+            compiler_config = None
+            linker_config = None
 
         # Determine which tests need building.
         # Normally only tests from this standard's directory are run.
