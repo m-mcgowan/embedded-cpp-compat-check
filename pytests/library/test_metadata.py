@@ -71,3 +71,41 @@ def test_discover_examples_nested_dirs(tmp_path):
 def test_discover_examples_empty(tmp_path):
     examples = discover_examples(tmp_path)
     assert examples == []
+
+
+def test_parse_metadata_missing_files(tmp_path):
+    """No library.json or library.properties → FileNotFoundError."""
+    import pytest
+    with pytest.raises(FileNotFoundError, match="No library.json"):
+        parse_metadata(tmp_path)
+
+
+def test_parse_library_json_missing_name(tmp_path):
+    """library.json with no name field → defaults to 'unknown'."""
+    (tmp_path / "library.json").write_text('{"version": "1.0.0"}')
+    meta = parse_metadata(tmp_path)
+    assert meta.name == "unknown"
+
+
+def test_parse_library_json_missing_platforms(tmp_path):
+    """library.json with no platforms field → defaults to wildcard."""
+    (tmp_path / "library.json").write_text('{"name": "test", "version": "1.0.0"}')
+    meta = parse_metadata(tmp_path)
+    assert meta.platforms == ["*"]
+
+
+def test_discover_examples_no_examples_dir(tmp_path):
+    """Library with metadata but no examples/ directory."""
+    (tmp_path / "library.json").write_text('{"name": "test", "version": "1.0.0"}')
+    examples = discover_examples(tmp_path)
+    assert examples == []
+
+
+def test_discover_examples_skips_pio_project(tmp_path):
+    """Subdirectories with platformio.ini are skipped (not examples)."""
+    ex = tmp_path / "examples" / "test_project"
+    ex.mkdir(parents=True)
+    (ex / "platformio.ini").write_text("[env:test]")
+    (ex / "main.cpp").write_text("int main() {}")
+    examples = discover_examples(tmp_path)
+    assert examples == []

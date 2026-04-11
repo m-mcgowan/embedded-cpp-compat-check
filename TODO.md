@@ -46,6 +46,16 @@ Requires:
 
 The composite action is the stepping stone — same user-facing contract, self-hosted execution.
 
+## Automated upstream fork sync
+
+For forked dependencies (avr-libstdcpp, notecard-schema, Bosch BHI385 driver), add scheduled GitHub Actions that sync from upstream and create PRs. CI runs on the PR to verify compatibility before merge.
+
+Pattern: `peter-evans/create-pull-request` action with weekly `git fetch upstream && git merge`. See commit bc31c7c for context.
+
+Applies to:
+- m-mcgowan/avr-libstdcpp (upstream: modm-io/avr-libstdcpp)
+- Any other forked dependencies across note-cpp, nonstd-lite-bundle
+
 ## Features-used analysis
 
 Static analysis of a library's source to determine which C++ features it actually uses, then cross-reference against the platform compatibility matrix. This would tell library authors "you use `std::optional` — here's where that works and where it doesn't" without needing to build anything.

@@ -82,3 +82,27 @@ class TestCLIRegistryLibrary:
             "--platform", "stm32-nucleo-f411re",
         )
         assert rc != 0
+
+
+class TestCLIErrorCases:
+    """Test error handling for invalid inputs."""
+
+    def test_empty_directory(self, tmp_path):
+        """Directory with no library metadata → error."""
+        rc, stdout, stderr = _run_cli(
+            str(tmp_path),
+            "--platform", "stm32-nucleo-f411re",
+        )
+        assert rc != 0
+
+    def test_no_examples(self, tmp_path):
+        """Library with metadata but no examples → error."""
+        import json
+        (tmp_path / "library.json").write_text(json.dumps({
+            "name": "empty-lib", "version": "1.0.0",
+        }))
+        rc, stdout, stderr = _run_cli(
+            str(tmp_path),
+            "--platform", "stm32-nucleo-f411re",
+        )
+        assert rc != 0
