@@ -6,11 +6,11 @@ branding:
 
 inputs:
   library:
-    description: Path to the library directory (default: current directory)
+    description: "Path to the library directory (default: current directory)"
     required: false
     default: '.'
   platforms:
-    description: Space-separated platform slugs to test (default: auto-detected from library.json platforms field)
+    description: "Space-separated platform slugs to test (default: auto-detected from library.json platforms field)"
     required: false
     default: ''
   report:
