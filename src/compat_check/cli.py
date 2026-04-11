@@ -310,6 +310,9 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
     for platform in platforms:
         board = platform.platformio["board"]
         build_dir = work / "library" / platform.slug
+        # Per-platform core dir to avoid PIO package conflicts
+        platform_core_dir = work / "cores" / platform.slug
+        platform_core_dir.mkdir(parents=True, exist_ok=True)
         standards_desc = list(reversed(platform.standards))
 
         for example in examples:
@@ -371,6 +374,7 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
                     build_dir=build_dir,
                     fixed_standard=platform.fixed_standard,
                     lib_deps=all_deps or None,
+                    core_dir=platform_core_dir,
                 )
                 status = "PASS" if result.success else "FAIL"
                 click.echo(f" {status} ({result.compile_time_ms}ms)")

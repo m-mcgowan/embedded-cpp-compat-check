@@ -26,6 +26,7 @@ def run_library_build(
     build_dir: Path | None = None,
     fixed_standard: bool = False,
     lib_deps: list[str] | None = None,
+    core_dir: Path | None = None,
     timeout: int = 600,
 ) -> BuildResult:
     """Run pio ci for a single library + example + board + standard combination.
@@ -61,8 +62,14 @@ def run_library_build(
         cmd.append("--keep-build-dir")
     cmd.append(str(example_path))
 
+    env = None
+    if core_dir:
+        import os
+        env = os.environ.copy()
+        env["PLATFORMIO_CORE_DIR"] = str(core_dir)
+
     start = time.monotonic()
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
     elapsed_ms = int((time.monotonic() - start) * 1000)
     return BuildResult(
         success=result.returncode == 0,

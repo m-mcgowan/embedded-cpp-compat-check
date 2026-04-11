@@ -117,9 +117,11 @@ class Orchestrator:
         probe_file.write_text(probe_source)
 
         project_dir = self.work_dir / slug / standard / "probe_project"
-        # Don't use custom core_dir — we need PIO to resolve real package
-        # paths in verbose output for direct compiler invocation.
-        core_dir = None
+        # Each platform gets its own PIO core dir to avoid conflicts
+        # between platforms that use different versions of the same
+        # PIO package (e.g. pioarduino vs stock espressif32).
+        core_dir = self.work_dir / "cores" / platform.slug
+        core_dir.mkdir(parents=True, exist_ok=True)
 
         generate_pio_project(project_dir, platform, standard, probe_file, recipe=recipe)
 
@@ -246,7 +248,7 @@ class Orchestrator:
         if recipe and recipe.lib_deps:
             inject_library_json_fixups(batch_dir)
 
-        batch_results = run_batch_build(batch_dir, feature_to_stem)
+        batch_results = run_batch_build(batch_dir, feature_to_stem, core_dir=core_dir)
 
         # Classify results
         for test_file, meta, feature_key, test_hash in tests_to_build:

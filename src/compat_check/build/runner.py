@@ -75,6 +75,7 @@ def run_build_verbose(
 def run_batch_build(
     project_dir: Path,
     feature_to_stem: dict[str, str],
+    core_dir: Path | None = None,
     timeout: int = 600,
 ) -> dict[str, BuildResult]:
     """Run PIO build with keep-going and return per-feature results.
@@ -85,6 +86,8 @@ def run_batch_build(
     """
     env = os.environ.copy()
     env["SCONSFLAGS"] = env.get("SCONSFLAGS", "") + " -k"
+    if core_dir:
+        env["PLATFORMIO_CORE_DIR"] = str(core_dir)
 
     start = time.monotonic()
     result = subprocess.run(
