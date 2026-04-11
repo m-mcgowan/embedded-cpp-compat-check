@@ -21,6 +21,18 @@ inputs:
     description: Report format (md or json, auto-detected from report extension if omitted)
     required: false
     default: ''
+  readme:
+    description: |
+      README integration mode:
+        none   - just generate the report (default)
+        update - inject report between <!-- compat-matrix-start/end --> markers in README.md
+        verify - fail if README markers would change (for CI gate)
+    required: false
+    default: 'none'
+  readme-path:
+    description: Path to README file (for readme=update or readme=verify)
+    required: false
+    default: 'README.md'
   setup-python:
     description: Set up Python if not already available (set to 'false' if your workflow already configures Python)
     required: false
@@ -73,3 +85,48 @@ runs:
         fi
 
         compat-check library ${{ inputs.library }} $ARGS
+
+    - name: Update README
+      if: inputs.readme == 'update'
+      shell: bash
+      run: |
+        python3 -c "
+        import re, sys
+        readme = open('${{ inputs.readme-path }}').read()
+        report = open('${{ inputs.report }}').read()
+        start = '<!-- compat-matrix-start -->'
+        end = '<!-- compat-matrix-end -->'
+        if start not in readme or end not in readme:
+            print('::warning::README markers not found. Add <!-- compat-matrix-start --> and <!-- compat-matrix-end --> to your README.')
+            sys.exit(0)
+        updated = re.sub(
+            f'{re.escape(start)}.*?{re.escape(end)}',
+            f'{start}\n{report}\n{end}',
+            readme, flags=re.DOTALL)
+        open('${{ inputs.readme-path }}', 'w').write(updated)
+        print('README updated with compatibility matrix.')
+        "
+
+    - name: Verify README
+      if: inputs.readme == 'verify'
+      shell: bash
+      run: |
+        python3 -c "
+        import re, sys
+        readme = open('${{ inputs.readme-path }}').read()
+        report = open('${{ inputs.report }}').read()
+        start = '<!-- compat-matrix-start -->'
+        end = '<!-- compat-matrix-end -->'
+        if start not in readme or end not in readme:
+            print('::error::README is missing compatibility matrix markers.')
+            print('Add <!-- compat-matrix-start --> and <!-- compat-matrix-end --> to your README.')
+            sys.exit(1)
+        current = re.search(f'{re.escape(start)}(.*?){re.escape(end)}', readme, re.DOTALL)
+        current_text = current.group(1).strip() if current else ''
+        fresh_text = report.strip()
+        if current_text != fresh_text:
+            print('::error::Compatibility matrix in README is outdated.')
+            print('Run the compatibility check locally and update your README, or use readme=update in CI.')
+            sys.exit(1)
+        print('README compatibility matrix is up to date.')
+        "

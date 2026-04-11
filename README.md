@@ -99,7 +99,9 @@ The generated report shows the minimum C++ standard that works on each platform:
 
 ### Add to your CI
 
-Add a GitHub Actions workflow to test library compatibility on every push:
+Add `<!-- compat-matrix-start -->` and `<!-- compat-matrix-end -->` markers to your README where you want the compatibility table, then use the action:
+
+**Option A: CI verifies the matrix is up to date** (developer updates locally, CI gates)
 
 ```yaml
 name: Embedded Compatibility
@@ -113,10 +115,23 @@ jobs:
 
       - uses: m-mcgowan/embedded-cpp-compat-check@v0.1
         with:
-          platforms: stm32-nucleo-f411re esp32s3-arduino-v3 avr-uno
+          readme: verify
 
       - name: Show report in job summary
         run: cat compatibility.md >> $GITHUB_STEP_SUMMARY
+```
+
+**Option B: CI auto-updates the matrix** (useful for PR workflows)
+
+```yaml
+      - uses: m-mcgowan/embedded-cpp-compat-check@v0.1
+        with:
+          readme: update
+
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          title: "ci: update compatibility matrix"
+          commit-message: "ci: update compatibility matrix"
 ```
 
 The action handles Python, PlatformIO, and compat-check installation. Pin to a release tag (e.g. `@v0.1`) for stability.
@@ -127,6 +142,8 @@ The action handles Python, PlatformIO, and compat-check installation. Pin to a r
 | `platforms` | from library.json | Space-separated platform slugs (auto-detected from library metadata if omitted) |
 | `report` | `compatibility.md` | Report output path |
 | `report-format` | auto | `md` or `json` (auto-detected from extension) |
+| `readme` | `none` | `update` to inject report into README, `verify` to fail if outdated |
+| `readme-path` | `README.md` | Path to the file containing the matrix markers |
 | `setup-python` | `true` | Set to `false` if your workflow already configures Python |
 | `setup-platformio` | `true` | Set to `false` if your workflow already installs PlatformIO |
 
