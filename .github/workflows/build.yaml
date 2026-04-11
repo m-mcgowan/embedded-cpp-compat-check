@@ -53,6 +53,9 @@ jobs:
       - name: Run acceptance tests
         run: pytest pytests/acceptance/ -v --timeout=600
 
+      - name: Smoke test sweep (single platform)
+        run: compat-check run --platform stm32-nucleo-f411re
+
   sweep:
     name: Full Platform Sweep
     needs: test
