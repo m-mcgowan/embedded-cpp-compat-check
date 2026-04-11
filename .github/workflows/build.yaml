@@ -9,6 +9,7 @@ on:
       - 'catalog/**'
       - 'src/**'
       - 'pytests/**'
+      - '.github/workflows/**'
   pull_request:
     paths:
       - 'tests/**'
@@ -16,6 +17,7 @@ on:
       - 'catalog/**'
       - 'src/**'
       - 'pytests/**'
+      - '.github/workflows/**'
   workflow_dispatch:
     inputs:
       platform:
@@ -23,14 +25,15 @@ on:
         required: false
 
 jobs:
-  check:
+  test:
+    name: Unit + Acceptance Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: pip install -e ".[dev]"
@@ -38,17 +41,43 @@ jobs:
       - name: Run unit tests
         run: pytest pytests/ -v --ignore=pytests/acceptance
 
+      - name: Install PlatformIO
+        run: pip install platformio
+
       - name: Sync catalog (if needed)
         run: |
           if [ ! -f catalog/data.yaml ]; then
             compat-check sync
           fi
 
-      - name: Install PlatformIO
-        run: pip install platformio
-
       - name: Run acceptance tests
         run: pytest pytests/acceptance/ -v --timeout=600
+
+      - name: Smoke test sweep (single platform)
+        run: compat-check run --platform stm32-nucleo-f411re
+
+  sweep:
+    name: Full Platform Sweep
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+          pip install platformio
+
+      - name: Sync catalog (if needed)
+        run: |
+          if [ ! -f catalog/data.yaml ]; then
+            compat-check sync
+          fi
 
       - name: Run compatibility checks
         run: |
@@ -68,16 +97,14 @@ jobs:
           path: results/
 
       - name: Commit results and site
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add results/ README.md
+          git add -f results/ README.md site/
           git diff --staged --quiet || git commit -m "ci: update compatibility results"
           git push
 
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
