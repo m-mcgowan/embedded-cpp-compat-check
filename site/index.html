@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded C++ Compatibility Matrix</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; color: #1a1a1a; }
+        h1 { margin-bottom: 0.5rem; }
+        .subtitle { color: #666; margin-bottom: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: center; }
+        th { background: #f5f5f5; font-weight: 600; }
+        td.platform-name { text-align: left; font-weight: 500; }
+        td.board-info { text-align: left; color: #666; font-size: 0.85em; }
+        .pct-high { background: #d4edda; }
+        .pct-mid { background: #fff3cd; }
+        .pct-low { background: #f8d7da; }
+        .pct-none { background: #f0f0f0; }
+        .pct { font-size: 0.8em; color: #555; display: block; }
+        .effective { font-weight: 700; font-size: 1.1em; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .legend { margin-top: 2rem; }
+        .legend h2 { font-size: 1.1em; margin-bottom: 0.5rem; }
+        .status-table { width: auto; margin-bottom: 1rem; font-size: 0.9em; }
+        .status-table th, .status-table td { text-align: left; vertical-align: top; line-height: 1.8; }
+        .status-table .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: middle; margin-right: 0.25rem; }
+        .status-table .label { font-weight: 600; }
+        .color-grid { display: flex; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.85em; }
+        .color-grid span { padding: 4px 10px; border-radius: 3px; }
+        footer { margin-top: 2rem; color: #999; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <h1>Embedded C++ Compatibility Matrix</h1>
+    <p class="subtitle">394 SD-6 feature tests across 12 platforms</p>
+
+    <div class="color-grid">
+        <span class="pct-high">90%+</span>
+        <span class="pct-mid">50&ndash;89%</span>
+        <span class="pct-low">&lt;50%</span>
+    </div>
+
+    <table>
+        <tr>
+            <th>Platform</th>
+            <th>Board</th>
+            <th>c++11</th><th>c++14</th><th>c++17</th><th>c++20</th><th>c++23</th><th>c++26</th>
+            <th>Best</th>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="esp32s3-arduino-v3/index.html">ESP32-S3 (pioarduino)</a></td>
+            <td class="board-info">esp32s3</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++11">100%</a>
+                <span class="pct">21/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++14">100%</a>
+                <span class="pct">29/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++17">100%</a>
+                <span class="pct">67/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++20">99%</a>
+                <span class="pct">81/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++23">57%</a>
+                <span class="pct">79/139</span>
+                
+            </td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="esp32s3-arduino-v3/index.html#c++26">77%</a>
+                <span class="pct">43/56</span>
+                
+            </td>
+            
+            <td class="effective pct-high">100%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="esp32s3-espressif32/index.html">ESP32-S3 (espressif32 official)</a></td>
+            <td class="board-info">esp32s3</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-espressif32/index.html#c++11">100%</a>
+                <span class="pct">21/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-espressif32/index.html#c++14">100%</a>
+                <span class="pct">29/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-espressif32/index.html#c++17">100%</a>
+                <span class="pct">67/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp32s3-espressif32/index.html#c++20">99%</a>
+                <span class="pct">81/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="esp32s3-espressif32/index.html#c++23">57%</a>
+                <span class="pct">79/139</span>
+                
+            </td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="esp32s3-espressif32/index.html#c++26">77%</a>
+                <span class="pct">43/56</span>
+                
+            </td>
+            
+            <td class="effective pct-high">100%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="rp2040-pico/index.html">Raspberry Pi Pico (RP2040)</a></td>
+            <td class="board-info">RP2040 Cortex-M0+</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="rp2040-pico/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="rp2040-pico/index.html#c++14">97%</a>
+                <span class="pct">28/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="rp2040-pico/index.html#c++17">31%</a>
+                <span class="pct">21/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="rp2040-pico/index.html#c++20">15%</a>
+                <span class="pct">12/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="rp2040-pico/index.html#c++23">42%</a>
+                <span class="pct">59/139</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">97%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="samd51-feather-m4/index.html">SAMD51 Adafruit Feather M4</a></td>
+            <td class="board-info">SAMD51 Cortex-M4F</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="samd51-feather-m4/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="samd51-feather-m4/index.html#c++14">97%</a>
+                <span class="pct">28/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="samd51-feather-m4/index.html#c++17">31%</a>
+                <span class="pct">21/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">97%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="teensy41/index.html">Teensy 4.1</a></td>
+            <td class="board-info">i.MX RT1062 Cortex-M7</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="teensy41/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="teensy41/index.html#c++14">97%</a>
+                <span class="pct">28/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="teensy41/index.html#c++17">93%</a>
+                <span class="pct">62/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="teensy41/index.html#c++20">22%</a>
+                <span class="pct">18/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">97%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="stm32-nucleo-f411re/index.html">STM32 Nucleo F411RE</a></td>
+            <td class="board-info">STM32F411 Cortex-M4</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="stm32-nucleo-f411re/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="stm32-nucleo-f411re/index.html#c++14">97%</a>
+                <span class="pct">28/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="stm32-nucleo-f411re/index.html#c++17">94%</a>
+                <span class="pct">63/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="stm32-nucleo-f411re/index.html#c++20">22%</a>
+                <span class="pct">18/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">97%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="nrf52840-nano33ble/index.html">nRF52840 Arduino Nano 33 BLE</a></td>
+            <td class="board-info">nRF52840 Cortex-M4F</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="nrf52840-nano33ble/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="nrf52840-nano33ble/index.html#c++14">90%</a>
+                <span class="pct">26/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="nrf52840-nano33ble/index.html#c++17">28%</a>
+                <span class="pct">19/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="nrf52840-nano33ble/index.html#c++20">12%</a>
+                <span class="pct">10/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">95%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="samd21-zero/index.html">SAMD21 Arduino Zero</a></td>
+            <td class="board-info">SAMD21 Cortex-M0+</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="samd21-zero/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="samd21-zero/index.html#c++14">90%</a>
+                <span class="pct">26/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="samd21-zero/index.html#c++17">28%</a>
+                <span class="pct">19/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">95%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="uno-r4-minima/index.html">Arduino Uno R4 Minima</a></td>
+            <td class="board-info">Renesas RA4M1</td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="uno-r4-minima/index.html#c++11">95%</a>
+                <span class="pct">20/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="uno-r4-minima/index.html#c++14">90%</a>
+                <span class="pct">26/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="uno-r4-minima/index.html#c++17">28%</a>
+                <span class="pct">19/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="uno-r4-minima/index.html#c++20">12%</a>
+                <span class="pct">10/82</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">95%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="esp8266-nodemcu/index.html">ESP8266 NodeMCU</a></td>
+            <td class="board-info">ESP8266 Xtensa LX106</td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-high">
+                
+                <a href="esp8266-nodemcu/index.html#c++17">94%</a>
+                <span class="pct">63/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-high">94%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="avr-uno/index.html">AVR Arduino Uno</a></td>
+            <td class="board-info">ATmega328P</td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="avr-uno/index.html#c++11">86%</a>
+                <span class="pct">18/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="avr-uno/index.html#c++14">24%</a>
+                <span class="pct">7/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="avr-uno/index.html#c++17">19%</a>
+                <span class="pct">13/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-mid">86%</td>
+        </tr>
+        
+        <tr>
+            <td class="platform-name"><a href="megaavr-nano-every/index.html">megaAVR Arduino Nano Every</a></td>
+            <td class="board-info">ATmega4809</td>
+            
+            
+            <td class="pct-mid">
+                
+                <a href="megaavr-nano-every/index.html#c++11">86%</a>
+                <span class="pct">18/21</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="megaavr-nano-every/index.html#c++14">24%</a>
+                <span class="pct">7/29</span>
+                
+            </td>
+            
+            
+            <td class="pct-low">
+                
+                <a href="megaavr-nano-every/index.html#c++17">18%</a>
+                <span class="pct">12/67</span>
+                
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            
+            <td class="pct-none">
+                &mdash;
+            </td>
+            
+            <td class="effective pct-mid">86%</td>
+        </tr>
+        
+    </table>
+
+    <div class="legend">
+        <h2>How to read this</h2>
+        <p>Each cell shows what percentage of SD-6 feature tests compile successfully at that C++ standard.
+        Click any cell to see the per-feature breakdown. "Best" is the highest percentage across all standards for that platform.</p>
+
+        <h2>Status classifications</h2>
+        <table class="status-table">
+            <tr><th>Counts as working</th><th>Counts as failing</th></tr>
+            <tr>
+                <td>
+                    <span class="swatch" style="background: #28a745"></span> <span class="label">supported</span> — macro defined and compiles<br>
+                    <span class="swatch" style="background: #17a2b8"></span> <span class="label">unreported</span> — compiles but no macro
+                </td>
+                <td>
+                    <span class="swatch" style="background: #e67e00"></span> <span class="label">macro_lies</span> — macro defined but compile fails<br>
+                    <span class="swatch" style="background: #dc3545"></span> <span class="label">unsupported</span> — does not compile
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <footer>
+        <p>Generated by <a href="https://github.com/m-mcgowan/embedded-cpp-compat-check">embedded-cpp-compat-check</a></p>
+    </footer>
+</body>
+</html>

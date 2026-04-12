@@ -1,0 +1,2907 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>nRF52840 Arduino Nano 33 BLE - C++ Compatibility</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; color: #1a1a1a; }
+        .meta { color: #666; margin-bottom: 1rem; }
+        .std-header { display: flex; align-items: baseline; gap: 1rem; }
+        .std-header h2 { margin-bottom: 0.25rem; }
+        .std-stats { color: #666; font-size: 0.9em; }
+        .category-label { font-weight: 600; color: #444; padding: 12px 8px 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #f5f5f5; font-weight: 600; font-size: 0.85em; }
+        td code { font-size: 0.85em; background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+        td code a { color: inherit; }
+        .supported { color: #28a745; font-weight: 500; }
+        .unsupported { color: #dc3545; }
+        .unreported { color: #17a2b8; }
+        .macro_lies { color: #e67e00; font-weight: 500; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 4px; }
+        .progress-bar { height: 100%; border-radius: 3px; background: #28a745; }
+        .back-link { margin-bottom: 1rem; }
+        .legend { margin-top: 1rem; margin-bottom: 2rem; font-size: 0.85em; color: #666; }
+        .legend span { font-weight: 600; }
+        tr.has-error { cursor: pointer; }
+        tr.has-error:hover td { background: #fafafa; }
+        tr.error-row { display: none; }
+        tr.error-row.open { display: table-row; }
+        tr.error-row td { padding: 0; }
+        pre.error-output {
+            margin: 0; padding: 8px 12px;
+            font-size: 0.8em; line-height: 1.4;
+            background: #2d2d2d; color: #f0f0f0;
+            white-space: pre-wrap; word-break: break-all;
+            max-height: 200px; overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="back-link"><a href="../index.html">&larr; Back to matrix</a></p>
+    <h1>nRF52840 Arduino Nano 33 BLE</h1>
+    <div class="meta">
+        nRF52840 Cortex-M4F &middot; 
+        arm-cortex-m4f &middot; 
+        Version 9.5.0
+    </div>
+
+    <div class="legend">
+        <ul>
+            <li><span class="supported">supported</span> — SD-6 macro defined and feature compiles</li>
+            <li><span class="unreported">unreported</span> — feature compiles but macro not defined</li>
+            <li><span class="macro_lies">macro_lies</span> — macro claims support but compile fails</li>
+            <li><span class="unsupported">unsupported</span> — feature does not compile</li>
+        </ul>
+        Click failed rows to see compiler output.
+    </div>
+
+    
+    
+    <div class="std-header" id="c++11">
+        <h2>c++11</h2>
+        <span class="std-stats">20/21 features (95%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 95%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr>
+            <td>alias_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/type_alias" title="cppreference docs">__cpp_alias_templates</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes" title="cppreference docs">__cpp_attributes</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constexpr" title="cppreference docs">__cpp_constexpr</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>decltype</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/decltype" title="cppreference docs">__cpp_decltype</a></code></td>
+            <td>200707</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>delegating_constructors</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/initializer_list#Delegating_constructor" title="cppreference docs">__cpp_delegating_constructors</a></code></td>
+            <td>200604</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>exceptions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/exceptions" title="cppreference docs">__cpp_exceptions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__exceptions.cpp:8:53: error: exception handling disabled, use -fexceptions to enable
+ auto _test_cpp11__exceptions() -> int { try { throw 42; } catch (int e) { return e - 42; } return 1; }
+                                                     ^~
+src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
+ auto _test_cpp11__exceptions() -> int { try { throw 42; } catch (int e) { return e - 42; } return 1; }
+                                                                   </pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>inheriting_constructors</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration#Inheriting_constructors" title="cppreference docs">__cpp_inheriting_constructors</a></code></td>
+            <td>201511</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>initializer_lists</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/list_initialization" title="cppreference docs">__cpp_initializer_lists</a></code></td>
+            <td>200806</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>lambdas</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_lambdas</a></code></td>
+            <td>200907</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>nsdmi</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/data_members#Member_initialization" title="cppreference docs">__cpp_nsdmi</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>range_based_for</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/range-for" title="cppreference docs">__cpp_range_based_for</a></code></td>
+            <td>200907</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>raw_strings</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/string_literal" title="cppreference docs">__cpp_raw_strings</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>ref_qualifiers</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/member_functions" title="cppreference docs">__cpp_ref_qualifiers</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>rvalue_references</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/reference" title="cppreference docs">__cpp_rvalue_references</a></code></td>
+            <td>200610</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>static_assert_</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/static_assert" title="cppreference docs">__cpp_static_assert</a></code></td>
+            <td>200410</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>threadsafe_static_init</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/storage_duration#Static_local_variables" title="cppreference docs">__cpp_threadsafe_static_init</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>unicode_characters</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/types" title="cppreference docs">__cpp_unicode_characters</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>unicode_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/string_literal" title="cppreference docs">__cpp_unicode_literals</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>user_defined_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/user_literal" title="cppreference docs">__cpp_user_defined_literals</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>variadic_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/parameter_pack" title="cppreference docs">__cpp_variadic_templates</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr>
+            <td>allocator_traits_is_always_equal</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/allocator_traits" title="cppreference docs">__cpp_lib_allocator_traits_is_always_equal</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+    </table>
+    
+    
+    <div class="std-header" id="c++14">
+        <h2>c++14</h2>
+        <span class="std-stats">26/29 features (90%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 90%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr>
+            <td>aggregate_nsdmi</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_nsdmi</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>binary_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/integer_literal" title="cppreference docs">__cpp_binary_literals</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>decltype_auto</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/auto" title="cppreference docs">__cpp_decltype_auto</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>generic_lambdas</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_generic_lambdas</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>init_captures</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_init_captures</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>return_type_deduction</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/auto" title="cppreference docs">__cpp_return_type_deduction</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>sized_deallocation</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/operator_delete" title="cppreference docs">__cpp_sized_deallocation</a></code></td>
+            <td>201309</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>variable_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/variable_template" title="cppreference docs">__cpp_variable_templates</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr>
+            <td>chrono_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/chrono/duration#Literals" title="cppreference docs">__cpp_lib_chrono_udls</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>complex_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/complex/operator""i" title="cppreference docs">__cpp_lib_complex_udls</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__complex_udls.cpp:11:67: error: request for member 'imag' in 'c', which is of non-class type '__complex__ double'
+ auto _test_cpp14__complex_udls() -> int { auto c = 1.0i; return c.imag() == 1.0 ? 0 : 1; }
+                                                                   ^~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>exchange_function</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_exchange_function</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>generic_associative_lookup</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_generic_associative_lookup</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>integer_sequence</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/integer_sequence" title="cppreference docs">__cpp_lib_integer_sequence</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>integral_constant_callable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_integral_constant_callable</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_final</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_final</a></code></td>
+            <td>201402</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_null_pointer</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_null_pointer</a></code></td>
+            <td>201309</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>make_reverse_iterator</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator/make_reverse_iterator" title="cppreference docs">__cpp_lib_make_reverse_iterator</a></code></td>
+            <td>201402</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>make_unique</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_make_unique</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>null_iterators</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_null_iterators</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>quoted_string_io</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iomanip" title="cppreference docs">__cpp_lib_quoted_string_io</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>result_of_sfinae</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/sfinae" title="cppreference docs">__cpp_lib_result_of_sfinae</a></code></td>
+            <td>201210</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>robust_nonmodifying_seq_ops</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_robust_nonmodifying_seq_ops</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_timed_mutex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/shared_mutex" title="cppreference docs">__cpp_lib_shared_timed_mutex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__shared_timed_mutex.cpp:9:54: error: 'shared_timed_mutex' is not a member of 'std'
+ auto _test_cpp14__shared_timed_mutex() -> int { std::shared_timed_mutex m; return 0; }
+                                                      ^~~~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/targets/TARGET_NORDIC/TARGET_NRF5x/TARGET_NRF52/TARGET_MCU_NRF52840/config/sdk_config.h:11967:0,
+                 from /home/runner/.platformio/pack</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>string_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/string/basic_string/operator""s" title="cppreference docs">__cpp_lib_string_udls</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>to_chars</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/to_chars" title="cppreference docs">__cpp_lib_to_chars</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__to_chars.cpp:8:10: fatal error: charconv: No such file or directory
+ #include <charconv>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>transformation_trait_aliases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_transformation_trait_aliases</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>transparent_operators</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_transparent_operators</a></code></td>
+            <td>201510</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>tuple_element_t</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/tuple_element#Helper_types" title="cppreference docs">__cpp_lib_tuple_element_t</a></code></td>
+            <td>201402</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>tuples_by_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/tuple/get" title="cppreference docs">__cpp_lib_tuples_by_type</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+    </table>
+    
+    
+    <div class="std-header" id="c++17">
+        <h2>c++17</h2>
+        <span class="std-stats">19/67 features (28%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 28%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">attribute</td></tr>
+        
+        <tr>
+            <td>fallthrough</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/fallthrough" title="cppreference docs">__has_cpp_attribute(fallthrough)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>maybe_unused</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/maybe_unused" title="cppreference docs">__has_cpp_attribute(maybe_unused)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>aggregate_bases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_bases</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__aggregate_bases.cpp:10:62: error: no matching function for call to 'Derived::Derived(<brace-enclosed initializer list>)'
+ auto _test_cpp17__aggregate_bases() -> int { Derived d{{1}, 2}; return d.x + d.y - 3; }
+                                                              ^
+ struct Derived : Base { int y; };
+        ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>aligned_new</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/align_val_t" title="cppreference docs">__cpp_aligned_new</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>capture_star_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda#Lambda_capture" title="cppreference docs">__cpp_capture_star_this</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>deduction_guides</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction" title="cppreference docs">__cpp_deduction_guides</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__deduction_guides.cpp:9:65: error: missing template arguments before '(' token
+ auto _test_cpp17__deduction_guides() -> int { auto p = std::pair(1, 2.0); return p.first - 1; }
+                                                                 ^</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>deleted_function</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/function" title="cppreference docs">__cpp_deleted_function</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>enumerator_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/enum" title="cppreference docs">__cpp_enumerator_attributes</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>fold_expressions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/fold" title="cppreference docs">__cpp_fold_expressions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>guaranteed_copy_elision</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/value_category" title="cppreference docs">__cpp_guaranteed_copy_elision</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__guaranteed_copy_elision.cpp:9:31: error: use of deleted function 'NoCopy::NoCopy(NoCopy&&)'
+ NoCopy make() { return NoCopy{}; }
+                               ^
+ struct NoCopy { NoCopy() = default; NoCopy(const NoCopy&) = delete; NoCopy(NoCopy&&) = delete; };
+                                                                     ^~~~~~
+src/cpp17__guaranteed_copy_elision.cpp:10:70: error: use of deleted function 'NoCopy::NoCopy(NoCopy&&)'
+ auto _test_cpp17__guaranteed_copy_elision() -> i</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>hex_float</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/floating_literal" title="cppreference docs">__cpp_hex_float</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>if_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/if" title="cppreference docs">__cpp_if_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>inline_variables</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/inline" title="cppreference docs">__cpp_inline_variables</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>namespace_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/namespace" title="cppreference docs">__cpp_namespace_attributes</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>noexcept_function_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/noexcept_spec" title="cppreference docs">__cpp_noexcept_function_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__noexcept_function_type.cpp:9:65: error: 'is_same_v' is not a member of 'std'
+ auto _test_cpp17__noexcept_function_type() -> int { return std::is_same_v<void() noexcept, void()> ? 1 : 0; }
+                                                                 ^~~~~~~~~
+ auto _test_cpp17__noexcept_function_type() -> int { return std::is_same_v<void() noexcept, void()> ? 1 : 0; }
+                                                                 ^~~~~~~~~
+                                        </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nontype_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_non-type_arguments" title="cppreference docs">__cpp_nontype_template_args</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nontype_template_args.cpp:9:12: error: 'struct S' is not a valid type for a template non-type parameter
+ template<S s> constexpr int get() { return s.v; }
+            ^
+src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call to 'get<S(42)>()'
+ auto _test_cpp17__nontype_template_args() -> int { return get<S{42}>() - 42; }
+                                                                      ^
+ template<S s> constexpr int get() { return s.v; }
+                  </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nontype_template_parameter_auto</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter" title="cppreference docs">__cpp_nontype_template_parameter_auto</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nontype_template_parameter_auto.cpp:8:15: error: 'auto' parameter not permitted in this context
+ template<auto N> constexpr auto value = N;
+               ^
+ auto _test_cpp17__nontype_template_parameter_auto() -> int { return value<42> - 42; }
+                                                                     ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>structured_bindings</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/structured_binding" title="cppreference docs">__cpp_structured_bindings</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>template_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_template_arguments" title="cppreference docs">__cpp_template_template_args</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__template_template_args.cpp:10:74: error: type/value mismatch at argument 1 in template parameter list for 'template<template<class> class C, class T> struct Wrap'
+ auto _test_cpp17__template_template_args() -> int { Wrap<std::vector, int> w; w.c.push_back(42); return w.c[0] - 42; }
+                                                                          ^
+src/cpp17__template_template_args.cpp:10:81: error: request for member 'c' in 'w', which is of non-class type 'int'
+ auto _test_cp</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>variadic_using</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration" title="cppreference docs">__cpp_variadic_using</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>addressof_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_addressof_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__addressof_constexpr.cpp:10:40: error: call to non-constexpr function '_Tp* std::addressof(_Tp&) [with _Tp = const int]'
+ constexpr const int* p = std::addressof(x);
+                          ~~~~~~~~~~~~~~^~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>any</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/any" title="cppreference docs">__cpp_lib_any</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__any.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+     std::any a = 42;
+          </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>apply</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_apply</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__apply.cpp:14:17: error: 'apply' is not a member of 'std'
+     return std::apply(add, args) - 5;
+                 ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>array_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator#Range_access" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>as_const</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_as_const</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__as_const.cpp:13:71: error: 'as_const' is not a member of 'std'
+     static_assert(std::is_const<std::remove_reference_t<decltype(std::as_const(x))>>::value, "");
+                                                                       ^~~~~~~~
+     static_assert(std::is_const<std::remove_reference_t<decltype(std::as_const(x))>>::value, "");
+                                                                       ^~~~~~~~
+                                                                    </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_is_always_lock_free</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic/is_always_lock_free" title="cppreference docs">__cpp_lib_atomic_is_always_lock_free</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__atomic_is_always_lock_free.cpp:9:81: error: 'is_always_lock_free' is not a member of 'std::atomic<int>'
+ auto _test_cpp17__atomic_is_always_lock_free() -> int { (void)std::atomic<int>::is_always_lock_free; return 0; }
+                                                                                 ^~~~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bool_constant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_bool_constant</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__bool_constant.cpp:9:20: error: 'bool_constant' in namespace 'std' does not name a template type
+     using t = std::bool_constant<true>;
+                    ^~~~~~~~~~~~~
+src/cpp17__bool_constant.cpp:10:12: error: 't' has not been declared
+     return t::value ? 0 : 1;
+            ^</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>boyer_moore_searcher</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/functional#Searchers" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__boyer_moore_searcher.cpp:11:180: error: 'boyer_moore_searcher' is not a member of 'std'
+ auto _test_cpp17__boyer_moore_searcher() -> int { std::string haystack = "hello world"; std::string needle = "world"; auto it = std::search(haystack.begin(), haystack.end(), std::boyer_moore_searcher(needle.begin(), needle.end())); return it != haystack.end() ? 0 : 1; }
+                                                                                                                                 </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>byte</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/byte" title="cppreference docs">__cpp_lib_byte</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__byte.cpp:11:10: error: 'byte' is not a member of 'std'
+     std::byte b{0x42};
+          ^~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/variants/ARDUINO_NANO33BLE/pinmode_arduino.h:23:0,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/Arduino.h:26,
+                 from src/cpp17__byte.cpp:1:
+src/cpp17__byte.cpp:12:17: error: 'to_integer' is not a member of 'std'
+     return std::to_integer<int>(b) - 0x4</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>chrono</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/chrono" title="cppreference docs">__cpp_lib_chrono</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__chrono.cpp:9:101: error: 'floor' is not a member of 'std::chrono'
+ auto _test_cpp17__chrono() -> int { auto d = std::chrono::milliseconds(1500); auto s = std::chrono::floor<std::chrono::seconds>(d); return s.count() == 1 ? 0 : 1; }
+                                                                                                     ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/math.h:36:0,
+                 from /h</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>clamp</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_clamp</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__clamp.cpp:11:20: error: 'clamp' is not a member of 'std'
+     int val = std::clamp(150, 0, 100);
+                    ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>enable_shared_from_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_enable_shared_from_this</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>execution</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_execution</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__execution.cpp:8:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>filesystem</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/filesystem" title="cppreference docs">__cpp_lib_filesystem</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__filesystem.cpp:7:10: fatal error: filesystem: No such file or directory
+ #include <filesystem>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>freestanding_charconv</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/charconv" title="cppreference docs">__cpp_lib_freestanding_charconv</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__freestanding_charconv.cpp:8:10: fatal error: charconv: No such file or directory
+ #include <charconv>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>gcd_lcm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/numeric" title="cppreference docs">__cpp_lib_gcd_lcm</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__gcd_lcm.cpp:11:17: error: 'gcd' is not a member of 'std'
+     return std::gcd(12, 8) - 4;
+                 ^~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>hardware_interference_size</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/hardware_destructive_interference_size" title="cppreference docs">__cpp_lib_hardware_interference_size</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__hardware_interference_size.cpp:9:69: error: 'hardware_destructive_interference_size' is not a member of 'std'
+ auto _test_cpp17__hardware_interference_size() -> int { return std::hardware_destructive_interference_size > 0 ? 0 : 1; }
+                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>has_unique_object_representations</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_has_unique_object_representations</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__has_unique_object_representations.cpp:9:76: error: 'has_unique_object_representations_v' is not a member of 'std'
+ auto _test_cpp17__has_unique_object_representations() -> int { return std::has_unique_object_representations_v<int> ? 0 : 1; }
+                                                                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/cpp17__has_unique_object_representations.cpp:9:112: error: expected primary-expression before 'int'
+ auto _test_cpp17__has_unique_o</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>hypot</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cmath" title="cppreference docs">__cpp_lib_hypot</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__hypot.cpp:9:71: error: no matching function for call to 'hypot(double, double, double)'
+ auto _test_cpp17__hypot() -> int { double h = std::hypot(1.0, 2.0, 2.0); return h > 2.9 && h < 3.1 ? 0 : 1; }
+                                                                       ^
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/math.h:36:0,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduin</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>incomplete_container_elements</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/forward_list#Template_parameters" title="cppreference docs">__cpp_lib_incomplete_container_elements</a></code></td>
+            <td>201505</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>invoke</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_invoke</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__invoke.cpp:13:17: error: 'invoke' is not a member of 'std'
+     return std::invoke(add, 2, 3) - 5;
+                 ^~~~~~
+     return std::invoke(add, 2, 3) - 5;
+                 ^~~~~~
+                 __invoke</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_aggregate</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_aggregate" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__is_aggregate.cpp:11:55: error: 'is_aggregate_v' is not a member of 'std'
+ auto _test_cpp17__is_aggregate() -> int { return std::is_aggregate_v<Agg> && !std::is_aggregate_v<NonAgg> ? 0 : 1; }
+                                                       ^~~~~~~~~~~~~~
+ auto _test_cpp17__is_aggregate() -> int { return std::is_aggregate_v<Agg> && !std::is_aggregate_v<NonAgg> ? 0 : 1; }
+                                                       ^~~~~~~~~~~~~~
+                                        </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_invocable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_invocable</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__is_invocable.cpp:10:55: error: 'is_invocable_v' is not a member of 'std'
+ auto _test_cpp17__is_invocable() -> int { return std::is_invocable_v<decltype(add), int, int> ? 0 : 1; }
+                                                       ^~~~~~~~~~~~~~
+ auto _test_cpp17__is_invocable() -> int { return std::is_invocable_v<decltype(add), int, int> ? 0 : 1; }
+                                                       ^~~~~~~~~~~~~~
+                                                       __is_invo</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_swappable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_swappable" title="cppreference docs">__cpp_lib_is_swappable</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>launder</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/new" title="cppreference docs">__cpp_lib_launder</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__launder.cpp:9:65: error: 'launder' is not a member of 'std'
+ auto _test_cpp17__launder() -> int { int x = 42; auto* p = std::launder(&x); return *p - 42; }
+                                                                 ^~~~~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/include/platform/Callback.h:23:0,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/include/plat</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>logical_traits</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/meta#Operations_on_traits" title="cppreference docs">__cpp_lib_logical_traits</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__logical_traits.cpp:9:57: error: 'conjunction_v' is not a member of 'std'
+ auto _test_cpp17__logical_traits() -> int { return std::conjunction_v<std::true_type, std::true_type> ? 0 : 1; }
+                                                         ^~~~~~~~~~~~~
+ auto _test_cpp17__logical_traits() -> int { return std::conjunction_v<std::true_type, std::true_type> ? 0 : 1; }
+                                                         ^~~~~~~~~~~~~
+                                              </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>make_from_tuple</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_make_from_tuple</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__make_from_tuple.cpp:10:60: error: 'make_from_tuple' is not a member of 'std'
+ auto _test_cpp17__make_from_tuple() -> int { auto s = std::make_from_tuple<S>(std::make_tuple(1, 2)); return s.x + s.y - 3; }
+                                                            ^~~~~~~~~~~~~~~
+ auto _test_cpp17__make_from_tuple() -> int { auto s = std::make_from_tuple<S>(std::make_tuple(1, 2)); return s.x + s.y - 3; }
+                                                            ^~~~~~~~~~~~~~~
+      </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_map_try_emplace</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__map_try_emplace.cpp:11:7: error: 'class std::map<int, int>' has no member named 'try_emplace'; did you mean 'emplace'?
+     m.try_emplace(1, 42);
+       ^~~~~~~~~~~
+       emplace</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>math_special_functions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/special_functions" title="cppreference docs">__cpp_lib_math_special_functions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__math_special_functions.cpp:9:69: error: 'riemann_zeta' is not a member of 'std'
+ auto _test_cpp17__math_special_functions() -> int { double v = std::riemann_zeta(2.0); return v > 1.6 && v < 1.7 ? 0 : 1; }
+                                                                     ^~~~~~~~~~~~
+ auto _test_cpp17__math_special_functions() -> int { double v = std::riemann_zeta(2.0); return v > 1.6 && v < 1.7 ? 0 : 1; }
+                                                                     ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>memory_resource</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory_resource" title="cppreference docs">__cpp_lib_memory_resource</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__memory_resource.cpp:8:10: fatal error: memory_resource: No such file or directory
+ #include <memory_resource>
+          ^~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>node_extract</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/map/insert" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__node_extract.cpp:9:89: error: 'class std::map<int, int>' has no member named 'extract'
+ auto _test_cpp17__node_extract() -> int { std::map<int,int> a = {{1,2}}, b; auto nh = a.extract(1); b.insert(std::move(nh)); return b[1] - 2; }
+                                                                                         ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nonmember_container_access</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_nonmember_container_access</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nonmember_container_access.cpp:9:88: error: 'size' is not a member of 'std'
+ auto _test_cpp17__nonmember_container_access() -> int { int a[] = {1,2,3}; return std::size(a) == 3 ? 0 : 1; }
+                                                                                        ^~~~
+ auto _test_cpp17__nonmember_container_access() -> int { int a[] = {1,2,3}; return std::size(a) == 3 ? 0 : 1; }
+                                                                                        ^~~~
+   </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>not_fn</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_not_fn</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__not_fn.cpp:10:24: error: 'not_fn' is not a member of 'std'
+     auto is_odd = std::not_fn(is_even);
+                        ^~~~~~
+     auto is_odd = std::not_fn(is_even);
+                        ^~~~~~
+                        _Not_fn</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>optional</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+     std::optiona</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>parallel_algorithm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_parallel_algorithm</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__parallel_algorithm.cpp:8:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>raw_memory_algorithms</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory#Uninitialized_storage" title="cppreference docs">__cpp_lib_raw_memory_algorithms</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__raw_memory_algorithms.cpp:9:240: error: 'destroy' is not a member of 'std'
+ auto _test_cpp17__raw_memory_algorithms() -> int { int src[] = {1,2,3}; alignas(int) unsigned char buf[sizeof(src)]; auto* dst = reinterpret_cast<int*>(buf); std::uninitialized_copy(src, src+3, dst); int v = dst[0] + dst[1] + dst[2]; std::destroy(dst, dst+3); return v - 6; }
+                                                                                                                                         </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>sample</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_sample</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">In file included from src/cpp17__sample.cpp:1:0:
+src/cpp17__sample.cpp:12:98: error: 'sample' is not a member of 'std'
+ auto _test_cpp17__sample() -> int { std::vector<int> v = {1,2,3,4,5}; std::vector<int> out; std::sample(v.begin(), v.end(), std::back_inserter(out), 2, std::mt19937{}); return out.size() == 2 ? 0 : 1; }
+                                                                                                  ^~~~~~
+ auto _test_cpp17__sample() -> int { std::vector<int> v = {1,2,3,4,5}; s</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>scoped_lock</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/scoped_lock" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__scoped_lock.cpp:9:10: error: 'mutex' is not a member of 'std'
+     std::mutex m;
+          ^~~~~
+src/cpp17__scoped_lock.cpp:10:10: error: 'scoped_lock' is not a member of 'std'
+     std::scoped_lock lock(m);
+          ^~~~~~~~~~~
+     std::scoped_lock lock(m);
+          ^~~~~~~~~~~
+          adopt_lock</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_mutex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/shared_mutex" title="cppreference docs">__cpp_lib_shared_mutex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_mutex.cpp:9:48: error: 'shared_mutex' is not a member of 'std'
+ auto _test_cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }
+                                                ^~~~~~~~~~~~
+ auto _test_cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }
+                                                ^~~~~~~~~~~~
+                                                shared_ptr
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-n</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_ptr_arrays</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_shared_ptr_arrays</a></code></td>
+            <td>201603</td>
+            <td>&#x274C;</td>
+            <td class="macro_lies">macro_lies</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__shared_ptr_arrays.cpp:1:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/shared_ptr_base.h:1332:11: error: cannot convert 'int (*)[]' to 'std::__shared_ptr<int [], (__gnu_cxx::_Lock_policy)0>::element_type* {aka int*}' in assignment
+    _M_ptr = __ptr;
+    ~~~~~~~^~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/arm-none-eabi/thumb/v7e-m/fpv4-sp/</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_ptr_weak_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/shared_ptr" title="cppreference docs">__cpp_lib_shared_ptr_weak_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_ptr_weak_type.cpp:9:83: error: 'weak_type' in 'class std::shared_ptr<int>' does not name a type
+ auto _test_cpp17__shared_ptr_weak_type() -> int { using W = std::shared_ptr<int>::weak_type; auto sp = std::make_shared<int>(42); W wp = sp; return wp.expired() ? 1 : 0; }
+                                                                                   ^~~~~~~~~
+src/cpp17__shared_ptr_weak_type.cpp:9:131: error: 'W' was not declared in this scope
+ auto _test_cpp17__shared_ptr_weak_</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>string_view</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+     std</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>type_trait_variable_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_type_trait_variable_templates</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__type_trait_variable_templates.cpp:9:17: error: 'is_integral_v' is not a member of 'std'
+     return std::is_integral_v<int> && !std::is_floating_point_v<int> ? 0 : 1;
+                 ^~~~~~~~~~~~~
+     return std::is_integral_v<int> && !std::is_floating_point_v<int> ? 0 : 1;
+                 ^~~~~~~~~~~~~
+                 is_integral
+src/cpp17__type_trait_variable_templates.cpp:9:31: error: expected primary-expression before 'int'
+     return std::is_integral_v<int> && !std::is_float</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>uncaught_exceptions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/error/uncaught_exception" title="cppreference docs">__cpp_lib_uncaught_exceptions</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>unordered_map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/unordered_map" title="cppreference docs">__cpp_lib_unordered_map_try_emplace</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__unordered_map_try_emplace.cpp:10:98: error: 'class std::unordered_map<std::__cxx11::basic_string<char>, int>' has no member named 'try_emplace'; did you mean 'emplace'?
+ auto _test_cpp17__unordered_map_try_emplace() -> int { std::unordered_map<std::string, int> m; m.try_emplace("key", 42); return m["key"] - 42; }
+                                                                                                  ^~~~~~~~~~~
+                                                                </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>variant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+     std::variant<in</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>void_t</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_void_t</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+    </table>
+    
+    
+    <div class="std-header" id="c++20">
+        <h2>c++20</h2>
+        <span class="std-stats">10/82 features (12%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 12%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">attribute</td></tr>
+        
+        <tr>
+            <td>attr_likely</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/likely" title="cppreference docs">__has_cpp_attribute(likely)</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>attr_unlikely</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/likely" title="cppreference docs">__has_cpp_attribute(unlikely)</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>aggregate_paren_init</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_paren_init</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__aggregate_paren_init.cpp:9:59: error: no matching function for call to 'S::S(int, int)'
+ auto _test_cpp20__aggregate_paren_init() -> int { S s(1, 2); return s.x + s.y - 3; }
+                                                           ^
+ struct S { int x; int y; };
+        ^</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>char8_t_lang</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/keyword/char8_t" title="cppreference docs">__cpp_char8_t</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__char8_t_lang.cpp:8:43: error: 'char8_t' was not declared in this scope
+ auto _test_cpp20__char8_t_lang() -> int { char8_t c = u8'A'; return c == u8'A' ? 0 : 1; }
+                                           ^~~~~~~
+ auto _test_cpp20__char8_t_lang() -> int { char8_t c = u8'A'; return c == u8'A' ? 0 : 1; }
+                                           ^~~~~~~
+                                           char16_t
+src/cpp20__char8_t_lang.cpp:8:69: error: 'c' was not declared in this scope
+ auto </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>concepts</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constraints" title="cppreference docs">__cpp_concepts</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__concepts.cpp:8:10: fatal error: concepts: No such file or directory
+ #include <concepts>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>conditional_explicit</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/explicit" title="cppreference docs">__cpp_conditional_explicit</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__conditional_explicit.cpp:9:42: error: expected unqualified-id before '!' token
+ struct S { template<typename T> explicit(!std::is_same_v<T, int>) S(T) {} };
+                                          ^
+src/cpp20__conditional_explicit.cpp:9:42: error: expected ')' before '!' token
+src/cpp20__conditional_explicit.cpp:10:57: error: no matching function for call to 'S::S(int)'
+ auto _test_cpp20__conditional_explicit() -> int { S s(42); return 0; }
+                                          </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>consteval</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/consteval" title="cppreference docs">__cpp_consteval</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__consteval.cpp:8:1: error: 'consteval' does not name a type; did you mean 'constrain'?
+ consteval int square(int x) { return x * x; }
+ ^~~~~~~~~
+ constrain
+src/cpp20__consteval.cpp:11:25: error: 'square' was not declared in this scope
+     constexpr int val = square(5);
+                         ^~~~~~
+     constexpr int val = square(5);
+                         ^~~~~~
+                         sqrt</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_dynamic_alloc</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constexpr" title="cppreference docs">__cpp_constexpr_dynamic_alloc</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_dynamic_alloc.cpp:8:40: error: call to non-constexpr function 'void* operator new(std::size_t)'
+ constexpr int f() { int* p = new int(42); int v = *p; delete p; return v; }
+                                        ^
+src/cpp20__constexpr_dynamic_alloc.cpp:9:1: error: non-constant condition for static assertion
+ static_assert(f() == 42);
+ ^~~~~~~~~~~~~
+src/cpp20__constexpr_dynamic_alloc.cpp:9:16: error: 'constexpr int f()' called in a constant expression
+ static_assert(f() == 4</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>constexpr_in_decltype</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constant_expression#Functions_and_variables_needed_for_constant_evaluation" title="cppreference docs">__cpp_constexpr_in_decltype</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constinit</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constinit" title="cppreference docs">__cpp_constinit</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constinit.cpp:8:1: error: 'constinit' does not name a type; did you mean 'constrain'?
+ constinit int global_val = 42;
+ ^~~~~~~~~
+ constrain
+src/cpp20__constinit.cpp:11:12: error: 'global_val' was not declared in this scope
+     return global_val - 42;
+            ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>cpp_modules</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/modules" title="cppreference docs">__cpp_modules</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp_modules.cpp:8:10: fatal error: version: No such file or directory
+ #include <version>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>designated_initializers</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers" title="cppreference docs">__cpp_designated_initializers</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>impl_coroutine</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/coroutines" title="cppreference docs">__cpp_impl_coroutine</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__impl_coroutine.cpp:11:10: fatal error: experimental/coroutine: No such file or directory
+ #include <experimental/coroutine>
+          ^~~~~~~~~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>impl_destroying_delete</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/operator_delete" title="cppreference docs">__cpp_impl_destroying_delete</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__impl_destroying_delete.cpp:9:58: error: 'std::destroying_delete_t' has not been declared
+ struct S { int v; static void operator delete(S* p, std::destroying_delete_t) { p->~S(); ::operator delete(p); } };
+                                                          ^~~~~~~~~~~~~~~~~~~
+src/cpp20__impl_destroying_delete.cpp:9:77: error: 'operator delete' takes type 'void*' as first parameter
+ struct S { int v; static void operator delete(S* p, std::destroying_delete_t) { p->~S(); ::operat</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>impl_three_way_comparison</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison" title="cppreference docs">__cpp_impl_three_way_comparison</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__impl_three_way_comparison.cpp:8:10: fatal error: compare: No such file or directory
+ #include <compare>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>using_enum</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/enum#Using-enum-declaration" title="cppreference docs">__cpp_using_enum</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__using_enum.cpp:9:47: error: expected nested-name-specifier before 'enum'
+ auto _test_cpp20__using_enum() -> int { using enum Color; return static_cast<int>(Green) == 1 ? 0 : 1; }
+                                               ^~~~
+src/cpp20__using_enum.cpp:9:83: error: 'Green' was not declared in this scope
+ auto _test_cpp20__using_enum() -> int { using enum Color; return static_cast<int>(Green) == 1 ? 0 : 1; }
+                                                                          </pre></td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr>
+            <td>algorithm_iterator_requirements</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm" title="cppreference docs">__cpp_lib_algorithm_iterator_requirements</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>assume_aligned</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_assume_aligned</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__assume_aligned.cpp:9:66: warning: requested alignment 64 is larger than 8 [-Wattributes]
+ auto _test_cpp20__assume_aligned() -> int { alignas(64) int buf[4] = {42}; auto* p = std::assume_aligned<64>(buf); return p[0] - 42; }
+                                                                  ^
+src/cpp20__assume_aligned.cpp:9:91: error: 'assume_aligned' is not a member of 'std'
+ auto _test_cpp20__assume_aligned() -> int { alignas(64) int buf[4] = {42}; auto* p = std::assume_aligned<64>(b</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_flag_test</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_atomic_flag_test</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__atomic_flag_test.cpp:9:95: error: 'struct std::atomic_flag' has no member named 'test'
+ auto _test_cpp20__atomic_flag_test() -> int { std::atomic_flag f = ATOMIC_FLAG_INIT; return f.test() ? 1 : 0; }
+                                                                                               ^~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>atomic_float</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic" title="cppreference docs">__cpp_lib_atomic_float</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_lock_free_type_aliases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_atomic_lock_free_type_aliases</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__atomic_lock_free_type_aliases.cpp:9:65: error: 'atomic_signed_lock_free' is not a member of 'std'
+ auto _test_cpp20__atomic_lock_free_type_aliases() -> int { std::atomic_signed_lock_free a{0}; a.store(42); return a.load() - 42; }
+                                                                 ^~~~~~~~~~~~~~~~~~~~~~~
+ auto _test_cpp20__atomic_lock_free_type_aliases() -> int { std::atomic_signed_lock_free a{0}; a.store(42); return a.load() - 42; }
+                                      </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_ref</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic_ref" title="cppreference docs">__cpp_lib_atomic_ref</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__atomic_ref.cpp:9:57: error: 'atomic_ref' is not a member of 'std'
+ auto _test_cpp20__atomic_ref() -> int { int x = 0; std::atomic_ref<int> r(x); r.store(42); return r.load() - 42; }
+                                                         ^~~~~~~~~~
+ auto _test_cpp20__atomic_ref() -> int { int x = 0; std::atomic_ref<int> r(x); r.store(42); return r.load() - 42; }
+                                                         ^~~~~~~~~~
+                                                       </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_shared_ptr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/shared_ptr/atomic2" title="cppreference docs">__cpp_lib_atomic_shared_ptr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">In file included from src/cpp20__atomic_shared_ptr.cpp:8:0:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/atomic:187:7: error: static assertion failed: std::atomic requires a trivially copyable type
+       static_assert(__is_trivially_copyable(_Tp),
+       ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>atomic_value_initialization</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_atomic_value_initialization</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_wait</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_atomic_wait</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__atomic_wait.cpp:9:68: error: 'struct std::atomic<int>' has no member named 'wait'
+ auto _test_cpp20__atomic_wait() -> int { std::atomic<int> a{42}; a.wait(0); return 0; }
+                                                                    ^~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>barrier</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/barrier" title="cppreference docs">__cpp_lib_barrier</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__barrier.cpp:8:10: fatal error: barrier: No such file or directory
+ #include <barrier>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bind_front</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_bind_front</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__bind_front.cpp:13:22: error: 'bind_front' is not a member of 'std'
+     auto add5 = std::bind_front(add, 5);
+                      ^~~~~~~~~~
+     auto add5 = std::bind_front(add, 5);
+                      ^~~~~~~~~~
+                      binder2nd</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bit_cast</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/bit_cast" title="cppreference docs">__cpp_lib_bit_cast</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__bit_cast.cpp:8:10: fatal error: bit: No such file or directory
+ #include <bit>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bitops</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric#Bit_manipulation_(since_C++20)" title="cppreference docs">__cpp_lib_bitops</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__bitops.cpp:7:10: fatal error: bit: No such file or directory
+ #include <bit>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bounded_array_traits</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_bounded_array" title="cppreference docs">__cpp_lib_bounded_array_traits</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__bounded_array_traits.cpp:9:63: error: 'is_bounded_array_v' is not a member of 'std'
+ auto _test_cpp20__bounded_array_traits() -> int { return std::is_bounded_array_v<int[3]> && !std::is_bounded_array_v<int[]> ? 0 : 1; }
+                                                               ^~~~~~~~~~~~~~~~~~
+src/cpp20__bounded_array_traits.cpp:9:82: error: expected primary-expression before 'int'
+ auto _test_cpp20__bounded_array_traits() -> int { return std::is_bounded_array_v<int[3]> && !std</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>char8_t_lib</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_char8_t</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__char8_t_lib.cpp:9:47: error: 'u8string' is not a member of 'std'
+ auto _test_cpp20__char8_t_lib() -> int { std::u8string s = u8"hello"; return s.size() == 5 ? 0 : 1; }
+                                               ^~~~~~~~
+ auto _test_cpp20__char8_t_lib() -> int { std::u8string s = u8"hello"; return s.size() == 5 ? 0 : 1; }
+                                               ^~~~~~~~
+                                               isprint
+src/cpp20__char8_t_lib.cpp:9:78: error: 's' was not</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>common_reference</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_common_reference</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__common_reference.cpp:9:62: error: 'common_reference_t' in namespace 'std' does not name a template type
+ auto _test_cpp20__common_reference() -> int { using T = std::common_reference_t<int&, const int&>; return std::is_same_v<T, const int&> ? 0 : 1; }
+                                                              ^~~~~~~~~~~~~~~~~~
+src/cpp20__common_reference.cpp:9:112: error: 'is_same_v' is not a member of 'std'
+ auto _test_cpp20__common_reference() -> int { using T = std::common_refe</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>common_reference_wrapper</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_common_reference_wrapper</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__common_reference_wrapper.cpp:10:70: error: 'common_reference_t' in namespace 'std' does not name a template type
+ auto _test_cpp20__common_reference_wrapper() -> int { using T = std::common_reference_t<int&, std::reference_wrapper<int>>; return std::is_reference_v<T> ? 0 : 1; }
+                                                                      ^~~~~~~~~~~~~~~~~~
+src/cpp20__common_reference_wrapper.cpp:10:137: error: 'is_reference_v' is not a member of 'std'
+ auto _test_cpp20__commo</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>concepts_lib</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/compare" title="cppreference docs">__cpp_lib_concepts</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__concepts_lib.cpp:8:10: fatal error: concepts: No such file or directory
+ #include <concepts>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_algorithms</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_constexpr_algorithms</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_algorithms.cpp:10:33: error: missing template arguments before 'a'
+ constexpr auto f() { std::array a{3,1,2}; std::sort(a.begin(), a.end()); return a[0]; }
+                                 ^
+src/cpp20__constexpr_algorithms.cpp:10:53: error: 'a' was not declared in this scope
+ constexpr auto f() { std::array a{3,1,2}; std::sort(a.begin(), a.end()); return a[0]; }
+                                                     ^
+src/cpp20__constexpr_algorithms.cpp:11:19: error: invalid o</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>constexpr_complex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/complex" title="cppreference docs">__cpp_lib_constexpr_complex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_dynamic_alloc_lib</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_constexpr_dynamic_alloc</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_dynamic_alloc_lib.cpp:9:41: error: variable 'a' of non-literal type 'std::allocator<int>' in 'constexpr' function
+ constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
+                                         ^
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/string:41:0,
+                 from /home/runner/.platformio/packages/toolchain-gccarmnon</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_functional</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_constexpr_functional</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_functional.cpp:10:20: error: 'invoke' is not a member of 'std'
+ static_assert(std::invoke(add, 2, 3) == 5);
+                    ^~~~~~
+ static_assert(std::invoke(add, 2, 3) == 5);
+                    ^~~~~~
+                    __invoke</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_iterator</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_constexpr_iterator</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_iterator.cpp:10:73: error: call to non-constexpr function 'decltype (__cont.begin()) std::begin(_Container&) [with _Container = std::array<int, 3>; decltype (__cont.begin()) = int*]'
+ constexpr int f() { std::array<int, 3> a = {1, 2, 3}; return *std::begin(a); }
+                                                               ~~~~~~~~~~^~~
+src/cpp20__constexpr_iterator.cpp:11:1: error: non-constant condition for static assertion
+ static_assert(f() == 1);
+ ^~~~~~~~~~~~~
+src/cpp</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_memory</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_constexpr_memory</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_memory.cpp:9:37: error: 'construct_at' is not a member of 'std'
+ constexpr int f() { int x = 0; std::construct_at(&x, 42); return x; }
+                                     ^~~~~~~~~~~~
+ constexpr int f() { int x = 0; std::construct_at(&x, 42); return x; }
+                                     ^~~~~~~~~~~~
+                                     _Construct
+src/cpp20__constexpr_memory.cpp:10:1: error: static assertion failed
+ static_assert(f() == 42);
+ ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_numeric</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Numeric_operations" title="cppreference docs">__cpp_lib_constexpr_numeric</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_numeric.cpp:10:77: error: call to non-constexpr function '_Tp std::accumulate(_InputIterator, _InputIterator, _Tp) [with _InputIterator = int*; _Tp = int]'
+ constexpr int f() { std::array<int, 3> a = {1, 2, 3}; return std::accumulate(a.begin(), a.end(), 0); }
+                                                              ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+src/cpp20__constexpr_numeric.cpp:11:1: error: non-constant condition for static assertion
+ static_assert(f() == 6);
+ ^</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_string</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_constexpr_string</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_string.cpp:9:37: error: variable 's' of non-literal type 'std::__cxx11::string {aka std::__cxx11::basic_string<char>}' in 'constexpr' function
+ constexpr int f() { std::string s = "hi"; return s.size(); }
+                                     ^~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/string:52:0,
+                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_string_view</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__constexpr_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace '</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>constexpr_tuple</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_constexpr_tuple</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_utility</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constexpr_utility</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_utility.cpp:9:55: error: call to non-constexpr function '_Tp std::exchange(_Tp&, _Up&&) [with _Tp = int; _Up = int]'
+ constexpr int f() { int x = 1; int old = std::exchange(x, 42); return x + old; }
+                                          ~~~~~~~~~~~~~^~~~~~~
+src/cpp20__constexpr_utility.cpp:10:1: error: non-constant condition for static assertion
+ static_assert(f() == 43);
+ ^~~~~~~~~~~~~
+src/cpp20__constexpr_utility.cpp:10:16: error: 'constexpr int f()' called in a consta</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constexpr_vector</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/vector" title="cppreference docs">__cpp_lib_constexpr_vector</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__constexpr_vector.cpp:9:48: error: variable 'v' of non-literal type 'std::vector<int>' in 'constexpr' function
+ constexpr int f() { std::vector<int> v = {1,2,3}; return v.size(); }
+                                                ^
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/vector:64:0,
+                 from src/cpp20__constexpr_vector.cpp:8:
+src/cpp20__constexpr_vector.cpp:10:1: error: non-constant condition for stat</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>constrained_equality</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__constrained_equality.cpp:9:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__constrained_equality.cpp:10:56: error: 'optional' is not a member of</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>coroutine</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/coroutines" title="cppreference docs">__cpp_lib_coroutine</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__coroutine.cpp:8:10: fatal error: coroutine: No such file or directory
+ #include <coroutine>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>destroying_delete</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/operator_delete" title="cppreference docs">__cpp_lib_destroying_delete</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__destroying_delete.cpp:9:64: error: 'std::destroying_delete_t' has not been declared
+ struct Node { int v; static void operator delete(Node* p, std::destroying_delete_t) { p->~Node(); ::operator delete(p); } };
+                                                                ^~~~~~~~~~~~~~~~~~~
+src/cpp20__destroying_delete.cpp:9:83: error: 'operator delete' takes type 'void*' as first parameter
+ struct Node { int v; static void operator delete(Node* p, std::destroying_delete_t) { p->~No</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>endian</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/bit" title="cppreference docs">__cpp_lib_endian</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__endian.cpp:7:10: fatal error: bit: No such file or directory
+ #include <bit>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>erase_if</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_erase_if</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__erase_if.cpp:10:10: error: 'erase_if' is not a member of 'std'
+     std::erase_if(v, [](int x) { return x % 2 == 0; });
+          ^~~~~~~~
+     std::erase_if(v, [](int x) { return x % 2 == 0; });
+          ^~~~~~~~
+          enable_if</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>format</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/format" title="cppreference docs">__cpp_lib_format</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__format.cpp:8:10: fatal error: format: No such file or directory
+ #include <format>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>format_uchar</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/format" title="cppreference docs">__cpp_lib_format_uchar</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__format_uchar.cpp:8:10: fatal error: format: No such file or directory
+ #include <format>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>freestanding_ranges</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_freestanding_ranges</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__freestanding_ranges.cpp:8:10: fatal error: ranges: No such file or directory
+ #include <ranges>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>generic_unordered_lookup</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/unordered_map" title="cppreference docs">__cpp_lib_generic_unordered_lookup</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__generic_unordered_lookup.cpp:10:67: error: 'std::string_view' has not been declared
+ struct Hash { using is_transparent = void; size_t operator()(std::string_view sv) const { return std::hash<std::string_view>{}(sv); } };
+                                                                   ^~~~~~~~~~~
+src/cpp20__generic_unordered_lookup.cpp:10:113: error: 'string_view' is not a member of 'std'
+ struct Hash { using is_transparent = void; size_t operator()(std::string_view sv) const { ret</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>int_pow2</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/bit" title="cppreference docs">__cpp_lib_int_pow2</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__int_pow2.cpp:8:10: fatal error: bit: No such file or directory
+ #include <bit>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>integer_comparison_functions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility#Integer_comparison_functions" title="cppreference docs">__cpp_lib_integer_comparison_functions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__integer_comparison_functions.cpp:9:71: error: 'cmp_less' is not a member of 'std'
+ auto _test_cpp20__integer_comparison_functions() -> int { return std::cmp_less(-1, 1u) ? 0 : 1; }
+                                                                       ^~~~~~~~
+ auto _test_cpp20__integer_comparison_functions() -> int { return std::cmp_less(-1, 1u) ? 0 : 1; }
+                                                                       ^~~~~~~~
+                                                 </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>interpolate</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/lerp" title="cppreference docs">__cpp_lib_interpolate</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__interpolate.cpp:9:56: error: 'midpoint' is not a member of 'std'
+ auto _test_cpp20__interpolate() -> int { auto m = std::midpoint(1, 3); auto l = std::lerp(0.0, 1.0, 0.5); return (m == 2 && l == 0.5) ? 0 : 1; }
+                                                        ^~~~~~~~
+ auto _test_cpp20__interpolate() -> int { auto m = std::midpoint(1, 3); auto l = std::lerp(0.0, 1.0, 0.5); return (m == 2 && l == 0.5) ? 0 : 1; }
+                                                        ^~~~~~~~
+  </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_constant_evaluated</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_constant_evaluated" title="cppreference docs">__cpp_lib_is_constant_evaluated</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__is_constant_evaluated.cpp:9:30: error: 'is_constant_evaluated' is not a member of 'std'
+ constexpr int f() { if (std::is_constant_evaluated()) return 1; return 0; }
+                              ^~~~~~~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/include/platform/Callback.h:26:0,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/include/platform/FileHan</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_nothrow_convertible</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_convertible" title="cppreference docs">__cpp_lib_is_nothrow_convertible</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__is_nothrow_convertible.cpp:9:65: error: 'is_nothrow_convertible_v' is not a member of 'std'
+ auto _test_cpp20__is_nothrow_convertible() -> int { return std::is_nothrow_convertible_v<int, double> ? 0 : 1; }
+                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~
+ auto _test_cpp20__is_nothrow_convertible() -> int { return std::is_nothrow_convertible_v<int, double> ? 0 : 1; }
+                                                                 ^~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>jthread</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/stop_token" title="cppreference docs">__cpp_lib_jthread</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__jthread.cpp:8:10: fatal error: stop_token: No such file or directory
+ #include <stop_token>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>latch</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/latch" title="cppreference docs">__cpp_lib_latch</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__latch.cpp:8:10: fatal error: latch: No such file or directory
+ #include <latch>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>list_remove_return_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/forward_list" title="cppreference docs">__cpp_lib_list_remove_return_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__list_remove_return_type.cpp:9:92: error: 'void n' has incomplete type
+ auto _test_cpp20__list_remove_return_type() -> int { std::list<int> l = {1, 2, 2, 3}; auto n = l.remove(2); return n == 2 ? 0 : 1; }
+                                                                                            ^</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>math_constants</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/constants" title="cppreference docs">__cpp_lib_math_constants</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__math_constants.cpp:7:10: fatal error: numbers: No such file or directory
+ #include <numbers>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>modules_lib</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/standard_library#Importing_modules" title="cppreference docs">__cpp_lib_modules</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__modules_lib.cpp:8:10: fatal error: version: No such file or directory
+ #include <version>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>move_iterator_concept</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_move_iterator_concept</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>polymorphic_allocator</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory_resource" title="cppreference docs">__cpp_lib_polymorphic_allocator</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__polymorphic_allocator.cpp:8:10: fatal error: memory_resource: No such file or directory
+ #include <memory_resource>
+          ^~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>ranges</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_ranges</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__ranges.cpp:8:10: fatal error: ranges: No such file or directory
+ #include <ranges>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>remove_cvref</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/remove_cvref" title="cppreference docs">__cpp_lib_remove_cvref</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__remove_cvref.cpp:9:55: error: 'is_same_v' is not a member of 'std'
+ auto _test_cpp20__remove_cvref() -> int { return std::is_same_v<std::remove_cvref_t<const int&>, int> ? 0 : 1; }
+                                                       ^~~~~~~~~
+ auto _test_cpp20__remove_cvref() -> int { return std::is_same_v<std::remove_cvref_t<const int&>, int> ? 0 : 1; }
+                                                       ^~~~~~~~~
+                                                       is_same
+s</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>semaphore</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/counting_semaphore" title="cppreference docs">__cpp_lib_semaphore</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__semaphore.cpp:8:10: fatal error: semaphore: No such file or directory
+ #include <semaphore>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shift</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm/shift" title="cppreference docs">__cpp_lib_shift</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__shift.cpp:10:48: error: missing template arguments before 'v'
+ auto _test_cpp20__shift() -> int { std::vector v = {1,2,3,4,5}; std::shift_left(v.begin(), v.end(), 2); return v[0] == 3 ? 0 : 1; }
+                                                ^
+src/cpp20__shift.cpp:10:70: error: 'shift_left' is not a member of 'std'
+ auto _test_cpp20__shift() -> int { std::vector v = {1,2,3,4,5}; std::shift_left(v.begin(), v.end(), 2); return v[0] == 3 ? 0 : 1; }
+                                      </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>smart_ptr_for_overwrite</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_smart_ptr_for_overwrite</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__smart_ptr_for_overwrite.cpp:9:68: error: 'make_unique_for_overwrite' is not a member of 'std'
+ auto _test_cpp20__smart_ptr_for_overwrite() -> int { auto p = std::make_unique_for_overwrite<int>(); *p = 42; return *p - 42; }
+                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/cpp20__smart_ptr_for_overwrite.cpp:9:94: error: expected primary-expression before 'int'
+ auto _test_cpp20__smart_ptr_for_overwrite() -> int { auto p = std::make_unique</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>source_location</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/source_location" title="cppreference docs">__cpp_lib_source_location</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__source_location.cpp:7:10: fatal error: source_location: No such file or directory
+ #include <source_location>
+          ^~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>span</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__span.cpp:8:10: fatal error: span: No such file or directory
+ #include <span>
+          ^~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>ssize</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator/size" title="cppreference docs">__cpp_lib_ssize</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__ssize.cpp:9:67: error: 'ssize' is not a member of 'std'
+ auto _test_cpp20__ssize() -> int { int a[] = {1,2,3}; return std::ssize(a) == 3 ? 0 : 1; }
+                                                                   ^~~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/cxxsupport/mstd_memory:38:0,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/platform/cxxsupport/mstd_functiona</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>starts_ends_with</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_starts_ends_with</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__starts_ends_with.cpp:10:14: error: 'std::__cxx11::string {aka class std::__cxx11::basic_string<char>}' has no member named 'starts_with'
+     return s.starts_with("hello") && s.ends_with("world") ? 0 : 1;
+              ^~~~~~~~~~~
+src/cpp20__starts_ends_with.cpp:10:40: error: 'std::__cxx11::string {aka class std::__cxx11::basic_string<char>}' has no member named 'ends_with'
+     return s.starts_with("hello") && s.ends_with("world") ? 0 : 1;
+                                        ^~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>syncbuf</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iosfwd" title="cppreference docs">__cpp_lib_syncbuf</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__syncbuf.cpp:8:10: fatal error: syncstream: No such file or directory
+ #include <syncstream>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>three_way_comparison_lib</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/compare" title="cppreference docs">__cpp_lib_three_way_comparison</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__three_way_comparison_lib.cpp:8:10: fatal error: compare: No such file or directory
+ #include <compare>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>to_address</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_to_address</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__to_address.cpp:9:79: error: 'to_address' is not a member of 'std'
+ auto _test_cpp20__to_address() -> int { int x = 42; int* p = &x; return *std::to_address(p) - 42; }
+                                                                               ^~~~~~~~~~
+ auto _test_cpp20__to_address() -> int { int x = 42; int* p = &x; return *std::to_address(p) - 42; }
+                                                                               ^~~~~~~~~~
+                                         </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>to_array</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/array/to_array" title="cppreference docs">__cpp_lib_to_array</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__to_array.cpp:11:21: error: 'to_array' is not a member of 'std'
+     auto arr = std::to_array({1, 2, 3, 4, 5});
+                     ^~~~~~~~
+     auto arr = std::to_array({1, 2, 3, 4, 5});
+                     ^~~~~~~~
+                     is_array</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>type_identity</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_type_identity</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__type_identity.cpp:9:37: error: 'std::type_identity_t' has not been declared
+ template<typename T> void f(T, std::type_identity_t<T>) {}
+                                     ^~~~~~~~~~~~~~~
+src/cpp20__type_identity.cpp:9:52: error: expected ',' or '...' before '<' token
+ template<typename T> void f(T, std::type_identity_t<T>) {}
+                                                    ^</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>unwrap_ref</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_unwrap_ref</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__unwrap_ref.cpp:9:92: error: 'unwrap_ref_decay_t' in namespace 'std' does not name a template type
+ auto _test_cpp20__unwrap_ref() -> int { int x = 42; auto ref = std::ref(x); using T = std::unwrap_ref_decay_t<decltype(ref)>; return std::is_same_v<T, int&> ? 0 : 1; }
+                                                                                            ^~~~~~~~~~~~~~~~~~
+src/cpp20__unwrap_ref.cpp:9:139: error: 'is_same_v' is not a member of 'std'
+ auto _test_cpp20__unwrap_ref() -></pre></td>
+        </tr>
+        
+        
+        
+    </table>
+    
+</body>
+</html>

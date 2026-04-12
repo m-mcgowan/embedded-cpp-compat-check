@@ -13,22 +13,22 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 ## Compatibility Matrix
 
 <!-- compat-matrix-start -->
-*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-07.*
+*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-12.*
 
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
 | ESP32-S3 (pioarduino) | esp32s3 | c++11–c++26 | **100%** |
 | ESP32-S3 (espressif32 official) | esp32s3 | c++11–c++26 | **100%** |
+| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **97%** |
 | SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **97%** |
 | Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **97%** |
 | STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **97%** |
-| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **97%** |
+| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **95%** |
 | SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **95%** |
 | Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **95%** |
-| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **95%** |
 | ESP8266 NodeMCU | ESP8266 Xtensa LX106 | c++17 | **94%** |
-| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
 | AVR Arduino Uno | ATmega328P | c++11–c++17 | **86%** |
+| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
 <!-- compat-matrix-end -->
 
 "Effective support" = percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined.
@@ -99,7 +99,24 @@ The generated report shows the minimum C++ standard that works on each platform:
 
 ### Add to your CI
 
-Add `<!-- compat-matrix-start -->` and `<!-- compat-matrix-end -->` markers to your README where you want the compatibility table, then use the action:
+Add `<!-- compat-matrix-start -->
+*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-12.*
+
+| Platform | Board | Standards | Effective Support |
+|----------|-------|-----------|-------------------|
+| ESP32-S3 (pioarduino) | esp32s3 | c++11–c++26 | **100%** |
+| ESP32-S3 (espressif32 official) | esp32s3 | c++11–c++26 | **100%** |
+| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **97%** |
+| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **97%** |
+| Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **97%** |
+| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **97%** |
+| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **95%** |
+| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **95%** |
+| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **95%** |
+| ESP8266 NodeMCU | ESP8266 Xtensa LX106 | c++17 | **94%** |
+| AVR Arduino Uno | ATmega328P | c++11–c++17 | **86%** |
+| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
+<!-- compat-matrix-end -->` markers to your README where you want the compatibility table, then use the action:
 
 **Option A: CI verifies the matrix is up to date** (developer updates locally, CI gates)
 
@@ -173,7 +190,7 @@ Usage: compat-check library [OPTIONS] LIBRARY_REF
 
 Options:
   --platforms-dir PATH       Directory containing platform YAML definitions
-                             [default: platforms]
+                             (default: bundled)
   --platform TEXT            Test only these platforms (repeatable). Defaults
                              to platforms from library.json.
   --example TEXT             Test only these examples (repeatable). Defaults
@@ -181,6 +198,12 @@ Options:
   --report PATH              Write report to file (default: stdout)
   --report-format [md|json]  Report format. Auto-detected from --report
                              extension if omitted.
+  --lib-deps TEXT            Additional library dependencies for the build
+                             (repeatable). Accepts PIO library names, URLs, or
+                             local paths.
+  --recipe                   Include platform recipes (e.g. avr-libstdcpp for
+                             AVR). Adds each platform's recipe lib_deps to the
+                             build.
   --work-dir PATH            Build cache directory  [default: .work]
   --help                     Show this message and exit.
 ```

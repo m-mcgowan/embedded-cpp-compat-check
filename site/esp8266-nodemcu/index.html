@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP8266 NodeMCU - C++ Compatibility</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; color: #1a1a1a; }
+        .meta { color: #666; margin-bottom: 1rem; }
+        .std-header { display: flex; align-items: baseline; gap: 1rem; }
+        .std-header h2 { margin-bottom: 0.25rem; }
+        .std-stats { color: #666; font-size: 0.9em; }
+        .category-label { font-weight: 600; color: #444; padding: 12px 8px 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #f5f5f5; font-weight: 600; font-size: 0.85em; }
+        td code { font-size: 0.85em; background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+        td code a { color: inherit; }
+        .supported { color: #28a745; font-weight: 500; }
+        .unsupported { color: #dc3545; }
+        .unreported { color: #17a2b8; }
+        .macro_lies { color: #e67e00; font-weight: 500; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 4px; }
+        .progress-bar { height: 100%; border-radius: 3px; background: #28a745; }
+        .back-link { margin-bottom: 1rem; }
+        .legend { margin-top: 1rem; margin-bottom: 2rem; font-size: 0.85em; color: #666; }
+        .legend span { font-weight: 600; }
+        tr.has-error { cursor: pointer; }
+        tr.has-error:hover td { background: #fafafa; }
+        tr.error-row { display: none; }
+        tr.error-row.open { display: table-row; }
+        tr.error-row td { padding: 0; }
+        pre.error-output {
+            margin: 0; padding: 8px 12px;
+            font-size: 0.8em; line-height: 1.4;
+            background: #2d2d2d; color: #f0f0f0;
+            white-space: pre-wrap; word-break: break-all;
+            max-height: 200px; overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="back-link"><a href="../index.html">&larr; Back to matrix</a></p>
+    <h1>ESP8266 NodeMCU</h1>
+    <div class="meta">
+        ESP8266 Xtensa LX106 &middot; 
+        xtensa-lx106 &middot; 
+        Version 4.2.1
+    </div>
+
+    <div class="legend">
+        <ul>
+            <li><span class="supported">supported</span> — SD-6 macro defined and feature compiles</li>
+            <li><span class="unreported">unreported</span> — feature compiles but macro not defined</li>
+            <li><span class="macro_lies">macro_lies</span> — macro claims support but compile fails</li>
+            <li><span class="unsupported">unsupported</span> — feature does not compile</li>
+        </ul>
+        Click failed rows to see compiler output.
+    </div>
+
+    
+    
+    <div class="std-header" id="c++17">
+        <h2>c++17</h2>
+        <span class="std-stats">63/67 features (94%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 94%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">attribute</td></tr>
+        
+        <tr>
+            <td>fallthrough</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/fallthrough" title="cppreference docs">__has_cpp_attribute(fallthrough)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>maybe_unused</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/maybe_unused" title="cppreference docs">__has_cpp_attribute(maybe_unused)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr>
+            <td>aggregate_bases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_bases</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>aligned_new</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/align_val_t" title="cppreference docs">__cpp_aligned_new</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>capture_star_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda#Lambda_capture" title="cppreference docs">__cpp_capture_star_this</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>deduction_guides</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction" title="cppreference docs">__cpp_deduction_guides</a></code></td>
+            <td>201703</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>deleted_function</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/function" title="cppreference docs">__cpp_deleted_function</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>enumerator_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/enum" title="cppreference docs">__cpp_enumerator_attributes</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>fold_expressions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/fold" title="cppreference docs">__cpp_fold_expressions</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>guaranteed_copy_elision</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/value_category" title="cppreference docs">__cpp_guaranteed_copy_elision</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>hex_float</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/floating_literal" title="cppreference docs">__cpp_hex_float</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>if_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/if" title="cppreference docs">__cpp_if_constexpr</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>inline_variables</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/inline" title="cppreference docs">__cpp_inline_variables</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>namespace_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/namespace" title="cppreference docs">__cpp_namespace_attributes</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>noexcept_function_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/noexcept_spec" title="cppreference docs">__cpp_noexcept_function_type</a></code></td>
+            <td>201510</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nontype_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_non-type_arguments" title="cppreference docs">__cpp_nontype_template_args</a></code></td>
+            <td>201411</td>
+            <td>&#x274C;</td>
+            <td class="macro_lies">macro_lies</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nontype_template_args.cpp:9:12: error: non-type template parameters of class type only available with '-std=c++2a' or '-std=gnu++2a'
+    9 | template<S s> constexpr int get() { return s.v; }
+      |            ^
+src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call to 'get<S(42)>()'
+   10 | auto _test_cpp17__nontype_template_args() -> int { return get<S{42}>() - 42; }
+      |                                                                      ^
+    9 | temp</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>nontype_template_parameter_auto</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter" title="cppreference docs">__cpp_nontype_template_parameter_auto</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>structured_bindings</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/structured_binding" title="cppreference docs">__cpp_structured_bindings</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>template_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_template_arguments" title="cppreference docs">__cpp_template_template_args</a></code></td>
+            <td>201611</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>variadic_using</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration" title="cppreference docs">__cpp_variadic_using</a></code></td>
+            <td>201611</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr>
+            <td>addressof_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_addressof_constexpr</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>any</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/any" title="cppreference docs">__cpp_lib_any</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>apply</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_apply</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>array_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator#Range_access" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
+            <td>201803</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>as_const</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_as_const</a></code></td>
+            <td>201510</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>atomic_is_always_lock_free</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic/is_always_lock_free" title="cppreference docs">__cpp_lib_atomic_is_always_lock_free</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>bool_constant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_bool_constant</a></code></td>
+            <td>201505</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>boyer_moore_searcher</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/functional#Searchers" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>byte</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/byte" title="cppreference docs">__cpp_lib_byte</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>chrono</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/chrono" title="cppreference docs">__cpp_lib_chrono</a></code></td>
+            <td>201611</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>clamp</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_clamp</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>enable_shared_from_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_enable_shared_from_this</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>execution</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_execution</a></code></td>
+            <td>201902</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>filesystem</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/filesystem" title="cppreference docs">__cpp_lib_filesystem</a></code></td>
+            <td>201703</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>freestanding_charconv</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/charconv" title="cppreference docs">__cpp_lib_freestanding_charconv</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>gcd_lcm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/numeric" title="cppreference docs">__cpp_lib_gcd_lcm</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>hardware_interference_size</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/hardware_destructive_interference_size" title="cppreference docs">__cpp_lib_hardware_interference_size</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__hardware_interference_size.cpp:9:69: error: 'hardware_destructive_interference_size' is not a member of 'std'
+    9 | auto _test_cpp17__hardware_interference_size() -> int { return std::hardware_destructive_interference_size > 0 ? 0 : 1; }
+      |                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>has_unique_object_representations</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_has_unique_object_representations</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>hypot</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cmath" title="cppreference docs">__cpp_lib_hypot</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>incomplete_container_elements</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/forward_list#Template_parameters" title="cppreference docs">__cpp_lib_incomplete_container_elements</a></code></td>
+            <td>201505</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>invoke</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_invoke</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_aggregate</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_aggregate" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
+            <td>201703</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_invocable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_invocable</a></code></td>
+            <td>201703</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>is_swappable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_swappable" title="cppreference docs">__cpp_lib_is_swappable</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>launder</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/new" title="cppreference docs">__cpp_lib_launder</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>logical_traits</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/meta#Operations_on_traits" title="cppreference docs">__cpp_lib_logical_traits</a></code></td>
+            <td>201510</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>make_from_tuple</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_make_from_tuple</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_map_try_emplace</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>math_special_functions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/special_functions" title="cppreference docs">__cpp_lib_math_special_functions</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>memory_resource</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory_resource" title="cppreference docs">__cpp_lib_memory_resource</a></code></td>
+            <td>1</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>node_extract</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/map/insert" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>nonmember_container_access</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_nonmember_container_access</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>not_fn</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_not_fn</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>optional</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>parallel_algorithm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_parallel_algorithm</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>raw_memory_algorithms</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory#Uninitialized_storage" title="cppreference docs">__cpp_lib_raw_memory_algorithms</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>sample</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_sample</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>scoped_lock</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/scoped_lock" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__scoped_lock.cpp:9:10: error: 'mutex' is not a member of 'std'
+    9 |     std::mutex m;
+      |          ^~~~~
+    7 | #include <mutex>
+  +++ |+#include <mutex>
+    8 | auto _test_cpp17__scoped_lock() -> int {
+src/cpp17__scoped_lock.cpp:10:27: error: 'm' was not declared in this scope; did you mean 'tm'?
+   10 |     std::scoped_lock lock(m);
+      |                           ^
+      |                           tm</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_mutex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/shared_mutex" title="cppreference docs">__cpp_lib_shared_mutex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_mutex.cpp:9:48: error: 'shared_mutex' is not a member of 'std'
+    9 | auto _test_cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }
+      |                                                ^~~~~~~~~~~~
+    8 | #include <shared_mutex>
+  +++ |+#include <shared_mutex>
+    9 | auto _test_cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>shared_ptr_arrays</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_shared_ptr_arrays</a></code></td>
+            <td>201611</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>shared_ptr_weak_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/shared_ptr" title="cppreference docs">__cpp_lib_shared_ptr_weak_type</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>string_view</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
+            <td>201803</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>type_trait_variable_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_type_trait_variable_templates</a></code></td>
+            <td>201510</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>uncaught_exceptions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/error/uncaught_exception" title="cppreference docs">__cpp_lib_uncaught_exceptions</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>unordered_map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/unordered_map" title="cppreference docs">__cpp_lib_unordered_map_try_emplace</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>variant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
+            <td>201606</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>void_t</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_void_t</a></code></td>
+            <td>201411</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+    </table>
+    
+</body>
+</html>
