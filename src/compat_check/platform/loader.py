@@ -4,6 +4,14 @@ import yaml
 from .models import Platform, Recipe
 
 
+_BUNDLED_DIR = Path(__file__).resolve().parent / "bundled"
+
+
+def bundled_platforms_dir() -> Path:
+    """Return the path to the bundled platform YAML definitions."""
+    return _BUNDLED_DIR
+
+
 def _load_recipe(data: dict | None) -> Recipe | None:
     if not data:
         return None

@@ -27,5 +27,8 @@ compat-check = "compat_check.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"compat_check.platform" = ["bundled/*.yaml"]
+
 [tool.pytest.ini_options]
 testpaths = ["pytests"]

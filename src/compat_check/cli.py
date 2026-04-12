@@ -189,8 +189,8 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
 
 @main.command()
 @click.argument("library_ref")
-@click.option("--platforms-dir", default="platforms", type=click.Path(exists=True),
-              help="Directory containing platform YAML definitions", show_default=True)
+@click.option("--platforms-dir", default=None, type=click.Path(exists=True),
+              help="Directory containing platform YAML definitions (default: bundled)")
 @click.option("--platform", "platform_filter", multiple=True,
               help="Test only these platforms (repeatable). Defaults to platforms from library.json.")
 @click.option("--example", "example_filter", multiple=True,
@@ -242,7 +242,11 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
     from compat_check.library.resolver import resolve_platforms
     from compat_check.library.builder import run_library_build
     from compat_check.library.report import generate_markdown_report, generate_json_report
-    from compat_check.platform.loader import load_platforms
+    from compat_check.platform.loader import load_platforms, bundled_platforms_dir
+
+    # Use bundled platform definitions when --platforms-dir is not specified
+    if platforms_dir is None:
+        platforms_dir = str(bundled_platforms_dir())
 
     # Resolve library reference: local path or PIO registry package
     library_dir = Path(library_ref)
