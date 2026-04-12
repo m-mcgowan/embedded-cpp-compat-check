@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>megaAVR Arduino Nano Every - C++ Compatibility</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; color: #1a1a1a; }
+        .meta { color: #666; margin-bottom: 1rem; }
+        .std-header { display: flex; align-items: baseline; gap: 1rem; }
+        .std-header h2 { margin-bottom: 0.25rem; }
+        .std-stats { color: #666; font-size: 0.9em; }
+        .category-label { font-weight: 600; color: #444; padding: 12px 8px 4px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+        th { background: #f5f5f5; font-weight: 600; font-size: 0.85em; }
+        td code { font-size: 0.85em; background: #f0f0f0; padding: 1px 4px; border-radius: 3px; }
+        td code a { color: inherit; }
+        .supported { color: #28a745; font-weight: 500; }
+        .unsupported { color: #dc3545; }
+        .unreported { color: #17a2b8; }
+        .macro_lies { color: #e67e00; font-weight: 500; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 4px; }
+        .progress-bar { height: 100%; border-radius: 3px; background: #28a745; }
+        .back-link { margin-bottom: 1rem; }
+        .legend { margin-top: 1rem; margin-bottom: 2rem; font-size: 0.85em; color: #666; }
+        .legend span { font-weight: 600; }
+        tr.has-error { cursor: pointer; }
+        tr.has-error:hover td { background: #fafafa; }
+        tr.error-row { display: none; }
+        tr.error-row.open { display: table-row; }
+        tr.error-row td { padding: 0; }
+        pre.error-output {
+            margin: 0; padding: 8px 12px;
+            font-size: 0.8em; line-height: 1.4;
+            background: #2d2d2d; color: #f0f0f0;
+            white-space: pre-wrap; word-break: break-all;
+            max-height: 200px; overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="back-link"><a href="../index.html">&larr; Back to matrix</a></p>
+    <h1>megaAVR Arduino Nano Every</h1>
+    <div class="meta">
+        ATmega4809 &middot; 
+        megaavr &middot; 
+        Version 1.6.1
+    </div>
+
+    <div class="legend">
+        <ul>
+            <li><span class="supported">supported</span> — SD-6 macro defined and feature compiles</li>
+            <li><span class="unreported">unreported</span> — feature compiles but macro not defined</li>
+            <li><span class="macro_lies">macro_lies</span> — macro claims support but compile fails</li>
+            <li><span class="unsupported">unsupported</span> — feature does not compile</li>
+        </ul>
+        Click failed rows to see compiler output.
+    </div>
+
+    
+    
+    <div class="std-header" id="c++11">
+        <h2>c++11</h2>
+        <span class="std-stats">18/21 features (86%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 86%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr>
+            <td>alias_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/type_alias" title="cppreference docs">__cpp_alias_templates</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes" title="cppreference docs">__cpp_attributes</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/constexpr" title="cppreference docs">__cpp_constexpr</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>decltype</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/decltype" title="cppreference docs">__cpp_decltype</a></code></td>
+            <td>200707</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>delegating_constructors</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/initializer_list#Delegating_constructor" title="cppreference docs">__cpp_delegating_constructors</a></code></td>
+            <td>200604</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>exceptions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/exceptions" title="cppreference docs">__cpp_exceptions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__exceptions.cpp:8:53: error: exception handling disabled, use -fexceptions to enable
+ auto _test_cpp11__exceptions() -> int { try { throw 42; } catch (int e) { return e - 42; } return 1; }
+                                                     ^~
+src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
+ auto _test_cpp11__exceptions() -> int { try { throw 42; } catch (int e) { return e - 42; } return 1; }
+                                                                   </pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>inheriting_constructors</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration#Inheriting_constructors" title="cppreference docs">__cpp_inheriting_constructors</a></code></td>
+            <td>201511</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>initializer_lists</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/list_initialization" title="cppreference docs">__cpp_initializer_lists</a></code></td>
+            <td>200806</td>
+            <td>&#x274C;</td>
+            <td class="macro_lies">macro_lies</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__initializer_lists.cpp:8:10: fatal error: initializer_list: No such file or directory
+ #include <initializer_list>
+          ^~~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>lambdas</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_lambdas</a></code></td>
+            <td>200907</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>nsdmi</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/data_members#Member_initialization" title="cppreference docs">__cpp_nsdmi</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>range_based_for</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/range-for" title="cppreference docs">__cpp_range_based_for</a></code></td>
+            <td>200907</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>raw_strings</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/string_literal" title="cppreference docs">__cpp_raw_strings</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>ref_qualifiers</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/member_functions" title="cppreference docs">__cpp_ref_qualifiers</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>rvalue_references</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/reference" title="cppreference docs">__cpp_rvalue_references</a></code></td>
+            <td>200610</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>static_assert_</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/static_assert" title="cppreference docs">__cpp_static_assert</a></code></td>
+            <td>200410</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>threadsafe_static_init</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/storage_duration#Static_local_variables" title="cppreference docs">__cpp_threadsafe_static_init</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>unicode_characters</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/types" title="cppreference docs">__cpp_unicode_characters</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>unicode_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/string_literal" title="cppreference docs">__cpp_unicode_literals</a></code></td>
+            <td>200710</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>user_defined_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/user_literal" title="cppreference docs">__cpp_user_defined_literals</a></code></td>
+            <td>200809</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>variadic_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/parameter_pack" title="cppreference docs">__cpp_variadic_templates</a></code></td>
+            <td>200704</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>allocator_traits_is_always_equal</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/allocator_traits" title="cppreference docs">__cpp_lib_allocator_traits_is_always_equal</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__allocator_traits_is_always_equal.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        
+    </table>
+    
+    
+    <div class="std-header" id="c++14">
+        <h2>c++14</h2>
+        <span class="std-stats">7/29 features (24%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 24%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr>
+            <td>aggregate_nsdmi</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_nsdmi</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>binary_literals</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/integer_literal" title="cppreference docs">__cpp_binary_literals</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>decltype_auto</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/auto" title="cppreference docs">__cpp_decltype_auto</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>generic_lambdas</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_generic_lambdas</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>init_captures</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda" title="cppreference docs">__cpp_init_captures</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>return_type_deduction</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/auto" title="cppreference docs">__cpp_return_type_deduction</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>sized_deallocation</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/operator_delete" title="cppreference docs">__cpp_sized_deallocation</a></code></td>
+            <td>201309</td>
+            <td>&#x274C;</td>
+            <td class="macro_lies">macro_lies</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__sized_deallocation.cpp:8:10: fatal error: cstddef: No such file or directory
+ #include <cstddef>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>variable_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/variable_template" title="cppreference docs">__cpp_variable_templates</a></code></td>
+            <td>201304</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>chrono_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/chrono/duration#Literals" title="cppreference docs">__cpp_lib_chrono_udls</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__chrono_udls.cpp:8:10: fatal error: chrono: No such file or directory
+ #include <chrono>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>complex_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/complex/operator""i" title="cppreference docs">__cpp_lib_complex_udls</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__complex_udls.cpp:9:10: fatal error: complex: No such file or directory
+ #include <complex>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>exchange_function</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_exchange_function</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__exchange_function.cpp:8:10: fatal error: utility: No such file or directory
+ #include <utility>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>generic_associative_lookup</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_generic_associative_lookup</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__generic_associative_lookup.cpp:8:10: fatal error: map: No such file or directory
+ #include <map>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>integer_sequence</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/integer_sequence" title="cppreference docs">__cpp_lib_integer_sequence</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__integer_sequence.cpp:8:10: fatal error: utility: No such file or directory
+ #include <utility>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>integral_constant_callable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_integral_constant_callable</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__integral_constant_callable.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_final</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_final</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__is_final.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_null_pointer</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_null_pointer</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__is_null_pointer.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>make_reverse_iterator</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator/make_reverse_iterator" title="cppreference docs">__cpp_lib_make_reverse_iterator</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__make_reverse_iterator.cpp:8:10: fatal error: iterator: No such file or directory
+ #include <iterator>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>make_unique</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_make_unique</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__make_unique.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>null_iterators</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_null_iterators</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__null_iterators.cpp:8:10: fatal error: iterator: No such file or directory
+ #include <iterator>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>quoted_string_io</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iomanip" title="cppreference docs">__cpp_lib_quoted_string_io</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__quoted_string_io.cpp:8:10: fatal error: iomanip: No such file or directory
+ #include <iomanip>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>result_of_sfinae</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/sfinae" title="cppreference docs">__cpp_lib_result_of_sfinae</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__result_of_sfinae.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>robust_nonmodifying_seq_ops</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_robust_nonmodifying_seq_ops</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__robust_nonmodifying_seq_ops.cpp:8:10: fatal error: algorithm: No such file or directory
+ #include <algorithm>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_timed_mutex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/shared_mutex" title="cppreference docs">__cpp_lib_shared_timed_mutex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__shared_timed_mutex.cpp:8:10: fatal error: shared_mutex: No such file or directory
+ #include <shared_mutex>
+          ^~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>string_udls</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/string/basic_string/operator""s" title="cppreference docs">__cpp_lib_string_udls</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__string_udls.cpp:8:10: fatal error: string: No such file or directory
+ #include <string>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>to_chars</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/to_chars" title="cppreference docs">__cpp_lib_to_chars</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__to_chars.cpp:8:10: fatal error: charconv: No such file or directory
+ #include <charconv>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>transformation_trait_aliases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_transformation_trait_aliases</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__transformation_trait_aliases.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>transparent_operators</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_transparent_operators</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__transparent_operators.cpp:8:10: fatal error: functional: No such file or directory
+ #include <functional>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>tuple_element_t</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/tuple_element#Helper_types" title="cppreference docs">__cpp_lib_tuple_element_t</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__tuple_element_t.cpp:8:10: fatal error: tuple: No such file or directory
+ #include <tuple>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>tuples_by_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/tuple/get" title="cppreference docs">__cpp_lib_tuples_by_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__tuples_by_type.cpp:8:10: fatal error: tuple: No such file or directory
+ #include <tuple>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        
+    </table>
+    
+    
+    <div class="std-header" id="c++17">
+        <h2>c++17</h2>
+        <span class="std-stats">12/67 features (18%)</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width: 18%"></div></div>
+
+    <table>
+        <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
+        
+        <tr><td colspan="5" class="category-label">attribute</td></tr>
+        
+        <tr>
+            <td>fallthrough</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/fallthrough" title="cppreference docs">__has_cpp_attribute(fallthrough)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>maybe_unused</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/attributes/maybe_unused" title="cppreference docs">__has_cpp_attribute(maybe_unused)</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">language</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>aggregate_bases</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization" title="cppreference docs">__cpp_aggregate_bases</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__aggregate_bases.cpp:10:62: error: no matching function for call to 'Derived::Derived(<brace-enclosed initializer list>)'
+ auto _test_cpp17__aggregate_bases() -> int { Derived d{{1}, 2}; return d.x + d.y - 3; }
+                                                              ^
+ struct Derived : Base { int y; };
+        ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>aligned_new</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/new/align_val_t" title="cppreference docs">__cpp_aligned_new</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__aligned_new.cpp:8:10: fatal error: new: No such file or directory
+ #include <new>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>capture_star_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/lambda#Lambda_capture" title="cppreference docs">__cpp_capture_star_this</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>deduction_guides</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction" title="cppreference docs">__cpp_deduction_guides</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__deduction_guides.cpp:8:10: fatal error: utility: No such file or directory
+ #include <utility>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>deleted_function</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/function" title="cppreference docs">__cpp_deleted_function</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>enumerator_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/enum" title="cppreference docs">__cpp_enumerator_attributes</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>fold_expressions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/fold" title="cppreference docs">__cpp_fold_expressions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>guaranteed_copy_elision</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/value_category" title="cppreference docs">__cpp_guaranteed_copy_elision</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__guaranteed_copy_elision.cpp:9:31: error: use of deleted function 'NoCopy::NoCopy(NoCopy&&)'
+ NoCopy make() { return NoCopy{}; }
+                               ^
+ struct NoCopy { NoCopy() = default; NoCopy(const NoCopy&) = delete; NoCopy(NoCopy&&) = delete; };
+                                                                     ^~~~~~
+src/cpp17__guaranteed_copy_elision.cpp:10:70: error: use of deleted function 'NoCopy::NoCopy(NoCopy&&)'
+ auto _test_cpp17__guaranteed_copy_elision() -> i</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>hex_float</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/floating_literal" title="cppreference docs">__cpp_hex_float</a></code></td>
+            <td>201603</td>
+            <td>&#x2705;</td>
+            <td class="supported">supported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>if_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/if" title="cppreference docs">__cpp_if_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>inline_variables</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/inline" title="cppreference docs">__cpp_inline_variables</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr>
+            <td>namespace_attributes</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/namespace" title="cppreference docs">__cpp_namespace_attributes</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>noexcept_function_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/noexcept_spec" title="cppreference docs">__cpp_noexcept_function_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__noexcept_function_type.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nontype_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_non-type_arguments" title="cppreference docs">__cpp_nontype_template_args</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nontype_template_args.cpp:9:12: error: 'struct S' is not a valid type for a template non-type parameter
+ template<S s> constexpr int get() { return s.v; }
+            ^
+src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call to 'get<S(42)>()'
+ auto _test_cpp17__nontype_template_args() -> int { return get<S{42}>() - 42; }
+                                                                      ^
+ template<S s> constexpr int get() { return s.v; }
+                  </pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nontype_template_parameter_auto</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter" title="cppreference docs">__cpp_nontype_template_parameter_auto</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nontype_template_parameter_auto.cpp:8:15: error: 'auto' parameter not permitted in this context
+ template<auto N> constexpr auto value = N;
+               ^
+ auto _test_cpp17__nontype_template_parameter_auto() -> int { return value<42> - 42; }
+                                                                     ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>structured_bindings</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/structured_binding" title="cppreference docs">__cpp_structured_bindings</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>template_template_args</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_template_arguments" title="cppreference docs">__cpp_template_template_args</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__template_template_args.cpp:9:10: fatal error: vector: No such file or directory
+ #include <vector>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr>
+            <td>variadic_using</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration" title="cppreference docs">__cpp_variadic_using</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
+        </tr>
+        
+        
+        
+        <tr><td colspan="5" class="category-label">library</td></tr>
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>addressof_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_addressof_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__addressof_constexpr.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>any</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/any" title="cppreference docs">__cpp_lib_any</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__any.cpp:8:10: fatal error: any: No such file or directory
+ #include <any>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>apply</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_apply</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__apply.cpp:8:10: fatal error: tuple: No such file or directory
+ #include <tuple>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>array_constexpr</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/iterator#Range_access" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__array_constexpr.cpp:8:10: fatal error: array: No such file or directory
+ #include <array>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>as_const</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_as_const</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__as_const.cpp:8:10: fatal error: utility: No such file or directory
+ #include <utility>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>atomic_is_always_lock_free</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic/is_always_lock_free" title="cppreference docs">__cpp_lib_atomic_is_always_lock_free</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__atomic_is_always_lock_free.cpp:8:10: fatal error: atomic: No such file or directory
+ #include <atomic>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>bool_constant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_bool_constant</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__bool_constant.cpp:7:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>boyer_moore_searcher</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/functional#Searchers" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__boyer_moore_searcher.cpp:8:10: fatal error: functional: No such file or directory
+ #include <functional>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>byte</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/byte" title="cppreference docs">__cpp_lib_byte</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__byte.cpp:8:10: fatal error: cstddef: No such file or directory
+ #include <cstddef>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>chrono</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/chrono" title="cppreference docs">__cpp_lib_chrono</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__chrono.cpp:8:10: fatal error: chrono: No such file or directory
+ #include <chrono>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>clamp</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_clamp</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__clamp.cpp:8:10: fatal error: algorithm: No such file or directory
+ #include <algorithm>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>enable_shared_from_this</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_enable_shared_from_this</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__enable_shared_from_this.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>execution</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_execution</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__execution.cpp:8:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>filesystem</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/filesystem" title="cppreference docs">__cpp_lib_filesystem</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__filesystem.cpp:7:10: fatal error: filesystem: No such file or directory
+ #include <filesystem>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>freestanding_charconv</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/charconv" title="cppreference docs">__cpp_lib_freestanding_charconv</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__freestanding_charconv.cpp:8:10: fatal error: charconv: No such file or directory
+ #include <charconv>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>gcd_lcm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/numeric" title="cppreference docs">__cpp_lib_gcd_lcm</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__gcd_lcm.cpp:8:10: fatal error: numeric: No such file or directory
+ #include <numeric>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>hardware_interference_size</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/hardware_destructive_interference_size" title="cppreference docs">__cpp_lib_hardware_interference_size</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__hardware_interference_size.cpp:8:10: fatal error: new: No such file or directory
+ #include <new>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>has_unique_object_representations</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_has_unique_object_representations</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__has_unique_object_representations.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>hypot</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cmath" title="cppreference docs">__cpp_lib_hypot</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__hypot.cpp:8:10: fatal error: cmath: No such file or directory
+ #include <cmath>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>incomplete_container_elements</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/forward_list#Template_parameters" title="cppreference docs">__cpp_lib_incomplete_container_elements</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__incomplete_container_elements.cpp:8:10: fatal error: vector: No such file or directory
+ #include <vector>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>invoke</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_invoke</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__invoke.cpp:8:10: fatal error: functional: No such file or directory
+ #include <functional>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_aggregate</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_aggregate" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__is_aggregate.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_invocable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_invocable</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__is_invocable.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>is_swappable</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_swappable" title="cppreference docs">__cpp_lib_is_swappable</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__is_swappable.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>launder</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/new" title="cppreference docs">__cpp_lib_launder</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__launder.cpp:8:10: fatal error: new: No such file or directory
+ #include <new>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>logical_traits</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/meta#Operations_on_traits" title="cppreference docs">__cpp_lib_logical_traits</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__logical_traits.cpp:8:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>make_from_tuple</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/tuple" title="cppreference docs">__cpp_lib_make_from_tuple</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__make_from_tuple.cpp:8:10: fatal error: tuple: No such file or directory
+ #include <tuple>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_map_try_emplace</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__map_try_emplace.cpp:7:10: fatal error: map: No such file or directory
+ #include <map>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>math_special_functions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/special_functions" title="cppreference docs">__cpp_lib_math_special_functions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__math_special_functions.cpp:8:10: fatal error: cmath: No such file or directory
+ #include <cmath>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>memory_resource</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory_resource" title="cppreference docs">__cpp_lib_memory_resource</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__memory_resource.cpp:8:10: fatal error: memory_resource: No such file or directory
+ #include <memory_resource>
+          ^~~~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>node_extract</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/container/map/insert" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__node_extract.cpp:8:10: fatal error: map: No such file or directory
+ #include <map>
+          ^~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>nonmember_container_access</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_nonmember_container_access</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__nonmember_container_access.cpp:8:10: fatal error: iterator: No such file or directory
+ #include <iterator>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>not_fn</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_not_fn</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__not_fn.cpp:7:10: fatal error: functional: No such file or directory
+ #include <functional>
+          ^~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>optional</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__optional.cpp:8:10: fatal error: optional: No such file or directory
+ #include <optional>
+          ^~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>parallel_algorithm</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_parallel_algorithm</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__parallel_algorithm.cpp:8:10: fatal error: execution: No such file or directory
+ #include <execution>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>raw_memory_algorithms</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory#Uninitialized_storage" title="cppreference docs">__cpp_lib_raw_memory_algorithms</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__raw_memory_algorithms.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>sample</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_sample</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__sample.cpp:8:10: fatal error: algorithm: No such file or directory
+ #include <algorithm>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>scoped_lock</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/thread/scoped_lock" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__scoped_lock.cpp:7:10: fatal error: mutex: No such file or directory
+ #include <mutex>
+          ^~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_mutex</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/shared_mutex" title="cppreference docs">__cpp_lib_shared_mutex</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_mutex.cpp:8:10: fatal error: shared_mutex: No such file or directory
+ #include <shared_mutex>
+          ^~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_ptr_arrays</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/memory" title="cppreference docs">__cpp_lib_shared_ptr_arrays</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_ptr_arrays.cpp:7:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>shared_ptr_weak_type</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/memory/shared_ptr" title="cppreference docs">__cpp_lib_shared_ptr_weak_type</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__shared_ptr_weak_type.cpp:8:10: fatal error: memory: No such file or directory
+ #include <memory>
+          ^~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>string_view</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__string_view.cpp:8:10: fatal error: string_view: No such file or directory
+ #include <string_view>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>type_trait_variable_templates</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_type_trait_variable_templates</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__type_trait_variable_templates.cpp:7:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>uncaught_exceptions</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/error/uncaught_exception" title="cppreference docs">__cpp_lib_uncaught_exceptions</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__uncaught_exceptions.cpp:8:10: fatal error: exception: No such file or directory
+ #include <exception>
+          ^~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>unordered_map_try_emplace</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/unordered_map" title="cppreference docs">__cpp_lib_unordered_map_try_emplace</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__unordered_map_try_emplace.cpp:8:10: fatal error: unordered_map: No such file or directory
+ #include <unordered_map>
+          ^~~~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>variant</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__variant.cpp:8:10: fatal error: variant: No such file or directory
+ #include <variant>
+          ^~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+            <td>void_t</td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_void_t</a></code></td>
+            <td>&mdash;</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__void_t.cpp:7:10: fatal error: type_traits: No such file or directory
+ #include <type_traits>
+          ^~~~~~~~~~~~~</pre></td>
+        </tr>
+        
+        
+        
+    </table>
+    
+</body>
+</html>
