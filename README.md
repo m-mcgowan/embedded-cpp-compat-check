@@ -13,7 +13,7 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 ## Compatibility Matrix
 
 <!-- compat-matrix-start -->
-*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-12.*
+*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-15.*
 
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
@@ -100,7 +100,7 @@ The generated report shows the minimum C++ standard that works on each platform:
 ### Add to your CI
 
 Add `<!-- compat-matrix-start -->
-*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-12.*
+*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-15.*
 
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
