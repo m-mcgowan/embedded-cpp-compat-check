@@ -14,7 +14,6 @@ on:
       - 'tests/**'
       - 'src/**'
       - 'catalog/**'
-      - 'src/**'
       - 'pytests/**'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -31,9 +30,9 @@ jobs:
     name: Unit + Acceptance Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -64,9 +63,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 

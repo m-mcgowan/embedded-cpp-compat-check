@@ -12,3 +12,4 @@ dist/
 *.swp
 catalog/data.yaml
 CLAUDE.md
+docs/
