@@ -1,16 +1,19 @@
 # Embedded C++ Compatibility Check
 
-Embedded toolchains often claim C++17 or C++20 support, but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool finds the truth — testing 394 C++ features across 12 embedded platforms using real PlatformIO builds, so you know exactly what works before you write a line of code.
+A C++ standard compatibility checker for embedded platforms. Presently supports PlatformIO, with others (arduino-IDE, ESP-IDF, Zephyr) planned as future extensions.
+
+Embedded toolchains often claim C++17 or C++20 support, but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool finds the truth — testing C++ features across 12 embedded platforms using real PlatformIO builds, so you know exactly what works before you write a line of code.
 
 - **394 [SD-6](https://wg21.link/p0941) feature tests** — every language feature, library type, and attribute in the C++ standard's feature-test macro catalog (C++11 through C++26)
 - **12 platforms** — AVR, ARM Cortex-M (STM32, SAMD, nRF52, RP2040, Renesas), ESP32, Teensy
 - **Real PIO builds** — tests compile through PlatformIO exactly like your code, including framework precompilation
+- **Local CLI and github actions** - run compat checks locally or in CI
 - **Library compatibility checker** — test any PlatformIO library across platforms and standards, with markdown/JSON reports
 - **Browsable HTML site** — per-feature results with cppreference links and expandable compiler errors
 
-**Library authors:** [test your library](#test-a-librarys-compatibility) across platforms and C++ standards in one command, locally or in CI.
-
 ## Compatibility Matrix
+
+(This matrix is auto-generated.)
 
 <!-- compat-matrix-start -->
 *12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-15.*
@@ -31,7 +34,7 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 | megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
 <!-- compat-matrix-end -->
 
-"Effective support" = percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined.
+"Effective support" is the percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined.
 
 | Counts as working | Counts as failing |
 |---|---|
@@ -99,26 +102,9 @@ The generated report shows the minimum C++ standard that works on each platform:
 
 ### Add to your CI
 
-Add `<!-- compat-matrix-start -->
-*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-15.*
+Add `<!-- compat-matrix-start -->` and `<!-- compat-matrix-end -->` markers to your README where you want the compatibility table, then use the action:
 
-| Platform | Board | Standards | Effective Support |
-|----------|-------|-----------|-------------------|
-| ESP32-S3 (pioarduino) | esp32s3 | c++11–c++26 | **100%** |
-| ESP32-S3 (espressif32 official) | esp32s3 | c++11–c++26 | **100%** |
-| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | c++11–c++23 | **97%** |
-| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | c++11–c++17 | **97%** |
-| Teensy 4.1 | i.MX RT1062 Cortex-M7 | c++11–c++20 | **97%** |
-| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | c++11–c++20 | **97%** |
-| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | c++11–c++20 | **95%** |
-| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | c++11–c++17 | **95%** |
-| Arduino Uno R4 Minima | Renesas RA4M1 | c++11–c++20 | **95%** |
-| ESP8266 NodeMCU | ESP8266 Xtensa LX106 | c++17 | **94%** |
-| AVR Arduino Uno | ATmega328P | c++11–c++17 | **86%** |
-| megaAVR Arduino Nano Every | ATmega4809 | c++11–c++17 | **86%** |
-<!-- compat-matrix-end -->` markers to your README where you want the compatibility table, then use the action:
-
-**Option A: CI verifies the matrix is up to date** (developer updates locally, CI gates)
+**Option A: CI verifies the matrix is up to date** (developer updates locally and commits, CI verifies no changes are needed)
 
 ```yaml
 name: Embedded Compatibility
@@ -159,7 +145,7 @@ The action handles Python, PlatformIO, and compat-check installation. Pin to a r
 | `platforms` | from library.json | Space-separated platform slugs (auto-detected from library metadata if omitted) |
 | `report` | `compatibility.md` | Report output path |
 | `report-format` | auto | `md` or `json` (auto-detected from extension) |
-| `readme` | `none` | `update` to inject report into README, `verify` to fail if outdated |
+| `readme` | `none` | `update` to inject report into README.md, `verify` to fail if outdated |
 | `readme-path` | `README.md` | Path to the file containing the matrix markers |
 | `setup-python` | `true` | Set to `false` if your workflow already configures Python |
 | `setup-platformio` | `true` | Set to `false` if your workflow already installs PlatformIO |

@@ -155,11 +155,14 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
         content = readme_path.read_text()
         if start_marker in content and end_marker in content:
             import re
+            # Require markers at start of line (block-level HTML comments),
+            # so inline examples like `<!-- compat-matrix-start -->` in docs
+            # are left untouched.
             content = re.sub(
-                f"{re.escape(start_marker)}.*?{re.escape(end_marker)}",
+                f"^{re.escape(start_marker)}.*?^{re.escape(end_marker)}",
                 matrix_block,
                 content,
-                flags=re.DOTALL,
+                flags=re.DOTALL | re.MULTILINE,
             )
             # Inject CLI help output for each command
             help_sections = {
@@ -205,10 +208,12 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
 @click.option("--recipe", is_flag=True,
               help="Include platform recipes (e.g. avr-libstdcpp for AVR). "
                    "Adds each platform's recipe lib_deps to the build.")
+@click.option("--pretty", is_flag=True,
+              help="Use ✅/❌ emoji instead of PASS/FAIL in the markdown report.")
 @click.option("--work-dir", default=".work", type=click.Path(),
               help="Build cache directory", show_default=True)
 def library(library_ref, platforms_dir, platform_filter, example_filter,
-            report_path, report_fmt, lib_deps, recipe, work_dir):
+            report_path, report_fmt, lib_deps, recipe, pretty, work_dir):
     """Test a PlatformIO library across embedded platforms and C++ standards.
 
     LIBRARY_REF is either a local directory path or a PlatformIO registry
@@ -403,7 +408,7 @@ def library(library_ref, platforms_dir, platform_filter, example_filter,
         report_data = generate_json_report(lib_info, results)
         output = json_mod.dumps(report_data, indent=2)
     else:
-        output = generate_markdown_report(lib_info, results)
+        output = generate_markdown_report(lib_info, results, pretty=pretty)
 
     # Always print summary to stderr
     from compat_check.library.report import _build_summary

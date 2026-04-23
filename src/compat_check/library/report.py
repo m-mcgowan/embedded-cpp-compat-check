@@ -54,7 +54,9 @@ def _classify_platform_failure(plat_results: list[dict]) -> str:
     return reasons[0] if reasons else ""
 
 
-def generate_markdown_report(library: dict, results: list[dict]) -> str:
+def generate_markdown_report(library: dict, results: list[dict], pretty: bool = False) -> str:
+    pass_cell = "✅" if pretty else "PASS"
+    fail_cell = "❌" if pretty else "FAIL"
     name = library["name"]
     version = library["version"]
     lines = [
@@ -101,7 +103,7 @@ def generate_markdown_report(library: dict, results: list[dict]) -> str:
         cells = []
         for plat, std in plat_stds:
             r = by_key.get((plat, std, ex))
-            cells.append("PASS" if r and r["pass"] else "FAIL")
+            cells.append(pass_cell if r and r["pass"] else fail_cell)
         lines.append(f"| {ex} | " + " | ".join(cells) + " |")
     lines.append("")
 

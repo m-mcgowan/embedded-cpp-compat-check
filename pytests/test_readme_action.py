@@ -10,15 +10,15 @@ END = "<!-- compat-matrix-end -->"
 def _update_readme(readme: str, report: str) -> str:
     """Inject report between markers (mirrors action/action.yml update step)."""
     return re.sub(
-        f"{re.escape(START)}.*?{re.escape(END)}",
+        f"^{re.escape(START)}.*?^{re.escape(END)}",
         f"{START}\n{report}\n{END}",
-        readme, flags=re.DOTALL,
+        readme, flags=re.DOTALL | re.MULTILINE,
     )
 
 
 def _verify_readme(readme: str, report: str) -> bool:
     """Check if README markers match the report (mirrors action/action.yml verify step)."""
-    current = re.search(f"{re.escape(START)}(.*?){re.escape(END)}", readme, re.DOTALL)
+    current = re.search(f"^{re.escape(START)}(.*?)^{re.escape(END)}", readme, re.DOTALL | re.MULTILINE)
     current_text = current.group(1).strip() if current else ""
     return current_text == report.strip()
 
@@ -64,6 +64,21 @@ class TestReadmeUpdate:
         assert "old content" not in result
         assert START in result
         assert END in result
+
+    def test_only_first_marker_pair_replaced(self):
+        """If the README has an example showing the markers (a second pair),
+        only the first (real) pair should be replaced. The example must stay intact."""
+        readme = (
+            "# My Library\n\n"
+            f"{START}\nold content\n{END}\n\n"
+            "## How to use\n\n"
+            f"Add `{START}` and `{END}` markers to your README where you want the table.\n"
+        )
+        result = _update_readme(readme, SAMPLE_REPORT)
+        assert "old content" not in result
+        assert SAMPLE_REPORT in result
+        # The example text must be preserved verbatim — not expanded into a matrix.
+        assert f"Add `{START}` and `{END}` markers" in result
 
 
 class TestReadmeVerify:

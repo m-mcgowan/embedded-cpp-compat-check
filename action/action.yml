@@ -21,6 +21,10 @@ inputs:
     description: Report format (md or json, auto-detected from report extension if omitted)
     required: false
     default: ''
+  pretty:
+    description: Use ✅/❌ emoji instead of PASS/FAIL in the markdown report
+    required: false
+    default: 'true'
   readme:
     description: |
       README integration mode:
@@ -78,6 +82,10 @@ runs:
           ARGS="$ARGS --report-format ${{ inputs.report-format }}"
         fi
 
+        if [ "${{ inputs.pretty }}" = "true" ]; then
+          ARGS="$ARGS --pretty"
+        fi
+
         if [ -n "${{ inputs.platforms }}" ]; then
           for plat in ${{ inputs.platforms }}; do
             ARGS="$ARGS --platform $plat"
@@ -99,10 +107,11 @@ runs:
         if start not in readme or end not in readme:
             print('::warning::README markers not found. Add <!-- compat-matrix-start --> and <!-- compat-matrix-end --> to your README.')
             sys.exit(0)
+        # Anchor markers to start-of-line so inline examples in docs are not matched.
         updated = re.sub(
-            f'{re.escape(start)}.*?{re.escape(end)}',
+            f'^{re.escape(start)}.*?^{re.escape(end)}',
             f'{start}\n{report}\n{end}',
-            readme, flags=re.DOTALL)
+            readme, flags=re.DOTALL | re.MULTILINE)
         open('${{ inputs.readme-path }}', 'w').write(updated)
         print('README updated with compatibility matrix.')
         "
@@ -121,7 +130,7 @@ runs:
             print('::error::README is missing compatibility matrix markers.')
             print('Add <!-- compat-matrix-start --> and <!-- compat-matrix-end --> to your README.')
             sys.exit(1)
-        current = re.search(f'{re.escape(start)}(.*?){re.escape(end)}', readme, re.DOTALL)
+        current = re.search(f'^{re.escape(start)}(.*?)^{re.escape(end)}', readme, re.DOTALL | re.MULTILINE)
         current_text = current.group(1).strip() if current else ''
         fresh_text = report.strip()
         if current_text != fresh_text:

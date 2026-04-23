@@ -27,6 +27,13 @@ def test_markdown_report_has_detail_table():
     assert "PASS" in md
     assert "FAIL" in md
 
+def test_markdown_report_pretty_uses_emoji():
+    md = generate_markdown_report(LIBRARY, RESULTS, pretty=True)
+    assert "✅" in md
+    assert "❌" in md
+    assert "| PASS |" not in md
+    assert "| FAIL |" not in md
+
 def test_markdown_report_has_failures():
     md = generate_markdown_report(LIBRARY, RESULTS)
     assert "## Failure Details" in md
