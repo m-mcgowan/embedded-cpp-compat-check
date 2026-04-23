@@ -16,7 +16,7 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 (This matrix is auto-generated.)
 
 <!-- compat-matrix-start -->
-*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-15.*
+*12 platforms, all support c++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-23.*
 
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
@@ -190,6 +190,8 @@ Options:
   --recipe                   Include platform recipes (e.g. avr-libstdcpp for
                              AVR). Adds each platform's recipe lib_deps to the
                              build.
+  --pretty                   Use ✅/❌ emoji instead of PASS/FAIL in the
+                             markdown report.
   --work-dir PATH            Build cache directory  [default: .work]
   --help                     Show this message and exit.
 ```
