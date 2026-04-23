@@ -10,6 +10,21 @@ from jinja2 import Environment, PackageLoader
 
 _PASSING = {"supported", "unreported", "macro_only_yes"}
 
+_RECIPE_SUFFIX = "+recipe"
+_POLYFILL_LABEL = "+polyfill"
+
+
+def _resolve_meta(slug: str, platform_meta: dict):
+    """Resolve meta for a slug that may have the '+recipe' suffix.
+
+    Returns (base_slug, meta_or_None, display_suffix). For a recipe slug,
+    meta is looked up under the base slug and display_suffix is ' +polyfill'.
+    """
+    if slug.endswith(_RECIPE_SUFFIX):
+        base = slug[:-len(_RECIPE_SUFFIX)]
+        return base, platform_meta.get(base), f" {_POLYFILL_LABEL}"
+    return slug, platform_meta.get(slug), ""
+
 
 def _support_pct(statuses: list[str]) -> int:
     """Calculate % of features that compile successfully."""
@@ -126,10 +141,11 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
 
     platforms = []
     for slug in sorted(by_platform.keys(), key=lambda s: -effective.get(s, 0)):
-        meta = platform_meta.get(slug)
+        _, meta, suffix = _resolve_meta(slug, platform_meta)
+        base_name = meta.name if meta else slug.replace(_RECIPE_SUFFIX, "")
         platforms.append({
             "slug": slug,
-            "name": meta.name if meta else slug,
+            "name": f"{base_name}{suffix}",
             "board_family": meta.board_family if meta else "",
             "architecture": meta.architecture if meta else "",
             "effective_pct": effective.get(slug, 0),
@@ -153,7 +169,7 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
             cat = r.get("category", "unknown")
             by_std[r["standard"]][cat].append(type("R", (), r))
 
-        meta = platform_meta.get(slug)
+        _, meta, suffix = _resolve_meta(slug, platform_meta)
         version = items[0].get("platform_version", "") if items else ""
         stds_sorted = sorted(
             by_std.keys(), key=lambda s: int(s.replace("c++", ""))
@@ -169,9 +185,10 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
                 "total": len(all_in_std),
             }
 
+        base_name = meta.name if meta else slug.replace(_RECIPE_SUFFIX, "")
         (plat_dir / "index.html").write_text(
             platform_tmpl.render(
-                platform_name=meta.name if meta else slug,
+                platform_name=f"{base_name}{suffix}",
                 platform_slug=slug,
                 platform_version=version,
                 board_family=meta.board_family if meta else "",

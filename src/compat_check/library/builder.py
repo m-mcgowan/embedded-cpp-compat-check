@@ -62,7 +62,18 @@ def run_library_build(
     cmd.append(str(example_path))
 
     start = time.monotonic()
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        elapsed_ms = int((time.monotonic() - start) * 1000)
+        stdout = exc.stdout.decode(errors="replace") if isinstance(exc.stdout, bytes) else (exc.stdout or "")
+        stderr = exc.stderr.decode(errors="replace") if isinstance(exc.stderr, bytes) else (exc.stderr or "")
+        return BuildResult(
+            success=False,
+            compile_time_ms=elapsed_ms,
+            output=stdout,
+            error=f"error: build timed out after {timeout}s\n{stderr}",
+        )
     elapsed_ms = int((time.monotonic() - start) * 1000)
     return BuildResult(
         success=result.returncode == 0,

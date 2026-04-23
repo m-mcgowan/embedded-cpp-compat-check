@@ -134,7 +134,7 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
 
     all_results = []
     for f in glob_mod.glob(f"{results_dir}/**/*.json", recursive=True):
-        if "manifest" in f or "+recipe" in f:
+        if "manifest" in f:
             continue
         with open(f) as fh:
             all_results.extend(json.load(fh))

@@ -80,13 +80,21 @@ jobs:
             compat-check sync
           fi
 
-      - name: Run compatibility checks
+      - name: Run compatibility checks (baseline)
         run: |
           PLATFORM_FLAG=""
           if [ -n "${{ github.event.inputs.platform }}" ]; then
             PLATFORM_FLAG="--platform ${{ github.event.inputs.platform }}"
           fi
           compat-check run $PLATFORM_FLAG --parallel=1
+
+      - name: Run compatibility checks (with polyfill recipes)
+        run: |
+          PLATFORM_FLAG=""
+          if [ -n "${{ github.event.inputs.platform }}" ]; then
+            PLATFORM_FLAG="--platform ${{ github.event.inputs.platform }}"
+          fi
+          compat-check run $PLATFORM_FLAG --recipe --parallel=1
 
       - name: Generate site and README
         run: compat-check generate
