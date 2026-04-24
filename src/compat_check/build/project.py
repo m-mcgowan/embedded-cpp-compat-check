@@ -87,8 +87,10 @@ def generate_batch_project(
     feature_to_stem: dict[str, str] = {}
 
     for test_path, feature_key in test_files:
-        # Create unique stem from feature_key: "cpp17/optional" → "cpp17__optional"
-        stem = feature_key.replace("/", "__").replace(":", "__")
+        # Create unique stem from feature_key that's a valid C++ identifier.
+        # Recipe runs prefix keys with e.g. "c++17:" — the '+' chars must not
+        # leak into identifiers (would parse as the ++ operator).
+        stem = feature_key.replace("c++", "cpp").replace("/", "__").replace(":", "__")
         source = test_path.read_text()
         if platform.framework == "arduino":
             source = wrap_for_arduino(source)
