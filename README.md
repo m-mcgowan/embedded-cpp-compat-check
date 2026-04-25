@@ -16,33 +16,33 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 (This matrix is auto-generated.)
 
 <!-- compat-matrix-start -->
-*12 platforms, all support C++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-24.*
+*12 platforms, all support C++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-04-25.*
 
 | Platform | Board | Standards | Effective Support |
 |----------|-------|-----------|-------------------|
 | ESP32-S3 (pioarduino) | esp32s3 | C++11–C++26 | **C++17 / 100%** |
-| ESP32-S3 (pioarduino) +polyfill | esp32s3 | C++11–C++26 | **C++26 / 0%** |
+| ESP32-S3 (pioarduino) +polyfill | esp32s3 | C++11–C++26 | **C++26 / 81%** |
 | ESP32-S3 (espressif32 official) | esp32s3 | C++11–C++26 | **C++17 / 100%** |
-| ESP32-S3 (espressif32 official) +polyfill | esp32s3 | C++11–C++26 | **C++26 / 0%** |
+| ESP32-S3 (espressif32 official) +polyfill | esp32s3 | C++11–C++26 | **C++26 / 81%** |
 | Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | C++11–C++23 | **C++14 / 97%** |
-| Raspberry Pi Pico (RP2040) +polyfill | RP2040 Cortex-M0+ | C++11–C++23 | **C++23 / 0%** |
+| Raspberry Pi Pico (RP2040) +polyfill | RP2040 Cortex-M0+ | C++11–C++23 | **C++23 / 46%** |
 | SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | C++11–C++17 | **C++14 / 97%** |
-| SAMD51 Adafruit Feather M4 +polyfill | SAMD51 Cortex-M4F | C++11–C++17 | **C++17 / 0%** |
+| SAMD51 Adafruit Feather M4 +polyfill | SAMD51 Cortex-M4F | C++11–C++17 | **C++17 / 46%** |
 | STM32 Nucleo F411RE | STM32F411 Cortex-M4 | C++11–C++20 | **C++14 / 97%** |
-| STM32 Nucleo F411RE +polyfill | STM32F411 Cortex-M4 | C++11–C++20 | **C++20 / 0%** |
+| STM32 Nucleo F411RE +polyfill | STM32F411 Cortex-M4 | C++11–C++20 | **C++20 / 61%** |
 | Teensy 4.1 | i.MX RT1062 Cortex-M7 | C++11–C++20 | **C++14 / 97%** |
-| Teensy 4.1 +polyfill | i.MX RT1062 Cortex-M7 | C++11–C++20 | **C++20 / 0%** |
+| Teensy 4.1 +polyfill | i.MX RT1062 Cortex-M7 | C++11–C++20 | **C++20 / 61%** |
 | nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | C++11–C++20 | **C++11 / 95%** |
-| nRF52840 Arduino Nano 33 BLE +polyfill | nRF52840 Cortex-M4F | C++11–C++20 | **C++20 / 0%** |
+| nRF52840 Arduino Nano 33 BLE +polyfill | nRF52840 Cortex-M4F | C++11–C++20 | **C++20 / 42%** |
 | SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | C++11–C++17 | **C++11 / 95%** |
-| SAMD21 Arduino Zero +polyfill | SAMD21 Cortex-M0+ | C++11–C++17 | **C++17 / 0%** |
+| SAMD21 Arduino Zero +polyfill | SAMD21 Cortex-M0+ | C++11–C++17 | **C++17 / 42%** |
 | Arduino Uno R4 Minima | Renesas RA4M1 | C++11–C++20 | **C++11 / 95%** |
-| Arduino Uno R4 Minima +polyfill | Renesas RA4M1 | C++11–C++20 | **C++20 / 0%** |
+| Arduino Uno R4 Minima +polyfill | Renesas RA4M1 | C++11–C++20 | **C++20 / 42%** |
 | ESP8266 NodeMCU | ESP8266 Xtensa LX106 | C++17 | **C++17 / 94%** |
 | AVR Arduino Uno | ATmega328P | C++11–C++17 | **C++11 / 86%** |
-| AVR Arduino Uno +polyfill | ATmega328P | C++11–C++17 | **C++17 / 0%** |
+| AVR Arduino Uno +polyfill | ATmega328P | C++11–C++17 | **C++17 / 41%** |
 | megaAVR Arduino Nano Every | ATmega4809 | C++11–C++17 | **C++11 / 86%** |
-| megaAVR Arduino Nano Every +polyfill | ATmega4809 | C++11–C++17 | **C++17 / 0%** |
+| megaAVR Arduino Nano Every +polyfill | ATmega4809 | C++11–C++17 | **C++17 / 41%** |
 <!-- compat-matrix-end -->
 
 "Effective support" is the percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined. The standard shown is the one at which the peak percentage was reached.
