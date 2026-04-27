@@ -14,11 +14,6 @@ platformio:
 
 standards: [c++11, c++14, c++17]
 
-recipe:
-  description: "Add nonstd-lite-bundle for C++17 vocabulary types at C++11/14"
-  lib_deps:
-    - https://github.com/m-mcgowan/nonstd-lite-bundle.git
-
 release_monitor:
   type: platformio_registry
   platform: atmelsam
