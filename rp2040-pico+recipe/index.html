@@ -62,9 +62,9 @@
     
     <div class="std-header" id="c++11">
         <h2>c++11</h2>
-        <span class="std-stats">183/394 features (46%)</span>
+        <span class="std-stats">179/394 features (45%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 46%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -1360,7 +1360,16 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp17__any.cpp:8:</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+   11 |     std::any a = 42;
+      |          ^~~
+src/cpp11__cpp17__any.cpp:12:17: error: 'any_cast' is not a member of 'std'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                 ^~~~~~~~
+src/cpp11__cpp17__any.cpp:12:26: error: expected primary-expression before 'int'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                          ^~~
+src/cpp11__cpp17__any.cpp:12:26: error: expected ';' befor</pre></td>
         </tr>
         
         
@@ -1835,12 +1844,24 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+   11 |     std::optional<int> val = 42;
+      |          ^~~~~~~~
+src/cpp11__cpp17__optional.cpp:11:19: error: expected primary-expression before 'int'
+   11 |     std::optional<int> val = 42;
+      |                   ^~~
+src/cpp11__cpp17__optional.cpp:12:12: error: 'val' was not declared in this scope
+   12 |     return val.value() - 42;
+      |            ^~~</pre></td>
         </tr>
         
         
@@ -1951,12 +1972,22 @@ src/cpp11__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+   11 |     std::string_view sv = "hello";
+      |          ^~~~~~~~~~~
+src/cpp11__cpp17__string_view.cpp:12:29: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   12 |     return static_cast<int>(sv.size()) - 5;
+      |                             ^~
+      |                             sq</pre></td>
         </tr>
         
         
@@ -2004,12 +2035,24 @@ src/cpp11__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+   11 |     std::variant<int, float> v = 42;
+      |          ^~~~~~~
+src/cpp11__cpp17__variant.cpp:11:18: error: expected primary-expression before 'int'
+   11 |     std::variant<int, float> v = 42;
+      |                  ^~~
+src/cpp11__cpp17__variant.cpp:12:26: error: 'v' was not declared in this scope
+   12 |     return std::get<int>(v) - 42;
+      |                          ^</pre></td>
         </tr>
         
         
@@ -2333,7 +2376,7 @@ src/cpp11__cpp20_</pre></td>
     9 | constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
       |                                         ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:41,
-                 from /home/runner/.platf</pre></td>
+                 from .pio/libdeps/test/n</pre></td>
         </tr>
         
         
@@ -2419,16 +2462,29 @@ src/cpp11__cpp20__constexpr_numeric.cpp:11:19: error: non-constant condition for
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:55,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.902</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+        </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace 'std' does not name a type
+    9 | constexpr std::string_view sv = "hello";
+      |                ^~~~~~~~~~~
+    9 | constexpr std::string_view sv = "hello";
+      |           ^~~
+src/cpp11__cpp20__constexpr_string_view.cpp:10:15: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   10 | static_assert(sv.size() == 5);
+      |               ^~
+      |               sq</pre></td>
         </tr>
         
         
@@ -2478,12 +2534,20 @@ src/cpp11__cpp20__constexpr_vector.cpp:10:19:</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp20__constrained_equality.cpp:10:63: error: 'optional' is not a member of 'std'
+   10 | auto _test_cpp11__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }
+      |                                                               ^~~~~~~~
+src/cpp11__cpp20__constrained_equality.cpp:10:72: error: expected primary-expression before 'int'
+   10 | auto _test_cpp11__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a </pre></td>
         </tr>
         
         
@@ -2892,12 +2956,24 @@ src/cpp11__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp11__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp11__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -3071,9 +3147,9 @@ src/cpp11__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__associative_heterogeneous_erasure.cpp:11:142: error: 'string_view' is not a member of 'std'
    11 | auto _test_cpp11__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-      |                                                                                      </pre></td>
+      |                                                                                                                                              ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -3311,14 +3387,13 @@ src/cpp11__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-src/cpp11__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-   11 |     if (b == 0) return std::unexpected("division by zero");
-      |                                                          ^
-In file incl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type; did you mean 'unexpected'?
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+      |                                   unexpected
+src/cpp11__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                               </pre></td>
         </tr>
         
         
@@ -3474,19 +3549,12 @@ src/cpp11__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -3719,19 +3787,12 @@ src/cpp11__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -3850,8 +3911,7 @@ In file included from src/cpp11__cpp23__hardened_valarray.cpp:1:
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__hardened_view_interface.cpp:8:10: fatal error: ranges: No such file or directory
     8 | #include <ranges>
-      |          ^~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |          ^~~~~~~~</pre></td>
         </tr>
         
         
@@ -4551,8 +4611,7 @@ src/cpp11__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__to_underlying.cpp:13:17: error: 'to_underlying' is not a member of 'std'
    13 |     return std::to_underlying(Color::Green) - 2;
-      |                 ^~~~~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |                 ^~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -5146,9 +5205,9 @@ src/cpp11__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++14">
         <h2>c++14</h2>
-        <span class="std-stats">183/394 features (46%)</span>
+        <span class="std-stats">179/394 features (45%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 46%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -6444,7 +6503,16 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp17__any.cpp:8:</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+   11 |     std::any a = 42;
+      |          ^~~
+src/cpp14__cpp17__any.cpp:12:17: error: 'any_cast' is not a member of 'std'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                 ^~~~~~~~
+src/cpp14__cpp17__any.cpp:12:26: error: expected primary-expression before 'int'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                          ^~~
+src/cpp14__cpp17__any.cpp:12:26: error: expected ';' befor</pre></td>
         </tr>
         
         
@@ -6919,12 +6987,24 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+   11 |     std::optional<int> val = 42;
+      |          ^~~~~~~~
+src/cpp14__cpp17__optional.cpp:11:19: error: expected primary-expression before 'int'
+   11 |     std::optional<int> val = 42;
+      |                   ^~~
+src/cpp14__cpp17__optional.cpp:12:12: error: 'val' was not declared in this scope
+   12 |     return val.value() - 42;
+      |            ^~~</pre></td>
         </tr>
         
         
@@ -7035,12 +7115,22 @@ src/cpp14__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+   11 |     std::string_view sv = "hello";
+      |          ^~~~~~~~~~~
+src/cpp14__cpp17__string_view.cpp:12:29: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   12 |     return static_cast<int>(sv.size()) - 5;
+      |                             ^~
+      |                             sq</pre></td>
         </tr>
         
         
@@ -7088,12 +7178,24 @@ src/cpp14__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+   11 |     std::variant<int, float> v = 42;
+      |          ^~~~~~~
+src/cpp14__cpp17__variant.cpp:11:18: error: expected primary-expression before 'int'
+   11 |     std::variant<int, float> v = 42;
+      |                  ^~~
+src/cpp14__cpp17__variant.cpp:12:26: error: 'v' was not declared in this scope
+   12 |     return std::get<int>(v) - 42;
+      |                          ^</pre></td>
         </tr>
         
         
@@ -7417,7 +7519,7 @@ src/cpp14__cpp20_</pre></td>
     9 | constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
       |                                         ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:41,
-                 from /home/runner/.platf</pre></td>
+                 from .pio/libdeps/test/n</pre></td>
         </tr>
         
         
@@ -7503,16 +7605,29 @@ src/cpp14__cpp20__constexpr_numeric.cpp:11:19: error: non-constant condition for
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:55,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.902</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+        </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace 'std' does not name a type
+    9 | constexpr std::string_view sv = "hello";
+      |                ^~~~~~~~~~~
+    9 | constexpr std::string_view sv = "hello";
+      |           ^~~
+src/cpp14__cpp20__constexpr_string_view.cpp:10:15: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   10 | static_assert(sv.size() == 5);
+      |               ^~
+      |               sq</pre></td>
         </tr>
         
         
@@ -7562,12 +7677,20 @@ src/cpp14__cpp20__constexpr_vector.cpp:10:19:</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp20__constrained_equality.cpp:10:63: error: 'optional' is not a member of 'std'
+   10 | auto _test_cpp14__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }
+      |                                                               ^~~~~~~~
+src/cpp14__cpp20__constrained_equality.cpp:10:72: error: expected primary-expression before 'int'
+   10 | auto _test_cpp14__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a </pre></td>
         </tr>
         
         
@@ -7976,12 +8099,24 @@ src/cpp14__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp14__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp14__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -8155,9 +8290,9 @@ src/cpp14__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__associative_heterogeneous_erasure.cpp:11:142: error: 'string_view' is not a member of 'std'
    11 | auto _test_cpp14__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-      |                                                                                      </pre></td>
+      |                                                                                                                                              ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -8395,14 +8530,13 @@ src/cpp14__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-src/cpp14__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-   11 |     if (b == 0) return std::unexpected("division by zero");
-      |                                                          ^
-In file incl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type; did you mean 'unexpected'?
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+      |                                   unexpected
+src/cpp14__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                               </pre></td>
         </tr>
         
         
@@ -8558,19 +8692,12 @@ src/cpp14__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -8803,19 +8930,12 @@ src/cpp14__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -8935,10 +9055,7 @@ In file included from src/cpp14__cpp23__hardened_valarray.cpp:1:
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__hardened_view_interface.cpp:8:10: fatal error: ranges: No such file or directory
     8 | #include <ranges>
       |          ^~~~~~~~
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/bits/valarray_after.h:548:1: error: '_Expr' does not name a type
-  548 | _DEFINE_EXPR_BINARY_FUNCTION(atan2, _Atan2)
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/i</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
         </tr>
         
         
@@ -9638,8 +9755,7 @@ src/cpp14__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__to_underlying.cpp:13:17: error: 'to_underlying' is not a member of 'std'
    13 |     return std::to_underlying(Color::Green) - 2;
-      |                 ^~~~~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |                 ^~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -10233,9 +10349,9 @@ src/cpp14__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++17">
         <h2>c++17</h2>
-        <span class="std-stats">183/394 features (46%)</span>
+        <span class="std-stats">179/394 features (45%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 46%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -11018,9 +11134,7 @@ src/cpp17__cpp20__impl_destroying_delete.cpp:9:31: error: 'operator delete' take
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp20__impl_three_way_comparison.cpp:8:10: fatal error: compare: No such file or directory
     8 | #include <compare>
-      |          ^~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/bits/hashtable.h:35,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/unordered_map:46,</pre></td>
+      |          ^~~~~~~~~</pre></td>
         </tr>
         
         
@@ -11293,9 +11407,7 @@ src/cpp17__cpp26__pack_indexing.cpp:9:51: error: 'first_t' was not declared in t
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp26__variadic_friend.cpp:9:46: error: expected unqualified-id before '...' token
     9 | template<typename... Ts> struct S { friend Ts...; int x = 42; };
-      |                                              ^~~
-In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/targets/TARGET_RASPBERRYPI/TARGET_RP2040/pico-sdk/rp2_common/pico_platform/include/pico/platform.h:19,
-                 from /home/runner/.platformio/packages/framework-arduino-m</pre></td>
+      |                                              ^~~</pre></td>
         </tr>
         
         
@@ -11533,7 +11645,16 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp17__any.cpp:8:</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+   11 |     std::any a = 42;
+      |          ^~~
+src/cpp17__cpp17__any.cpp:12:17: error: 'any_cast' is not a member of 'std'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                 ^~~~~~~~
+src/cpp17__cpp17__any.cpp:12:26: error: expected primary-expression before 'int'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                          ^~~
+src/cpp17__cpp17__any.cpp:12:26: error: expected ';' befor</pre></td>
         </tr>
         
         
@@ -12008,12 +12129,24 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+   11 |     std::optional<int> val = 42;
+      |          ^~~~~~~~
+src/cpp17__cpp17__optional.cpp:11:19: error: expected primary-expression before 'int'
+   11 |     std::optional<int> val = 42;
+      |                   ^~~
+src/cpp17__cpp17__optional.cpp:12:12: error: 'val' was not declared in this scope
+   12 |     return val.value() - 42;
+      |            ^~~</pre></td>
         </tr>
         
         
@@ -12124,12 +12257,22 @@ src/cpp17__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+   11 |     std::string_view sv = "hello";
+      |          ^~~~~~~~~~~
+src/cpp17__cpp17__string_view.cpp:12:29: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   12 |     return static_cast<int>(sv.size()) - 5;
+      |                             ^~
+      |                             sq</pre></td>
         </tr>
         
         
@@ -12177,12 +12320,24 @@ src/cpp17__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+   11 |     std::variant<int, float> v = 42;
+      |          ^~~~~~~
+src/cpp17__cpp17__variant.cpp:11:18: error: expected primary-expression before 'int'
+   11 |     std::variant<int, float> v = 42;
+      |                  ^~~
+src/cpp17__cpp17__variant.cpp:12:26: error: 'v' was not declared in this scope
+   12 |     return std::get<int>(v) - 42;
+      |                          ^</pre></td>
         </tr>
         
         
@@ -12506,7 +12661,7 @@ src/cpp17__cpp20_</pre></td>
     9 | constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
       |                                         ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:41,
-                 from /home/runner/.platf</pre></td>
+                 from .pio/libdeps/test/n</pre></td>
         </tr>
         
         
@@ -12591,17 +12746,32 @@ src/cpp17__cpp20__constexpr_numeric.cpp:11:19: error: non-constant condition for
             <td colspan="5"><pre class="error-output">src/cpp17__cpp20__constexpr_string.cpp:9:33: error: variable 's' of non-literal type 'std::string' {aka 'std::__cxx11::basic_string<char>'} in 'constexpr' function
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:55,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.902</pre></td>
+                 from src/cpp17__cpp20__constexpr_string.cpp:1:
+src/cpp17__cpp20__constexpr_string.cpp:10:19: error: non-constant condition for static assertion
+   10 | static_assert(f() == 2);
+      |               ~~~~^~~~
+</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace 'std' does not name a type
+    9 | constexpr std::string_view sv = "hello";
+      |                ^~~~~~~~~~~
+    9 | constexpr std::string_view sv = "hello";
+      |           ^~~
+src/cpp17__cpp20__constexpr_string_view.cpp:10:15: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   10 | static_assert(sv.size() == 5);
+      |               ^~
+      |               sq</pre></td>
         </tr>
         
         
@@ -12651,12 +12821,20 @@ src/cpp17__cpp20__constexpr_vector.cpp:10:19:</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp20__constrained_equality.cpp:10:63: error: 'optional' is not a member of 'std'
+   10 | auto _test_cpp17__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }
+      |                                                               ^~~~~~~~
+src/cpp17__cpp20__constrained_equality.cpp:10:72: error: expected primary-expression before 'int'
+   10 | auto _test_cpp17__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a </pre></td>
         </tr>
         
         
@@ -13065,12 +13243,24 @@ src/cpp17__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp17__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp17__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -13244,9 +13434,9 @@ src/cpp17__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__associative_heterogeneous_erasure.cpp:11:142: error: 'string_view' is not a member of 'std'
    11 | auto _test_cpp17__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-      |                                                                                      </pre></td>
+      |                                                                                                                                              ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -13484,14 +13674,13 @@ src/cpp17__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-src/cpp17__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-   11 |     if (b == 0) return std::unexpected("division by zero");
-      |                                                          ^
-In file incl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type; did you mean 'unexpected'?
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+      |                                   unexpected
+src/cpp17__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                               </pre></td>
         </tr>
         
         
@@ -13647,19 +13836,12 @@ src/cpp17__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -13892,19 +14074,12 @@ src/cpp17__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -14723,8 +14898,7 @@ src/cpp17__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__to_underlying.cpp:13:17: error: 'to_underlying' is not a member of 'std'
    13 |     return std::to_underlying(Color::Green) - 2;
-      |                 ^~~~~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |                 ^~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -15308,7 +15482,9 @@ src/cpp17__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp26__type_order.cpp:8:10: fatal error: compare: No such file or directory
     8 | #include <compare>
-      |          ^~~~~~~~~</pre></td>
+      |          ^~~~~~~~~
+In file included from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/targets/TARGET_RASPBERRYPI/TARGET_RP2040/pico-sdk/rp2_common/pico_platform/include/pico/platform.h:19,
+                 from /home/runner/.platformio/packages/framework-arduino-mbed/cores/arduino/mbed/targets/TARGET_RASPBERRYPI/TARGET_RP2040/pico-sdk/common/pic</pre></td>
         </tr>
         
         
@@ -15318,9 +15494,9 @@ src/cpp17__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++20">
         <h2>c++20</h2>
-        <span class="std-stats">183/394 features (46%)</span>
+        <span class="std-stats">179/394 features (45%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 46%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -16616,7 +16792,16 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp17__any.cpp:8:</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+   11 |     std::any a = 42;
+      |          ^~~
+src/cpp20__cpp17__any.cpp:12:17: error: 'any_cast' is not a member of 'std'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                 ^~~~~~~~
+src/cpp20__cpp17__any.cpp:12:26: error: expected primary-expression before 'int'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                          ^~~
+src/cpp20__cpp17__any.cpp:12:26: error: expected ';' befor</pre></td>
         </tr>
         
         
@@ -17091,12 +17276,24 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+   11 |     std::optional<int> val = 42;
+      |          ^~~~~~~~
+src/cpp20__cpp17__optional.cpp:11:19: error: expected primary-expression before 'int'
+   11 |     std::optional<int> val = 42;
+      |                   ^~~
+src/cpp20__cpp17__optional.cpp:12:12: error: 'val' was not declared in this scope
+   12 |     return val.value() - 42;
+      |            ^~~</pre></td>
         </tr>
         
         
@@ -17207,12 +17404,22 @@ src/cpp20__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+   11 |     std::string_view sv = "hello";
+      |          ^~~~~~~~~~~
+src/cpp20__cpp17__string_view.cpp:12:29: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   12 |     return static_cast<int>(sv.size()) - 5;
+      |                             ^~
+      |                             sq</pre></td>
         </tr>
         
         
@@ -17260,12 +17467,24 @@ src/cpp20__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+   11 |     std::variant<int, float> v = 42;
+      |          ^~~~~~~
+src/cpp20__cpp17__variant.cpp:11:18: error: expected primary-expression before 'int'
+   11 |     std::variant<int, float> v = 42;
+      |                  ^~~
+src/cpp20__cpp17__variant.cpp:12:26: error: 'v' was not declared in this scope
+   12 |     return std::get<int>(v) - 42;
+      |                          ^</pre></td>
         </tr>
         
         
@@ -17589,7 +17808,7 @@ src/cpp20__cpp20_</pre></td>
     9 | constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
       |                                         ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:41,
-                 from /home/runner/.platf</pre></td>
+                 from .pio/libdeps/test/n</pre></td>
         </tr>
         
         
@@ -17675,16 +17894,29 @@ src/cpp20__cpp20__constexpr_numeric.cpp:11:19: error: non-constant condition for
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:55,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.902</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+        </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace 'std' does not name a type
+    9 | constexpr std::string_view sv = "hello";
+      |                ^~~~~~~~~~~
+    9 | constexpr std::string_view sv = "hello";
+      |           ^~~
+src/cpp20__cpp20__constexpr_string_view.cpp:10:15: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   10 | static_assert(sv.size() == 5);
+      |               ^~
+      |               sq</pre></td>
         </tr>
         
         
@@ -17734,12 +17966,20 @@ src/cpp20__cpp20__constexpr_vector.cpp:10:19:</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp20__constrained_equality.cpp:10:63: error: 'optional' is not a member of 'std'
+   10 | auto _test_cpp20__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }
+      |                                                               ^~~~~~~~
+src/cpp20__cpp20__constrained_equality.cpp:10:72: error: expected primary-expression before 'int'
+   10 | auto _test_cpp20__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a </pre></td>
         </tr>
         
         
@@ -18148,12 +18388,24 @@ src/cpp20__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp20__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp20__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -18327,9 +18579,9 @@ src/cpp20__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__associative_heterogeneous_erasure.cpp:11:142: error: 'string_view' is not a member of 'std'
    11 | auto _test_cpp20__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-      |                                                                                      </pre></td>
+      |                                                                                                                                              ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -18567,14 +18819,13 @@ src/cpp20__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-src/cpp20__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-   11 |     if (b == 0) return std::unexpected("division by zero");
-      |                                                          ^
-In file incl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type; did you mean 'unexpected'?
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+      |                                   unexpected
+src/cpp20__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                               </pre></td>
         </tr>
         
         
@@ -18730,19 +18981,12 @@ src/cpp20__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -18975,19 +19219,12 @@ src/cpp20__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -19106,8 +19343,7 @@ In file included from src/cpp20__cpp23__hardened_valarray.cpp:1:
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp20__cpp23__hardened_view_interface.cpp:8:10: fatal error: ranges: No such file or directory
     8 | #include <ranges>
-      |          ^~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |          ^~~~~~~~</pre></td>
         </tr>
         
         
@@ -20402,9 +20638,9 @@ src/cpp20__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++23">
         <h2>c++23</h2>
-        <span class="std-stats">183/394 features (46%)</span>
+        <span class="std-stats">179/394 features (45%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 46%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -21700,7 +21936,16 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">                 from src/cpp23__cpp17__any.cpp:8:</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+   11 |     std::any a = 42;
+      |          ^~~
+src/cpp23__cpp17__any.cpp:12:17: error: 'any_cast' is not a member of 'std'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                 ^~~~~~~~
+src/cpp23__cpp17__any.cpp:12:26: error: expected primary-expression before 'int'
+   12 |     return std::any_cast<int>(a) - 42;
+      |                          ^~~
+src/cpp23__cpp17__any.cpp:12:26: error: expected ';' befor</pre></td>
         </tr>
         
         
@@ -22175,12 +22420,24 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp17__optional.cpp:11:10: error: 'optional' is not a member of 'std'
+   11 |     std::optional<int> val = 42;
+      |          ^~~~~~~~
+src/cpp23__cpp17__optional.cpp:11:19: error: expected primary-expression before 'int'
+   11 |     std::optional<int> val = 42;
+      |                   ^~~
+src/cpp23__cpp17__optional.cpp:12:12: error: 'val' was not declared in this scope
+   12 |     return val.value() - 42;
+      |            ^~~</pre></td>
         </tr>
         
         
@@ -22291,12 +22548,22 @@ src/cpp23__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp17__string_view.cpp:11:10: error: 'string_view' is not a member of 'std'
+   11 |     std::string_view sv = "hello";
+      |          ^~~~~~~~~~~
+src/cpp23__cpp17__string_view.cpp:12:29: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   12 |     return static_cast<int>(sv.size()) - 5;
+      |                             ^~
+      |                             sq</pre></td>
         </tr>
         
         
@@ -22344,12 +22611,24 @@ src/cpp23__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 'std'
+   11 |     std::variant<int, float> v = 42;
+      |          ^~~~~~~
+src/cpp23__cpp17__variant.cpp:11:18: error: expected primary-expression before 'int'
+   11 |     std::variant<int, float> v = 42;
+      |                  ^~~
+src/cpp23__cpp17__variant.cpp:12:26: error: 'v' was not declared in this scope
+   12 |     return std::get<int>(v) - 42;
+      |                          ^</pre></td>
         </tr>
         
         
@@ -22673,7 +22952,7 @@ src/cpp23__cpp20_</pre></td>
     9 | constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
       |                                         ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:41,
-                 from /home/runner/.platf</pre></td>
+                 from .pio/libdeps/test/n</pre></td>
         </tr>
         
         
@@ -22759,16 +23038,29 @@ src/cpp23__cpp20__constexpr_numeric.cpp:11:19: error: non-constant condition for
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/string:55,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.902</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+        </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp20__constexpr_string_view.cpp:9:16: error: 'string_view' in namespace 'std' does not name a type
+    9 | constexpr std::string_view sv = "hello";
+      |                ^~~~~~~~~~~
+    9 | constexpr std::string_view sv = "hello";
+      |           ^~~
+src/cpp23__cpp20__constexpr_string_view.cpp:10:15: error: 'sv' was not declared in this scope; did you mean 'sq'?
+   10 | static_assert(sv.size() == 5);
+      |               ^~
+      |               sq</pre></td>
         </tr>
         
         
@@ -22818,12 +23110,20 @@ src/cpp23__cpp20__constexpr_vector.cpp:10:19:</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp20__constrained_equality.cpp:10:63: error: 'optional' is not a member of 'std'
+   10 | auto _test_cpp23__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a == b ? 0 : 1; }
+      |                                                               ^~~~~~~~
+src/cpp23__cpp20__constrained_equality.cpp:10:72: error: expected primary-expression before 'int'
+   10 | auto _test_cpp23__cpp20__constrained_equality() -> int { std::optional<int> a{42}, b{42}; return a </pre></td>
         </tr>
         
         
@@ -23232,12 +23532,24 @@ src/cpp23__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp23__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp23__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -23411,9 +23723,9 @@ src/cpp23__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp23__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp23__associative_heterogeneous_erasure.cpp:11:142: error: 'string_view' is not a member of 'std'
    11 | auto _test_cpp23__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-      |                                                                                      </pre></td>
+      |                                                                                                                                              ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -23651,14 +23963,13 @@ src/cpp23__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-src/cpp23__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-   11 |     if (b == 0) return std::unexpected("division by zero");
-      |                                                          ^
-In file incl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type; did you mean 'unexpected'?
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+      |                                   unexpected
+src/cpp23__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                               </pre></td>
         </tr>
         
         
@@ -23814,19 +24125,12 @@ src/cpp23__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -24059,19 +24363,12 @@ src/cpp23__cpp23__forward_like.cpp:11:7: warning: unused variable 's' [-Wunused-
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -24190,8 +24487,7 @@ In file included from src/cpp23__cpp23__hardened_valarray.cpp:1:
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp23__cpp23__hardened_view_interface.cpp:8:10: fatal error: ranges: No such file or directory
     8 | #include <ranges>
-      |          ^~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |          ^~~~~~~~</pre></td>
         </tr>
         
         
@@ -24891,8 +25187,7 @@ src/cpp23__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp23__cpp23__to_underlying.cpp:13:17: error: 'to_underlying' is not a member of 'std'
    13 |     return std::to_underlying(Color::Green) - 2;
-      |                 ^~~~~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.90201.191206/arm-none-eabi/include/c++/9.2.1/valarray:603,</pre></td>
+      |                 ^~~~~~~~~~~~~</pre></td>
         </tr>
         
         

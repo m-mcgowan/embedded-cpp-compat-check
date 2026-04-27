@@ -62,7 +62,7 @@
     
     <div class="std-header" id="c++11">
         <h2>c++11</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -2423,12 +2423,14 @@ src/cpp11__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp11__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -2584,21 +2586,12 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -2825,21 +2818,12 @@ src/cpp11__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -4150,7 +4134,7 @@ src/cpp11__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++14">
         <h2>c++14</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -6511,12 +6495,14 @@ src/cpp14__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp14__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -6672,21 +6658,12 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -6913,21 +6890,12 @@ src/cpp14__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -8238,7 +8206,7 @@ src/cpp14__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++17">
         <h2>c++17</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -10599,12 +10567,14 @@ src/cpp17__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp17__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -10760,21 +10730,12 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -11001,21 +10962,12 @@ src/cpp17__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -12326,7 +12278,7 @@ src/cpp17__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++20">
         <h2>c++20</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -14687,12 +14639,14 @@ src/cpp20__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp20__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -14848,21 +14802,12 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -15089,21 +15034,12 @@ src/cpp20__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -16414,7 +16350,7 @@ src/cpp20__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++23">
         <h2>c++23</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -18775,12 +18711,14 @@ src/cpp23__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp23__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp23__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -18936,21 +18874,12 @@ src/cpp23__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -19177,21 +19106,12 @@ src/cpp23__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp23__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -20502,7 +20422,7 @@ src/cpp23__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++26">
         <h2>c++26</h2>
-        <span class="std-stats">318/394 features (81%)</span>
+        <span class="std-stats">320/394 features (81%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 81%"></div></div>
 
@@ -22863,12 +22783,14 @@ src/cpp26__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp26__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expec</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp26__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                              ^~~
+src/cpp26__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |</pre></td>
         </tr>
         
         
@@ -23024,21 +22946,12 @@ src/cpp26__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp26__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -23265,21 +23178,12 @@ src/cpp26__cpp23__generator.cpp:11:70: error: 'iota' was not declared in this sc
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp26__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using nonstd::unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/incl</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         

@@ -3923,8 +3923,7 @@ In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__hardened_basic_string.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
-          ^~~~~~~~
-In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre></td>
+          ^~~~~~~~</pre></td>
         </tr>
         
         
@@ -4517,8 +4516,7 @@ src/cpp11__cpp23__ranges_fold.cpp:11:86: error: 'std::ranges' has not been decla
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__ranges_iota.cpp:10:77: error: 'std::ranges' has not been declared
  auto _test_cpp11__cpp23__ranges_iota() -> int { std::vector<int> v(5); std::ranges::iota(v, 1); return v[0] == 1 && v[4] == 5 ? 0 : 1; }
-                                                                             ^~~~~~
-In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre></td>
+                                                                             ^~~~~~</pre></td>
         </tr>
         
         
@@ -4780,7 +4778,7 @@ src/cpp11__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
 /home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:41:9: error: '_Atomic' does not name a type
  typedef _Atomic char atomic_char;
          ^~~~~~~
-src/cpp11__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr</pre></td>
         </tr>
         
         
@@ -4795,12 +4793,7 @@ src/cpp11__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__string_contains.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
-          ^~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:42:9: error: '_Atomic' does not name a type
- typedef _Atomic signed char atomic_schar;
-         ^~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:43:9: error: '_Atomic' does not name a type
- typedef _Atomic unsigned char atomic_uch</pre></td>
+          ^~~~~~~~</pre></td>
         </tr>
         
         
@@ -4815,7 +4808,12 @@ src/cpp11__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__string_resize_and_overwrite.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:75:9: error: '_Atomic' does not name a type
+ typedef _Atomic __INTMAX_TYPE__ atomic_intmax_t;
+         ^~~~~~~
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:76:9: error: '_Atomic' does not name a type
+ typedef _Atomic __UIN</pre></td>
         </tr>
         
         
@@ -4830,12 +4828,7 @@ src/cpp11__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__task.cpp:8:10: fatal error: execution: No such file or directory
  #include <execution>
-          ^~~~~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:225:3: error: 'atomic_flag' does not name a type; did you mean 'atomic_load'?
- } atomic_flag;
-   ^~~~~~~~~~~
-   atomic_load
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:230:49: error: 'atomic_flag' does not name a type; did you mean 'at</pre></td>
+          ^~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -10174,9 +10167,10 @@ src/cpp14__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
 /home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:40:9: error: '_Atomic' does not name a type
  typedef _Atomic _Bool atomic_bool;
          ^~~~~~~
-src/cpp14__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was not declared in this scope
- auto _test_cpp14__cpp23__stdatomic_h() -> int { atomic_int a = 0; atomic_store(&a, 42); return atomic_load(&a) - 42; }
-                                        </pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:41:9: error: '_Atomic' does not name a type
+ typedef _Atomic char atomic_char;
+         ^~~~~~~
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr</pre></td>
         </tr>
         
         
@@ -10192,11 +10186,11 @@ src/cpp14__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was not declared in 
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__string_contains.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
           ^~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:41:9: error: '_Atomic' does not name a type
- typedef _Atomic char atomic_char;
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:47:9: error: '_Atomic' does not name a type
+ typedef _Atomic unsigned int atomic_uint;
          ^~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:42:9: error: '_Atomic' does not name a type
- typedef _Atomic signed char atomic_schar;
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:48:9: error: '_Atomic' does not name a type
+ typedef _Atomic long atomic_long;
       </pre></td>
         </tr>
         
@@ -10213,11 +10207,11 @@ src/cpp14__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was not declared in 
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__string_resize_and_overwrite.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
           ^~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:60:9: error: '_Atomic' does not name a type
- typedef _Atomic __UINT_LEAST32_TYPE__ atomic_uint_least32_t;
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:71:9: error: '_Atomic' does not name a type
+ typedef _Atomic __INTPTR_TYPE__ atomic_intptr_t;
          ^~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:61:9: error: '_Atomic' does not name a type
- typedef _</pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:72:9: error: '_Atomic' does not name a type
+ typedef _Atomic __UIN</pre></td>
         </tr>
         
         
@@ -10233,11 +10227,11 @@ src/cpp14__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was not declared in 
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__task.cpp:8:10: fatal error: execution: No such file or directory
  #include <execution>
           ^~~~~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:67:9: error: '_Atomic' does not name a type
- typedef _Atomic __INT_FAST32_TYPE__ atomic_int_fast32_t;
-         ^~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:68:9: error: '_Atomic' does not name a type
- typedef _Atomic __UINT_FAST</pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:238:41: error: 'atomic_flag' does not name a type; did you mean 'atomic_load'?
+ extern void atomic_flag_clear (volatile atomic_flag *);
+                                         ^~~~~~~~~~~
+                                         atomic_load
+/home/runner/.platformio/packages/toolch</pre></td>
         </tr>
         
         
@@ -11703,7 +11697,8 @@ src/cpp17__cpp20__using_enum.cpp:9:90: error: 'Green' was not declared in this s
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__auto_cast.cpp:8:74: error: invalid use of 'auto'
  auto _test_cpp17__cpp23__auto_cast() -> int { int x = 42; auto y = auto(x); return y - 42; }
-                                                                          ^</pre></td>
+                                                                          ^
+In file included from .pio/libdeps/test/avr-libstdcpp/include/bitset:52:0,</pre></td>
         </tr>
         
         
@@ -14133,8 +14128,7 @@ src/cpp17__cpp23__allocate_at_least.cpp:9:96: error: 'class std::allocator<int>'
                              ^~~~~~~~
      uint16_t swapped = std::byteswap(val);
                              ^~~~~~~~
-                             swap
-In file included from .pio/libdeps/test/avr-libstdcpp/include/bitset:52:0,</pre></td>
+                             swap</pre></td>
         </tr>
         
         
@@ -14709,8 +14703,7 @@ src/cpp17__cpp23__</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__hardened_basic_stacktrace.cpp:8:10: fatal error: stacktrace: No such file or directory
  #include <stacktrace>
-          ^~~~~~~~~~~~
-In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre></td>
+          ^~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -14726,7 +14719,7 @@ In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre>
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__hardened_basic_string.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
           ^~~~~~~~
-In file included from .pio/libdeps/test/avr-libstdcpp/include/bitset:52:0,</pre></td>
+In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre></td>
         </tr>
         
         
@@ -15581,7 +15574,7 @@ src/cpp17__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
 /home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:41:9: error: '_Atomic' does not name a type
  typedef _Atomic char atomic_char;
          ^~~~~~~
-src/cpp17__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr</pre></td>
         </tr>
         
         
@@ -15612,11 +15605,11 @@ src/cpp17__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__string_resize_and_overwrite.cpp:8:10: fatal error: string: No such file or directory
  #include <string>
           ^~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:63:9: error: '_Atomic' does not name a type
- typedef _Atomic __INT_FAST8_TYPE__ atomic_int_fast8_t;
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:59:9: error: '_Atomic' does not name a type
+ typedef _Atomic __INT_LEAST32_TYPE__ atomic_int_least32_t;
          ^~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:64:9: error: '_Atomic' does not name a type
- typedef _Atomic</pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:61:9: error: '_Atomic' does not name a type
+ typedef _At</pre></td>
         </tr>
         
         
@@ -15632,10 +15625,11 @@ src/cpp17__cpp23__stdatomic_h.cpp:9:49: error: 'atomic_int' was </pre></td>
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__task.cpp:8:10: fatal error: execution: No such file or directory
  #include <execution>
           ^~~~~~~~~~~
-/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:233:58: error: 'atomic_flag' does not name a type; did you mean 'atomic_load'?
- extern _Bool atomic_flag_test_and_set_explicit (volatile atomic_flag *,
-                                                          ^~~~~~~~~~~
-                                                          at</pre></td>
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:71:9: error: '_Atomic' does not name a type
+ typedef _Atomic __INTPTR_TYPE__ atomic_intptr_t;
+         ^~~~~~~
+/home/runner/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include/stdatomic.h:72:9: error: '_Atomic' does not name a type
+ typedef _Atomic __UINTPTR_TYPE__ at</pre></td>
         </tr>
         
         
@@ -15718,7 +15712,8 @@ src/cpp17__cpp23__unreachable.cpp:9:102: warning: control reaches end of non-voi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp26__aligned_accessor.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from .pio/libdeps/test/avr-libstdcpp/include/bitset:52:0,</pre></td>
         </tr>
         
         
@@ -16118,8 +16113,7 @@ In file included from src/cpp17__cpp26__bitset.cpp:8:0:</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp26__reflection.cpp:8:10: fatal error: meta: No such file or directory
  #include <meta>
-          ^~~~~~
-In file included from .pio/libdeps/test/avr-libstdcpp/include/random:48:0,</pre></td>
+          ^~~~~~</pre></td>
         </tr>
         
         

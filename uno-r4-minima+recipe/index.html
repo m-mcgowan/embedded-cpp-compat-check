@@ -62,9 +62,9 @@
     
     <div class="std-header" id="c++11">
         <h2>c++11</h2>
-        <span class="std-stats">167/394 features (42%)</span>
+        <span class="std-stats">157/394 features (40%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 42%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 40%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -1380,7 +1380,8 @@ src/cpp11__cpp26__pack_indexing.cpp:9:51: error: 'first_t' was not declared in t
             <td colspan="5"><pre class="error-output">src/cpp11__cpp17__addressof_constexpr.cpp:10:40: error: call to non-constexpr function '_Tp* std::addressof(_Tp&) [with _Tp = const int]'
  constexpr const int* p = std::addressof(x);
                           ~~~~~~~~~~~~~~^~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/any:35:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/any:35,</pre></td>
         </tr>
         
         
@@ -1394,7 +1395,11 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pr
         
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp17__any.cpp:8:
-                 from src/cpp11__cpp17__any.cpp:8:</pre></td>
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+     std</pre></td>
         </tr>
         
         
@@ -1876,12 +1881,20 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp17__optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp17__optional.cpp:11:10: error: 'optional' is not a member of</pre></td>
         </tr>
         
         
@@ -2005,12 +2018,20 @@ src/cpp11__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp17__string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccar</pre></td>
         </tr>
         
         
@@ -2059,12 +2080,20 @@ src/cpp11__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp17__variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 's</pre></td>
         </tr>
         
         
@@ -2390,7 +2419,7 @@ src/cpp11__cpp20__constexpr_algorithms.cpp:11</pre></td>
  constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
                                          ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:41:0,
-                 from /home/runner/.platformio/packages/to</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle</pre></td>
         </tr>
         
         
@@ -2481,16 +2510,25 @@ src/cpp11__cpp20__constexpr_numeric.cpp:11:1: error: non-constant condition for 
  constexpr int f() { std::string s = "hi"; return s.size(); }
                                      ^~~~
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:52:0,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+           </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp20__constexpr_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp20__constexpr_string_view.cpp:9:16: error: 'str</pre></td>
         </tr>
         
         
@@ -2540,12 +2578,20 @@ src/cpp11__cpp20__constexpr_vector.cpp:10:1: error: </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp20__constrained_equality.cpp:9:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp20__constrained_equality.cpp:10:63: error: 'opti</pre></td>
         </tr>
         
         
@@ -2958,12 +3004,26 @@ src/cpp11__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+               swap
+src/cpp11__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+ auto sum(std::span<const int> values) -> int {
+                    ^~~~~
+src/cpp11__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+ auto sum(std::span<const int> val</pre></td>
         </tr>
         
         
@@ -3141,9 +3201,11 @@ In f</pre></td>
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
- auto _test_cpp11__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-                                                                                                    </pre></td>
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__associative_heterogeneous_erasure.cpp:10:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp11__cpp23__associative_heterogeneous_eras</pre></td>
         </tr>
         
         
@@ -3392,14 +3454,14 @@ src/cpp11__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use typeid with -f
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-src/cpp11__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-     if (b == 0) return std::unexpected("division by zero");
-                                                          ^
-In file included from /home/runner/.pl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                   ^~~~~~~~
+src/cpp11__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                           ^
+src/cpp11__cpp23__expected.cpp:16:14: error: 'divide' was not declared in this scope
+     auto </pre></td>
         </tr>
         
         
@@ -3562,19 +3624,12 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__freestanding_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -3622,7 +3677,9 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__freestanding_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -3653,12 +3710,20 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_freestanding_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__freestanding_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolc</pre></td>
         </tr>
         
         
@@ -3684,12 +3749,20 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_freestanding_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__freestanding_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/to</pre></td>
         </tr>
         
         
@@ -3711,12 +3784,20 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_freestanding_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__freestanding_variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolch</pre></td>
         </tr>
         
         
@@ -3768,12 +3849,19 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_basic_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_hardened_basic_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__hardened_basic_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -3813,20 +3901,12 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__hardened_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -3874,16 +3954,26 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__hardened_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_hardened_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp23__hardened_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain</pre></td>
         </tr>
         
         
@@ -3959,11 +4049,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__hazard_pointer.cpp:8:10: fatal error: hazard_pointer: No such file or directory
  #include <hazard_pointer>
-          ^~~~~~~~~~~~~~~~
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:442:5: error: 'template<class _Dom> std::_Expr<std::_UnClos<std::_Abs, std::_Expr, _Dom>, typename _Dom::value_type> std::abs' redeclared as different kind of symbol
-     _DEFINE_EXPR_UNARY_FUNCTION(abs, _Abs)
-     ^
-In file </pre></td>
+          ^~~~~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -3979,10 +4065,10 @@ In file </pre></td>
             <td colspan="5"><pre class="error-output">src/cpp11__cpp23__hive.cpp:8:10: fatal error: hive: No such file or directory
  #include <hive>
           ^~~~~~
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:455:5: error: '_Expr' does not name a type; did you mean '_Exit'?
-     _DEFINE_EXPR_UNARY_FUNCTION(sqrt, _Sqrt)
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:442:5: error: 'template<class _Dom> std::_Expr<std::_UnClos<std::_Abs, std::_Expr, _Dom>, typename _Dom::value_type> std::abs' redeclared as different kind of symbol
+     _DEFINE_EXPR_UNARY_FUNCTION(abs, _Abs)
      ^
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:543:1: error: '_Expr' d</pre></td>
+In file included from /home/runner/.platformio/p</pre></td>
         </tr>
         
         
@@ -4988,7 +5074,9 @@ In file included from /home/ru</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp11__cpp26__inplace_vector.cpp:8:10: fatal error: inplace_vector: No such file or directory
  #include <inplace_vector>
-          ^~~~~~~~~~~~~~~~</pre></td>
+          ^~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -5028,12 +5116,19 @@ In file included from /home/ru</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional_range_support</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional_range_support</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp11__cpp26__optional_range_support.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -5281,9 +5376,9 @@ In file included from /home/ru</pre></td>
     
     <div class="std-header" id="c++14">
         <h2>c++14</h2>
-        <span class="std-stats">167/394 features (42%)</span>
+        <span class="std-stats">157/394 features (40%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 42%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 40%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -6267,7 +6362,8 @@ src/cpp14__cpp23__static_call_operator.cpp:9:77: error: no match for call to '(A
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__trivial_union.cpp:8:10: fatal error: version: No such file or directory
  #include <version>
-          ^~~~~~~~~</pre></td>
+          ^~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
         </tr>
         
         
@@ -6599,7 +6695,8 @@ src/cpp14__cpp26__pack_indexing.cpp:9:51: error: 'first_t' was not declared in t
             <td colspan="5"><pre class="error-output">src/cpp14__cpp17__addressof_constexpr.cpp:10:40: error: call to non-constexpr function '_Tp* std::addressof(_Tp&) [with _Tp = const int]'
  constexpr const int* p = std::addressof(x);
                           ~~~~~~~~~~~~~~^~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/any:35:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/any:35,</pre></td>
         </tr>
         
         
@@ -6613,7 +6710,11 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pr
         
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp17__any.cpp:8:
-                 from src/cpp14__cpp17__any.cpp:8:</pre></td>
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+     std</pre></td>
         </tr>
         
         
@@ -7095,12 +7196,20 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp17__optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp17__optional.cpp:11:10: error: 'optional' is not a member of</pre></td>
         </tr>
         
         
@@ -7224,12 +7333,20 @@ src/cpp14__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp17__string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp17__string_view.cpp:11:10: error: 'string_view' is not a </pre></td>
         </tr>
         
         
@@ -7278,12 +7395,20 @@ src/cpp14__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp17__variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 's</pre></td>
         </tr>
         
         
@@ -7609,7 +7734,7 @@ src/cpp14__cpp20__constexpr_algorithms.cpp:11</pre></td>
  constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
                                          ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:41:0,
-                 from /home/runner/.platformio/packages/to</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle</pre></td>
         </tr>
         
         
@@ -7700,16 +7825,25 @@ src/cpp14__cpp20__constexpr_numeric.cpp:11:1: error: non-constant condition for 
  constexpr int f() { std::string s = "hi"; return s.size(); }
                                      ^~~~
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:52:0,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+           </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp20__constexpr_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp20__constexpr_string_view.cpp:9:16: error: 'str</pre></td>
         </tr>
         
         
@@ -7759,12 +7893,20 @@ src/cpp14__cpp20__constexpr_vector.cpp:10:1: error: </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp20__constrained_equality.cpp:9:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp20__constrained_equality.cpp:10:63: error: 'opti</pre></td>
         </tr>
         
         
@@ -8177,12 +8319,26 @@ src/cpp14__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+               swap
+src/cpp14__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+ auto sum(std::span<const int> values) -> int {
+                    ^~~~~
+src/cpp14__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+ auto sum(std::span<const int> val</pre></td>
         </tr>
         
         
@@ -8360,9 +8516,11 @@ In f</pre></td>
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
- auto _test_cpp14__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-                                                                                                    </pre></td>
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__associative_heterogeneous_erasure.cpp:10:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp14__cpp23__associative_heterogeneous_eras</pre></td>
         </tr>
         
         
@@ -8611,14 +8769,14 @@ src/cpp14__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use typeid with -f
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-src/cpp14__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-     if (b == 0) return std::unexpected("division by zero");
-                                                          ^
-In file included from /home/runner/.pl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                   ^~~~~~~~
+src/cpp14__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                           ^
+src/cpp14__cpp23__expected.cpp:16:14: error: 'divide' was not declared in this scope
+     auto </pre></td>
         </tr>
         
         
@@ -8781,19 +8939,12 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__freestanding_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -8841,7 +8992,9 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__freestanding_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -8872,12 +9025,20 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_freestanding_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__freestanding_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolc</pre></td>
         </tr>
         
         
@@ -8903,12 +9064,20 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_freestanding_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__freestanding_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/to</pre></td>
         </tr>
         
         
@@ -8930,12 +9099,20 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_freestanding_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__freestanding_variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolch</pre></td>
         </tr>
         
         
@@ -8987,12 +9164,19 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_basic_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_hardened_basic_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__hardened_basic_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -9032,20 +9216,12 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__hardened_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -9093,16 +9269,26 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__hardened_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_hardened_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp23__hardened_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain</pre></td>
         </tr>
         
         
@@ -9861,8 +10047,7 @@ src/cpp14__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp23__string_resize_and_overwrite.cpp:9:82: error: 'std::__cxx11::string {aka class std::__cxx11::basic_string<char>}' has no member named 'resize_and_overwrite'
  auto _test_cpp14__cpp23__string_resize_and_overwrite() -> int { std::string s; s.resize_and_overwrite(5, [](char* p, std::size_t n) { for (std::size_t i=0; i<n; ++i) p[i]='x'; return n; }); return s.size() == 5 ? 0 : 1; }
-                                                                                  ^~~~~~~~~~~~~~~~~~~~
-</pre></td>
+                                                                                  ^~~~~~~~~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -10203,7 +10388,9 @@ In file included from /home/ru</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp14__cpp26__inplace_vector.cpp:8:10: fatal error: inplace_vector: No such file or directory
  #include <inplace_vector>
-          ^~~~~~~~~~~~~~~~</pre></td>
+          ^~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -10243,12 +10430,19 @@ In file included from /home/ru</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional_range_support</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional_range_support</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp14__cpp26__optional_range_support.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -10496,9 +10690,9 @@ In file included from /home/ru</pre></td>
     
     <div class="std-header" id="c++17">
         <h2>c++17</h2>
-        <span class="std-stats">167/394 features (42%)</span>
+        <span class="std-stats">157/394 features (40%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 42%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 40%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -11482,7 +11676,8 @@ src/cpp17__cpp23__static_call_operator.cpp:9:77: error: no match for call to '(A
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__trivial_union.cpp:8:10: fatal error: version: No such file or directory
  #include <version>
-          ^~~~~~~~~</pre></td>
+          ^~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
         </tr>
         
         
@@ -11814,7 +12009,8 @@ src/cpp17__cpp26__pack_indexing.cpp:9:51: error: 'first_t' was not declared in t
             <td colspan="5"><pre class="error-output">src/cpp17__cpp17__addressof_constexpr.cpp:10:40: error: call to non-constexpr function '_Tp* std::addressof(_Tp&) [with _Tp = const int]'
  constexpr const int* p = std::addressof(x);
                           ~~~~~~~~~~~~~~^~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/any:35:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/any:35,</pre></td>
         </tr>
         
         
@@ -11828,7 +12024,11 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pr
         
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp17__any.cpp:8:
-                 from src/cpp17__cpp17__any.cpp:8:</pre></td>
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+     std</pre></td>
         </tr>
         
         
@@ -12310,12 +12510,20 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp17__optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp17__optional.cpp:11:10: error: 'optional' is not a member of</pre></td>
         </tr>
         
         
@@ -12401,8 +12609,7 @@ src/cpp17__cpp17__scoped_lock.cpp:10:10: error: 'scoped_lock' is not a member of
                                                        ^~~~~~~~~~~~
  auto _test_cpp17__cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }
                                                        ^~~~~~~~~~~~
-                                                       shared_ptr
-In file included from /home/runner/.platform</pre></td>
+                                                       shared_ptr</pre></td>
         </tr>
         
         
@@ -12440,12 +12647,20 @@ src/cpp17__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp17__string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp17__string_view.cpp:11:10: error: 'string_view' is not a </pre></td>
         </tr>
         
         
@@ -12494,12 +12709,20 @@ src/cpp17__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp17__variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 's</pre></td>
         </tr>
         
         
@@ -12825,7 +13048,7 @@ src/cpp17__cpp20__constexpr_algorithms.cpp:11</pre></td>
  constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
                                          ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:41:0,
-                 from /home/runner/.platformio/packages/to</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle</pre></td>
         </tr>
         
         
@@ -12916,16 +13139,25 @@ src/cpp17__cpp20__constexpr_numeric.cpp:11:1: error: non-constant condition for 
  constexpr int f() { std::string s = "hi"; return s.size(); }
                                      ^~~~
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:52:0,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+           </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp20__constexpr_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp20__constexpr_string_view.cpp:9:16: error: 'str</pre></td>
         </tr>
         
         
@@ -12975,12 +13207,20 @@ src/cpp17__cpp20__constexpr_vector.cpp:10:1: error: </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp20__constrained_equality.cpp:9:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp20__constrained_equality.cpp:10:63: error: 'opti</pre></td>
         </tr>
         
         
@@ -13393,12 +13633,26 @@ src/cpp17__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+               swap
+src/cpp17__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+ auto sum(std::span<const int> values) -> int {
+                    ^~~~~
+src/cpp17__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+ auto sum(std::span<const int> val</pre></td>
         </tr>
         
         
@@ -13576,9 +13830,11 @@ In f</pre></td>
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
- auto _test_cpp17__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-                                                                                                    </pre></td>
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__associative_heterogeneous_erasure.cpp:10:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp17__cpp23__associative_heterogeneous_eras</pre></td>
         </tr>
         
         
@@ -13827,14 +14083,14 @@ src/cpp17__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use typeid with -f
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-src/cpp17__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-     if (b == 0) return std::unexpected("division by zero");
-                                                          ^
-In file included from /home/runner/.pl</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                   ^~~~~~~~
+src/cpp17__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                           ^
+src/cpp17__cpp23__expected.cpp:16:14: error: 'divide' was not declared in this scope
+     auto </pre></td>
         </tr>
         
         
@@ -13997,19 +14253,12 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__freestanding_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -14057,7 +14306,9 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__freestanding_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -14088,12 +14339,20 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_freestanding_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__freestanding_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolc</pre></td>
         </tr>
         
         
@@ -14119,12 +14378,20 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_freestanding_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__freestanding_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/to</pre></td>
         </tr>
         
         
@@ -14146,12 +14413,20 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_freestanding_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__freestanding_variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolch</pre></td>
         </tr>
         
         
@@ -14203,12 +14478,19 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_basic_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_hardened_basic_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__hardened_basic_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -14248,20 +14530,12 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__hardened_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -14309,16 +14583,26 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__hardened_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_hardened_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp23__hardened_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain</pre></td>
         </tr>
         
         
@@ -14394,7 +14678,11 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__hazard_pointer.cpp:8:10: fatal error: hazard_pointer: No such file or directory
  #include <hazard_pointer>
-          ^~~~~~~~~~~~~~~~</pre></td>
+          ^~~~~~~~~~~~~~~~
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:442:5: error: 'template<class _Dom> std::_Expr<std::_UnClos<std::_Abs, std::_Expr, _Dom>, typename _Dom::value_type> std::abs' redeclared as different kind of symbol
+     _DEFINE_EXPR_UNARY_FUNCTION(abs, _Abs)
+     ^
+In file </pre></td>
         </tr>
         
         
@@ -14410,10 +14698,10 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__hive.cpp:8:10: fatal error: hive: No such file or directory
  #include <hive>
           ^~~~~~
-/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:442:5: error: 'template<class _Dom> std::_Expr<std::_UnClos<std::_Abs, std::_Expr, _Dom>, typename _Dom::value_type> std::abs' redeclared as different kind of symbol
-     _DEFINE_EXPR_UNARY_FUNCTION(abs, _Abs)
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:452:5: error: '_Expr' does not name a type; did you mean '_Exit'?
+     _DEFINE_EXPR_UNARY_FUNCTION(exp, _Exp)
      ^
-In file included from /home/runner/.platformio/p</pre></td>
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:452:5: error: '_Expr' doe</pre></td>
         </tr>
         
         
@@ -15107,8 +15395,7 @@ src/cpp17__cpp23__reference_from_temporary.cpp:9:112: error: expected primary-ex
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp23__to_underlying.cpp:13:17: error: 'to_underlying' is not a member of 'std'
      return std::to_underlying(Color::Green) - 2;
-                 ^~~~~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
+                 ^~~~~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -15419,7 +15706,9 @@ In file included from /home/ru</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp17__cpp26__inplace_vector.cpp:8:10: fatal error: inplace_vector: No such file or directory
  #include <inplace_vector>
-          ^~~~~~~~~~~~~~~~</pre></td>
+          ^~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -15459,12 +15748,19 @@ In file included from /home/ru</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional_range_support</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional_range_support</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp17__cpp26__optional_range_support.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -15712,9 +16008,9 @@ In file included from /home/ru</pre></td>
     
     <div class="std-header" id="c++20">
         <h2>c++20</h2>
-        <span class="std-stats">167/394 features (42%)</span>
+        <span class="std-stats">157/394 features (40%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 42%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 40%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -17030,7 +17326,8 @@ src/cpp20__cpp26__pack_indexing.cpp:9:51: error: 'first_t' was not declared in t
             <td colspan="5"><pre class="error-output">src/cpp20__cpp17__addressof_constexpr.cpp:10:40: error: call to non-constexpr function '_Tp* std::addressof(_Tp&) [with _Tp = const int]'
  constexpr const int* p = std::addressof(x);
                           ~~~~~~~~~~~~~~^~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/any:35:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/any:35,</pre></td>
         </tr>
         
         
@@ -17044,7 +17341,11 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/any:14:0,</pr
         
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp17__any.cpp:8:
-                 from src/cpp20__cpp17__any.cpp:8:</pre></td>
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp17__any.cpp:11:10: error: 'any' is not a member of 'std'
+     std</pre></td>
         </tr>
         
         
@@ -17526,12 +17827,20 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp17__optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp17__optional.cpp:11:10: error: 'optional' is not a member of</pre></td>
         </tr>
         
         
@@ -17617,8 +17926,7 @@ src/cpp20__cpp17__scoped_lock.cpp:10:10: error: 'scoped_lock' is not a member of
                                                        ^~~~~~~~~~~~
  auto _test_cpp20__cpp17__shared_mutex() -> int { std::shared_mutex m; return 0; }
                                                        ^~~~~~~~~~~~
-                                                       shared_ptr
-In file included from /home/runner/.platform</pre></td>
+                                                       shared_ptr</pre></td>
         </tr>
         
         
@@ -17656,12 +17964,20 @@ src/cpp20__cpp17__shared_ptr_weak_type.cpp:9:138: error: 'W' was not declared in
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp17__string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccar</pre></td>
         </tr>
         
         
@@ -17710,12 +18026,20 @@ src/cpp20__cpp17__type_trait_variable_templates.cpp:9:31: error: expected primar
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp17__variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp17__variant.cpp:11:10: error: 'variant' is not a member of 's</pre></td>
         </tr>
         
         
@@ -18041,7 +18365,7 @@ src/cpp20__cpp20__constexpr_algorithms.cpp:11</pre></td>
  constexpr int f() { std::allocator<int> a; int* p = a.allocate(1); *p = 42; int v = *p; a.deallocate(p, 1); return v; }
                                          ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:41:0,
-                 from /home/runner/.platformio/packages/to</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle</pre></td>
         </tr>
         
         
@@ -18132,16 +18456,25 @@ src/cpp20__cpp20__constexpr_numeric.cpp:11:1: error: non-constant condition for 
  constexpr int f() { std::string s = "hi"; return s.size(); }
                                      ^~~~
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/string:52:0,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.</pre></td>
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/string:13,
+           </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constexpr_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_constexpr_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp20__constexpr_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp20__constexpr_string_view.cpp:9:16: error: 'str</pre></td>
         </tr>
         
         
@@ -18191,12 +18524,20 @@ src/cpp20__cpp20__constexpr_vector.cpp:10:1: error: </pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp20__constrained_equality.cpp:9:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp20__constrained_equality.cpp:10:63: error: 'opti</pre></td>
         </tr>
         
         
@@ -18609,12 +18950,26 @@ src/cpp20__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+ auto sum(std::span<const int> values) -> int {
+               ^~~~
+               swap
+src/cpp20__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+ auto sum(std::span<const int> values) -> int {
+                    ^~~~~
+src/cpp20__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+ auto sum(std::span<const int> val</pre></td>
         </tr>
         
         
@@ -18792,9 +19147,11 @@ In f</pre></td>
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__associative_heterogeneous_erasure.cpp:11:160: error: no matching function for call to 'std::map<std::__cxx11::basic_string<char>, int, std::less<void> >::erase(nonstd::sv_lite::string_view)'
- auto _test_cpp20__cpp23__associative_heterogeneous_erasure() -> int { std::map<std::string, int, std::less<>> m; m["key"] = 42; m.erase(std::string_view("key")); return m.empty() ? 0 : 1; }
-                                                                                                    </pre></td>
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__associative_heterogeneous_erasure.cpp:10:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+src/cpp20__cpp23__associative_heterogeneous_eras</pre></td>
         </tr>
         
         
@@ -19043,14 +19400,14 @@ src/cpp20__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use typeid with -f
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~
-src/cpp20__cpp23__expected.cpp:11:58: error: too many arguments to function 'void std::unexpected()'
-     if (b == 0) return std::unexpected("division by zero");
-                                                          ^
-                 from src/cpp20__cpp23</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                   ^~~~~~~~
+src/cpp20__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+ auto divide(int a, int b) -> std::expected<int, const char*> {
+                                           ^
+src/cpp20__cpp23__expected.cpp:16:14: error: 'divide' was not declared in this scope
+     auto </pre></td>
         </tr>
         
         
@@ -19080,10 +19437,7 @@ src/cpp20__cpp23__expected.cpp:11:58: error: too many arguments to function 'voi
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp20__cpp23__flat_set.cpp:8:10: fatal error: flat_set: No such file or directory
  #include <flat_set>
-          ^~~~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/stdexcept:38:0,
-                 from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/array:39,
-                 from /home/runner/.platformio/packages/framework-arduinorenesas-uno/cores/arduino/v</pre></td>
+          ^~~~~~~~~~</pre></td>
         </tr>
         
         
@@ -19216,19 +19570,12 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__freestanding_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -19276,7 +19623,9 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp20__cpp23__freestanding_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
-          ^~~~~~~~</pre></td>
+          ^~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -19307,12 +19656,20 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_freestanding_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__freestanding_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolc</pre></td>
         </tr>
         
         
@@ -19338,12 +19695,20 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_freestanding_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__freestanding_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/to</pre></td>
         </tr>
         
         
@@ -19365,12 +19730,20 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>freestanding_variant</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/variant" title="cppreference docs">__cpp_lib_freestanding_variant</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__freestanding_variant.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolch</pre></td>
         </tr>
         
         
@@ -19422,12 +19795,19 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_basic_string_view</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/string_view" title="cppreference docs">__cpp_lib_hardened_basic_string_view</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__hardened_basic_string_view.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         
@@ -19467,19 +19847,12 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__hardened_expected.cpp:8:0:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'nonstd::unexpected' has not been declared
-          using nonstd::unexpected;
-                        ^~~~~~~~~~</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -19528,16 +19901,25 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
             <td colspan="5"><pre class="error-output">src/cpp20__cpp23__hardened_mdspan.cpp:8:10: fatal error: mdspan: No such file or directory
  #include <mdspan>
           ^~~~~~~~
-In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/valarray:592:0,</pre></td>
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>hardened_optional</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_hardened_optional</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp23__hardened_optional.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~
+In file included from /home/runner/.platformio/packages/toolchain</pre></td>
         </tr>
         
         
@@ -19632,7 +20014,11 @@ In file </pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp20__cpp23__hive.cpp:8:10: fatal error: hive: No such file or directory
  #include <hive>
-          ^~~~~~</pre></td>
+          ^~~~~~
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:443:5: error: '_Expr' does not name a type; did you mean '_Exit'?
+     _DEFINE_EXPR_UNARY_FUNCTION(cos, _Cos)
+     ^
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/valarray_after.h:443:5: error: '_Expr' doe</pre></td>
         </tr>
         
         
@@ -20638,7 +21024,9 @@ In file included from /home/ru</pre></td>
         <tr class="error-row">
             <td colspan="5"><pre class="error-output">src/cpp20__cpp26__inplace_vector.cpp:8:10: fatal error: inplace_vector: No such file or directory
  #include <inplace_vector>
-          ^~~~~~~~~~~~~~~~</pre></td>
+          ^~~~~~~~~~~~~~~~
+In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/optional:33:0,
+                 from .pio/libdeps/test/nonstd-lite-bundle/include/optional:37,</pre></td>
         </tr>
         
         
@@ -20678,12 +21066,19 @@ In file included from /home/ru</pre></td>
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>optional_range_support</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/optional" title="cppreference docs">__cpp_lib_optional_range_support</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">                 from src/cpp20__cpp26__optional_range_support.cpp:8:
+/home/runner/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/arm-none-eabi/include/c++/7.2.1/bits/c++17_warning.h:32:2: error: #error This file requires compiler and library support for the ISO C++ 2017 standard. This support must be enabled with the -std=c++17 or -std=gnu++17 compiler options.
+ #error This file requires compiler and library support \
+  ^~~~~</pre></td>
         </tr>
         
         

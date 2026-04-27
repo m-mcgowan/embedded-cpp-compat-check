@@ -62,9 +62,9 @@
     
     <div class="std-header" id="c++11">
         <h2>c++11</h2>
-        <span class="std-stats">242/394 features (61%)</span>
+        <span class="std-stats">243/394 features (62%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 61%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 62%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -2122,7 +2122,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/string:53,
-                 from src/cpp11__cpp20__constexpr</pre></td>
+                 from .pio/libdeps/test/nonstd-li</pre></td>
         </tr>
         
         
@@ -2588,12 +2588,24 @@ src/cpp11__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp11__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp11__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -3007,13 +3019,13 @@ src/cpp11__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expected:14:
-</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp11__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+src/cpp11__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                           ^
+src/cpp11__cpp23__expected.cpp:16:14: error: 'divide' was not decla</pre></td>
         </tr>
         
         
@@ -3167,21 +3179,12 @@ src/cpp11__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -3404,21 +3407,12 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expect
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp11__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expe</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -4749,9 +4743,9 @@ src/cpp11__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++14">
         <h2>c++14</h2>
-        <span class="std-stats">242/394 features (61%)</span>
+        <span class="std-stats">243/394 features (62%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 61%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 62%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -6809,7 +6803,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/string:53,
-                 from src/cpp14__cpp20__constexpr</pre></td>
+                 from .pio/libdeps/test/nonstd-li</pre></td>
         </tr>
         
         
@@ -7275,12 +7269,24 @@ src/cpp14__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp14__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp14__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -7694,13 +7700,13 @@ src/cpp14__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expected:14:
-</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp14__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+src/cpp14__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                           ^
+src/cpp14__cpp23__expected.cpp:16:14: error: 'divide' was not decla</pre></td>
         </tr>
         
         
@@ -7854,21 +7860,12 @@ src/cpp14__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -8091,21 +8088,12 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expect
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp14__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expe</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -9436,9 +9424,9 @@ src/cpp14__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++17">
         <h2>c++17</h2>
-        <span class="std-stats">242/394 features (61%)</span>
+        <span class="std-stats">243/394 features (62%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 61%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 62%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -11496,7 +11484,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/string:53,
-                 from src/cpp17__cpp20__constexpr</pre></td>
+                 from .pio/libdeps/test/nonstd-li</pre></td>
         </tr>
         
         
@@ -11962,12 +11950,24 @@ src/cpp17__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp17__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp17__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -12381,13 +12381,13 @@ src/cpp17__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expected:14:
-</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp17__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+src/cpp17__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                           ^
+src/cpp17__cpp23__expected.cpp:16:14: error: 'divide' was not decla</pre></td>
         </tr>
         
         
@@ -12541,21 +12541,12 @@ src/cpp17__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -12778,21 +12769,12 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expect
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp17__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expe</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -14123,9 +14105,9 @@ src/cpp17__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
     
     <div class="std-header" id="c++20">
         <h2>c++20</h2>
-        <span class="std-stats">242/394 features (61%)</span>
+        <span class="std-stats">243/394 features (62%)</span>
     </div>
-    <div class="progress"><div class="progress-bar" style="width: 61%"></div></div>
+    <div class="progress"><div class="progress-bar" style="width: 62%"></div></div>
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -16183,7 +16165,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
     9 | constexpr int f() { std::string s = "hi"; return s.size(); }
       |                                 ^
 In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/12.3.1/string:53,
-                 from src/cpp20__cpp20__constexpr</pre></td>
+                 from .pio/libdeps/test/nonstd-li</pre></td>
         </tr>
         
         
@@ -16649,12 +16631,24 @@ src/cpp20__cpp20__smart_ptr_for_overwrite.cpp:9:101: error: expected primary-exp
         </tr>
         
         
-        <tr>
+        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>span</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span</a></code></td>
             <td>&mdash;</td>
-            <td>&#x2705;</td>
-            <td class="unreported">unreported</td>
+            <td>&#x274C;</td>
+            <td class="unsupported">unsupported</td>
+        </tr>
+        
+        <tr class="error-row">
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp20__span.cpp:10:15: error: 'span' is not a member of 'std'
+   10 | auto sum(std::span<const int> values) -> int {
+      |               ^~~~
+src/cpp20__cpp20__span.cpp:10:20: error: expected primary-expression before 'const'
+   10 | auto sum(std::span<const int> values) -> int {
+      |                    ^~~~~
+src/cpp20__cpp20__span.cpp:10:39: error: expected ',' or ';' before '->' token
+   10 | auto sum(std::span<const int> values) -> int {
+      |                                </pre></td>
         </tr>
         
         
@@ -17068,13 +17062,13 @@ src/cpp20__cpp23__constexpr_typeinfo.cpp:9:113: error: cannot use 'typeid' with 
         </tr>
         
         <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expected:14:
-</pre></td>
+            <td colspan="5"><pre class="error-output">src/cpp20__cpp23__expected.cpp:10:35: error: 'expected' in namespace 'std' does not name a template type
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                   ^~~~~~~~
+src/cpp20__cpp23__expected.cpp:10:43: error: expected initializer before '<' token
+   10 | auto divide(int a, int b) -> std::expected<int, const char*> {
+      |                                           ^
+src/cpp20__cpp23__expected.cpp:16:14: error: 'divide' was not decla</pre></td>
         </tr>
         
         
@@ -17228,21 +17222,12 @@ src/cpp20__cpp23__forward_like.cpp:12:36: error: expected primary-expression bef
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>freestanding_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_freestanding_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__freestanding_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
@@ -17465,21 +17450,12 @@ In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expect
         </tr>
         
         
-        <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
+        <tr>
             <td>hardened_expected</td>
             <td><code><a href="https://en.cppreference.com/w/cpp/header/expected" title="cppreference docs">__cpp_lib_hardened_expected</a></code></td>
             <td>&mdash;</td>
-            <td>&#x274C;</td>
-            <td class="unsupported">unsupported</td>
-        </tr>
-        
-        <tr class="error-row">
-            <td colspan="5"><pre class="error-output">In file included from src/cpp20__cpp23__hardened_expected.cpp:8:
-.pio/libdeps/test/nonstd-lite-bundle/include/expected:18:24: error: 'template<class E> using unexpected = nonstd::expected_lite::unexpected_type<E>' conflicts with a previous declaration
-   18 |          using nonstd::unexpected;
-      |                        ^~~~~~~~~~
-In file included from .pio/libdeps/test/nonstd-lite-bundle/include/nonstd/expected.hpp:287,
-                 from .pio/libdeps/test/nonstd-lite-bundle/include/expe</pre></td>
+            <td>&#x2705;</td>
+            <td class="unreported">unreported</td>
         </tr>
         
         
