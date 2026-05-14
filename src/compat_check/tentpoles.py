@@ -22,6 +22,8 @@ Level = Literal["complete", "good", "partial", "unsupported"]
 
 _PASSING = frozenset({"supported", "unreported", "macro_only_yes"})
 
+_STD_ORDER = ("c++11", "c++14", "c++17", "c++20", "c++23", "c++26")
+
 
 @dataclass(frozen=True)
 class Tentpole:
@@ -107,10 +109,33 @@ def evaluate(results: list[dict], tentpoles: list[Tentpole]) -> list[TentpoleSta
 
 
 def roll_up(statuses: list[TentpoleStatus]) -> dict[Level, int]:
-    """Count statuses by level."""
-    raise NotImplementedError  # Task 3
+    """Count statuses by level. Always includes all four keys with zeros."""
+    counts: dict[Level, int] = {
+        "complete": 0, "good": 0, "partial": 0, "unsupported": 0,
+    }
+    for s in statuses:
+        counts[s.level] += 1
+    return counts
 
 
 def headline_std(rollups: dict[str, dict[Level, int]]) -> str | None:
-    """Pick the std with the most 'complete' tentpoles. Ties → highest std."""
-    raise NotImplementedError  # Task 3
+    """Pick the std with the most 'complete' tentpoles. Ties → highest std.
+
+    If no std has any complete tentpoles, returns the highest std present
+    (so we still report something for low-support platforms).
+    """
+    if not rollups:
+        return None
+    # Sort by std order so tie-breaks naturally prefer the later std.
+    ordered = sorted(
+        rollups.keys(),
+        key=lambda s: _STD_ORDER.index(s) if s in _STD_ORDER else 99,
+    )
+    best_std = ordered[0]
+    best_count = rollups[best_std]["complete"]
+    for std in ordered[1:]:
+        count = rollups[std]["complete"]
+        if count >= best_count:
+            best_std = std
+            best_count = count
+    return best_std

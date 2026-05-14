@@ -1,7 +1,7 @@
 from pathlib import Path
 import textwrap
 from compat_check.tentpoles import (
-    Tentpole, TentpoleStatus, load_tentpoles, evaluate, roll_up, headline_std
+    Level, Tentpole, TentpoleStatus, load_tentpoles, evaluate, roll_up, headline_std
 )
 
 
@@ -189,3 +189,56 @@ def test_evaluate_macro_lies_counts_as_fail():
     tp = Tentpole(id="x", name="X", required=("__cpp_a",), optional=())
     statuses = evaluate(_results({"__cpp_a": "macro_lies"}), [tp])
     assert statuses[0].level == "unsupported"
+
+
+def _status(level: Level, id: str = "x") -> TentpoleStatus:
+    """Build a TentpoleStatus with all-zero counts — only level matters here."""
+    return TentpoleStatus(
+        id=id, name=id.title(), level=level,
+        required_pass=0, required_total=0,
+        optional_pass=0, optional_total=0,
+        failed_required=(),
+    )
+
+
+def test_roll_up_counts_by_level():
+    statuses = [
+        _status("complete"), _status("complete"), _status("good"),
+        _status("partial"), _status("unsupported"), _status("unsupported"),
+    ]
+    counts = roll_up(statuses)
+    assert counts == {"complete": 2, "good": 1, "partial": 1, "unsupported": 2}
+
+
+def test_roll_up_empty():
+    assert roll_up([]) == {"complete": 0, "good": 0, "partial": 0, "unsupported": 0}
+
+
+def test_headline_std_picks_most_complete():
+    rollups = {
+        "c++17": {"complete": 8, "good": 0, "partial": 0, "unsupported": 0},
+        "c++20": {"complete": 3, "good": 1, "partial": 1, "unsupported": 3},
+    }
+    assert headline_std(rollups) == "c++17"
+
+
+def test_headline_std_breaks_tie_by_higher_std():
+    """When complete counts tie, prefer the higher standard."""
+    rollups = {
+        "c++17": {"complete": 8, "good": 0, "partial": 0, "unsupported": 0},
+        "c++20": {"complete": 8, "good": 0, "partial": 0, "unsupported": 0},
+    }
+    assert headline_std(rollups) == "c++20"
+
+
+def test_headline_std_empty():
+    assert headline_std({}) is None
+
+
+def test_headline_std_all_unsupported():
+    """Even if nothing is complete, return the highest std with tentpoles defined."""
+    rollups = {
+        "c++20": {"complete": 0, "good": 0, "partial": 0, "unsupported": 8},
+        "c++23": {"complete": 0, "good": 0, "partial": 0, "unsupported": 6},
+    }
+    assert headline_std(rollups) == "c++23"
