@@ -105,6 +105,8 @@ def generate_summary_table(results: list[dict], platform_meta=None,
         results: list of result dicts from the sweep
         platform_meta: dict mapping slug → Platform for names/board info
         site_url: base URL for platform report links (e.g. "https://example.github.io/repo")
+        tiers_path: optional path to catalog/tiers.yaml. When provided, adds a
+            'Usable C++' column with per-std tentpole rollups.
 
     Platforms with a recipe applied are stored under slug "{base}+recipe" and
     render as a second row labeled "{name} +polyfill", grouped immediately after
@@ -117,8 +119,10 @@ def generate_summary_table(results: list[dict], platform_meta=None,
         tentpoles_by_std = load_tentpoles(tiers_path)
 
     grouped: dict[str, dict[str, list[str]]] = defaultdict(lambda: defaultdict(list))
+    results_by_platform: dict[str, list[dict]] = defaultdict(list)
     for r in results:
         grouped[r["platform"]][r["standard"]].append(r["status"])
+        results_by_platform[r["platform"]].append(r)
 
     rows = []
     baseline_peak_by_base: dict[str, int] = {}
@@ -144,7 +148,7 @@ def generate_summary_table(results: list[dict], platform_meta=None,
         pct_cell = f"**{_std_label(peak_std)} / {peak_pct}%**"
 
         usable = _usable_cell(
-            [r for r in results if r["platform"] == slug],
+            results_by_platform.get(slug, []),
             tentpoles_by_std,
         ) if tentpoles_by_std else ""
 
