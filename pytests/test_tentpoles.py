@@ -1,6 +1,5 @@
 from pathlib import Path
 import textwrap
-import pytest
 from compat_check.tentpoles import (
     Tentpole, TentpoleStatus, load_tentpoles, evaluate, roll_up, headline_std
 )

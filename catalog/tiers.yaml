@@ -83,7 +83,6 @@ cpp20:
       required: [__cpp_lib_span]
       optional:
         - __cpp_lib_span_initializer_list
-        - __cpp_lib_freestanding_span
     - id: jthread
       name: std::jthread
       required: [__cpp_lib_jthread]
