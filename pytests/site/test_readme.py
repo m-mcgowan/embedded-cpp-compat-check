@@ -91,3 +91,82 @@ def test_recipe_row_uses_base_platform_meta(tmp_path):
     # Full platform name + +polyfill label + ATmega328P board shown
     assert "AVR Arduino Uno +polyfill" in table
     assert "ATmega328P" in table
+
+
+from pathlib import Path
+import textwrap
+import pytest
+
+
+@pytest.fixture
+def tiers_yaml(tmp_path):
+    """Minimal tiers.yaml with two tentpoles for c++17."""
+    p = tmp_path / "tiers.yaml"
+    p.write_text(textwrap.dedent("""
+        cpp17:
+          tentpoles:
+            - id: optional
+              name: std::optional
+              required: [__cpp_lib_optional]
+            - id: variant
+              name: std::variant
+              required: [__cpp_lib_variant]
+        cpp20:
+          tentpoles:
+            - id: concepts
+              name: Concepts
+              required: [__cpp_concepts]
+        """))
+    return p
+
+
+def test_usable_column_appears_when_tiers_provided(tiers_yaml):
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/variant", "macro": "__cpp_lib_variant", "status": "supported"},
+    ]
+    table = generate_summary_table(results, tiers_path=tiers_yaml)
+    assert "Usable C++" in table
+    # Two tentpoles both complete: "**C++17: 2✅**"
+    assert "**C++17: 2" in table
+
+
+def test_usable_column_omitted_when_no_tiers():
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+    ]
+    table = generate_summary_table(results)
+    assert "Usable C++" not in table
+
+
+def test_usable_column_mixed_status(tiers_yaml):
+    """Variant missing → one complete + one unsupported."""
+    results = [
+        {"platform": "rp2040", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+        {"platform": "rp2040", "standard": "c++17",
+         "feature": "cpp17/variant", "macro": "__cpp_lib_variant", "status": "unsupported"},
+    ]
+    table = generate_summary_table(results, tiers_path=tiers_yaml)
+    # "**C++17: 1✅ 1❌**"
+    assert "1✅" in table
+    assert "1❌" in table
+
+
+def test_usable_column_preview_higher_std(tiers_yaml):
+    """When a higher std also has tentpoles, it appears as a non-bold preview."""
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/variant", "macro": "__cpp_lib_variant", "status": "supported"},
+        {"platform": "esp32", "standard": "c++20",
+         "feature": "cpp20/concepts", "macro": "__cpp_concepts", "status": "unsupported"},
+    ]
+    table = generate_summary_table(results, tiers_path=tiers_yaml)
+    # Headline c++17 is bold; c++20 preview appears after " · "
+    assert "**C++17:" in table
+    assert " · C++20:" in table
