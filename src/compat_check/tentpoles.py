@@ -68,8 +68,42 @@ def load_tentpoles(path: Path) -> dict[str, list[Tentpole]]:
 
 
 def evaluate(results: list[dict], tentpoles: list[Tentpole]) -> list[TentpoleStatus]:
-    """Evaluate tentpoles against per-feature results (one platform, one std)."""
-    raise NotImplementedError  # Task 2
+    """Evaluate tentpoles against per-feature results (one platform, one std).
+
+    Results list elements should have 'macro' and 'status' keys. A macro
+    absent from results is treated as failing.
+    """
+    by_macro = {r.get("macro"): r.get("status") for r in results if r.get("macro")}
+    statuses: list[TentpoleStatus] = []
+    for tp in tentpoles:
+        required_pass = sum(1 for m in tp.required if by_macro.get(m) in _PASSING)
+        optional_pass = sum(1 for m in tp.optional if by_macro.get(m) in _PASSING)
+        required_total = len(tp.required)
+        optional_total = len(tp.optional)
+        failed_required = tuple(
+            m for m in tp.required if by_macro.get(m) not in _PASSING
+        )
+
+        if required_pass < required_total:
+            level: Level = "unsupported"
+        elif optional_total == 0 or optional_pass == optional_total:
+            level = "complete"
+        elif optional_pass / optional_total >= 0.75:
+            level = "good"
+        else:
+            level = "partial"
+
+        statuses.append(TentpoleStatus(
+            id=tp.id,
+            name=tp.name,
+            level=level,
+            required_pass=required_pass,
+            required_total=required_total,
+            optional_pass=optional_pass,
+            optional_total=optional_total,
+            failed_required=failed_required,
+        ))
+    return statuses
 
 
 def roll_up(statuses: list[TentpoleStatus]) -> dict[Level, int]:
