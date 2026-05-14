@@ -1,0 +1,141 @@
+# Curated tentpole features per C++ standard.
+#
+# A tentpole is a high-impact, developer-recognizable feature (e.g. Ranges,
+# Format, Coroutines). Each tentpole maps to one or more SD-6 feature-test
+# macros, split into:
+#   required - must all pass for the feature to be usable at all
+#   optional - extensions, freestanding/hardened variants, niche additions
+#
+# C++11 and C++14 are intentionally omitted - universally supported on every
+# tested platform. C++26 tentpoles are speculative until at least one compiler
+# ships meaningful support.
+
+cpp17:
+  tentpoles:
+    - id: structured_bindings
+      name: Structured bindings
+      required: [__cpp_structured_bindings]
+    - id: if_constexpr
+      name: if constexpr
+      required: [__cpp_if_constexpr]
+    - id: fold_expressions
+      name: Fold expressions
+      required: [__cpp_fold_expressions]
+    - id: deduction_guides
+      name: Class template argument deduction
+      required: [__cpp_deduction_guides]
+    - id: optional
+      name: std::optional
+      required: [__cpp_lib_optional]
+      optional:
+        - __cpp_lib_freestanding_optional
+        - __cpp_lib_optional_range_support
+    - id: variant
+      name: std::variant
+      required: [__cpp_lib_variant]
+      optional: [__cpp_lib_freestanding_variant]
+    - id: string_view
+      name: std::string_view
+      required: [__cpp_lib_string_view]
+      optional:
+        - __cpp_lib_constexpr_string_view
+        - __cpp_lib_freestanding_string_view
+    - id: filesystem
+      name: std::filesystem
+      required: [__cpp_lib_filesystem]
+
+cpp20:
+  tentpoles:
+    - id: concepts
+      name: Concepts
+      required: [__cpp_concepts, __cpp_lib_concepts]
+    - id: ranges
+      name: Ranges
+      required: [__cpp_lib_ranges, __cpp_concepts]
+      optional:
+        - __cpp_lib_ranges_zip
+        - __cpp_lib_ranges_chunk
+        - __cpp_lib_ranges_as_const
+        - __cpp_lib_ranges_as_rvalue
+        - __cpp_lib_ranges_cartesian_product
+        - __cpp_lib_ranges_join_with
+        - __cpp_lib_ranges_slide
+        - __cpp_lib_ranges_stride
+        - __cpp_lib_ranges_repeat
+        - __cpp_lib_ranges_enumerate
+    - id: format
+      name: std::format
+      required: [__cpp_lib_format]
+      optional:
+        - __cpp_lib_format_uchar
+        - __cpp_lib_formatters
+        - __cpp_lib_constexpr_format
+        - __cpp_lib_format_ranges
+    - id: coroutines
+      name: Coroutines
+      required: [__cpp_impl_coroutine, __cpp_lib_coroutine]
+    - id: modules
+      name: Modules
+      required: [__cpp_modules]
+      optional: [__cpp_lib_modules]
+    - id: span
+      name: std::span
+      required: [__cpp_lib_span]
+      optional:
+        - __cpp_lib_span_initializer_list
+        - __cpp_lib_freestanding_span
+    - id: jthread
+      name: std::jthread
+      required: [__cpp_lib_jthread]
+    - id: three_way_comparison
+      name: Three-way comparison
+      required: [__cpp_impl_three_way_comparison, __cpp_lib_three_way_comparison]
+
+cpp23:
+  tentpoles:
+    - id: expected
+      name: std::expected
+      required: [__cpp_lib_expected]
+      optional: [__cpp_lib_freestanding_expected]
+    - id: print
+      name: std::print
+      required: [__cpp_lib_print]
+    - id: mdspan
+      name: std::mdspan
+      required: [__cpp_lib_mdspan]
+      optional:
+        - __cpp_lib_submdspan
+        - __cpp_lib_freestanding_mdspan
+    - id: flat_containers
+      name: Flat containers
+      required: [__cpp_lib_flat_map, __cpp_lib_flat_set]
+      optional:
+        - __cpp_lib_constexpr_flat_map
+        - __cpp_lib_constexpr_flat_set
+    - id: deducing_this
+      name: Deducing this
+      required: [__cpp_explicit_this_parameter]
+    - id: stacktrace
+      name: std::stacktrace
+      required: [__cpp_lib_stacktrace]
+
+cpp26:
+  tentpoles:
+    - id: reflection
+      name: Reflection
+      required: [__cpp_impl_reflection, __cpp_lib_reflection]
+    - id: contracts
+      name: Contracts
+      required: [__cpp_contracts, __cpp_lib_contracts]
+    - id: pp_embed
+      name: "#embed"
+      required: [__cpp_pp_embed]
+    - id: linalg
+      name: std::linalg
+      required: [__cpp_lib_linalg]
+    - id: hazard_pointer
+      name: Hazard pointers
+      required: [__cpp_lib_hazard_pointer]
+    - id: senders
+      name: Senders/receivers
+      required: [__cpp_lib_senders]
