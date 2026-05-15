@@ -116,7 +116,11 @@ def sync(target):
               help="Directory containing platform YAML definitions", show_default=True)
 @click.option("--site-url", default="",
               help="Base URL for platform links in README (e.g. https://user.github.io/repo)")
-def generate(results_dir, output_dir, platforms_dir, site_url):
+@click.option("--tiers", default="catalog/tiers.yaml",
+              type=click.Path(),
+              help="Curated tentpole list (omitted from output if file missing)",
+              show_default=True)
+def generate(results_dir, output_dir, platforms_dir, site_url, tiers):
     """Generate a browsable HTML site and update the README compatibility matrix.
 
     Reads JSON results from a previous 'compat-check run' and produces:
@@ -132,6 +136,10 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
     platforms = load_platforms(Path(platforms_dir))
     platform_meta = {p.slug: p for p in platforms}
 
+    tiers_path = Path(tiers)
+    if not tiers_path.exists():
+        tiers_path = None
+
     all_results = []
     for f in glob_mod.glob(f"{results_dir}/**/*.json", recursive=True):
         if "manifest" in f:
@@ -140,10 +148,12 @@ def generate(results_dir, output_dir, platforms_dir, site_url):
             all_results.extend(json.load(fh))
 
     generate_site(all_results, Path(output_dir), platform_meta,
-                  catalog_path=Path("catalog/data.yaml"))
+                  catalog_path=Path("catalog/data.yaml"),
+                  tiers_path=tiers_path)
     click.echo(f"Site generated at {output_dir}/")
 
-    table = generate_summary_table(all_results, platform_meta, site_url=site_url)
+    table = generate_summary_table(all_results, platform_meta, site_url=site_url,
+                                   tiers_path=tiers_path)
 
     # Update the matrix table in README.md between markers, or append
     readme_path = Path("README.md")
