@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,8 @@
         <span class="std-stats">21/21 features (100%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -272,6 +282,8 @@
         <span class="std-stats">29/29 features (100%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -551,6 +563,101 @@
         <span class="std-stats">67/67 features (100%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 5 complete, 0 good, 3 partial, 0 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Structured bindings</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>if constexpr</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fold expressions</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Class template argument deduction</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::optional</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::variant</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::string_view</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::filesystem</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -1175,6 +1282,101 @@
         <span class="std-stats">81/82 features (99%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 99%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 5 complete, 0 good, 3 partial, 0 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Concepts</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 2/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Ranges</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 2/2, extensions 0/10
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::format</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 1/4
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Coroutines</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 2/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Modules</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1, extensions 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::span</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::jthread</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Three-way comparison</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 2/2
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -1943,6 +2145,81 @@
         <span class="std-stats">79/139 features (57%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 57%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 1 complete, 0 good, 0 partial, 5 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>std::expected</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_expected</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::print</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_print</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::mdspan</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_mdspan</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Flat containers</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_flat_map</code>, <code>__cpp_lib_flat_set</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Deducing this</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::stacktrace</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_stacktrace</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -3633,6 +3910,81 @@ src/cpp23__unreachable.cpp:9:95: error: control reaches end of non-void function
     </div>
     <div class="progress"><div class="progress-bar" style="width: 77%"></div></div>
 
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 1 complete, 0 good, 0 partial, 5 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Reflection</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_reflection</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Contracts</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_contracts</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>#embed</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::linalg</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_linalg</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Hazard pointers</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_hazard_pointer</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Senders/receivers</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_senders</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
+
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
         
@@ -3791,7 +4143,7 @@ src/cpp26__pack_indexing.cpp:9:44: error: 'first_t' was not declared in this sco
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -4079,7 +4431,7 @@ src/cpp26__pack_indexing.cpp:9:44: error: 'first_t' was not declared in this sco
         
         <tr>
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -4163,7 +4515,7 @@ src/cpp26__saturation_arithmetic.cpp:10:79: error: expected primary-expression b
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>

@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,8 @@
         <span class="std-stats">20/21 features (95%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 95%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -281,6 +291,8 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         <span class="std-stats">28/29 features (97%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 97%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -569,6 +581,101 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         <span class="std-stats">21/67 features (31%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 31%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 3 complete, 0 good, 0 partial, 5 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Structured bindings</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>if constexpr</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fold expressions</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Class template argument deduction</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_deduction_guides</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::optional</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_optional</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::variant</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_variant</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::string_view</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_string_view</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::filesystem</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_filesystem</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>

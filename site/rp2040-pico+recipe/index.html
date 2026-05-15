@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,8 @@
         <span class="std-stats">179/394 features (45%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -4721,7 +4731,7 @@ In file included from src/cpp11__cpp23__valarray_lib.cpp:1:
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -5031,7 +5041,7 @@ In file included from src/cpp11__cpp23__valarray_lib.cpp:1:
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -5120,7 +5130,7 @@ src/cpp11__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -5208,6 +5218,8 @@ src/cpp11__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         <span class="std-stats">179/394 features (45%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -9865,7 +9877,7 @@ In file included from src/cpp14__cpp23__valarray_lib.cpp:1:
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -10175,7 +10187,7 @@ In file included from src/cpp14__cpp23__valarray_lib.cpp:1:
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -10264,7 +10276,7 @@ src/cpp14__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -10352,6 +10364,101 @@ src/cpp14__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         <span class="std-stats">179/394 features (45%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 3 complete, 0 good, 0 partial, 5 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Structured bindings</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>if constexpr</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fold expressions</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Class template argument deduction</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_deduction_guides</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::optional</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_optional</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::variant</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_variant</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::string_view</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_string_view</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::filesystem</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_filesystem</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -15008,7 +15115,7 @@ In file included from src/cpp17__cpp23__valarray_lib.cpp:1:
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -15318,7 +15425,7 @@ In file included from src/cpp17__cpp23__valarray_lib.cpp:1:
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -15407,7 +15514,7 @@ src/cpp17__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -15497,6 +15604,101 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         <span class="std-stats">179/394 features (45%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 1 complete, 0 good, 0 partial, 7 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Concepts</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_concepts</code>, <code>__cpp_lib_concepts</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Ranges</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_ranges</code>, <code>__cpp_concepts</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::format</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_format</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Coroutines</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_impl_coroutine</code>, <code>__cpp_lib_coroutine</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Modules</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1, extensions 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::span</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_span</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::jthread</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_jthread</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Three-way comparison</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_impl_three_way_comparison</code>, <code>__cpp_lib_three_way_comparison</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -20154,7 +20356,7 @@ In file included from src/cpp20__cpp23__valarray_lib.cpp:1:
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -20464,7 +20666,7 @@ In file included from src/cpp20__cpp23__valarray_lib.cpp:1:
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -20553,7 +20755,7 @@ src/cpp20__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -20641,6 +20843,81 @@ src/cpp20__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         <span class="std-stats">179/394 features (45%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 45%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 0 complete, 0 good, 0 partial, 6 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>std::expected</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_expected</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::print</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_print</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::mdspan</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_mdspan</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Flat containers</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_flat_map</code>, <code>__cpp_lib_flat_set</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Deducing this</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_explicit_this_parameter</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::stacktrace</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_stacktrace</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -25297,7 +25574,7 @@ In file included from src/cpp23__cpp23__valarray_lib.cpp:1:
         
         <tr>
             <td>constant_wrapper</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_constant_wrapper</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -25607,7 +25884,7 @@ In file included from src/cpp23__cpp23__valarray_lib.cpp:1:
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_to_input</td>
-            <td><code>__cpp_lib_ranges_to_input</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_to_input</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -25696,7 +25973,7 @@ src/cpp23__cpp26__saturation_arithmetic.cpp:10:86: error: expected primary-expre
         
         <tr>
             <td>span_initializer_list</td>
-            <td><code>__cpp_lib_span_initializer_list</code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/span" title="cppreference docs">__cpp_lib_span_initializer_list</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
