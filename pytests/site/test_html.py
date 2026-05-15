@@ -88,3 +88,42 @@ def test_matrix_cell_omits_tentpole_line_when_none_defined(tmp_path, tiers_yaml)
     generate_site(results, out, tiers_path=tiers_yaml)
     index = (out / "index.html").read_text()
     assert "tentpoles" not in index
+
+
+def test_platform_page_includes_tentpole_section(tmp_path, tiers_yaml):
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "category": "library",
+         "macro": "__cpp_lib_optional", "status": "supported", "compiles": True},
+    ]
+    out = tmp_path / "site"
+    generate_site(results, out, tiers_path=tiers_yaml)
+    page = (out / "esp32" / "index.html").read_text()
+    assert "Tentpole features" in page
+    assert "std::optional" in page
+    # 4-level badge — should appear at least once
+    assert "complete" in page or "✅" in page
+
+
+def test_platform_page_omits_tentpole_section_when_no_tiers(tmp_path):
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "category": "library",
+         "macro": "__cpp_lib_optional", "status": "supported", "compiles": True},
+    ]
+    out = tmp_path / "site"
+    generate_site(results, out)  # no tiers_path
+    page = (out / "esp32" / "index.html").read_text()
+    assert "Tentpole features" not in page
+
+
+def test_platform_page_tentpole_unsupported_lists_failed_macro(tmp_path, tiers_yaml):
+    results = [
+        {"platform": "rp2040", "standard": "c++17",
+         "feature": "cpp17/optional", "category": "library",
+         "macro": "__cpp_lib_optional", "status": "unsupported", "compiles": False},
+    ]
+    out = tmp_path / "site"
+    generate_site(results, out, tiers_path=tiers_yaml)
+    page = (out / "rp2040" / "index.html").read_text()
+    assert "__cpp_lib_optional" in page  # the specific failing macro is named

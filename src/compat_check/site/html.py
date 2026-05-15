@@ -179,6 +179,18 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
         index_tmpl.render(standards=all_standards, platforms=platforms, matrix=matrix)
     )
 
+    # Per-platform per-std tentpole statuses for platform pages
+    platform_tentpole_statuses: dict[str, dict[str, list]] = {}
+    for slug, items in by_platform.items():
+        platform_tentpole_statuses[slug] = {}
+        for std in all_standards:
+            tps = tentpoles_by_std.get(std, [])
+            if not tps:
+                continue
+            plat_std_results = by_platform_std_results[slug].get(std, [])
+            if plat_std_results:
+                platform_tentpole_statuses[slug][std] = evaluate(plat_std_results, tps)
+
     # Platform pages
     platform_tmpl = env.get_template("platform.html")
     for slug, items in by_platform.items():
@@ -218,5 +230,6 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
                 by_standard={std: dict(sorted(by_std[std].items())) for std in stds_sorted},
                 std_stats=std_stats,
                 macro_links=macro_links,
+                tentpole_statuses=platform_tentpole_statuses.get(slug, {}),
             )
         )

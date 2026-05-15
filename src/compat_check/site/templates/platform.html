@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,33 @@
         <span class="std-stats">{{ stats.pass }}/{{ stats.total }} features ({{ stats.pct }}%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: {{ stats.pct }}%"></div></div>
+
+    {% if tentpole_statuses.get(std) %}
+    {% set tps = tentpole_statuses[std] %}
+    {% set complete = tps|selectattr('level', 'eq', 'complete')|list|length %}
+    {% set good     = tps|selectattr('level', 'eq', 'good')|list|length %}
+    {% set partial  = tps|selectattr('level', 'eq', 'partial')|list|length %}
+    {% set unsup    = tps|selectattr('level', 'eq', 'unsupported')|list|length %}
+    <div class="tentpole-section">
+      <h3>Tentpole features — {{ complete }} complete, {{ good }} good, {{ partial }} partial, {{ unsup }} unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        {% for tp in tps %}
+        <tr>
+          <td>{{ tp.name }}</td>
+          <td class="level-{{ tp.level }}">{{ tp.level }}</td>
+          <td>
+            {% if tp.level == 'unsupported' %}
+              {% for m in tp.failed_required %}<code>{{ m }}</code>{% if not loop.last %}, {% endif %}{% endfor %} not supported
+            {% else %}
+              required {{ tp.required_pass }}/{{ tp.required_total }}{% if tp.optional_total %}, extensions {{ tp.optional_pass }}/{{ tp.optional_total }}{% endif %}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    {% endif %}
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
