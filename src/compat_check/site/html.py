@@ -119,9 +119,11 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
     # Group results
     by_platform = defaultdict(list)
     by_platform_std = defaultdict(lambda: defaultdict(list))
+    by_platform_std_results: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for r in results:
         by_platform[r["platform"]].append(r)
         by_platform_std[r["platform"]][r["standard"]].append(r["status"])
+        by_platform_std_results[r["platform"]][r["standard"]].append(r)
 
     all_standards = sorted(
         {r["standard"] for r in results},
@@ -142,9 +144,7 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
             }
             tps = tentpoles_by_std.get(std, [])
             if tps and statuses_list:
-                plat_std_results = [
-                    r for r in by_platform[plat] if r["standard"] == std
-                ]
+                plat_std_results = by_platform_std_results[plat].get(std, [])
                 tp_statuses = evaluate(plat_std_results, tps)
                 counts = roll_up(tp_statuses)
                 cell["tentpoles_pass"] = counts["complete"] + counts["good"]
