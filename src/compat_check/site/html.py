@@ -7,6 +7,10 @@ from pathlib import Path
 import yaml
 from jinja2 import Environment, PackageLoader
 
+from compat_check.tentpoles import (
+    Tentpole, evaluate, load_tentpoles, roll_up,
+)
+
 
 _PASSING = {"supported", "unreported", "macro_only_yes"}
 
@@ -102,10 +106,14 @@ def _build_macro_links(catalog_path: Path) -> dict[str, str]:
 
 
 def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
-                  catalog_path: Path | None = None) -> None:
+                  catalog_path: Path | None = None,
+                  tiers_path: Path | None = None) -> None:
     """Generate a static HTML site from result dicts."""
     platform_meta = platform_meta or {}
     macro_links = _build_macro_links(catalog_path) if catalog_path else {}
+    tentpoles_by_std: dict[str, list[Tentpole]] = {}
+    if tiers_path is not None:
+        tentpoles_by_std = load_tentpoles(tiers_path)
     env = Environment(loader=PackageLoader("compat_check.site", "templates"))
 
     # Group results
@@ -125,13 +133,26 @@ def generate_site(results: list[dict], output_dir: Path, platform_meta=None,
     for plat, stds in by_platform_std.items():
         matrix[plat] = {}
         for std in all_standards:
-            statuses = stds.get(std, [])
-            matrix[plat][std] = {
-                "level": _support_level(statuses),
-                "pct": _support_pct(statuses),
-                "total": len(statuses),
-                "pass": sum(1 for s in statuses if s in _PASSING),
+            statuses_list = stds.get(std, [])
+            cell = {
+                "level": _support_level(statuses_list),
+                "pct": _support_pct(statuses_list),
+                "total": len(statuses_list),
+                "pass": sum(1 for s in statuses_list if s in _PASSING),
             }
+            tps = tentpoles_by_std.get(std, [])
+            if tps and statuses_list:
+                plat_std_results = [
+                    r for r in by_platform[plat] if r["standard"] == std
+                ]
+                tp_statuses = evaluate(plat_std_results, tps)
+                counts = roll_up(tp_statuses)
+                cell["tentpoles_pass"] = counts["complete"] + counts["good"]
+                cell["tentpoles_total"] = len(tp_statuses)
+            else:
+                cell["tentpoles_pass"] = None
+                cell["tentpoles_total"] = None
+            matrix[plat][std] = cell
 
     # Effective support: best % across all standards
     effective = {}

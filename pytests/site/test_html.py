@@ -1,4 +1,7 @@
+import textwrap
 from pathlib import Path
+
+import pytest
 
 from compat_check.site.html import generate_site
 
@@ -46,3 +49,42 @@ def test_generate_site_creates_platform_page(tmp_path):
     assert platform_page.exists()
     content = platform_page.read_text()
     assert "optional" in content
+
+
+@pytest.fixture
+def tiers_yaml(tmp_path):
+    p = tmp_path / "tiers.yaml"
+    p.write_text(textwrap.dedent("""
+        cpp17:
+          tentpoles:
+            - id: optional
+              name: std::optional
+              required: [__cpp_lib_optional]
+        """))
+    return p
+
+
+def test_matrix_cell_includes_tentpole_count(tmp_path, tiers_yaml):
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "category": "library",
+         "macro": "__cpp_lib_optional", "status": "supported", "compiles": True},
+    ]
+    out = tmp_path / "site"
+    generate_site(results, out, tiers_path=tiers_yaml)
+    index = (out / "index.html").read_text()
+    # Cell should include "1/1 tentpoles" beside the raw %
+    assert "1/1 tentpoles" in index
+
+
+def test_matrix_cell_omits_tentpole_line_when_none_defined(tmp_path, tiers_yaml):
+    """For C++20 where no tentpoles are defined in this tiers fixture, no sub-line."""
+    results = [
+        {"platform": "esp32", "standard": "c++20",
+         "feature": "cpp20/concepts", "category": "language",
+         "macro": "__cpp_concepts", "status": "supported", "compiles": True},
+    ]
+    out = tmp_path / "site"
+    generate_site(results, out, tiers_path=tiers_yaml)
+    index = (out / "index.html").read_text()
+    assert "tentpoles" not in index

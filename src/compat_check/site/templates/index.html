@@ -57,6 +57,7 @@
                 {% if m.total > 0 %}
                 <a href="{{ platform.slug }}/index.html#{{ std }}">{{ m.pct }}%</a>
                 <span class="pct">{{ m.pass }}/{{ m.total }}</span>
+                {% if m.tentpoles_total %}<span class="pct">{{ m.tentpoles_pass }}/{{ m.tentpoles_total }} tentpoles</span>{% endif %}
                 {% else %}&mdash;{% endif %}
             </td>
             {% endfor %}
