@@ -16,7 +16,7 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 (This matrix is auto-generated.)
 
 <!-- compat-matrix-start -->
-*12 platforms, all support C++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-05-14.*
+*12 platforms, all support C++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-05-15.*
 [Full report](https://m-mcgowan.github.io/embedded-cpp-compat-check/index.html) with per-feature details.
 
 | Platform | Board | Standards | Effective Support | Usable C++ |
@@ -39,6 +39,8 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 <!-- compat-matrix-end -->
 
 "Effective support" is the percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined. The standard shown is the one at which the peak percentage was reached.
+
+"Usable C++" shows curated **tentpole features** per C++ standard — high-impact, developer-recognizable features like Concepts, Ranges, std::format, and Coroutines. The bold standard is the one where the platform has the most fully-supported tentpoles. ✅ counts complete + good support · 🟡 partial (core works, extensions missing) · ❌ unsupported. See [`catalog/tiers.yaml`](catalog/tiers.yaml) for the curated list.
 
 | Counts as working | Counts as failing |
 |---|---|
