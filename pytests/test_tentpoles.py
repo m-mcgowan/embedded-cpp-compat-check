@@ -242,3 +242,13 @@ def test_headline_std_all_unsupported():
         "c++23": {"complete": 0, "good": 0, "partial": 0, "unsupported": 6},
     }
     assert headline_std(rollups) == "c++23"
+
+
+def test_headline_std_prefers_higher_non_unsupported_count():
+    """When complete=0 everywhere, prefer the std with more non-unsupported tentpoles."""
+    rollups = {
+        "c++17": {"complete": 0, "good": 6, "partial": 2, "unsupported": 0},
+        "c++20": {"complete": 0, "good": 0, "partial": 0, "unsupported": 8},
+    }
+    # c++17 has 8 non-unsupported; c++20 has 0. c++17 should win.
+    assert headline_std(rollups) == "c++17"

@@ -127,3 +127,4 @@ def test_platform_page_tentpole_unsupported_lists_failed_macro(tmp_path, tiers_y
     generate_site(results, out, tiers_path=tiers_yaml)
     page = (out / "rp2040" / "index.html").read_text()
     assert "__cpp_lib_optional" in page  # the specific failing macro is named
+    assert "not supported" in page  # the tentpole-section "not supported" text

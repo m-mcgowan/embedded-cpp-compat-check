@@ -119,23 +119,20 @@ def roll_up(statuses: list[TentpoleStatus]) -> dict[Level, int]:
 
 
 def headline_std(rollups: dict[str, dict[Level, int]]) -> str | None:
-    """Pick the std with the most 'complete' tentpoles. Ties → highest std.
+    """Pick the std with the most 'complete' tentpoles. Ties → higher std.
 
-    If no std has any complete tentpoles, returns the highest std present
-    (so we still report something for low-support platforms).
+    Secondary criterion (used when no std has any complete tentpoles):
+    pick the std with the most non-unsupported tentpoles (complete + good
+    + partial). Higher std still wins on a final tie.
     """
     if not rollups:
         return None
-    # Sort by std order so tie-breaks naturally prefer the later std.
-    ordered = sorted(
-        rollups.keys(),
-        key=lambda s: _STD_ORDER.index(s) if s in _STD_ORDER else 99,
-    )
-    best_std = ordered[0]
-    best_count = rollups[best_std]["complete"]
-    for std in ordered[1:]:
-        count = rollups[std]["complete"]
-        if count >= best_count:
-            best_std = std
-            best_count = count
-    return best_std
+
+    def _key(std: str) -> tuple[int, int, int]:
+        r = rollups[std]
+        complete = r["complete"]
+        non_unsupp = r["complete"] + r["good"] + r["partial"]
+        std_idx = _STD_ORDER.index(std) if std in _STD_ORDER else 99
+        return (complete, non_unsupp, std_idx)
+
+    return max(rollups.keys(), key=_key)
