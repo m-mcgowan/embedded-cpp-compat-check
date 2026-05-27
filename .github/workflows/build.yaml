@@ -97,7 +97,7 @@ jobs:
           compat-check run $PLATFORM_FLAG --recipe --parallel=1
 
       - name: Generate site and README
-        run: compat-check generate
+        run: compat-check generate --site-url https://m-mcgowan.github.io/embedded-cpp-compat-check
 
       - name: Upload results
         uses: actions/upload-artifact@v4

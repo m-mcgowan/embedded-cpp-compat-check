@@ -29,6 +29,15 @@ def _std_label(std: str) -> str:
     return std.replace("c++", "C++")
 
 
+def _pct_emoji(pct: int) -> str:
+    """Color-code a percentage with the same thresholds as the HTML site."""
+    if pct >= 90:
+        return "🟢"
+    if pct >= 50:
+        return "🟡"
+    return "🔴"
+
+
 def _peak(stds: dict[str, list[str]]) -> tuple[str, int]:
     """Return (peak_standard, peak_pct). On ties, prefer the highest standard."""
     ordered = sorted(stds.keys(), key=lambda s: _STD_ORDER.index(s) if s in _STD_ORDER else 99)
@@ -158,7 +167,7 @@ def generate_summary_table(results: list[dict], platform_meta=None,
         else:
             linked_name = display_name
 
-        pct_cell = f"**{_std_label(peak_std)} / {peak_pct}%**"
+        pct_cell = f"{_pct_emoji(peak_pct)} **{_std_label(peak_std)} / {peak_pct}%**"
 
         usable = _usable_cell(
             results_by_platform.get(slug, []),

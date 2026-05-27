@@ -11,6 +11,28 @@ def test_generate_summary_table_full_support():
     assert "**C++17 / 100%**" in table
 
 
+def test_effective_support_color_emoji():
+    """High/mid/low pct gets 🟢/🟡/🔴 prefix in the Effective Support column."""
+    # High (100%) → green
+    results_high = [
+        {"platform": "p", "standard": "c++17", "feature": "f1", "status": "supported"},
+    ]
+    assert "🟢 **C++17 / 100%**" in generate_summary_table(results_high)
+
+    # Mid (50%) → yellow
+    results_mid = [
+        {"platform": "p", "standard": "c++17", "feature": "f1", "status": "supported"},
+        {"platform": "p", "standard": "c++17", "feature": "f2", "status": "unsupported"},
+    ]
+    assert "🟡 **C++17 / 50%**" in generate_summary_table(results_mid)
+
+    # Low (0%) → red
+    results_low = [
+        {"platform": "p", "standard": "c++17", "feature": "f1", "status": "unsupported"},
+    ]
+    assert "🔴 **C++17 / 0%**" in generate_summary_table(results_low)
+
+
 def test_generate_summary_table_partial_support():
     results = [
         {"platform": "avr", "standard": "c++17", "feature": "cpp17/optional", "status": "supported"},
