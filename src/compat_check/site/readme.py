@@ -40,10 +40,14 @@ def _peak(stds: dict[str, list[str]]) -> tuple[str, int]:
     return best_std, best_pct
 
 
-def _format_tentpole_rollup(std: str, counts: dict[str, int]) -> str:
+def _format_tentpole_rollup(std: str, counts: dict[str, int],
+                            link_base: str = "") -> str:
     """Format like 'C++17: 4✅ 1🟡 3❌' — omits zero-count buckets.
 
     Collapses complete+good into ✅ so README cells stay skimmable.
+    When link_base is given, the std label is wrapped in a markdown link
+    pointing at '{link_base}#{std}' so readers can jump to that std's
+    tentpole detail on the platform page.
     """
     parts = []
     passing = counts["complete"] + counts["good"]
@@ -54,14 +58,21 @@ def _format_tentpole_rollup(std: str, counts: dict[str, int]) -> str:
     if counts["unsupported"]:
         parts.append(f"{counts['unsupported']}❌")
     body = " ".join(parts) if parts else "—"
-    return f"{_std_label(std)}: {body}"
+    label = _std_label(std)
+    if link_base:
+        label = f"[{label}]({link_base}#{std})"
+    return f"{label}: {body}"
 
 
 def _usable_cell(platform_results: list[dict],
-                 tentpoles_by_std: dict[str, list[Tentpole]]) -> str:
+                 tentpoles_by_std: dict[str, list[Tentpole]],
+                 slug: str = "",
+                 site_url: str = "") -> str:
     """Build the 'Usable C++' cell for one platform.
 
     Returns 'Headline (bold) · NextStd (preview)' or '—' if no tentpoles apply.
+    When both site_url and slug are given, each std prefix links to that
+    std's section on the platform page.
     """
     by_std: dict[str, list[dict]] = defaultdict(list)
     for r in platform_results:
@@ -77,8 +88,10 @@ def _usable_cell(platform_results: list[dict],
     if not rollups:
         return "—"
 
+    link_base = f"{site_url}/{slug}/index.html" if site_url and slug else ""
+
     head = headline_std(rollups)
-    parts = [f"**{_format_tentpole_rollup(head, rollups[head])}**"]
+    parts = [f"**{_format_tentpole_rollup(head, rollups[head], link_base)}**"]
     ordered = sorted(
         rollups.keys(),
         key=lambda s: _STD_ORDER.index(s) if s in _STD_ORDER else 99,
@@ -86,7 +99,7 @@ def _usable_cell(platform_results: list[dict],
     head_idx = ordered.index(head)
     if head_idx + 1 < len(ordered):
         nxt = ordered[head_idx + 1]
-        parts.append(_format_tentpole_rollup(nxt, rollups[nxt]))
+        parts.append(_format_tentpole_rollup(nxt, rollups[nxt], link_base))
     return " · ".join(parts)
 
 
@@ -150,6 +163,8 @@ def generate_summary_table(results: list[dict], platform_meta=None,
         usable = _usable_cell(
             results_by_platform.get(slug, []),
             tentpoles_by_std,
+            slug=slug,
+            site_url=site_url,
         ) if tentpoles_by_std else ""
 
         rows.append({

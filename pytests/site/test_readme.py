@@ -170,3 +170,36 @@ def test_usable_column_preview_higher_std(tiers_yaml):
     # Headline c++17 is bold; c++20 preview appears after " · "
     assert "**C++17:" in table
     assert " · C++20:" in table
+
+
+def test_usable_column_links_to_platform_std_section(tiers_yaml):
+    """When site_url is set, the std prefix in each Usable C++ cell links to that std's section."""
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/variant", "macro": "__cpp_lib_variant", "status": "supported"},
+        {"platform": "esp32", "standard": "c++20",
+         "feature": "cpp20/concepts", "macro": "__cpp_concepts", "status": "unsupported"},
+    ]
+    table = generate_summary_table(
+        results, tiers_path=tiers_yaml,
+        site_url="https://example.com/repo",
+    )
+    # Each std label is wrapped in a markdown link to the platform page's std anchor.
+    # The link covers just the std prefix (e.g. "C++17"), not the counts.
+    assert "[C++17](https://example.com/repo/esp32/index.html#c++17): 2✅" in table
+    assert "[C++20](https://example.com/repo/esp32/index.html#c++20): 1❌" in table
+
+
+def test_usable_column_omits_links_when_no_site_url(tiers_yaml):
+    """Without site_url, the std prefix is plain text — no markdown link."""
+    results = [
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/optional", "macro": "__cpp_lib_optional", "status": "supported"},
+        {"platform": "esp32", "standard": "c++17",
+         "feature": "cpp17/variant", "macro": "__cpp_lib_variant", "status": "supported"},
+    ]
+    table = generate_summary_table(results, tiers_path=tiers_yaml)
+    # No markdown link syntax in the Usable C++ cell
+    assert "[C++17:" not in table
