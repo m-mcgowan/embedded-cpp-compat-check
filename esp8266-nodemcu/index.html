@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,101 @@
         <span class="std-stats">63/67 features (94%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 94%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 5 complete, 0 good, 3 partial, 0 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Structured bindings</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>if constexpr</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fold expressions</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Class template argument deduction</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::optional</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::variant</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::string_view</td>
+          <td class="level-partial">partial</td>
+          <td>
+            
+              required 1/1, extensions 0/2
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::filesystem</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -230,7 +333,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>nontype_template_parameter_auto</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter" title="cppreference docs">__cpp_nontype_template_parameter_auto</a></code></td>
+            <td><code>__cpp_nontype_template_parameter_auto</code></td>
             <td>201606</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -248,7 +351,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>template_template_args</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_template_arguments" title="cppreference docs">__cpp_template_template_args</a></code></td>
+            <td><code>__cpp_template_template_args</code></td>
             <td>201611</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -296,7 +399,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>array_constexpr</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/iterator#Range_access" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
             <td>201803</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -332,7 +435,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>boyer_moore_searcher</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility/functional#Searchers" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
             <td>201603</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -341,7 +444,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>byte</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/byte" title="cppreference docs">__cpp_lib_byte</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cstddef" title="cppreference docs">__cpp_lib_byte</a></code></td>
             <td>201603</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -377,7 +480,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>execution</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_execution</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/execution" title="cppreference docs">__cpp_lib_execution</a></code></td>
             <td>201902</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -464,7 +567,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>is_aggregate</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_aggregate" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
             <td>201703</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -545,7 +648,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr>
             <td>node_extract</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/map/insert" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
             <td>201606</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -608,7 +711,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>scoped_lock</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/thread/scoped_lock" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/mutex" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>

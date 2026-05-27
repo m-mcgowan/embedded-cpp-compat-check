@@ -37,6 +37,14 @@
             white-space: pre-wrap; word-break: break-all;
             max-height: 200px; overflow-y: auto;
         }
+        .tentpole-section { margin-bottom: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; }
+        .tentpole-section h3 { margin: 0 0 0.5rem 0; font-size: 1em; color: #444; }
+        .tentpole-table { margin-bottom: 0; }
+        .tentpole-table th, .tentpole-table td { padding: 4px 8px; }
+        .level-complete { color: #28a745; font-weight: 600; }
+        .level-good { color: #5fb462; }
+        .level-partial { color: #e67e00; }
+        .level-unsupported { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -65,6 +73,8 @@
         <span class="std-stats">20/21 features (95%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 95%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -109,7 +119,7 @@
         
         <tr>
             <td>delegating_constructors</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/initializer_list#Delegating_constructor" title="cppreference docs">__cpp_delegating_constructors</a></code></td>
+            <td><code>__cpp_delegating_constructors</code></td>
             <td>200604</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -136,7 +146,7 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         
         <tr>
             <td>inheriting_constructors</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/using_declaration#Inheriting_constructors" title="cppreference docs">__cpp_inheriting_constructors</a></code></td>
+            <td><code>__cpp_inheriting_constructors</code></td>
             <td>201511</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -281,6 +291,8 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         <span class="std-stats">28/29 features (97%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 97%"></div></div>
+
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -436,7 +448,7 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         
         <tr>
             <td>make_reverse_iterator</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/iterator/make_reverse_iterator" title="cppreference docs">__cpp_lib_make_reverse_iterator</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_make_reverse_iterator</a></code></td>
             <td>201402</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -517,7 +529,7 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         
         <tr>
             <td>to_chars</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility/to_chars" title="cppreference docs">__cpp_lib_to_chars</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/charconv" title="cppreference docs">__cpp_lib_to_chars</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -526,7 +538,7 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         
         <tr>
             <td>transformation_trait_aliases</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_transformation_trait_aliases</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/meta#Type_transformations" title="cppreference docs">__cpp_lib_transformation_trait_aliases</a></code></td>
             <td>201304</td>
             <td>&#x2705;</td>
             <td class="supported">supported</td>
@@ -569,6 +581,101 @@ src/cpp11__exceptions.cpp:8:82: error: 'e' was not declared in this scope
         <span class="std-stats">21/67 features (31%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 31%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 3 complete, 0 good, 0 partial, 5 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Structured bindings</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>if constexpr</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fold expressions</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Class template argument deduction</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_deduction_guides</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::optional</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_optional</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::variant</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_variant</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::string_view</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_string_view</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::filesystem</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_filesystem</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -767,7 +874,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>nontype_template_parameter_auto</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Non-type_template_parameter" title="cppreference docs">__cpp_nontype_template_parameter_auto</a></code></td>
+            <td><code>__cpp_nontype_template_parameter_auto</code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -793,7 +900,7 @@ src/cpp17__nontype_template_args.cpp:10:70: error: no matching function for call
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>template_template_args</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/template_parameters#Template_template_arguments" title="cppreference docs">__cpp_template_template_args</a></code></td>
+            <td><code>__cpp_template_template_args</code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -875,7 +982,7 @@ src/cpp17__any.cpp:12:26: error: expected ';' before 'int'
         
         <tr>
             <td>array_constexpr</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/iterator#Range_access" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/iterator" title="cppreference docs">__cpp_lib_array_constexpr</a></code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -935,7 +1042,7 @@ src/cpp17__bool_constant.cpp:10:12: error: 't' has not been declared
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>boyer_moore_searcher</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility/functional#Searchers" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/functional" title="cppreference docs">__cpp_lib_boyer_moore_searcher</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -950,7 +1057,7 @@ src/cpp17__bool_constant.cpp:10:12: error: 't' has not been declared
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>byte</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/byte" title="cppreference docs">__cpp_lib_byte</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cstddef" title="cppreference docs">__cpp_lib_byte</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1011,7 +1118,7 @@ In file included from /home/runner/.platformio/packages/toolchain-gccarmnoneeabi
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>execution</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm#Execution_policies" title="cppreference docs">__cpp_lib_execution</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/execution" title="cppreference docs">__cpp_lib_execution</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1144,7 +1251,7 @@ In file included from /home/runner/.platformio/packages/framework-arduino-mbed/c
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>is_aggregate</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_aggregate" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_aggregate</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1287,7 +1394,7 @@ src/cpp17__make_from_tuple.cpp:10:77: error: expected primary-expression before 
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>node_extract</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/map/insert" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/map" title="cppreference docs">__cpp_lib_node_extract</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1403,7 +1510,7 @@ src/cpp17__sample.cpp:12:98: error: 'sample' is not a member of 'std'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>scoped_lock</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/thread/scoped_lock" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/mutex" title="cppreference docs">__cpp_lib_scoped_lock</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1566,6 +1673,101 @@ In file included from /home/runner/.platformio/packages/f</pre></td>
         <span class="std-stats">12/82 features (15%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 15%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 1 complete, 0 good, 0 partial, 7 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>Concepts</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_concepts</code>, <code>__cpp_lib_concepts</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Ranges</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_ranges</code>, <code>__cpp_concepts</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::format</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_format</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Coroutines</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_impl_coroutine</code>, <code>__cpp_lib_coroutine</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Modules</td>
+          <td class="level-complete">complete</td>
+          <td>
+            
+              required 1/1, extensions 1/1
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::span</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_span</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::jthread</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_jthread</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Three-way comparison</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_impl_three_way_comparison</code>, <code>__cpp_lib_three_way_comparison</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -1739,7 +1941,7 @@ src/cpp20__constinit.cpp:11:12: error: 'global_val' was not declared in this sco
         
         <tr>
             <td>designated_initializers</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers" title="cppreference docs">__cpp_designated_initializers</a></code></td>
+            <td><code>__cpp_designated_initializers</code></td>
             <td>&mdash;</td>
             <td>&#x2705;</td>
             <td class="unreported">unreported</td>
@@ -1883,7 +2085,7 @@ src/cpp20__atomic_lock_free</pre></td>
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>atomic_ref</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/atomic/atomic_ref" title="cppreference docs">__cpp_lib_atomic_ref</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/atomic" title="cppreference docs">__cpp_lib_atomic_ref</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1941,7 +2143,7 @@ src/cpp20__atomic_ref.cpp:9:68: error: expected primary-expression before 'int'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>barrier</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/thread/barrier" title="cppreference docs">__cpp_lib_barrier</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/barrier" title="cppreference docs">__cpp_lib_barrier</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1971,7 +2173,7 @@ src/cpp20__atomic_ref.cpp:9:68: error: expected primary-expression before 'int'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>bit_cast</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/bit_cast" title="cppreference docs">__cpp_lib_bit_cast</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/bit" title="cppreference docs">__cpp_lib_bit_cast</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -1990,7 +2192,7 @@ src/cpp20__bit_cast.cpp:13:39: error: expected primary-expression before '>' tok
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>bitops</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/numeric#Bit_manipulation_(since_C++20)" title="cppreference docs">__cpp_lib_bitops</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/bit" title="cppreference docs">__cpp_lib_bitops</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2005,7 +2207,7 @@ src/cpp20__bit_cast.cpp:13:39: error: expected primary-expression before '>' tok
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>bounded_array_traits</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_bounded_array" title="cppreference docs">__cpp_lib_bounded_array_traits</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_bounded_array_traits</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2287,7 +2489,7 @@ src/cpp20__constexpr_vector.cpp:10:19: error: non-constant condition for s</pre>
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>constrained_equality</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/utility/pair/operator_cmp" title="cppreference docs">__cpp_lib_constrained_equality</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2454,7 +2656,7 @@ src/cpp20__int_pow2.cpp:9:78: error: 'bit_ceil' is not a member of 'std'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>integer_comparison_functions</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility#Integer_comparison_functions" title="cppreference docs">__cpp_lib_integer_comparison_functions</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_integer_comparison_functions</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2469,7 +2671,7 @@ src/cpp20__int_pow2.cpp:9:78: error: 'bit_ceil' is not a member of 'std'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>interpolate</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/lerp" title="cppreference docs">__cpp_lib_interpolate</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/cmath" title="cppreference docs">__cpp_lib_interpolate</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2486,7 +2688,7 @@ src/cpp20__interpolate.cpp:9:86: error: 'lerp' is not a member of 'std'
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>is_constant_evaluated</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_constant_evaluated" title="cppreference docs">__cpp_lib_is_constant_evaluated</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_constant_evaluated</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2535,7 +2737,7 @@ src/cpp20__is_nothrow_convertible.cpp:9:</pre></td>
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>latch</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/thread/latch" title="cppreference docs">__cpp_lib_latch</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/latch" title="cppreference docs">__cpp_lib_latch</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2631,7 +2833,7 @@ src/cpp20__polymorphic_allocator.cpp:9:84: error: expected primary-expression be
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>remove_cvref</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/remove_cvref" title="cppreference docs">__cpp_lib_remove_cvref</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_remove_cvref</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2649,7 +2851,7 @@ src/cpp20__remove_cvref.cpp:9:70: error: 'remove_cvref_t' is not a member of 'st
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>semaphore</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/thread/counting_semaphore" title="cppreference docs">__cpp_lib_semaphore</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/semaphore" title="cppreference docs">__cpp_lib_semaphore</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2809,7 +3011,7 @@ src/cpp20__starts_ends_with.cpp:10:40: error: 'std::string' {aka 'class std::__c
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>to_array</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/array/to_array" title="cppreference docs">__cpp_lib_to_array</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/array" title="cppreference docs">__cpp_lib_to_array</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -2866,6 +3068,81 @@ src/cpp20__unwrap_ref.cpp:9:139: error: 'is_same_v' is not a member of 'std'; di
         <span class="std-stats">59/139 features (42%)</span>
     </div>
     <div class="progress"><div class="progress-bar" style="width: 42%"></div></div>
+
+    
+    
+    
+    
+    
+    
+    <div class="tentpole-section">
+      <h3>Tentpole features — 0 complete, 0 good, 0 partial, 6 unsupported</h3>
+      <table class="tentpole-table">
+        <tr><th>Feature</th><th>Status</th><th>Coverage</th></tr>
+        
+        <tr>
+          <td>std::expected</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_expected</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::print</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_print</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::mdspan</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_mdspan</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Flat containers</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_flat_map</code>, <code>__cpp_lib_flat_set</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Deducing this</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_explicit_this_parameter</code> not supported
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>std::stacktrace</td>
+          <td class="level-unsupported">unsupported</td>
+          <td>
+            
+              <code>__cpp_lib_stacktrace</code> not supported
+            
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    
 
     <table>
         <tr><th>Feature</th><th>Macro</th><th>Value</th><th>Compiles</th><th>Status</th></tr>
@@ -2955,7 +3232,7 @@ src/cpp20__unwrap_ref.cpp:9:139: error: 'is_same_v' is not a member of 'std'; di
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>explicit_this_parameter</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/language/member_functions#Explicit_object_parameter" title="cppreference docs">__cpp_explicit_this_parameter</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/language/member_functions#Explicit_object_member_functions" title="cppreference docs">__cpp_explicit_this_parameter</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -3174,7 +3451,7 @@ src/cpp23__allocate_at_least.cpp:9:89: error: 'class std::allocator<int>' has no
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>byteswap</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/numeric/byteswap" title="cppreference docs">__cpp_lib_byteswap</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/bit" title="cppreference docs">__cpp_lib_byteswap</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -3390,7 +3667,7 @@ src/cpp23__constexpr_typeinfo.cpp:9:106: error: cannot use 'typeid' with '-fno-r
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>flat_map</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/flat_map" title="cppreference docs">__cpp_lib_flat_map</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/flat_map" title="cppreference docs">__cpp_lib_flat_map</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -3405,7 +3682,7 @@ src/cpp23__constexpr_typeinfo.cpp:9:106: error: cannot use 'typeid' with '-fno-r
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>flat_set</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/flat_set" title="cppreference docs">__cpp_lib_flat_set</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/flat_set" title="cppreference docs">__cpp_lib_flat_set</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -3450,7 +3727,7 @@ src/cpp23__constexpr_typeinfo.cpp:9:106: error: cannot use 'typeid' with '-fno-r
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>forward_like</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility/forward_like" title="cppreference docs">__cpp_lib_forward_like</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_forward_like</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4020,7 +4297,7 @@ src/cpp23__is_implicit_lifetime.cpp:10:87: error: expected primary-expression be
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>is_layout_compatible</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_layout_compatible" title="cppreference docs">__cpp_lib_is_layout_compatible</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_layout_compatible</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4037,7 +4314,7 @@ src/cpp23__is_layout_compatible.cpp:10:87: error: expected primary-expression be
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>is_pointer_interconvertible</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_pointer_interconvertible_with_class" title="cppreference docs">__cpp_lib_is_pointer_interconvertible</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_pointer_interconvertible</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4054,7 +4331,7 @@ src/cpp23__is_pointer_interconvertible.cpp:10:110: error: expected primary-expre
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>is_scoped_enum</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/types/is_scoped_enum" title="cppreference docs">__cpp_lib_is_scoped_enum</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/type_traits" title="cppreference docs">__cpp_lib_is_scoped_enum</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4086,7 +4363,7 @@ src/cpp23__is_scoped_enum.cpp:10:75: error: expected primary-expression before '
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>mdspan</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/container/mdspan" title="cppreference docs">__cpp_lib_mdspan</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/mdspan" title="cppreference docs">__cpp_lib_mdspan</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4159,7 +4436,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_as_const</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/as_const_view" title="cppreference docs">__cpp_lib_ranges_as_const</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_as_const</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4174,7 +4451,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_as_rvalue</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/as_rvalue_view" title="cppreference docs">__cpp_lib_ranges_as_rvalue</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_as_rvalue</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4189,7 +4466,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_cartesian_product</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/cartesian_product_view" title="cppreference docs">__cpp_lib_ranges_cartesian_product</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_cartesian_product</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4204,7 +4481,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_chunk</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/chunk_view" title="cppreference docs">__cpp_lib_ranges_chunk</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_chunk</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4219,7 +4496,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_chunk_by</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/chunk_by_view" title="cppreference docs">__cpp_lib_ranges_chunk_by</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_chunk_by</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4234,7 +4511,7 @@ src/cpp23__out_ptr.cpp:9:13: warning: 'void alloc_int(int**)' defined but not us
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_contains</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm/ranges/contains" title="cppreference docs">__cpp_lib_ranges_contains</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_ranges_contains</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4267,7 +4544,7 @@ src/cpp23__ranges_contains.cpp:10:83: error: 'std::ranges' has not been declared
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_find_last</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/header/algorithm" title="cppreference docs">__cpp_lib_ranges_find_last</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm/ranges/find_last" title="cppreference docs">__cpp_lib_ranges_find_last</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4302,7 +4579,7 @@ src/cpp23__ranges_fold.cpp:11:79: error: 'std::ranges' has not been declared
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_generate_random</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/algorithm/ranges/generate_random" title="cppreference docs">__cpp_lib_ranges_generate_random</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/random" title="cppreference docs">__cpp_lib_ranges_generate_random</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4345,7 +4622,7 @@ src/cpp23__ranges_fold.cpp:11:79: error: 'std::ranges' has not been declared
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_repeat</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/repeat_view" title="cppreference docs">__cpp_lib_ranges_repeat</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_repeat</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4407,7 +4684,7 @@ src/cpp23__ranges_starts_ends_with.cpp:10:95: error: missing template arguments 
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>ranges_stride</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/ranges/stride_view" title="cppreference docs">__cpp_lib_ranges_stride</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/ranges" title="cppreference docs">__cpp_lib_ranges_stride</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4582,7 +4859,7 @@ src/cpp23__reference_from_temporary.cpp:9:105: error: expected primary-expressio
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>string_contains</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/string/basic_string/contains" title="cppreference docs">__cpp_lib_string_contains</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/string" title="cppreference docs">__cpp_lib_string_contains</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
@@ -4621,7 +4898,7 @@ src/cpp23__reference_from_temporary.cpp:9:105: error: expected primary-expressio
         
         <tr class="has-error" onclick="this.nextElementSibling.classList.toggle('open')">
             <td>to_underlying</td>
-            <td><code><a href="https://en.cppreference.com/w/cpp/utility/to_underlying" title="cppreference docs">__cpp_lib_to_underlying</a></code></td>
+            <td><code><a href="https://en.cppreference.com/w/cpp/header/utility" title="cppreference docs">__cpp_lib_to_underlying</a></code></td>
             <td>&mdash;</td>
             <td>&#x274C;</td>
             <td class="unsupported">unsupported</td>
