@@ -1,5 +1,9 @@
 # Embedded C++ Compatibility Check
 
+[![Build Compatibility Matrix](https://github.com/m-mcgowan/embedded-cpp-compat-check/actions/workflows/build.yaml/badge.svg)](https://github.com/m-mcgowan/embedded-cpp-compat-check/actions/workflows/build.yaml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+
 A C++ standard compatibility checker for embedded platforms. Presently supports PlatformIO, with others (arduino-IDE, ESP-IDF, Zephyr) planned as future extensions.
 
 Embedded toolchains often claim C++17 or C++20 support, but ship incomplete standard libraries. A macro might say `__cpp_lib_optional` is defined, but `#include <optional>` fails to compile. This tool finds the truth — testing C++ features across 12 embedded platforms using real PlatformIO builds, so you know exactly what works before you write a line of code.
