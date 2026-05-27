@@ -21,24 +21,25 @@ Embedded toolchains often claim C++17 or C++20 support, but ship incomplete stan
 
 <!-- compat-matrix-start -->
 *12 platforms, all support C++17 above 80% compatibility. Effective support: 86%–100%. Updated 2026-05-27.*
+[Full report](https://m-mcgowan.github.io/embedded-cpp-compat-check/index.html) with per-feature details.
 
 | Platform | Board | Standards | Effective Support | Usable C++ |
 |----------|-------|-----------|-------------------|-----------|
-| ESP32-S3 (pioarduino) | esp32s3 | C++11–C++26 | **C++17 / 100%** | **C++20: 5✅ 3🟡** · C++23: 1✅ 5❌ |
-| ESP32-S3 (espressif32 official) | esp32s3 | C++11–C++26 | **C++17 / 100%** | **C++20: 5✅ 3🟡** · C++23: 1✅ 5❌ |
-| Raspberry Pi Pico (RP2040) | RP2040 Cortex-M0+ | C++11–C++23 | **C++14 / 97%** | **C++17: 3✅ 5❌** · C++20: 1✅ 7❌ |
-| Raspberry Pi Pico (RP2040) +polyfill | RP2040 Cortex-M0+ | C++11–C++23 | **C++23 / 45%** | **C++17: 3✅ 5❌** · C++20: 1✅ 7❌ |
-| SAMD51 Adafruit Feather M4 | SAMD51 Cortex-M4F | C++11–C++17 | **C++14 / 97%** | **C++17: 3✅ 5❌** |
-| STM32 Nucleo F411RE | STM32F411 Cortex-M4 | C++11–C++20 | **C++14 / 97%** | **C++17: 5✅ 3🟡** · C++20: 1✅ 7❌ |
-| Teensy 4.1 | i.MX RT1062 Cortex-M7 | C++11–C++20 | **C++14 / 97%** | **C++17: 5✅ 3🟡** · C++20: 1✅ 7❌ |
-| nRF52840 Arduino Nano 33 BLE | nRF52840 Cortex-M4F | C++11–C++20 | **C++11 / 95%** | **C++17: 3✅ 5❌** · C++20: 8❌ |
-| SAMD21 Arduino Zero | SAMD21 Cortex-M0+ | C++11–C++17 | **C++11 / 95%** | **C++17: 3✅ 5❌** |
-| Arduino Uno R4 Minima | Renesas RA4M1 | C++11–C++20 | **C++11 / 95%** | **C++17: 3✅ 5❌** · C++20: 8❌ |
-| ESP8266 NodeMCU | ESP8266 Xtensa LX106 | C++17 | **C++17 / 94%** | **C++17: 5✅ 3🟡** |
-| AVR Arduino Uno | ATmega328P | C++11–C++17 | **C++11 / 86%** | **C++17: 3✅ 5❌** |
-| AVR Arduino Uno +polyfill | ATmega328P | C++11–C++17 | **C++17 / 41%** | **C++17: 3✅ 5❌** |
-| megaAVR Arduino Nano Every | ATmega4809 | C++11–C++17 | **C++11 / 86%** | **C++17: 3✅ 5❌** |
-| megaAVR Arduino Nano Every +polyfill | ATmega4809 | C++11–C++17 | **C++17 / 41%** | **C++17: 3✅ 5❌** |
+| [ESP32-S3 (pioarduino)](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-arduino-v3/index.html) | esp32s3 | C++11–C++26 | **C++17 / 100%** | **[C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-arduino-v3/index.html#c++20): 5✅ 3🟡** · [C++23](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-arduino-v3/index.html#c++23): 1✅ 5❌ |
+| [ESP32-S3 (espressif32 official)](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-espressif32/index.html) | esp32s3 | C++11–C++26 | **C++17 / 100%** | **[C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-espressif32/index.html#c++20): 5✅ 3🟡** · [C++23](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp32s3-espressif32/index.html#c++23): 1✅ 5❌ |
+| [Raspberry Pi Pico (RP2040)](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico/index.html) | RP2040 Cortex-M0+ | C++11–C++23 | **C++14 / 97%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico/index.html#c++17): 3✅ 5❌** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico/index.html#c++20): 1✅ 7❌ |
+| [Raspberry Pi Pico (RP2040) +polyfill](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico+recipe/index.html) | RP2040 Cortex-M0+ | C++11–C++23 | **C++23 / 45%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico+recipe/index.html#c++17): 3✅ 5❌** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/rp2040-pico+recipe/index.html#c++20): 1✅ 7❌ |
+| [SAMD51 Adafruit Feather M4](https://m-mcgowan.github.io/embedded-cpp-compat-check/samd51-feather-m4/index.html) | SAMD51 Cortex-M4F | C++11–C++17 | **C++14 / 97%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/samd51-feather-m4/index.html#c++17): 3✅ 5❌** |
+| [STM32 Nucleo F411RE](https://m-mcgowan.github.io/embedded-cpp-compat-check/stm32-nucleo-f411re/index.html) | STM32F411 Cortex-M4 | C++11–C++20 | **C++14 / 97%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/stm32-nucleo-f411re/index.html#c++17): 5✅ 3🟡** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/stm32-nucleo-f411re/index.html#c++20): 1✅ 7❌ |
+| [Teensy 4.1](https://m-mcgowan.github.io/embedded-cpp-compat-check/teensy41/index.html) | i.MX RT1062 Cortex-M7 | C++11–C++20 | **C++14 / 97%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/teensy41/index.html#c++17): 5✅ 3🟡** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/teensy41/index.html#c++20): 1✅ 7❌ |
+| [nRF52840 Arduino Nano 33 BLE](https://m-mcgowan.github.io/embedded-cpp-compat-check/nrf52840-nano33ble/index.html) | nRF52840 Cortex-M4F | C++11–C++20 | **C++11 / 95%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/nrf52840-nano33ble/index.html#c++17): 3✅ 5❌** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/nrf52840-nano33ble/index.html#c++20): 8❌ |
+| [SAMD21 Arduino Zero](https://m-mcgowan.github.io/embedded-cpp-compat-check/samd21-zero/index.html) | SAMD21 Cortex-M0+ | C++11–C++17 | **C++11 / 95%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/samd21-zero/index.html#c++17): 3✅ 5❌** |
+| [Arduino Uno R4 Minima](https://m-mcgowan.github.io/embedded-cpp-compat-check/uno-r4-minima/index.html) | Renesas RA4M1 | C++11–C++20 | **C++11 / 95%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/uno-r4-minima/index.html#c++17): 3✅ 5❌** · [C++20](https://m-mcgowan.github.io/embedded-cpp-compat-check/uno-r4-minima/index.html#c++20): 8❌ |
+| [ESP8266 NodeMCU](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp8266-nodemcu/index.html) | ESP8266 Xtensa LX106 | C++17 | **C++17 / 94%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/esp8266-nodemcu/index.html#c++17): 5✅ 3🟡** |
+| [AVR Arduino Uno](https://m-mcgowan.github.io/embedded-cpp-compat-check/avr-uno/index.html) | ATmega328P | C++11–C++17 | **C++11 / 86%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/avr-uno/index.html#c++17): 3✅ 5❌** |
+| [AVR Arduino Uno +polyfill](https://m-mcgowan.github.io/embedded-cpp-compat-check/avr-uno+recipe/index.html) | ATmega328P | C++11–C++17 | **C++17 / 41%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/avr-uno+recipe/index.html#c++17): 3✅ 5❌** |
+| [megaAVR Arduino Nano Every](https://m-mcgowan.github.io/embedded-cpp-compat-check/megaavr-nano-every/index.html) | ATmega4809 | C++11–C++17 | **C++11 / 86%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/megaavr-nano-every/index.html#c++17): 3✅ 5❌** |
+| [megaAVR Arduino Nano Every +polyfill](https://m-mcgowan.github.io/embedded-cpp-compat-check/megaavr-nano-every+recipe/index.html) | ATmega4809 | C++11–C++17 | **C++17 / 41%** | **[C++17](https://m-mcgowan.github.io/embedded-cpp-compat-check/megaavr-nano-every+recipe/index.html#c++17): 3✅ 5❌** |
 <!-- compat-matrix-end -->
 
 "Effective support" is the percentage of features that compile successfully, regardless of whether the SD-6 feature-test macro is defined. The standard shown is the one at which the peak percentage was reached.
